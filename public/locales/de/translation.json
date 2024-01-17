@@ -1,0 +1,65 @@
+{
+   "learn": {
+      "wordSpecification": "Wähle ein beliebiges Wort im Text aus, um die Übersetzung zu sehen",
+      "startQuiz": "Quiz starten",
+      "wordSpecificationTooltip": "Beim Speichern dieses Wortes kannst du es in der Sektion 'Üben' überprüfen.",
+      "earnPoints": "Erhalte Punkte, indem du dieses Quiz abschließt."
+   },
+   "practice": {
+      "cardStat": {
+         "easy": "Einfach",
+         "medium": "Mittel",
+         "hard": "Schwer"
+      },
+      "noVocabulary": "Du hast noch keinen Wortschatz in deiner Bibliothek. Du kannst damit beginnen, Artikel zu lesen, um deinen Wortschatz aufzubauen.",
+      "startAgain": "Von vorne beginnen",
+      "cards": "Karten",
+      "noFilterResult": "Du hast noch keinen Wortschatz auf Niveau {{level}}."
+   },
+   "quiz": {
+      "checkAnswer": "Antwort überprüfen",
+      "quizResult": "Du hattest {{totalRating}} von {{numberOfQuestions}} korrekt. Deine Bewertung ist: "
+   },
+   "score": {
+      "title": "Punktetabelle",
+      "span": "Punkte"
+   },
+   "translation": {
+      "notFoundTranslation": "Es tut uns leid, aber wir haben keine Übersetzung für das gesuchte Wort auf unseren Servern gefunden.",
+      "alreadySaved": "Bereits in deinem Vokabular gespeichert.",
+      "saved": "Erfolgreich in deinem Vokabular gespeichert."
+   },
+   "constants": {
+      "needSignUp": "Du musst dich anmelden, um diese Funktion zu verwenden."
+   },
+   "menu": {
+      "logIn": "Einloggen",
+      "loginWithGoogle": "Mit Google einloggen",
+      "logOut": "Ausloggen",
+      "profile": "Profil",
+      "learn": "Lernen",
+      "practice": "Üben",
+      "spanishOption": "Spanisch",
+      "germanOption": "Deutsch"
+   },
+   "home": {
+      "tittle": "Ein Weg, deinen Wortschatz im Deutsch zu trainieren, ist durch Lesen und Wiederholung!",
+      "button": "Beginne hier"
+   },
+   "profile": {
+      "saveButton": "updaten",
+      "cancelButton": "abbrechen",
+      "alias": "Spitzname",
+      "name": "Name",
+      "email": "Email",
+      "success": "Profil erfolgreich aktualisiert"
+   },
+   "data": {
+      "german_translation": "Wort",
+      "level": "Niveau",
+      "times_seen": "Häufigkeit",
+      "delete": "Löschen",
+      "tableTitle": "Ein Blick auf deine Statistiken.",
+      "words_by_level": "Wörter nach Niveau"
+   }
+}

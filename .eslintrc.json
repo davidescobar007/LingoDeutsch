@@ -1,3 +1,79 @@
 {
-  "extends": "next/core-web-vitals"
+   "env": {
+      "browser": true,
+      "es2021": true
+   },
+   "extends": [
+      "next/core-web-vitals",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react/all",
+      "prettier"
+   ],
+   "overrides": [
+      // override "simple-import-sort" config
+      {
+         "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+         "rules": {
+            "simple-import-sort/imports": [
+               "warn",
+               {
+                  "groups": [
+                     // Packages `react` related packages come first.
+                     ["^react", "^@?\\w"],
+                     // Internal packages.
+                     ["^(@|components)(/.*|$)"],
+                     // Side effect imports.
+                     ["^\\u0000"],
+                     // Parent imports. Put `..` last.
+                     ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+                     // Other relative imports. Put same-folder imports and `.` last.
+                     ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                     // Style imports.
+                     ["^.+\\.?(css)$"]
+                  ]
+               }
+            ]
+         }
+      }
+   ],
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "plugins": ["react", "unused-imports", "simple-import-sort"],
+   "rules": {
+      "react/jsx-filename-extension": [0, { "allow": "as-needed" }],
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-max-depth": 0,
+      "react/jsx-no-leaked-render": "off",
+      "react/jsx-no-bind": "off",
+      "react/button-has-type": "off",
+      "react/jsx-no-literals": "off",
+      "react/require-default-props": "warn",
+      "react/self-closing-comp": "error",
+      "react/jsx-props-no-spreading": "off",
+      "react/forbid-prop-types": "off",
+      "forbid-prop-types": "off",
+      "react/no-array-index-key": "off",
+      "unused-imports/no-unused-imports": "warn",
+      "unused-imports/no-unused-vars": [
+         "warn",
+         {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+         }
+      ],
+      "no-unused-vars": "off",
+      "simple-import-sort/imports": "warn",
+      "simple-import-sort/exports": "warn"
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      }
+   }
 }

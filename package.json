@@ -1,27 +1,59 @@
 {
-  "name": "lingodeutsch",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.0.4"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4"
-  }
+   "name": "lingodeutsch",
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx,.css",
+      "prettier": "prettier --write .",
+      "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx,.css",
+      "prepare": "husky install"
+   },
+   "dependencies": {
+      "@ramonak/react-progress-bar": "^5.0.2",
+      "chart.js": "^4.4.1",
+      "debounce": "^1.2.1",
+      "i18next": "^23.7.6",
+      "i18next-browser-languagedetector": "^7.2.0",
+      "i18next-http-backend": "^2.4.1",
+      "next": "14.0.4",
+      "pocketbase": "^0.10.1",
+      "react": "^18",
+      "react-chartjs-2": "^5.2.0",
+      "react-dom": "^18",
+      "react-i18next": "^13.5.0",
+      "react-icons": "^4.7.1",
+      "react-toastify": "^9.1.3",
+      "use-sound": "^4.0.1"
+   },
+   "devDependencies": {
+      "@tailwindcss/typography": "^0.5.10",
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "autoprefixer": "^10.0.1",
+      "commitizen": "^4.3.0",
+      "cz-conventional-changelog": "^3.3.0",
+      "daisyui": "^4.4.19",
+      "eslint": "^8",
+      "eslint-config-next": "14.0.4",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-plugin-react": "^7.30.1",
+      "eslint-plugin-simple-import-sort": "^8.0.0",
+      "eslint-plugin-unused-imports": "^2.0.0",
+      "husky": "^8.0.3",
+      "postcss": "^8",
+      "prettier": "2.8.8",
+      "prettier-plugin-tailwindcss": "^0.1.13",
+      "sass": "^1.69.7",
+      "tailwindcss": "^3.3.0",
+      "typescript": "^5"
+   },
+   "config": {
+      "commitizen": {
+         "path": "./node_modules/cz-conventional-changelog"
+      }
+   }
 }
