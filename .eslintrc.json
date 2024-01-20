@@ -51,13 +51,19 @@
       "react/jsx-no-bind": "off",
       "react/button-has-type": "off",
       "react/jsx-no-literals": "off",
-      "react/require-default-props": "warn",
       "react/self-closing-comp": "error",
       "react/jsx-props-no-spreading": "off",
       "react/forbid-prop-types": "off",
       "forbid-prop-types": "off",
       "react/no-array-index-key": "off",
       "unused-imports/no-unused-imports": "warn",
+      "react/prefer-read-only-props": "off",
+      "react/require-default-props": [
+         1,
+         {
+            "functions": "defaultArguments"
+         }
+      ],
       "unused-imports/no-unused-vars": [
          "warn",
          {
@@ -65,6 +71,13 @@
             "varsIgnorePattern": "^_",
             "args": "after-used",
             "argsIgnorePattern": "^_"
+         }
+      ],
+      "react/function-component-definition": [
+         2,
+         {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
          }
       ],
       "no-unused-vars": "off",
