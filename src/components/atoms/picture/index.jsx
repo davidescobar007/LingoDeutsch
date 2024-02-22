@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 
-function PictureAtom({ image }) {
+const PictureAtom = ({ image }) => {
    return (
       <picture>
          {/* webP */}

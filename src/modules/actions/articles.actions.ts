@@ -1,7 +1,7 @@
 import { aiModelRequest, pbGetList, pbGetSingleRecord } from "../../services"
 import { constants, types } from "../global.types"
 
-import { actionLoaders, handleErrorModal } from "./global.actions"
+import { handleErrorModal } from "./global.actions"
 import { searchTranslationFromSources } from "./translations.actions"
 
 const getAiArticle = async () => {
@@ -11,26 +11,23 @@ const getAiArticle = async () => {
    console.log(data)
 }
 
-const getArticlesList = async (dispatch) => {
+const getArticlesList = async () => {
    try {
-      dispatch(actionLoaders.loadingArticlesList(true))
       const data = await pbGetList("articles")
-      dispatch(articleActionTypes.setArticles(data))
-      dispatch(actionLoaders.loadingArticlesList(false))
+      return data
    } catch (error) {
       handleErrorModal(error)
-      dispatch(actionLoaders.loadingArticlesList(false))
+      return error
    }
 }
 
-const getSingleArticle = async (id, dispatch) => {
+const getSingleArticle = async (id: any) => {
    try {
-      dispatch(actionLoaders.loadingArticle(true))
       const article = await pbGetSingleRecord(constants.ARTICLES, id)
-      dispatch(articleActionTypes.setSelectedArticle(article))
-      dispatch(actionLoaders.loadingArticle(false))
+      return article
    } catch (error) {
       handleErrorModal(error)
+      return error
    }
 }
 

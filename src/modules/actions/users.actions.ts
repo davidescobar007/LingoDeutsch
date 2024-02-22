@@ -8,14 +8,15 @@ import {
    pbLogOut,
    pbSignUp,
    pbUpdateRecord
-} from "../../services"
-import { types } from "../global.reducer"
+} from "@/network/index"
+
 import { constants } from "../global.types"
 
-import { actionLoaders, handleErrorModal } from "./global.actions"
+import { handleErrorModal } from "./global.actions"
 
 const { t } = i18next
-const getScore = async (dispatch, userId) => {
+
+export const getScore = async (userId: string) => {
    try {
       const response = await pbGetSingleRecordQuery({
          collection: constants.SCORE,
@@ -25,24 +26,23 @@ const getScore = async (dispatch, userId) => {
       })
       const { score } = response
       return score
-   } catch (error) {
+   } catch (error: string | any) {
       handleErrorModal(error)
    }
 }
 
-const updateUSer = async (dispatch, user) => {
+export const updateUSer = async (user: any) => {
    try {
       const updatedUser = await pbUpdateRecord(constants.USERS, user.id, user)
-      updateUserState(dispatch)
       if (updatedUser) {
          toast.success(t("profile.success"))
       }
-   } catch (error) {
+   } catch (error: string | any) {
       handleErrorModal(error)
    }
 }
 
-const updateUserScore = async (id, newScore) => {
+export const updateUserScore = async (id: string, newScore: number) => {
    const params = {
       collection: constants.SCORE,
       field: "user_id",
@@ -54,33 +54,31 @@ const updateUserScore = async (id, newScore) => {
    await pbUpdateRecord(constants.SCORE, userScore.id, userScore)
 }
 
-const getLoginMethods = async (dispatch) => {
+export const getLoginMethods = async () => {
    const authMethods = await pbListAuthMethods()
    localStorage.setItem("provider", JSON.stringify(authMethods?.authProviders))
-   dispatch(actionHandlerTypes.setAuthMethods(authMethods?.authProviders))
+   return authMethods?.authProviders
 }
 
-const updateUserState = async (dispatch) => {
-   const pbModel = JSON.parse(localStorage.getItem("pocketbase_auth"))
+export const updateUserState = async () => {
+   const pbModel = JSON.parse(localStorage.getItem("pocketbase_auth") || "")
    try {
       if (pbModel) {
-         dispatch(actionLoaders.loadingProfile(true))
          const { model } = pbModel
-         const userScore = await getScore(dispatch, model.id)
+         const userScore = await getScore(model.id)
          model["userScore"] = userScore
-         dispatch(actionHandlerTypes.setUser(model))
-         dispatch(actionLoaders.loadingProfile(false))
+         return model
       }
-   } catch (error) {
+   } catch (error: string | any) {
       handleErrorModal(error)
    }
 }
 
-const googleLogin = async (dispatch) => {
-   const params = new URL(window.location).searchParams
+export const googleLogin = async () => {
+   const params = new URL(window.location as any).searchParams
    if (params.get("state")) {
       const redirectUrl = window.location.origin + "/learn"
-      const provider = JSON.parse(localStorage.getItem("provider"))
+      const provider = JSON.parse(localStorage.getItem("provider") || "")
       // if (provider.state !== params.get("state")) {
       //    throw "State parameters don't match."
       // }
@@ -94,39 +92,24 @@ const googleLogin = async (dispatch) => {
             user.record.avatarUrl = user.meta.avatarUrl
             user.record.name = user.meta.name
             const updatedUSer = await pbUpdateRecord(constants.USERS, user.record.id, user.record)
-            const userScore = await getScore(dispatch, updatedUSer.id)
+            const userScore = await getScore(updatedUSer.id)
             updatedUSer["userScore"] = userScore
-            dispatch(actionHandlerTypes.setUser(updatedUSer))
-            return
+            return updatedUSer
          }
-         const userScore = await getScore(dispatch, user.record.id)
+         const userScore = await getScore(user.record.id)
          user.record["userScore"] = userScore
-         dispatch(actionHandlerTypes.setUser(user.record))
-      } catch (error) {
+         return user.record
+      } catch (error: string | any) {
          handleErrorModal(error)
       }
    }
 }
 
-const logOut = (dispatch) => {
+export const logOut = () => {
    try {
       pbLogOut()
       localStorage.removeItem("user")
-      dispatch(actionHandlerTypes.setUser(null))
-   } catch (error) {
+   } catch (error: string | any) {
       handleErrorModal(error)
    }
 }
-
-const actionHandlerTypes = {
-   setAuthMethods: (payload) => ({
-      type: types.SET_AUTH_METHODS,
-      payload
-   }),
-   setUser: (payload) => ({
-      type: types.SET_USER,
-      payload
-   })
-}
-
-export { getLoginMethods, googleLogin, logOut, updateUSer, updateUserScore, updateUserState }

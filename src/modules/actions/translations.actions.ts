@@ -6,48 +6,47 @@ import { getWordsTranslationFetchImplementation } from "../../services/implement
 import { debounce, removePunctuation } from "../../utils"
 import { constants, types } from "../global.types"
 
-import { actionLoaders, handleErrorModal } from "./global.actions"
+import { handleErrorModal } from "./global.actions"
 
 const { t } = i18next
-const resetTranslation = async (dispatch) => {
+
+const resetTranslation = async (dispatch: any) => {
    try {
       dispatch({ type: types.UPDATE_TRANSLATION })
    } catch (error) {
-      handleErrorModal(error)
+      handleErrorModal(error as any)
    }
 }
 
-const getWordsTranslationFromDB = async (params, dispatch) => {
+export const getWordsTranslationFromDB = async (params: any) => {
    try {
       const translation = await pbGetSingleRecordQuery({ ...params, collection: constants.VOCABULARY })
-      dispatch(translationActionTypes.setTranslation(translation))
       return translation
    } catch (error) {
       if (String(error) === "ClientResponseError 404: The requested resource wasn't found.") {
          return null
       } else {
-         handleErrorModal(error)
+         handleErrorModal(error as any)
+         return error
       }
    }
 }
 
-const getWordsTranslationFromAPI = async (wordToTranslate) => {
+export const getWordsTranslationFromAPI = async (wordToTranslate: string) => {
    try {
       const translation = await getWordsTranslationFetchImplementation(removePunctuation(wordToTranslate))
       return translation
    } catch (error) {
-      handleErrorModal(error)
+      handleErrorModal(error as any)
    }
 }
 
-const saveTranslationToDB = async (translation, dispatch) => {
+export const saveTranslationToDB = async (translation: string) => {
    try {
       const recordCreated = await pbCreateRecord(constants.VOCABULARY, translation)
-      dispatch(translationActionTypes.setTranslation(recordCreated))
       return recordCreated
-   } catch (error) {
+   } catch (error: string | any) {
       if (String(error) === "ClientResponseError 400: Failed to create record.") {
-         dispatch(translationActionTypes.setTranslation(translation))
          return null
       } else {
          handleErrorModal(error)
@@ -55,46 +54,39 @@ const saveTranslationToDB = async (translation, dispatch) => {
    }
 }
 
-const searchTranslationFromSources = async (wordToTranslate, dispatch) => {
-   dispatch(actionLoaders.loadingWordTranslation(true))
-
-   const exactTranslationFromDB = await getWordsTranslationFromDB(
-      { field: "german_translation", operator: "~", param: removePunctuation(wordToTranslate) },
-      dispatch
-   )
+export const searchTranslationFromSources = async (wordToTranslate: string) => {
+   const exactTranslationFromDB = await getWordsTranslationFromDB({
+      field: "german_translation",
+      operator: "~",
+      param: removePunctuation(wordToTranslate)
+   })
    if (exactTranslationFromDB) {
-      dispatch(actionLoaders.loadingWordTranslation(false))
-      return
+      return exactTranslationFromDB
    }
-   const similarTranslationFromDB = await getWordsTranslationFromDB(
-      { field: "conjugation.allConjugations", operator: "~", param: removePunctuation(wordToTranslate) },
-      dispatch
-   )
+   const similarTranslationFromDB = await getWordsTranslationFromDB({
+      field: "conjugation.allConjugations",
+      operator: "~",
+      param: removePunctuation(wordToTranslate)
+   })
    if (similarTranslationFromDB) {
-      dispatch(actionLoaders.loadingWordTranslation(false))
-      return
+      return similarTranslationFromDB
    }
-   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate, dispatch)
+   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate)
    if (translationFromAPI.data) {
-      saveTranslationToDB(translationFromAPI.data, dispatch)
-      dispatch(actionLoaders.loadingWordTranslation(false))
-      return
+      saveTranslationToDB(translationFromAPI.data)
    } else if (translationFromAPI.status === 204) {
       handleErrorModal(t("translation.notFoundTranslation"))
-      dispatch(actionLoaders.loadingWordTranslation(false))
-      return
    }
-   dispatch(actionLoaders.loadingWordTranslation(false))
 }
 
-const checkVocaBularyExist = async (userId, wordId) => {
+export const checkVocaBularyExist = async (userId: string, wordId: string) => {
    const wordIsSaved = pbGetList(constants.STUDY_VOCABULARY, {
       filter: `user_id = "${userId}" && word_id = "${wordId}"`
    })
    return wordIsSaved
 }
 
-const saveVocabularyToStudy = async ({ user, selectedWordTranslation }) => {
+export const saveVocabularyToStudy = async ({ user, selectedWordTranslation }: any) => {
    try {
       if (user?.id && selectedWordTranslation?.id) {
          const valueExists = await checkVocaBularyExist(user.id, selectedWordTranslation.id)
@@ -113,23 +105,7 @@ const saveVocabularyToStudy = async ({ user, selectedWordTranslation }) => {
       } else {
          handleErrorModal(t("constants.needSignUp"))
       }
-   } catch (error) {
+   } catch (error: string | any) {
       handleErrorModal(error)
    }
-}
-
-const translationActionTypes = {
-   setTranslation: (payload) => ({
-      type: types.UPDATE_TRANSLATION,
-      payload
-   })
-}
-
-export {
-   getWordsTranslationFromAPI,
-   getWordsTranslationFromDB,
-   resetTranslation,
-   saveTranslationToDB,
-   saveVocabularyToStudy,
-   searchTranslationFromSources
 }
