@@ -1,3 +1,4 @@
 dist
 postcss.config.js
 tailwind.config.ts
+node_modules

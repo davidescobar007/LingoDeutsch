@@ -1,5 +1,6 @@
 import { toast } from "react-toastify"
 import i18next from "i18next"
+import { AuthProviderInfo, RecordAuthResponse } from "pocketbase"
 
 import {
    pbCreateRecord,
@@ -9,25 +10,28 @@ import {
    pbSignUp,
    pbUpdateRecord
 } from "@/network/index"
+import { pb } from "@/network/setup"
+import { localStorageHandler } from "@/utils"
 
 import { constants } from "../global.types"
 
 import { handleErrorModal } from "./global.actions"
+import { TUser } from "./types"
 
 const { t } = i18next
 
-export const getScore = async (userId: string) => {
+export const getScore = async (userId: string): Promise<number> => {
    try {
-      const response = await pbGetSingleRecordQuery({
+      const { score } = await pbGetSingleRecordQuery({
          collection: constants.SCORE,
          field: "user_id",
          param: userId,
          fields: "score"
       })
-      const { score } = response
       return score
    } catch (error: string | any) {
       handleErrorModal(error)
+      return error
    }
 }
 
@@ -54,10 +58,10 @@ export const updateUserScore = async (id: string, newScore: number) => {
    await pbUpdateRecord(constants.SCORE, userScore.id, userScore)
 }
 
-export const getLoginMethods = async () => {
-   const authMethods = await pbListAuthMethods()
-   localStorage.setItem("provider", JSON.stringify(authMethods?.authProviders))
-   return authMethods?.authProviders
+export const getLoginMethods = async (): Promise<AuthProviderInfo[]> => {
+   const { authProviders } = await pbListAuthMethods()
+   localStorage.setItem("provider", JSON.stringify(authProviders))
+   return authProviders
 }
 
 export const updateUserState = async () => {
@@ -74,35 +78,50 @@ export const updateUserState = async () => {
    }
 }
 
-export const googleLogin = async () => {
-   const params = new URL(window.location as any).searchParams
-   if (params.get("state")) {
-      const redirectUrl = window.location.origin + "/learn"
-      const provider = JSON.parse(localStorage.getItem("provider") || "")
-      // if (provider.state !== params.get("state")) {
-      //    throw "State parameters don't match."
-      // }
-      const provName = provider[0].name
-      const code = params.get("code")
-      const codeVerifier = provider[0].codeVerifier
-      try {
-         const user = await pbSignUp(provName, code, codeVerifier, redirectUrl)
-         user?.record?.id && pbCreateRecord(constants.SCORE, { user_id: user.record.id })
-         if (!user.record.avatarUrl && !user.record.name) {
-            user.record.avatarUrl = user.meta.avatarUrl
-            user.record.name = user.meta.name
-            const updatedUSer = await pbUpdateRecord(constants.USERS, user.record.id, user.record)
-            const userScore = await getScore(updatedUSer.id)
-            updatedUSer["userScore"] = userScore
-            return updatedUSer
-         }
-         const userScore = await getScore(user.record.id)
-         user.record["userScore"] = userScore
-         return user.record
-      } catch (error: string | any) {
-         handleErrorModal(error)
-      }
+export const googleLogin = async (): Promise<TUser | undefined> => {
+   const { saveItem, getItem } = localStorageHandler<TUser>("user")
+   if (getItem()) {
+      return getItem()
    }
+   const { origin, pathname } = window.location
+   const redirectUrl = `${origin}/${pathname.split("/")[1]}/learn`
+   const params = new URL(window.location as any).searchParams
+   const provider = JSON.parse(localStorage.getItem("provider") || "")
+   if (provider[0].state !== params.get("state")) {
+      throw "State parameters don't match."
+   }
+   const providerName = provider[0].name
+   const code = params.get("code") || ""
+   const codeVerifier = provider[0].codeVerifier
+   try {
+      const { record, meta }: RecordAuthResponse<TUser> = await pbSignUp(
+         providerName,
+         code,
+         codeVerifier,
+         redirectUrl
+      )
+      record?.id && pbCreateRecord(constants.SCORE, { user_id: record.id })
+      if (!record.avatarUrl && !record.name) {
+         record.avatarUrl = meta?.avatarUrl || ""
+         record.name = meta?.name
+         const updatedUSer = await pbUpdateRecord(constants.USERS, record.id, record)
+         const userScore = await getScore(updatedUSer.id)
+         updatedUSer["userScore"] = userScore
+         saveItem(updatedUSer)
+         return updatedUSer
+      }
+      const userScore = await getScore(record.id)
+      record["userScore"] = userScore
+      saveItem(record)
+      return record
+   } catch (error: string | any) {
+      handleErrorModal(error)
+      return error
+   }
+}
+
+export const isUserLoged = (): boolean => {
+   return pb.authStore.isValid
 }
 
 export const logOut = () => {

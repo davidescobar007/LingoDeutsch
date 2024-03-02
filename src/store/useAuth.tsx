@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query"
 
-import { getLoginMethods } from "@/modules/actions/users.actions"
+import { getLoginMethods, googleLogin } from "@/modules/actions/users.actions"
 
 export const useAuth = () => {
    const {
@@ -11,4 +11,8 @@ export const useAuth = () => {
       isLoading
    } = useQuery({ queryKey: ["authMethodsList"], queryFn: getLoginMethods })
    return { authMethods, error, isLoading }
+}
+
+export const useLogin = () => {
+   return useQuery({ queryKey: ["googleAuth"], queryFn: googleLogin })
 }

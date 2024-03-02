@@ -1,10 +1,10 @@
 import { ReactNode } from "react"
 import { ToastContainer } from "react-toastify"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import type { Metadata } from "next"
+import { NextIntlClientProvider, useMessages } from "next-intl"
 
 import Navbar from "@/components/molecules/navbar"
-import QueryProvider from "@/hooksStore/queryProvider"
+import QueryProvider from "@/store/queryProvider"
 
 import "./globals.scss"
 
@@ -21,23 +21,26 @@ const RootLayout = ({
    readonly children: ReactNode
    params: { locale: string }
 }) => {
+   const messages = useMessages()
    return (
       <QueryProvider>
-         <html lang={locale}>
-            <body>
-               <Navbar />
-               {children}
-               <ToastContainer
-                  autoClose={5000}
-                  closeOnClick
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  position="bottom-right"
-                  rtl={false}
-               />
-            </body>
-            <ReactQueryDevtools initialIsOpen={false} />
-         </html>
+         <NextIntlClientProvider messages={messages}>
+            <html lang={locale}>
+               <body>
+                  <Navbar locale={locale} />
+                  {children}
+                  <ToastContainer
+                     autoClose={5000}
+                     closeOnClick
+                     hideProgressBar={false}
+                     newestOnTop={false}
+                     position="bottom-right"
+                     rtl={false}
+                  />
+               </body>
+               {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+            </html>
+         </NextIntlClientProvider>
       </QueryProvider>
    )
 }

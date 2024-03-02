@@ -1,0 +1,65 @@
+{
+   "learn": {
+      "wordSpecification": "Selecciona cualquier palabra del texto para ver la traducción",
+      "startQuiz": "Empezar quiz",
+      "wordSpecificationTooltip": "Al guardar esta palabra, podrás repasarla en la sección: Practicar",
+      "earnPoints": "Obtén puntos al completar este quiz."
+   },
+   "practice": {
+      "cardStat": {
+         "easy": "Fácil",
+         "medium": "Medio",
+         "hard": "Difícil"
+      },
+      "noVocabulary": "Aun no tienes vocabulario guardado en tu librería, puedes empezar leyendo algún articulo para iniciar con tu vocabulario.",
+      "startAgain": "Empezar de nuevo",
+      "cards": "cartas",
+      "noFilterResult": "No cuentas con vocabulario de nivel {{level}} aún"
+   },
+   "quiz": {
+      "checkAnswer": "Revisar respuesta",
+      "quizResult": "Tuviste {{totalRating}} de {{numberOfQuestions}} correctas. Tu calificación es: "
+   },
+   "score": {
+      "title": "Tabla de puntos",
+      "span": "puntos"
+   },
+   "translation": {
+      "notFoundTranslation": "Lo sentimos, pero no hemos encontrado traducción en nuestros servidores para la palabra que buscas.",
+      "alreadySaved": "Ya esta guardada en tu vocabulario.",
+      "saved": "Guardado en tu vocabulario con éxito."
+   },
+   "constants": {
+      "needSignUp": "Necesitas iniciar sesión para usar esta característica."
+   },
+   "menu": {
+      "logIn": "Iniciar sesión",
+      "loginWithGoogle": "Iniciar con Google",
+      "logOut": "Salir",
+      "profile": "Perfil",
+      "learn": "Aprender",
+      "practice": "Practicar",
+      "spanishOption": "Español",
+      "germanOption": "Alemán"
+   },
+   "home": {
+      "tittle": "¡Una forma de entrenar tu vocabulario en alemán mediante la lectura y la repetición!",
+      "button": "Empieza aquí"
+   },
+   "profile": {
+      "saveButton": "actualizar",
+      "cancelButton": "cancelar",
+      "alias": "Sobrenombre",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "success": "Perfil actualizado con éxito"
+   },
+   "data": {
+      "german_translation": "Palabra",
+      "level": "Nivel",
+      "times_seen": "Veces visto",
+      "delete": "Eliminar",
+      "tableTitle": "Un vistazo a tus estadísticas",
+      "words_by_level": "Palabras por nivel"
+   }
+}

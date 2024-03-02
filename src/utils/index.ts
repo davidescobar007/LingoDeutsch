@@ -109,3 +109,17 @@ export const getPercentage = (number1: number, number2: number) => {
 
    return Math.max(0, percentage)
 }
+
+export const localStorageHandler = <T>(key: string) => {
+   const getItem = () => {
+      let data = localStorage.getItem(key)
+      return data ? (JSON.parse(data) as T) : undefined
+   }
+   const saveItem = (data?: any) => {
+      localStorage.setItem(key, JSON.stringify(data))
+   }
+   const clearItem = () => {
+      localStorage.removeItem(key)
+   }
+   return { getItem, saveItem, clearItem }
+}

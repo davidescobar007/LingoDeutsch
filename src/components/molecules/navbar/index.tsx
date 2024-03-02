@@ -1,38 +1,32 @@
+"use client"
 /* eslint-disable react/forbid-component-props */
 
-"use client"
+import { useEffect } from "react"
+import { FcGoogle } from "react-icons/fc"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { TbLanguage, TbLogout, TbUser } from "react-icons/tb"
 import Image from "next/image"
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { AuthProviderInfo } from "pocketbase"
 
 import Title from "@/components/atoms/title"
-import { useAuth } from "@/hooksStore/useAuth"
+import { isUserLoged, logOut } from "@/modules/actions/users.actions"
+import { Link, useRouter } from "@/navigation"
+import { useAuth, useLogin } from "@/store/useAuth"
 
-// import { StoreContext } from "../../context/global.state"
-const Navbar = () => {
-   // const { t, i18n } = useTranslation()
-   // const navigate = useNavigate()
-   // const params = new URL(window.location).searchParams
-   // const {
-   //    getLoginMethods,
-   //    googleLogin,
-   //    logOut,
-   //    updateUserState,
-   //    state: { user }
-   // } = useContext(StoreContext)
-
-   // useEffect(() => {
-   //    updateUserState()
-   //    getLoginMethods()
-   //    if (params.get("state")) {
-   //       googleLogin()
-   //       navigate("/learn")
-   //    }
-   // }, [])
-
+const Navbar = ({ locale }: { locale: string }) => {
+   const t = useTranslations()
+   const router = useRouter()
    const { authMethods } = useAuth()
-   const user = null
+   const { data: user } = useLogin()
+
+   useEffect(() => {
+      const params = new URL(window.location as any).searchParams
+      if (params.get("state")) {
+         router.push("/learn")
+      }
+   }, [])
+
    return (
       <header className="border-b-1 navbar border-neutral bg-base-100 fixed z-10 flex h-14 shadow-md">
          <div className="flex-1">
@@ -64,41 +58,44 @@ const Navbar = () => {
                   <li>
                      <div
                         className="my-1 justify-between py-3 text-lg"
-                        // onClick={() => i18n.changeLanguage("de")}
+                        onClick={() => router.push("/", { locale: "de" })}
                      >
-                        {/* {t("menu.germanOption")} */}
+                        {t("menu.germanOption")}
                         <span className="text-lg">
                            <Image
                               alt="German flag"
-                              height={50}
+                              height={25}
                               loading="lazy"
                               src="https://flagsapi.com/DE/flat/64.png"
-                              width={50}
+                              width={35}
                            />
                         </span>
                      </div>
                   </li>
                   <li>
-                     <div className="my-1 justify-between py-3 text-lg" onClick={() => i18n.changeLanguage("es")}>
-                        {/* {t("menu.spanishOption")} */}
+                     <div
+                        className="my-1 justify-between py-3 text-lg"
+                        onClick={() => router.push("/", { locale: "es" })}
+                     >
+                        {t("menu.spanishOption")}
                         <span className="text-lg">
                            <Image
                               alt="Spain flag"
-                              height={50}
+                              height={25}
                               loading="lazy"
                               src="https://flagsapi.com/ES/flat/64.png"
-                              width={50}
+                              width={35}
                            />
                         </span>
                      </div>
                   </li>
                </ul>
             </div>
-            {user != null ? (
+            {user?.avatarUrl != null && isUserLoged() ? (
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
-                        <Image alt="avatar" height={50} src={user} width={50} />
+                        <Image alt="avatar" height={50} src={user.avatarUrl} width={50} />
                      </div>
                   </label>
                   <ul
@@ -107,15 +104,15 @@ const Navbar = () => {
                   >
                      <li>
                         <Link className="my-1 justify-between py-3 text-lg" href="/profile">
-                           {/* {t("menu.profile")} */}
+                           {t("menu.profile")}
                            <span className="text-lg">
                               <TbUser />
                            </span>
                         </Link>
                      </li>
                      <li>
-                        <Link className="my-1 justify-between py-3 text-lg" href="/learn" onClick={() => {}}>
-                           {/* {t("menu.logOut")} */}
+                        <Link className="my-1 justify-between py-3 text-lg" href="/" onClick={() => logOut()}>
+                           {t("menu.logOut")}
                            <span className="text-lg">
                               <TbLogout />
                            </span>
@@ -125,20 +122,21 @@ const Navbar = () => {
                </div>
             ) : (
                <div>
-                  {/* {authMethods.map((provider: any) => (
-                     <a
-                        className="btn btn-outline btn-primary"
-                        href={`${provider.authUrl + process.env.VITE_ENVIRONMENT}/learn`}
-                        key={provider.authUrl}
-                        role="button"
-                     >
-                        <span className="mr-1 text-xl">
-                           <FcGoogle />
-                        </span>
-                        <span className="block font-bold md:hidden">{t("menu.logIn")}</span>
-                        <span className="hidden font-bold md:block">{t("menu.loginWithGoogle")}</span>
-                     </a>
-                  ))} */}
+                  {authMethods &&
+                     authMethods.map((provider: AuthProviderInfo) => (
+                        <a
+                           className="btn btn-outline btn-primary"
+                           href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/learn`}
+                           key={provider.authUrl}
+                           role="button"
+                        >
+                           <span className="mr-1 text-xl">
+                              <FcGoogle />
+                           </span>
+                           <span className="block font-bold md:hidden">{t("menu.logIn")}</span>
+                           <span className="hidden font-bold md:block">{t("menu.loginWithGoogle")}</span>
+                        </a>
+                     ))}
                </div>
             )}
          </div>

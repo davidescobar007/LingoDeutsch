@@ -16,6 +16,11 @@ const nextConfig = {
             protocol: "https",
             hostname: "flagsapi.com",
             port: ""
+         },
+         {
+            protocol: "https",
+            hostname: "lh3.googleusercontent.com",
+            port: ""
          }
       ]
    }

@@ -24,8 +24,9 @@ export const pbGetSingleRecordQuery = async ({
 }: {
    collection: string
    field: any
-   operator: string
+   operator?: string
    param: any
+   [key: string]: any
 }) => {
    const records = await pb.collection(collection).getFirstListItem(`${field} ${operator} "${param}"`, { ...rest })
    return records
