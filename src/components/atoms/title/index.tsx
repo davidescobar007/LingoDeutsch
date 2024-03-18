@@ -6,14 +6,14 @@ type TAtomTitle = {
    extraClassName?: string
 }
 const AtomTitle: FunctionComponent<TAtomTitle> = ({ children, type = "h2", extraClassName = "" }) => {
-   const cssClass = `${extraClassName}`
+   const cssClass = `font-semibold ${extraClassName}`
 
    const title = {
-      h1: <h1 className={cssClass}>{children}</h1>,
-      h2: <h2 className={cssClass}>{children}</h2>,
-      h3: <h3 className={cssClass}>{children}</h3>,
-      h4: <h4 className={cssClass}>{children}</h4>,
-      h5: <h5 className={cssClass}>{children}</h5>
+      h1: <h1 className={`text-2xl font-extrabold ${cssClass}`}>{children}</h1>,
+      h2: <h2 className={`text-xl ${cssClass} `}>{children}</h2>,
+      h3: <h3 className={`text-lg ${cssClass} `}>{children}</h3>,
+      h4: <h4 className={`text-lg ${cssClass} `}>{children}</h4>,
+      h5: <h5 className={`text-md ${cssClass} `}>{children}</h5>
    }
    return title[type]
 }

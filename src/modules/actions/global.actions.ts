@@ -3,6 +3,8 @@ import { pbGetList } from "@/network/index"
 
 import { constants } from "../global.types"
 
+import { TScore } from "./types"
+
 export const handleErrorModal = (message: string) => {
    console.warn(message)
    let inputs: any = document.getElementById("modalWarning")
@@ -12,7 +14,7 @@ export const handleErrorModal = (message: string) => {
    titleElement.appendChild(document.createTextNode(message))
 }
 
-export const getScoreList = async () => {
+export const getScoreList = async (): Promise<TScore> => {
    try {
       const scoreList = await pbGetList(constants.SCORE, {
          expand: "user_id",
@@ -23,8 +25,8 @@ export const getScoreList = async () => {
          item.position = index + 1
          return flattenObj(item)
       })
-      return resolveScoreList
+      return resolveScoreList as TScore
    } catch (error: string | any) {
-      handleErrorModal(error)
+      return error
    }
 }

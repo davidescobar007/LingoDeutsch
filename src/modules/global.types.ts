@@ -39,6 +39,6 @@ export const urls = {
 }
 
 export const headers = {
-   "X-RapidAPI-Key": process.env.VITE_RAPIDAPI_LINGUATOOLS,
-   "X-RapidAPI-Host": process.env.VITE_RAPIDAPI_LINGUATOOLS_HOST
+   "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPIDAPI_LINGUATOOLS,
+   "X-RapidAPI-Host": process.env.NEXT_PUBLIC_RAPIDAPI_LINGUATOOLS_HOST
 }

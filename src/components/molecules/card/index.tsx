@@ -23,7 +23,7 @@ const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
       <article className="card card-side mb-8 cursor-pointer bg-white shadow-lg" {...rest}>
          <figure>
             <div className="avatar">
-               <div className="h-48 w-52 rounded">
+               <div className="h-48 w-44 rounded">
                   <PictureAtom image={image} />
                </div>
             </div>

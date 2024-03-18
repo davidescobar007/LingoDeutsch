@@ -1,79 +1,79 @@
 "use client"
 
-import { FunctionComponent, useContext, useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
+import { FunctionComponent, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
-import { useParams } from "next/navigation"
+import { useTranslations } from "next-intl"
 
-import { StoreContext } from "../../../context/global.state"
-import { constants } from "../../../context/global.types"
-import AlertAtom from "../../atoms/alert"
-import Badge from "../../atoms/badge"
-import Button from "../../atoms/button"
-import PictureAtom from "../../atoms/picture"
-import Title from "../../atoms/title"
+import AtomBadge from "@/components/atoms/badge"
+import AtomButton from "@/components/atoms/button"
+import AtomTitle from "@/components/atoms/title"
+import { constants } from "@/modules/global.types"
+
 import ImageCard from "../imageCard"
+
 type TMoleculeHero = {
-   image: string
-   title: string
-   text_content: string
-   level: []
-   author?: string
-   link?: string
+   image?: string
+   title?: string
+   text_content?: string
+   level?: string[]
+   articleId: string
+   searchWordTranslation: any
+   translationData: any
+   saveVocabulary: any
 }
 
 const emptyArray: [] = []
 
 const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
-   image,
-   title,
-   text_content,
+   image = "",
+   title = "",
+   text_content = "",
    level = emptyArray,
-   author = "",
-   link = ""
+   articleId,
+   searchWordTranslation,
+   translationData,
+   saveVocabulary
 }) => {
-   const { t } = useTranslation()
-   const { setSelectedWord, resetTranslation } = useContext(StoreContext)
-   const [currentWordIntext, setCurrentWordIntext] = useState(null)
-   let { id } = useParams()
-   useEffect(() => {
-      return () => {
-         resetTranslation()
-      }
-   }, [])
+   const t = useTranslations()
+   const [currentWordIntext, setCurrentWordIntext] = useState<string | null>(null)
 
-   const xsStyles = "fixed inset-x-0 h-[calc(100vh-45vh)] pb-24 top-60 overflow-scroll px-5"
-   const smStyles = "mx-auto mt-1 sm:h-[calc(100vh-40vh)] sm:pb-0"
-   const mdStyles = "md:top-0 md:pb-5 md:relative md:h-min md:overflow-auto"
-
-   const imageURL = `${process.env.VITE_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${image}`
-
+   const imageURL = `${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${articleId}/${image}`
    return (
-      <div className="hero bg-base-100">
+      <div className="md:w-16/24 w-full">
          <div className="hero-content p-0 text-center">
-            <div className="max-w-md">
-               <div className="fixed inset-x-0 top-16 z-10 mx-auto w-full md:hidden">
-                  <ImageCard image={imageURL} level={level} title={title} />
+            <div>
+               <div className="fixed inset-x-0 top-0 z-10 mx-auto w-full md:hidden">
+                  <ImageCard
+                     image={imageURL}
+                     level={level}
+                     saveVocabulary={saveVocabulary}
+                     selectedWord={currentWordIntext}
+                     title={title}
+                     translationData={translationData}
+                  />
                </div>
 
                <div className="mb-5 hidden text-left md:block">
                   <header className="mb-3">
-                     <Title extraClassName="font-medium text-2xl">{title}</Title>
+                     <AtomTitle extraClassName="font-medium">{title}</AtomTitle>
 
                      {level.map((item) => (
-                        <Badge key={item}>{item}</Badge>
+                        <AtomBadge key={item}>{item}</AtomBadge>
                      ))}
                   </header>
-                  <PictureAtom image={imageURL} />
+                  <Image
+                     alt="image related to the title"
+                     height={50}
+                     src={imageURL}
+                     // eslint-disable-next-line react/forbid-component-props
+                     style={{ borderRadius: "10px" }}
+                     width={1000}
+                  />
                </div>
 
-               <div className={`md:px-0 ${smStyles} ${mdStyles} ${xsStyles}`}>
-                  {link && (
-                     <AlertAtom>
-                        Fuente: {link}, author {author}
-                     </AlertAtom>
-                  )}
-                  <p className="text-justify text-xl leading-9 tracking-wide">
+               <div className="mt-44 w-full p-5 md:mt-0 md:p-0">
+                  <p className="text-justify text-lg leading-9 tracking-wide">
                      {text_content
                         .replace(/\./g, ". ")
                         .split(" ")
@@ -85,7 +85,7 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                               key={`${word}${index}`}
                               onClick={() => {
                                  setCurrentWordIntext(word)
-                                 setSelectedWord(word)
+                                 searchWordTranslation(word)
                               }}
                            >
                               {`${word} `}
@@ -93,8 +93,8 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                         ))}
                   </p>
                   <footer className="tooltip tooltip-accent mb-28 mt-7 lg:hidden" data-tip={t("learn.earnPoints")}>
-                     <Link href={`/quiz/${id}`}>
-                        <Button>{t("learn.startQuiz")} 📝</Button>
+                     <Link href={`/quiz/${articleId}`}>
+                        <AtomButton>{t("learn.startQuiz")} 📝</AtomButton>
                      </Link>
                   </footer>
                </div>

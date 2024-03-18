@@ -1,47 +1,46 @@
 /* eslint-disable react/forbid-component-props */
-import { FunctionComponent, useContext, useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
+import { FunctionComponent } from "react"
 import { BsInfoCircleFill } from "react-icons/bs"
-import { RiSave2Fill, RiSave2Line } from "react-icons/ri"
+import { RiSave2Line } from "react-icons/ri"
+import { useTranslations } from "next-intl"
 
-import { handleErrorModal } from "../../../context/actions/global.actions"
-import { StoreContext } from "../../../context/global.state"
+import { isUserLoged } from "@/modules/actions/users.actions"
+import { openModal } from "@/utils"
+
 import Badge from "../../atoms/badge"
 import Title from "../../atoms/title"
 
 type TMoleculeImageCard = {
    image: string
    title: string
-   level: []
+   level: string[]
+   selectedWord: string | null
+   translationData: any
+   saveVocabulary: any
 }
-const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({ image, title, level }) => {
-   const { t } = useTranslation()
-
-   const {
-      saveVocabularyToStudy,
-      state: { selectedWord, selectedWordTranslation, user }
-   } = useContext(StoreContext)
-   const [isTranslationSaved, setIsTranslationSaved] = useState(false)
+const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
+   image,
+   title,
+   level,
+   selectedWord,
+   translationData,
+   saveVocabulary
+}) => {
+   const t = useTranslations()
 
    const handleSaveTranslation = () => {
-      if (!user) {
-         handleErrorModal(t("constants.needSignUp"))
+      if (!isUserLoged()) {
+         openModal()
+         return
       }
-      if (selectedWordTranslation?.id && user) {
-         saveVocabularyToStudy()
-         setIsTranslationSaved(true)
-      }
+      saveVocabulary(translationData)
    }
-
-   useEffect(() => {
-      setIsTranslationSaved(false)
-   }, [selectedWord])
 
    return (
       <article
          className="flex h-44 flex-wrap bg-cover p-3"
          style={{
-            backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(65,65,65,0.35) 100%), url(${image})`
+            backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(65,65,65,0.35) 100%), url(${image})`
          }}
       >
          <Title extraClassName="text-2xl w-full text-start text-white leading-7 font-medium" type="h3">
@@ -63,15 +62,19 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({ image, title
          </div>
          {selectedWord && (
             <label className=" mt-2 w-1/12 justify-end" onClick={handleSaveTranslation}>
-               {isTranslationSaved ? (
-                  <RiSave2Fill className="swap-on h-8 w-8 fill-current text-white" />
-               ) : (
-                  <RiSave2Line className="swap-off h-8 w-8 fill-current text-white" />
-               )}
+               {!translationData?.isFetching && !translationData.isError ? (
+                  <RiSave2Line className="h-8 w-8 fill-current text-white" />
+               ) : null}
             </label>
          )}
-         <Title extraClassName="text-lg text-white w-full text-start font-medium" type="h4">
-            {selectedWordTranslation?.spanish_translation || ""}
+         <Title extraClassName="text-white w-full text-start" type="h4">
+            {translationData?.isFetching ? (
+               <span className="loading loading-dots loading-md" />
+            ) : translationData.isError ? (
+               t("translation.shortNotFoundTranslation")
+            ) : (
+               translationData?.spanish_translation
+            )}
          </Title>
 
          <div className="flex w-full justify-end">

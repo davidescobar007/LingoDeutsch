@@ -6,22 +6,24 @@ type TAtomButton = {
    typeOf?: "PRIMARY" | "INFO" | "SECONDARY" | "ACCENT" | "WARNING"
    extraClassName?: string
    dangerouslyResetClassName?: Boolean
+   onClick?: () => any
 }
 
 const buttonTypes = {
-   PRIMARY: "btn-primary text-white",
-   SECONDARY: "btn-secondary text-neutral hover:text-white",
+   PRIMARY: "btn-primary ",
+   SECONDARY: "btn-secondary",
    INFO: "btn-info",
    ACCENT: "btn-accent",
    WARNING: "btn-warning"
 }
-
+const emptyFunction = () => {}
 const AtomButton: FunctionComponent<TAtomButton> = ({
    children,
    type = "button",
    typeOf = "PRIMARY",
    extraClassName = "",
    dangerouslyResetClassName = false,
+   onClick = emptyFunction,
    ...rest
 }) => {
    return (
@@ -30,6 +32,7 @@ const AtomButton: FunctionComponent<TAtomButton> = ({
             (dangerouslyResetClassName && extraClassName) ||
             `btn my-3 shadow-md target:bg-transparent ${buttonTypes[typeOf]} ${extraClassName}`
          }
+         onClick={onClick}
          type={type}
          {...rest}
       >

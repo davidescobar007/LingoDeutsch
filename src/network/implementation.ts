@@ -12,11 +12,7 @@ export const getWordsTranslationFetchImplementation = async (wordToTranslate: st
          result = result ? JSON.parse(result) : null
 
          if (!Array.isArray(result) || result.length === 0) {
-            const transformedResult = {
-               data: null,
-               status: translationData.status
-            }
-            return transformedResult
+            return null
          }
 
          const german_translation = result && result[0].l1_text
@@ -33,14 +29,10 @@ export const getWordsTranslationFetchImplementation = async (wordToTranslate: st
             type_of_word: result && result[0].wortart,
             examples: result && extractAndSortSentences(result)
          }
-
-         const transformedResult = {
-            data: result ? data : null,
-            status: translationData.status
-         }
-         return transformedResult
+         return data
       }
    } catch (error) {
+      console.warn(error)
       return error
    }
 }

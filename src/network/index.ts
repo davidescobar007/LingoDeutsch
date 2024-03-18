@@ -3,7 +3,7 @@
 import { queryOperators } from "@/modules/global.types"
 import { pb } from "@/network/setup"
 
-export const pbGetList = async (collection: string, options: any) => {
+export const pbGetList = async (collection: string, options?: any) => {
    const records = await pb.collection(collection).getFullList(200, options)
    return records
 }
@@ -32,8 +32,9 @@ export const pbGetSingleRecordQuery = async ({
    return records
 }
 
-export const pbCreateRecord = async (collection: string, data: any) =>
-   await pb.collection(collection).create(data, { $autoCancel: false })
+export const pbCreateRecord = async (collection: string, data: any) => {
+   return await pb.collection(collection).create(data, { $autoCancel: false })
+}
 
 export const pbDeleteRecord = async (collection: string, id: string) => {
    await pb.collection(collection).delete(id)

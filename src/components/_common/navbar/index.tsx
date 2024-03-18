@@ -12,7 +12,7 @@ import { AuthProviderInfo } from "pocketbase"
 import Title from "@/components/atoms/title"
 import { isUserLoged, logOut } from "@/modules/actions/users.actions"
 import { Link, useRouter } from "@/navigation"
-import { useAuth, useLogin } from "@/store/useAuth"
+import { useAuth, useLogin } from "@/store/user"
 
 const Navbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()
@@ -25,14 +25,21 @@ const Navbar = ({ locale }: { locale: string }) => {
       if (params.get("state")) {
          router.push("/learn")
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
    return (
-      <header className="border-b-1 navbar border-neutral bg-base-100 fixed z-10 flex h-14 shadow-md">
+      <header className="border-b-1 navbar border-neutral bg-base-100 flex h-14 px-4 shadow-md md:px-10 lg:px-20">
          <div className="flex-1">
             <div className="w-16 select-none">
                <Link href="/">
-                  <Image alt="heart with german flag colors" height={50} src="/images/logo.png" width={50} />
+                  <Image
+                     alt="heart with german flag colors"
+                     height={50}
+                     priority
+                     src="/images/logo.png"
+                     width={60}
+                  />
                </Link>
             </div>
             <Link href="/">
@@ -65,7 +72,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                            <Image
                               alt="German flag"
                               height={25}
-                              loading="lazy"
+                              priority
                               src="https://flagsapi.com/DE/flat/64.png"
                               width={35}
                            />
@@ -82,7 +89,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                            <Image
                               alt="Spain flag"
                               height={25}
-                              loading="lazy"
+                              priority
                               src="https://flagsapi.com/ES/flat/64.png"
                               width={35}
                            />
@@ -126,7 +133,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                      authMethods.map((provider: AuthProviderInfo) => (
                         <a
                            className="btn btn-outline btn-primary"
-                           href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/learn`}
+                           href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/app/learn`}
                            key={provider.authUrl}
                            role="button"
                         >

@@ -46,16 +46,9 @@ export const updateUSer = async (user: any) => {
    }
 }
 
-export const updateUserScore = async (id: string, newScore: number) => {
-   const params = {
-      collection: constants.SCORE,
-      field: "user_id",
-      param: id
-   }
-   const userScore = await pbGetSingleRecordQuery(params)
-   const currentScore = Number(userScore.score)
-   userScore.score = Math.round(currentScore + Number(newScore))
-   await pbUpdateRecord(constants.SCORE, userScore.id, userScore)
+export const updateUserScore = async (user: TUser): Promise<void> => {
+   user.score = Math.round(Number(user.score))
+   await pbUpdateRecord(constants.USERS, user.id, user)
 }
 
 export const getLoginMethods = async (): Promise<AuthProviderInfo[]> => {
@@ -74,25 +67,25 @@ export const updateUserState = async () => {
          return model
       }
    } catch (error: string | any) {
-      handleErrorModal(error)
+      return error
    }
 }
 
-export const googleLogin = async (): Promise<TUser | undefined> => {
+export const googleLogin = async (): Promise<TUser> => {
    const { saveItem, getItem } = localStorageHandler<TUser>("user")
    if (getItem()) {
-      return getItem()
+      return getItem() as TUser
    }
    const { origin, pathname } = window.location
-   const redirectUrl = `${origin}/${pathname.split("/")[1]}/learn`
+   const redirectUrl = `${origin}/${pathname.split("/")[1]}/app/learn`
    const params = new URL(window.location as any).searchParams
-   const provider = JSON.parse(localStorage.getItem("provider") || "")
-   if (provider[0].state !== params.get("state")) {
+   const [provider] = JSON.parse(localStorage.getItem("provider") || "")
+   if (provider.state !== params.get("state")) {
       throw "State parameters don't match."
    }
-   const providerName = provider[0].name
+   const providerName = provider.name
    const code = params.get("code") || ""
-   const codeVerifier = provider[0].codeVerifier
+   const codeVerifier = provider.codeVerifier
    try {
       const { record, meta }: RecordAuthResponse<TUser> = await pbSignUp(
          providerName,
@@ -105,17 +98,11 @@ export const googleLogin = async (): Promise<TUser | undefined> => {
          record.avatarUrl = meta?.avatarUrl || ""
          record.name = meta?.name
          const updatedUSer = await pbUpdateRecord(constants.USERS, record.id, record)
-         const userScore = await getScore(updatedUSer.id)
-         updatedUSer["userScore"] = userScore
          saveItem(updatedUSer)
-         return updatedUSer
+         return updatedUSer as unknown as TUser
       }
-      const userScore = await getScore(record.id)
-      record["userScore"] = userScore
-      saveItem(record)
       return record
    } catch (error: string | any) {
-      handleErrorModal(error)
       return error
    }
 }

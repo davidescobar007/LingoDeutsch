@@ -6,6 +6,7 @@ type TMoleculeInputCheckGroup = {
    text: string
    name: string
    inputState: "success" | "error" | "selected"
+   [index: string]: any
 }
 
 const inputStyles = {
@@ -35,8 +36,8 @@ const MoleculeInputCheckGroup: FunctionComponent<TMoleculeInputCheckGroup> = ({
    return (
       <div className={`form-control my-4 rounded-xl p-2 ${inputStyles[inputState]}`}>
          <label className="label relative cursor-pointer justify-start">
-            <AtomInput extraClassName="radio-accent radio mr-4" inputId={name} type="radio" />
-            <input className="radio-accent radio mr-4" name={name} type="radio" {...rest} />
+            <AtomInput extraClassName="radio-accent radio mr-4" inputId={name} type="radio" {...rest} />
+            {/* <input className="radio-accent radio mr-4" name={name} type="radio" {...rest} /> */}
             <span className="label-text text-lg font-normal">{text}</span>
             <span
                className={`animate__animated ${emojiStyles[inputState]} absolute right-0 top-0 -mr-5 -mt-6 text-2xl`}

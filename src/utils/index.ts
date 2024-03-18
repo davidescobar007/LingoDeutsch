@@ -123,3 +123,8 @@ export const localStorageHandler = <T>(key: string) => {
    }
    return { getItem, saveItem, clearItem }
 }
+
+export const openModal = (): void => {
+   const newDocument: any = document.getElementById("my_modal_1")
+   newDocument.showModal()
+}

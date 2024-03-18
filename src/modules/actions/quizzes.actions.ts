@@ -1,7 +1,6 @@
-import { pbGetSingleRecordQuery } from "../../services"
-import { constants } from "../global.types"
+import { pbGetSingleRecordQuery } from "@/network"
 
-import { handleErrorModal } from "./global.actions"
+import { constants } from "../global.types"
 
 export const getSingleQuizz = async (id: string) => {
    try {
@@ -9,7 +8,6 @@ export const getSingleQuizz = async (id: string) => {
       const quizz = await pbGetSingleRecordQuery(params)
       return quizz
    } catch (error: string | any) {
-      handleErrorModal(error)
       return error
    }
 }

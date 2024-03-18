@@ -17,20 +17,14 @@ const AtomInput: FunctionComponent<TAtomInput> = ({
    ...rest
 }) => {
    return (
-      <div className="my-3">
+      <>
          {withLabel && (
             <label className="label" htmlFor={inputId}>
                <span className="label-text font-semibold">{labelText}</span>
             </label>
          )}
-         <input
-            className={"input input-bordered w-full max-w-xs " + extraClassName}
-            id={inputId}
-            name={inputId}
-            type={type}
-            {...rest}
-         />
-      </div>
+         <input className={extraClassName} id={inputId} name={inputId} type={type} {...rest} />
+      </>
    )
 }
 

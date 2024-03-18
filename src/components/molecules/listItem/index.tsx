@@ -7,17 +7,15 @@ type TMoleculeListItem = {
    selected: boolean
 }
 
-const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, selected, ...props }) => {
+const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, selected }) => {
    return (
-      <AtomTitle
-         extraClassName={`text-xl hover:bg-gray-200 cursor-pointer rounded-2xl select-none  p-2 font-medium flex !text-myCustom items-center ${
-            selected && "border-2 border-accent bg-secondary hover:bg-secondary"
+      <li
+         className={`flex cursor-pointer select-none items-start rounded-2xl p-0 text-xl font-medium ${
+            selected && "border-accent border-2"
          }`}
-         type="h2"
-         {...props}
       >
-         {children}
-      </AtomTitle>
+         <AtomTitle extraClassName="hover:bg-none">{children}</AtomTitle>
+      </li>
    )
 }
 

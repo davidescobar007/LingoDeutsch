@@ -1,22 +1,16 @@
-import { toast } from "react-toastify"
-import i18next from "i18next"
+/* eslint-disable no-useless-catch */
 
-import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from "../../services"
-import { getWordsTranslationFetchImplementation } from "../../services/implementation"
-import { debounce, removePunctuation } from "../../utils"
-import { constants, types } from "../global.types"
+import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from "@/network"
+import { getWordsTranslationFetchImplementation } from "@/network/implementation"
+import { pb } from "@/network/setup"
+import { removePunctuation } from "@/utils"
 
+import { constants } from "../global.types"
+
+import { delay } from "./actions.utils"
 import { handleErrorModal } from "./global.actions"
-
-const { t } = i18next
-
-const resetTranslation = async (dispatch: any) => {
-   try {
-      dispatch({ type: types.UPDATE_TRANSLATION })
-   } catch (error) {
-      handleErrorModal(error as any)
-   }
-}
+import { Ttranslation } from "./types"
+import { isUserLoged } from "./users.actions"
 
 export const getWordsTranslationFromDB = async (params: any) => {
    try {
@@ -32,50 +26,30 @@ export const getWordsTranslationFromDB = async (params: any) => {
    }
 }
 
-export const getWordsTranslationFromAPI = async (wordToTranslate: string) => {
+export const searchTranslationFromSources = async (wordToTranslate: string): Promise<Ttranslation> => {
    try {
-      const translation = await getWordsTranslationFetchImplementation(removePunctuation(wordToTranslate))
-      return translation
-   } catch (error) {
-      handleErrorModal(error as any)
-   }
-}
+      await delay()
+      const exactTranslationFromDB = await getWordsTranslationFromDB({
+         field: "german_translation",
+         operator: "~",
+         param: removePunctuation(wordToTranslate)
+      })
+      if (exactTranslationFromDB) return exactTranslationFromDB as Ttranslation
 
-export const saveTranslationToDB = async (translation: string) => {
-   try {
-      const recordCreated = await pbCreateRecord(constants.VOCABULARY, translation)
-      return recordCreated
-   } catch (error: string | any) {
-      if (String(error) === "ClientResponseError 400: Failed to create record.") {
-         return null
-      } else {
-         handleErrorModal(error)
+      const similarTranslationFromDB = await getWordsTranslationFromDB({
+         field: "conjugation.allConjugations",
+         operator: "~",
+         param: removePunctuation(wordToTranslate)
+      })
+      if (similarTranslationFromDB) return similarTranslationFromDB as Ttranslation
+      const translationFromAPI = await getWordsTranslationFetchImplementation(removePunctuation(wordToTranslate))
+      if (!translationFromAPI) {
+         throw new Error()
       }
-   }
-}
-
-export const searchTranslationFromSources = async (wordToTranslate: string) => {
-   const exactTranslationFromDB = await getWordsTranslationFromDB({
-      field: "german_translation",
-      operator: "~",
-      param: removePunctuation(wordToTranslate)
-   })
-   if (exactTranslationFromDB) {
-      return exactTranslationFromDB
-   }
-   const similarTranslationFromDB = await getWordsTranslationFromDB({
-      field: "conjugation.allConjugations",
-      operator: "~",
-      param: removePunctuation(wordToTranslate)
-   })
-   if (similarTranslationFromDB) {
-      return similarTranslationFromDB
-   }
-   const translationFromAPI = await getWordsTranslationFromAPI(wordToTranslate)
-   if (translationFromAPI.data) {
-      saveTranslationToDB(translationFromAPI.data)
-   } else if (translationFromAPI.status === 204) {
-      handleErrorModal(t("translation.notFoundTranslation"))
+      const newTranslationSaved = pbCreateRecord(constants.VOCABULARY, translationFromAPI)
+      return newTranslationSaved as unknown as Ttranslation
+   } catch (error) {
+      throw error
    }
 }
 
@@ -86,26 +60,26 @@ export const checkVocaBularyExist = async (userId: string, wordId: string) => {
    return wordIsSaved
 }
 
-export const saveVocabularyToStudy = async ({ user, selectedWordTranslation }: any) => {
+export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
    try {
-      if (user?.id && selectedWordTranslation?.id) {
-         const valueExists = await checkVocaBularyExist(user.id, selectedWordTranslation.id)
+      if (isUserLoged() && selectedWordTranslation?.id) {
+         await delay()
+         const userId = pb.authStore.model?.id || ""
+         const valueExists = await checkVocaBularyExist(userId, selectedWordTranslation.id)
          if (valueExists.length) {
-            toast.info(t("translation.alreadySaved"))
-            return
+            throw new Error("translation.alreadySaved")
          }
          const data = {
-            user_id: user.id,
+            user_id: userId,
             word_id: selectedWordTranslation.id,
             last_time_seen: null,
             level: "hard"
          }
-         debounce(pbCreateRecord(constants.STUDY_VOCABULARY, data))
-         toast.success(t("translation.saved"))
+         pbCreateRecord(constants.STUDY_VOCABULARY, data)
       } else {
-         handleErrorModal(t("constants.needSignUp"))
+         throw new Error("translation.error")
       }
-   } catch (error: string | any) {
-      handleErrorModal(error)
+   } catch (error) {
+      throw error
    }
 }

@@ -1,52 +1,44 @@
-import { useContext, useEffect } from "react"
-import { useTranslation } from "react-i18next"
+"use client"
+import { FunctionComponent } from "react"
+import { useTranslations } from "next-intl"
 
-import AtomTitle from "@/components/atoms/title"
+import { TScore, TUser } from "@/modules/actions/types"
 
-import { StoreContext } from "../../../context/global.state"
+type MoleculeScoreProps = {
+   scoreList: TScore
+   user: TUser | undefined
+}
+const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList, user }) => {
+   const t = useTranslations()
 
-const MoleculeScore = () => {
-   const { t } = useTranslation()
-   const {
-      getScoreList,
-      state: { scoreList, user }
-   } = useContext(StoreContext)
-
-   useEffect(() => {
-      getScoreList()
-   }, [])
-   const scoreMedals = {
-      1: "🥇",
-      2: "🥈",
-      3: "🥉"
+   const scoreMedals: { [key: string]: string } = {
+      "1": "🥇",
+      "2": "🥈",
+      "3": "🥉"
    }
+
    return (
-      <>
-         <AtomTitle extraClassName="font-medium text-xl mb-3 -mt-3 underline">
-            {t("score.title")} <span className="text-3xl" />
-         </AtomTitle>
-         <ul className="w-full">
-            {scoreList.map(({ username, score, position }, index) => (
-               <li className="mb-4" key={username + position}>
-                  <div
-                     className={`stat border-secondary rounded-xl border-2 shadow-md ${
-                        user?.username === username ? "bg-secondary" : "bg-white"
-                     }`}
-                  >
-                     <div className="stat-figure text-secondary text-3xl">{scoreMedals[index + 1] || "⚡"}</div>
-                     <div className="stat-title">
-                        <span className="font-bold">
-                           {position} - @{username}
-                        </span>
-                     </div>
-                     <div className="stat-value text-lg">
-                        {score} {t("score.span")}
-                     </div>
-                  </div>
-               </li>
-            ))}
-         </ul>
-      </>
+      <aside className="hidden w-4/12 lg:block">
+         <div className="stats stats-vertical shadow">
+            <div className="stat">
+               <div className="stat-title">Downloads</div>
+               <div className="stat-value">31K</div>
+               <div className="stat-desc">Jan 1st - Feb 1st</div>
+            </div>
+
+            <div className="stat">
+               <div className="stat-title">New Users</div>
+               <div className="stat-value">4,200</div>
+               <div className="stat-desc">↗︎ 400 (22%)</div>
+            </div>
+
+            <div className="stat">
+               <div className="stat-title">New Registers</div>
+               <div className="stat-value">1,200</div>
+               <div className="stat-desc">↘︎ 90 (14%)</div>
+            </div>
+         </div>
+      </aside>
    )
 }
 

@@ -1,4 +1,5 @@
 /* eslint-disable react/no-multi-comp */
+"use client"
 
 import React from "react"
 
@@ -14,7 +15,7 @@ export const Loader = (): React.JSX.Element => {
 
 export const CardLoader = (): React.JSX.Element => {
    return (
-      <article className="card card-side mb-8 h-48 bg-white shadow-lg">
+      <article className="card card-side mb-8 h-48 w-7/12 bg-white shadow-lg">
          <figure>
             <div className="avatar">
                <div className="w-52">
@@ -57,13 +58,13 @@ export const PracticeLoader = (): React.JSX.Element => {
 
 export const ArticleLoader = (): React.JSX.Element => {
    return (
-      <div className="w-full content-center gap-2">
-         <div className="skeleton mb-4 h-56 w-full" />
-         <div className="skeleton mb-5 h-8 w-full" />
-         <div className="my-6 flex justify-center gap-2">
-            <div className="skeleton h-5 w-2/12" />
-            <div className="skeleton h-5 w-2/12" />
+      <div className="md:w-16/24 w-full content-center gap-2">
+         <div className="skeleton hidden h-7 w-full md:block" />
+         <div className="my-3 hidden justify-start gap-2 md:flex">
+            <div className="skeleton h-5 w-1/12" />
+            <div className="skeleton h-5 w-1/12" />
          </div>
+         <div className="skeleton mb-8 h-56 w-full" />
          <div className="flex flex-wrap justify-between gap-2">
             <div className="skeleton h-6 w-6/12" />
             <div className="skeleton h-6 w-2/12" />

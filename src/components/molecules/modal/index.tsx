@@ -1,39 +1,30 @@
 import { FunctionComponent, ReactNode } from "react"
-import { RiCloseFill } from "react-icons/ri"
+import { useTranslations } from "next-intl"
 
+import AtomButton from "@/components/atoms/button"
 import AtomTitle from "@/components/atoms/title"
 
 type TMoleculeModal = {
    children: ReactNode
    title?: string
-   id: string
-   onCheckboxChange?: () => void
 }
 
-const emptyFunction = () => {}
-
-const MoleculeModal: FunctionComponent<TMoleculeModal> = ({
-   title = "",
-   children,
-   id,
-   onCheckboxChange = emptyFunction
-}) => {
+const MoleculeModal: FunctionComponent<TMoleculeModal> = ({ title = "Ooopss!", children }) => {
+   const t = useTranslations()
    return (
-      <>
-         <input className="modal-open modal-toggle" id={id} onChange={onCheckboxChange} type="checkbox" />
-
-         <label className="modal modal-middle sm:modal-middle cursor-pointer" htmlFor={id}>
-            <div className="modal-box relative">
-               <label className="absolute right-2 top-2 text-3xl" htmlFor={id}>
-                  <RiCloseFill />
-               </label>
-               <AtomTitle extraClassName="text-2xl font-semibold mb-3" type="h3">
-                  {title}
-               </AtomTitle>
-               {children}
+      <dialog className="modal" id="my_modal_1">
+         <div className="modal-box">
+            <AtomTitle extraClassName="mb-4" type="h3">
+               {title}
+            </AtomTitle>
+            {children}
+            <div className="modal-action">
+               <form className="-my-2" method="dialog">
+                  <AtomButton type="submit">{t("close")}</AtomButton>
+               </form>
             </div>
-         </label>
-      </>
+         </div>
+      </dialog>
    )
 }
 
