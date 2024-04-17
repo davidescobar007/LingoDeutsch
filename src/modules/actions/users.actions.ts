@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 import i18next from "i18next"
-import { AuthProviderInfo, RecordAuthResponse } from "pocketbase"
+import { Admin, AuthProviderInfo, RecordAuthResponse } from "pocketbase"
 
 import {
    pbCreateRecord,
@@ -72,9 +72,9 @@ export const updateUserState = async () => {
 }
 
 export const googleLogin = async (): Promise<TUser> => {
-   const { saveItem, getItem } = localStorageHandler<TUser>("user")
-   if (getItem()) {
-      return getItem() as TUser
+   const { saveItem, storageItem } = localStorageHandler<TUser>("user")
+   if (storageItem) {
+      return storageItem as TUser
    }
    const { origin, pathname } = window.location
    const redirectUrl = `${origin}/${pathname.split("/")[1]}/app/learn`
@@ -107,12 +107,12 @@ export const googleLogin = async (): Promise<TUser> => {
    }
 }
 
-export const isUserLoged = (): boolean => {
-   return pb.authStore.isValid
-}
+export const isUserLoged = (): boolean => pb.authStore.isValid
 
+export const getUserInfo = (): TUser | null | Admin => pb.authStore.model
 export const logOut = () => {
    try {
+      console.log("siuuu")
       pbLogOut()
       localStorage.removeItem("user")
    } catch (error: string | any) {

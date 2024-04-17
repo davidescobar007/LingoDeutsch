@@ -48,15 +48,12 @@ export function areObjectsDistinct(obj1: any, obj2: any) {
    return false
 }
 
-export function flattenObjects(arrayOfObjects: any[]) {
-   /**
-    * Flattens an array of objects by converting nested properties into top-level properties.
-    *
-    * @param {Array} arrayOfObjects - An array of objects with nested properties.
-    * @returns {Array} - An array of objects where nested properties are flattened into top-level properties.
-    */
+export function flattenObjects(arrayOfObjects: any[]): Record<string, any>[] {
+   if (!arrayOfObjects.length) {
+      return []
+   }
    return arrayOfObjects.map((object) => {
-      const flattenedObject: any = {}
+      const flattenedObject: Record<string, any> = {}
 
       function flatten(current: any, path = []) {
          if (Array.isArray(current)) {
@@ -100,12 +97,10 @@ export const getPercentage = (number1: number, number2: number) => {
    if (typeof number1 !== "number" || typeof number2 !== "number" || number2 === 0) {
       return 0
    }
-   if (number1 === 0) {
-      return 100
-   }
+   if (number1 === 0) return 100
 
    const partial = (number1 / number2) * 100
-   const percentage = Math.round(100 - partial)
+   const percentage = Math.floor(100 - partial)
 
    return Math.max(0, percentage)
 }
@@ -121,7 +116,8 @@ export const localStorageHandler = <T>(key: string) => {
    const clearItem = () => {
       localStorage.removeItem(key)
    }
-   return { getItem, saveItem, clearItem }
+   const storageItem = getItem()
+   return { storageItem, saveItem, clearItem }
 }
 
 export const openModal = (): void => {

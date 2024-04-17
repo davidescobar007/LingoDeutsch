@@ -1,4 +1,4 @@
-export const constants = {
+export const constants: any = {
    USERS: "users",
    CATEGORIES: "categories",
    CARDS: "cards",

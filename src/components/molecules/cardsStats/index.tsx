@@ -1,32 +1,30 @@
 import { FunctionComponent } from "react"
-import { useTranslation } from "react-i18next"
+import { useTranslations } from "next-intl"
 
 import AtomStat from "@/components/atoms/stat"
+import { useGetCardsList } from "@/store/cards"
 
-type TMoleculeCardsStats = {
-   easyCards: number
-   mediumCards: number
-   hardCards: number
-}
-
-const MoleculeCardsStats: FunctionComponent<TMoleculeCardsStats> = ({ easyCards, mediumCards, hardCards }) => {
-   const { t } = useTranslation()
-
+const MoleculeCardsStats: FunctionComponent = () => {
+   const t = useTranslations()
+   const { data: cards } = useGetCardsList()
    return (
       <div className="stats mb-6 w-full shadow">
          <AtomStat
-            content={easyCards}
+            content={cards?.filter((card) => card.level === "easy").length}
             endContent={t("practice.cards")}
+            extraClassName="text-accent"
             title={`🙂 ${t("practice.cardStat.easy")}`}
          />
          <AtomStat
-            content={mediumCards}
+            content={cards?.filter((card) => card.level === "medium").length}
             endContent={t("practice.cards")}
+            extraClassName="text-primary"
             title={`🤔 ${t("practice.cardStat.medium")}`}
          />
          <AtomStat
-            content={hardCards}
+            content={cards?.filter((card) => card.level === "hard").length}
             endContent={t("practice.cards")}
+            extraClassName="text-warning"
             title={`😰 ${t("practice.cardStat.hard")}`}
          />
       </div>

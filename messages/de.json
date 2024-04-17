@@ -14,7 +14,7 @@
       "noVocabulary": "Du hast noch keinen Wortschatz in deiner Bibliothek. Du kannst damit beginnen, Artikel zu lesen, um deinen Wortschatz aufzubauen.",
       "startAgain": "Von vorne beginnen",
       "cards": "Karten",
-      "noFilterResult": "Du hast noch keinen Wortschatz auf Niveau {{level}}."
+      "noFilterResult": "Du hast noch keinen Wortschatz auf Niveau {level}."
    },
    "quiz": {
       "checkAnswer": "Antwort überprüfen",

@@ -99,3 +99,31 @@ export type TLinguaTools = Array<{
    genus2: string
    sentences: Array<Array<string>>
 }>
+
+export type TCard = {
+   expand: {
+      word_id: {
+         german_translation: string
+         spanish_translation: string
+         id: string
+         created: string
+         updated: string
+         collectionId: string
+         collectionName: string
+         expand: {}
+      }
+   }
+   id: string
+   last_time_seen: string | Date
+   level: string
+   level_history: Array<{
+      date: string
+      level: string
+      value: number
+   }>
+   times_seen: number
+   created: string
+   updated: string
+   collectionId: string
+   collectionName: string
+}

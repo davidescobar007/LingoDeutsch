@@ -46,15 +46,15 @@ const OrganismMenu = () => {
                   <AtomTitle extraClassName="hidden lg:block">{t("menu.practice")}</AtomTitle>
                </Link>
             </li>
-            <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
-               <Link href="/app/gramatic">
+            <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
+               <Link href="/app/grammar">
                   <span className="text-3xl">📓</span>
                   <AtomTitle extraClassName="hidden lg:block">{t("menu.grammar")}</AtomTitle>
                </Link>
             </li>
 
             {isUserLoged() && (
-               <li className={`mb-2 pl-2 ${pathname === `/app/practice` && selectedStyles}`}>
+               <li className={`mb-2 pl-2 ${pathname === `/app/profile` && selectedStyles}`}>
                   <Link href="/app/profile">
                      <div className="avatar">
                         <div className="w-9 rounded-xl">

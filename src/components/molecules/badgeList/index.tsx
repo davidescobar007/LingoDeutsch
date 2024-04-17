@@ -1,13 +1,12 @@
 import { FunctionComponent } from "react"
 
-type ItemsArray = {
-   label: string
-   value: string
-}
-
 type TMoleculeBadgeList = {
-   itemsArray: ItemsArray[]
+   itemsArray: Array<{
+      label: string
+      value: string
+   }>
    selectedItem: string
+   [index: string]: any
 }
 
 const MoleculeBadgeList: FunctionComponent<TMoleculeBadgeList> = ({ itemsArray, selectedItem, ...rest }) => {
