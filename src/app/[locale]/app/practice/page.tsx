@@ -37,8 +37,7 @@ const Practice = () => {
             toast.info(t("practice.noFilterResult", { level: t(`practice.cardStat.${value}`) }))
          }
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [cards])
+   }, [cards, t, value])
 
    const getCardsByLevel = (event: any): void => {
       const selectedLevelTarget = event.target.dataset["value"]

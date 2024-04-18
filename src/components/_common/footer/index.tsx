@@ -9,13 +9,13 @@ const Footer = () => {
    return (
       <footer className="md:hidden">
          <div className="btm-nav">
-            <Link href="/learn">
+            <Link href={`/${language}/learn`}>
                <span className={`${pathname === `/${language}/learn` && selectedItem} text-3xl`}>📖</span>
             </Link>
-            <Link href="/practice">
+            <Link href={`/${language}/practice`}>
                <span className={`${pathname === `/${language}/practice` && selectedItem} text-3xl`}>💪</span>
             </Link>
-            <Link href="/score">
+            <Link href={`/${language}/score`}>
                <span className={`${pathname === `/${language}/score` && selectedItem} text-3xl`}>🏆</span>
             </Link>
          </div>

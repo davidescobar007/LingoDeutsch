@@ -104,14 +104,14 @@ export const QuizzLoader = (): React.JSX.Element => {
 
 export const ProfileLoader = (): React.JSX.Element => {
    return (
-      <div className="flex w-full flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-start">
          <div className="skeleton h-24 w-24 rounded-full" />
-         <div className="skeleton my-8 h-4 w-24" />
+         <div className="skeleton my-8 h-5 w-24" />
 
          <div className="mt-4 flex w-full flex-wrap justify-center gap-10 md:w-7/12">
-            <div className="skeleton h-10 w-full" />
-            <div className="skeleton h-10 w-full" />
-            <div className="skeleton h-10 w-full" />
+            <div className="skeleton h-11 w-full" />
+            <div className="skeleton h-11 w-full" />
+            <div className="skeleton h-11 w-full" />
          </div>
       </div>
    )

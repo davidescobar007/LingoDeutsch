@@ -54,19 +54,19 @@ const OrganismMenu = () => {
             </li>
 
             {isUserLoged() && (
-               <li className={`mb-2 pl-2 ${pathname === `/app/profile` && selectedStyles}`}>
-                  <Link href="/app/profile">
-                     <div className="avatar">
-                        <div className="w-9 rounded-xl">
+               <li className={`mb-2 ${pathname === `/app/profile` && selectedStyles}`}>
+                  <Link className="w-full" href="/app/profile">
+                     <div className="avatar ml-2">
+                        <div className="w-8 rounded-xl">
                            <Image alt="avatar" height={35} src={user?.avatarUrl || ""} width={33} />
                         </div>
                      </div>
-                     <AtomTitle extraClassName="hidden lg:block">{t("menu.profile")}</AtomTitle>
+                     <AtomTitle extraClassName="hidden lg:block ml-1">{t("menu.profile")}</AtomTitle>
                   </Link>
                </li>
             )}
 
-            <li className={`mb-2 `}>
+            <li className="mb-2">
                <details className="px-2 pr-3">
                   <summary>
                      <span className=" text-3xl">

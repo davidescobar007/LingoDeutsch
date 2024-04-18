@@ -7,6 +7,7 @@ type TAtomInput = {
    labelText?: string
    extraClassName?: string
    dangerouslyResetClassName?: Boolean
+   [key: string]: any
 }
 const AtomInput: FunctionComponent<TAtomInput> = ({
    type = "text",
@@ -23,7 +24,13 @@ const AtomInput: FunctionComponent<TAtomInput> = ({
                <span className="label-text font-semibold">{labelText}</span>
             </label>
          )}
-         <input className={extraClassName} id={inputId} name={inputId} type={type} {...rest} />
+         <input
+            className={`input input-bordered mb-3 ${extraClassName}`}
+            id={inputId}
+            name={inputId}
+            type={type}
+            {...rest}
+         />
       </>
    )
 }

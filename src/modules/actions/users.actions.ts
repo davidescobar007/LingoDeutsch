@@ -1,4 +1,3 @@
-import { toast } from "react-toastify"
 import i18next from "i18next"
 import { Admin, AuthProviderInfo, RecordAuthResponse } from "pocketbase"
 
@@ -35,16 +34,7 @@ export const getScore = async (userId: string): Promise<number> => {
    }
 }
 
-export const updateUSer = async (user: any) => {
-   try {
-      const updatedUser = await pbUpdateRecord(constants.USERS, user.id, user)
-      if (updatedUser) {
-         toast.success(t("profile.success"))
-      }
-   } catch (error: string | any) {
-      handleErrorModal(error)
-   }
-}
+export const updateUSer = async (user: TUser) => pbUpdateRecord(constants.USERS, user.id, user)
 
 export const updateUserScore = async (user: TUser): Promise<void> => {
    user.score = Math.round(Number(user.score))

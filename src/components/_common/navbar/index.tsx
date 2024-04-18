@@ -98,11 +98,11 @@ const Navbar = ({ locale }: { locale: string }) => {
                   </li>
                </ul>
             </div>
-            {user?.avatarUrl != null && isUserLoged() ? (
+            {isUserLoged() ? (
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
-                        <Image alt="avatar" height={50} src={user.avatarUrl} width={50} />
+                        <Image alt="avatar" height={50} src={user?.avatarUrl || ""} width={50} />
                      </div>
                   </label>
                   <ul

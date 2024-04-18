@@ -35,13 +35,16 @@ export const extractAndSortSentences = (inputData: any) => {
    return transformedData
 }
 
-export function areObjectsDistinct(obj1: any, obj2: any) {
+export function areObjectsDistinct(obj1: any, obj2: any): boolean {
    const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)])
    for (const key of keys) {
+      if (typeof obj1[key] === "object" || typeof obj2[key] === "object") {
+         return false
+      }
       if (obj1[key] !== obj2[key]) {
          // TODO: uncomment following line when checking for differences between two objects
          // TODO: when committing, this must be always commented
-         // console.log(`Difference in ${key}: ${obj1[key]} !== ${obj2[key]}`)
+         console.log(`Difference in ${key}: ${obj1[key]} !== ${obj2[key]}`)
          return true
       }
    }
