@@ -6,7 +6,7 @@ import { Tgrammar } from './types'
 
 export const getGrammarByLevel = async (grammarLevel: string): Promise<Tgrammar[]> => {
    try {
-      const fields = 'id,level,topic,difficulty'
+      const fields = 'id,level,topic,difficulty,content'
       const filter = `level ${queryOperators.EQUAL_TO} "${grammarLevel}"`
       const grammarTopics = await pbGetList(constants.GRAMMAR, {
          fields,

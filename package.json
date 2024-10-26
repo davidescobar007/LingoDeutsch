@@ -9,7 +9,8 @@
       "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx,.css",
       "prettier": "prettier --write .",
       "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx,.css",
-      "prepare": "husky install"
+      "prepare": "husky install",
+      "commit": "cz"
    },
    "dependencies": {
       "@ramonak/react-progress-bar": "^5.0.2",
@@ -39,6 +40,8 @@
       "usehooks-ts": "^3.1.0"
    },
    "devDependencies": {
+      "@commitlint/cli": "^19.5.0",
+      "@commitlint/config-conventional": "^19.5.0",
       "@tailwindcss/typography": "^0.5.10",
       "@tanstack/eslint-plugin-query": "^5.20.1",
       "@types/node": "^20",

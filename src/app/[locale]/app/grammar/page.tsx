@@ -3,13 +3,13 @@ import React from 'react'
 import { FiChevronsDown } from 'react-icons/fi'
 import { useTranslations } from 'next-intl'
 
-import AtomTitle from '@/components/atoms/title'
+import { AtomTitle } from '@/components/atoms'
 import { grammarLevels } from '@/modules/global.types'
 import { Link } from '@/navigation'
 const Page = () => {
    const t = useTranslations()
    return (
-      <div className="">
+      <>
          <AtomTitle>{t('grammar.chooseLevel')}</AtomTitle>
 
          <div className="mt-3 flex flex-col justify-center">
@@ -31,7 +31,7 @@ const Page = () => {
                </>
             ))}
          </div>
-      </div>
+      </>
    )
 }
 

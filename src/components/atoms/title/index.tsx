@@ -5,7 +5,7 @@ type TAtomTitle = {
    type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
    extraClassName?: string
 }
-const AtomTitle: FunctionComponent<TAtomTitle> = ({ children, type = 'h2', extraClassName = '' }) => {
+export const AtomTitle: FunctionComponent<TAtomTitle> = ({ children, type = 'h2', extraClassName = '' }) => {
    const cssClass = `font-semibold ${extraClassName}`
 
    const title = {
@@ -17,5 +17,3 @@ const AtomTitle: FunctionComponent<TAtomTitle> = ({ children, type = 'h2', extra
    }
    return title[type]
 }
-
-export default AtomTitle

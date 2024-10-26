@@ -1,7 +1,8 @@
 import { FunctionComponent } from 'react'
 
+import { AtomTitle } from '@/components/atoms'
+
 import PictureAtom from '../../atoms/picture'
-import Title from '../../atoms/title'
 
 type TMoleculeCard = {
    image: string
@@ -30,7 +31,9 @@ const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
          </figure>
          <div className="card-body p-4">
             <article className="prose">
-               <Title extraClassName="card-title mb-1 text-ellipsis overflow-hidden line-clamp-2">{title}</Title>
+               <AtomTitle extraClassName="card-title mb-1 text-ellipsis overflow-hidden line-clamp-2">
+                  {title}
+               </AtomTitle>
                {level.map((item) => (
                   <div className="badge badge-primary mr-2" key={item}>
                      {item}

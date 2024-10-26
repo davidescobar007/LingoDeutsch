@@ -1,4 +1,4 @@
-import AtomTitle from '@/components/atoms/title'
+import { AtomTitle } from '@/components/atoms'
 import MoleculeTable from '@/components/molecules/table'
 import { TIterableData } from '@/modules/actions/types'
 
@@ -66,7 +66,7 @@ export const RenderSchema = (uiSchema: TIterableData[]) => {
             )
          case 'table':
             return (
-               <div className=" bg-blue-4000" key={index}>
+               <div key={index}>
                   <MoleculeTable
                      columns={tableData?.columns}
                      data={tableData?.data}

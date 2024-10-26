@@ -4,7 +4,7 @@ import { TbLanguage } from 'react-icons/tb'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import AtomTitle from '@/components/atoms/title'
+import { AtomTitle } from '@/components/atoms'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo, isUserLoged } from '@/modules/actions/users.actions'
 import { grammarLevels } from '@/modules/global.types'

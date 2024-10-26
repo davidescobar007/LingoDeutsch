@@ -24,8 +24,8 @@ const Page = ({ params: { level } }: { params: { level: string } }) => {
                // if (topic.es !== 'El género') return
                return (
                   <>
-                     <Link className="link mb-2 block lg:hidden" href={`${level}/${id}`}>
-                        {index + 1} - {topic?.[language as keyof typeof topic]}
+                     <Link className=" mb-2 block lg:hidden" href={`${level}/${id}`}>
+                        {index + 1} - <span className="link ">{topic?.[language as keyof typeof topic]}</span>
                      </Link>
                      <div className="hidden lg:block">
                         <MoleculeCollapse title={`${level} - ${topic?.[language as keyof typeof topic]}`}>

@@ -1,8 +1,8 @@
 import { FunctionComponent, ReactNode } from 'react'
 import { useTranslations } from 'next-intl'
 
+import { AtomTitle } from '@/components/atoms'
 import AtomButton from '@/components/atoms/button'
-import AtomTitle from '@/components/atoms/title'
 
 type TMoleculeModal = {
    children: ReactNode

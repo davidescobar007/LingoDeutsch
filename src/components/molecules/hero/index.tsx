@@ -5,9 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
+import { AtomTitle } from '@/components/atoms'
 import AtomBadge from '@/components/atoms/badge'
 import AtomButton from '@/components/atoms/button'
-import AtomTitle from '@/components/atoms/title'
 import { constants } from '@/modules/global.types'
 
 import ImageCard from '../imageCard'

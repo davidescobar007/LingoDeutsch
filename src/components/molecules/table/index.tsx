@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
-import AtomTitle from '@/components/atoms/title'
+import { AtomTitle } from '@/components/atoms'
 
 type TAtomTable = {
    displayHeader?: boolean
