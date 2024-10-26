@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react"
-import ProgressBar from "@ramonak/react-progress-bar"
+import { FunctionComponent } from 'react'
+import ProgressBar from '@ramonak/react-progress-bar'
 
 type TAtomProgressPercentage = {
    value: number

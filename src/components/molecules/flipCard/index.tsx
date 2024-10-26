@@ -1,6 +1,6 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-import AtomTitle from "@/components/atoms/title"
+import AtomTitle from '@/components/atoms/title'
 
 type TMoleculeFlipCard = {
    germanText: string

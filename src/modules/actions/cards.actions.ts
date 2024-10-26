@@ -1,10 +1,10 @@
-import { pbGetList, pbUpdateRecord } from "@/network"
+import { pbGetList, pbUpdateRecord } from '@/network'
 
-import { constants } from "../global.types"
+import { constants } from '../global.types'
 
-import { shuffleArray } from "./actions.utils"
-import { handleErrorModal } from "./global.actions"
-import { TCard, TUser } from "./types"
+import { shuffleArray } from './actions.utils'
+import { handleErrorModal } from './global.actions'
+import { TCard, TUser } from './types'
 
 export const getCardsList = async ({
    user,
@@ -14,12 +14,12 @@ export const getCardsList = async ({
    filter: string | undefined
 }): Promise<TCard[]> => {
    try {
-      if (!user?.id) throw new Error("need signup")
-      const fields = "expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen"
+      if (!user?.id) throw new Error('need signup')
+      const fields = 'expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen'
       const cardsWithLevelFilter = shuffleArray(
          await pbGetList(constants.STUDY_VOCABULARY, {
             filter: `user_id = "${user.id}" && level="${filter}"`,
-            expand: "word_id",
+            expand: 'word_id',
             fields
          })
       )
@@ -28,7 +28,7 @@ export const getCardsList = async ({
       const cardsNoLevelFilter = shuffleArray(
          await pbGetList(constants.STUDY_VOCABULARY, {
             filter: `user_id = "${user.id}"`,
-            expand: "word_id",
+            expand: 'word_id',
             fields
          })
       )

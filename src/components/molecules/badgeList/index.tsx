@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 type TMoleculeBadgeList = {
    itemsArray: Array<{
@@ -17,7 +17,7 @@ const MoleculeBadgeList: FunctionComponent<TMoleculeBadgeList> = ({ itemsArray, 
                return (
                   <div
                      className={`badge ${
-                        selectedItem === value && "badge-primary "
+                        selectedItem === value && 'badge-primary '
                      } badge-md mr-3 cursor-pointer select-none`}
                      key={index}
                      {...rest}

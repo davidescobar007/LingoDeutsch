@@ -1,5 +1,5 @@
-"use client"
-import { ReactNode } from "react"
+'use client'
+import { ReactNode } from 'react'
 
 const Drawer = ({ children, sideBar }: { children: ReactNode; sideBar: ReactNode }) => {
    return (

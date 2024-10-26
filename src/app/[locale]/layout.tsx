@@ -1,26 +1,26 @@
-import { ReactNode } from "react"
-import { Slide, ToastContainer } from "react-toastify"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import type { Metadata } from "next"
-import { Red_Hat_Display } from "next/font/google"
-import { NextIntlClientProvider, useMessages } from "next-intl"
+import { ReactNode } from 'react'
+import { Slide, ToastContainer } from 'react-toastify'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import type { Metadata } from 'next'
+import { Red_Hat_Display } from 'next/font/google'
+import { NextIntlClientProvider, useMessages } from 'next-intl'
 
-import QueryProvider from "@/store/queryProvider"
+import QueryProvider from '@/store/queryProvider'
 
-import "react-toastify/dist/ReactToastify.css"
-import "./globals.scss"
+import 'react-toastify/dist/ReactToastify.css'
+import './globals.scss'
 
 export const metadata: Metadata = {
-   title: "LingoDeutsch",
-   description: "Te acompañamos en tu camino para aprender alemán.",
-   icons: "images/icon-192x192.png"
+   title: 'LingoDeutsch',
+   description: 'Te acompañamos en tu camino para aprender alemán.',
+   icons: 'images/icon-192x192.png'
 }
 
 const redHatDisplay = Red_Hat_Display({
-   weight: "500",
-   subsets: ["latin"],
-   display: "swap",
-   style: "normal"
+   weight: '500',
+   subsets: ['latin'],
+   display: 'swap',
+   style: 'normal'
 })
 
 const RootLayout = ({

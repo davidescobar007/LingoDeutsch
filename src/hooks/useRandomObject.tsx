@@ -1,4 +1,4 @@
-import { getRandomFromArray } from "@/utils"
+import { getRandomFromArray } from '@/utils'
 
 const useRandomItem = <T,>(items: any[]) => {
    let remainingItems = items

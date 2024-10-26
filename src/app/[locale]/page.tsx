@@ -1,12 +1,12 @@
-"use client"
-import { Suspense } from "react"
-import Image from "next/image"
-import { useTranslations } from "next-intl"
+'use client'
+import { Suspense } from 'react'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
-import Navbar from "@/components/_common/navbar"
-import AtomButton from "@/components/atoms/button"
-import AtomTitle from "@/components/atoms/title"
-import { Link } from "@/navigation"
+import Navbar from '@/components/_common/navbar'
+import AtomButton from '@/components/atoms/button'
+import AtomTitle from '@/components/atoms/title'
+import { Link } from '@/navigation'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
    const t = useTranslations()
@@ -51,9 +51,9 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
                   </div>
 
                   <div className="flex w-2/3 flex-wrap items-center justify-center">
-                     <AtomTitle extraClassName="!text-3xl text-center">{t("home.tittle")}</AtomTitle>
+                     <AtomTitle extraClassName="!text-3xl text-center">{t('home.tittle')}</AtomTitle>
                      <Link href="/app/learn">
-                        <AtomButton extraClassName="btn-wide"> {t("home.button")}</AtomButton>
+                        <AtomButton extraClassName="btn-wide"> {t('home.button')}</AtomButton>
                      </Link>
                   </div>
                </div>

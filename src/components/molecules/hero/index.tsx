@@ -1,16 +1,16 @@
-"use client"
+'use client'
 
-import { FunctionComponent, useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { useTranslations } from "next-intl"
+import { FunctionComponent, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
-import AtomBadge from "@/components/atoms/badge"
-import AtomButton from "@/components/atoms/button"
-import AtomTitle from "@/components/atoms/title"
-import { constants } from "@/modules/global.types"
+import AtomBadge from '@/components/atoms/badge'
+import AtomButton from '@/components/atoms/button'
+import AtomTitle from '@/components/atoms/title'
+import { constants } from '@/modules/global.types'
 
-import ImageCard from "../imageCard"
+import ImageCard from '../imageCard'
 
 type TMoleculeHero = {
    image?: string
@@ -26,9 +26,9 @@ type TMoleculeHero = {
 const emptyArray: [] = []
 
 const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
-   image = "",
-   title = "",
-   text_content = "",
+   image = '',
+   title = '',
+   text_content = '',
    level = emptyArray,
    articleId,
    searchWordTranslation,
@@ -67,7 +67,7 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                      height={50}
                      src={imageURL}
                      // eslint-disable-next-line react/forbid-component-props
-                     style={{ borderRadius: "10px" }}
+                     style={{ borderRadius: '10px' }}
                      width={1000}
                   />
                </div>
@@ -75,12 +75,12 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                <div className="mt-44 w-full p-5 md:mt-0 md:p-0">
                   <p className="text-justify text-lg leading-9 tracking-wide">
                      {text_content
-                        .replace(/\./g, ". ")
-                        .split(" ")
+                        .replace(/\./g, '. ')
+                        .split(' ')
                         .map((word, index) => (
                            <span
                               className={`${
-                                 currentWordIntext === word && "bg-accent"
+                                 currentWordIntext === word && 'bg-accent'
                               } hover:bg-accent cursor-pointer rounded-lg duration-300 ease-in-out`}
                               key={`${word}${index}`}
                               onClick={() => {
@@ -92,9 +92,9 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                            </span>
                         ))}
                   </p>
-                  <footer className="tooltip tooltip-accent mb-28 mt-7 lg:hidden" data-tip={t("learn.earnPoints")}>
+                  <footer className="tooltip tooltip-accent mb-28 mt-7 lg:hidden" data-tip={t('learn.earnPoints')}>
                      <Link href={`/quiz/${articleId}`}>
-                        <AtomButton>{t("learn.startQuiz")} 📝</AtomButton>
+                        <AtomButton>{t('learn.startQuiz')} 📝</AtomButton>
                      </Link>
                   </footer>
                </div>

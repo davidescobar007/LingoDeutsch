@@ -1,12 +1,12 @@
-import { FunctionComponent } from "react"
-import { useTranslations } from "next-intl"
+import { FunctionComponent } from 'react'
+import { useTranslations } from 'next-intl'
 
-import AtomButton from "@/components/atoms/button"
-import { Loader } from "@/components/atoms/loader"
-import AtomTitle from "@/components/atoms/title"
-import { isUserLoged } from "@/modules/actions/users.actions"
-import { Link } from "@/navigation"
-import { openModal } from "@/utils"
+import AtomButton from '@/components/atoms/button'
+import { Loader } from '@/components/atoms/loader'
+import AtomTitle from '@/components/atoms/title'
+import { isUserLoged } from '@/modules/actions/users.actions'
+import { Link } from '@/navigation'
+import { openModal } from '@/utils'
 
 interface MoleculeWordSpecificationProps {
    selectedWord: string
@@ -41,7 +41,7 @@ const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProp
       <div className="w-7/24 hidden md:block">
          <section className="border-accent bg-secondary mb-4 flex flex-wrap justify-between rounded-2xl border-2 p-2">
             <AtomTitle extraClassName="w-10/12 font-medium" type="h3">
-               {t("learn.wordSpecification")}
+               {t('learn.wordSpecification')}
             </AtomTitle>
          </section>
 
@@ -61,7 +61,7 @@ const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProp
 
                         <div className=" mt-4 text-justify">
                            {isError ? (
-                              <span className="font-medium">{t("translation.notFoundTranslation")}</span>
+                              <span className="font-medium">{t('translation.notFoundTranslation')}</span>
                            ) : (
                               !!data?.examples?.data.length && (
                                  <>
@@ -85,7 +85,7 @@ const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProp
                               {isLoadingSaveVocabulary ? (
                                  <span className="loading loading-spinner" />
                               ) : (
-                                 t("translation.save")
+                                 t('translation.save')
                               )}
                            </AtomButton>
                         )}
@@ -94,9 +94,9 @@ const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProp
                </div>
             </section>
          )}
-         <div className="tooltip tooltip-left tooltip-accent mt-3" data-tip={t("learn.earnPoints")}>
+         <div className="tooltip tooltip-left tooltip-accent mt-3" data-tip={t('learn.earnPoints')}>
             <Link href={`/app/quiz/${articleId}`}>
-               <AtomButton>{t("learn.startQuiz")} 📝</AtomButton>
+               <AtomButton>{t('learn.startQuiz')} 📝</AtomButton>
             </Link>
          </div>
       </div>

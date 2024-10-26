@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import LayoutContainer from "@/components/_common/layoutContainer"
-import { CardLoader } from "@/components/atoms/loader"
-import MoleculeCard from "@/components/molecules/card"
-import MoleculeScore from "@/components/molecules/score"
-import { constants } from "@/modules/global.types"
-import { Link } from "@/navigation"
-import { useArticleList } from "@/store/articles"
-import { useLogin, useScore } from "@/store/user"
+import LayoutContainer from '@/components/_common/layoutContainer'
+import { CardLoader } from '@/components/atoms/loader'
+import MoleculeCard from '@/components/molecules/card'
+import MoleculeScore from '@/components/molecules/score'
+import { constants } from '@/modules/global.types'
+import { Link } from '@/navigation'
+import { useArticleList } from '@/store/articles'
+import { useLogin, useScore } from '@/store/user'
 
 const Learn = () => {
    const { data: articles, isFetching } = useArticleList()

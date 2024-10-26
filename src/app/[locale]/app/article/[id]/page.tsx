@@ -1,20 +1,20 @@
 /* eslint-disable @next/next/no-async-client-component */
-"use client"
+'use client'
 
-import { useState } from "react"
-import { useTranslations } from "next-intl"
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
-import { ArticleLoader } from "@/components/atoms/loader"
-import MoleculeHero from "@/components/molecules/hero"
-import MoleculeModal from "@/components/molecules/modal"
-import MoleculeWordSpecification from "@/components/molecules/wordSpecification"
-import { useArticle } from "@/store/articles"
-import { useSaveVocabulary, useTranslation } from "@/store/translations"
+import { ArticleLoader } from '@/components/atoms/loader'
+import MoleculeHero from '@/components/molecules/hero'
+import MoleculeModal from '@/components/molecules/modal'
+import MoleculeWordSpecification from '@/components/molecules/wordSpecification'
+import { useArticle } from '@/store/articles'
+import { useSaveVocabulary, useTranslation } from '@/store/translations'
 
 const Page = ({ params: { id } }: { params: { id: string } }) => {
    const t = useTranslations()
 
-   const [wordToTranslate, setWordToTranslate] = useState<string>("")
+   const [wordToTranslate, setWordToTranslate] = useState<string>('')
    const [enabled, setEnabled] = useState<boolean>(false)
    const { data: article, isFetching: isLoadingArticle } = useArticle(id)
    const { data: translationData, isError, isFetching } = useTranslation({ wordToTranslate, enabled })
@@ -47,7 +47,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
             selectedWord={wordToTranslate}
          />
          <MoleculeModal>
-            <p>{t("constants.needSignUp")}</p>
+            <p>{t('constants.needSignUp')}</p>
          </MoleculeModal>
       </>
    )

@@ -1,16 +1,16 @@
-"use client"
-import { useState } from "react"
-import Image from "next/image"
-import { useTranslations } from "next-intl"
+'use client'
+import { useState } from 'react'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
-import AtomButton from "@/components/atoms/button"
-import AtomInput from "@/components/atoms/input"
-import { ProfileLoader } from "@/components/atoms/loader"
-import AtomTitle from "@/components/atoms/title"
-import { TUser } from "@/modules/actions/types"
-import { getUserInfo } from "@/modules/actions/users.actions"
-import { useUpdateUser } from "@/store/user"
-import { areObjectsDistinct } from "@/utils"
+import AtomButton from '@/components/atoms/button'
+import AtomInput from '@/components/atoms/input'
+import { ProfileLoader } from '@/components/atoms/loader'
+import AtomTitle from '@/components/atoms/title'
+import { TUser } from '@/modules/actions/types'
+import { getUserInfo } from '@/modules/actions/users.actions'
+import { useUpdateUser } from '@/store/user'
+import { areObjectsDistinct } from '@/utils'
 
 const Page = () => {
    const t = useTranslations()
@@ -23,7 +23,7 @@ const Page = () => {
       const { name, value } = e.target
       setUserInfo((prevValues) => ({
          ...prevValues,
-         [name]: name === "username" ? value.replace(/[@ ]+/g, "") : value
+         [name]: name === 'username' ? value.replace(/[@ ]+/g, '') : value
       }))
    }
 
@@ -42,17 +42,17 @@ const Page = () => {
       <section className="flex w-full flex-col lg:px-20">
          <div className="avatar flex justify-center">
             <div className="w-24 rounded-full">
-               <Image alt="Profile picture" height={80} src={user?.avatarUrl || ""} width={80} />
+               <Image alt="Profile picture" height={80} src={user?.avatarUrl || ''} width={80} />
             </div>
          </div>
          <AtomTitle extraClassName="my-4 flex justify-center" type="h4">
-            {t("score.span")}: <span className="text-lg font-bold">{user.score} ✨</span>
+            {t('score.span')}: <span className="text-lg font-bold">{user.score} ✨</span>
          </AtomTitle>
 
          <form className="form-control flex justify-center" onSubmit={handleSubmit}>
             <AtomInput
                inputId="name"
-               labelText={t("profile.name")}
+               labelText={t('profile.name')}
                maxLength="30"
                name="name"
                onChange={handleChange}
@@ -62,7 +62,7 @@ const Page = () => {
             />
             <AtomInput
                id="username"
-               labelText={t("profile.alias")}
+               labelText={t('profile.alias')}
                maxLength="13"
                name="username"
                onChange={handleChange}
@@ -73,7 +73,7 @@ const Page = () => {
             <AtomInput
                disabled
                id="email"
-               labelText={t("profile.email")}
+               labelText={t('profile.email')}
                name="email"
                onChange={handleChange}
                placeholder={userCopy?.email}
@@ -83,7 +83,7 @@ const Page = () => {
 
             {areObjectsDistinct(userInfo, userCopy) && (
                <AtomButton extraClassName="mt-5" type="submit">
-                  {t("profile.saveButton")}
+                  {t('profile.saveButton')}
                </AtomButton>
             )}
          </form>

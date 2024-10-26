@@ -1,16 +1,16 @@
 /* eslint-disable no-useless-catch */
 
-import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from "@/network"
-import { getWordsTranslationFetchImplementation } from "@/network/implementation"
-import { pb } from "@/network/setup"
-import { removePunctuation } from "@/utils"
+import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from '@/network'
+import { getWordsTranslationFetchImplementation } from '@/network/implementation'
+import { pb } from '@/network/setup'
+import { removePunctuation } from '@/utils'
 
-import { constants } from "../global.types"
+import { constants } from '../global.types'
 
-import { delay } from "./actions.utils"
-import { handleErrorModal } from "./global.actions"
-import { Ttranslation } from "./types"
-import { isUserLoged } from "./users.actions"
+import { delay } from './actions.utils'
+import { handleErrorModal } from './global.actions'
+import { Ttranslation } from './types'
+import { isUserLoged } from './users.actions'
 
 export const getWordsTranslationFromDB = async (params: any) => {
    try {
@@ -30,15 +30,15 @@ export const searchTranslationFromSources = async (wordToTranslate: string): Pro
    try {
       await delay()
       const exactTranslationFromDB = await getWordsTranslationFromDB({
-         field: "german_translation",
-         operator: "~",
+         field: 'german_translation',
+         operator: '~',
          param: removePunctuation(wordToTranslate)
       })
       if (exactTranslationFromDB) return exactTranslationFromDB as Ttranslation
 
       const similarTranslationFromDB = await getWordsTranslationFromDB({
-         field: "conjugation.allConjugations",
-         operator: "~",
+         field: 'conjugation.allConjugations',
+         operator: '~',
          param: removePunctuation(wordToTranslate)
       })
       if (similarTranslationFromDB) return similarTranslationFromDB as Ttranslation
@@ -64,20 +64,20 @@ export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
    try {
       if (isUserLoged() && selectedWordTranslation?.id) {
          await delay()
-         const userId = pb.authStore.model?.id || ""
+         const userId = pb.authStore.model?.id || ''
          const valueExists = await checkVocaBularyExist(userId, selectedWordTranslation.id)
          if (valueExists.length) {
-            throw new Error("translation.alreadySaved")
+            throw new Error('translation.alreadySaved')
          }
          const data = {
             user_id: userId,
             word_id: selectedWordTranslation.id,
             last_time_seen: null,
-            level: "hard"
+            level: 'hard'
          }
          pbCreateRecord(constants.STUDY_VOCABULARY, data)
       } else {
-         throw new Error("translation.error")
+         throw new Error('translation.error')
       }
    } catch (error) {
       throw error

@@ -1,8 +1,8 @@
-"use client"
-import { FunctionComponent } from "react"
-import { useTranslations } from "next-intl"
+'use client'
+import { FunctionComponent } from 'react'
+import { useTranslations } from 'next-intl'
 
-import { TScore, TUser } from "@/modules/actions/types"
+import { TScore, TUser } from '@/modules/actions/types'
 
 type MoleculeScoreProps = {
    scoreList: TScore
@@ -12,9 +12,9 @@ const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList, user 
    const t = useTranslations()
 
    const scoreMedals: { [key: string]: string } = {
-      "1": "🥇",
-      "2": "🥈",
-      "3": "🥉"
+      '1': '🥇',
+      '2': '🥈',
+      '3': '🥉'
    }
 
    return (

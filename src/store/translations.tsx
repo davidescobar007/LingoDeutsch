@@ -1,10 +1,10 @@
-"use client"
-import { toast } from "react-toastify"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { useTranslations } from "next-intl"
+'use client'
+import { toast } from 'react-toastify'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
 
-import { getSingleArticle } from "@/modules/actions/articles.actions"
-import { saveVocabularyToStudy, searchTranslationFromSources } from "@/modules/actions/translations.actions"
+import { getSingleArticle } from '@/modules/actions/articles.actions'
+import { saveVocabularyToStudy, searchTranslationFromSources } from '@/modules/actions/translations.actions'
 
 export const useTranslation = ({
    wordToTranslate,
@@ -14,7 +14,7 @@ export const useTranslation = ({
    [key: string]: any
 }) => {
    return useQuery({
-      queryKey: ["translation", wordToTranslate],
+      queryKey: ['translation', wordToTranslate],
       queryFn: () => searchTranslationFromSources(wordToTranslate),
       retry: false,
       ...options
@@ -23,7 +23,7 @@ export const useTranslation = ({
 
 export const useArticle = (articleId: string) => {
    return useQuery({
-      queryKey: ["articlesList", articleId],
+      queryKey: ['articlesList', articleId],
       queryFn: () => getSingleArticle(articleId)
    })
 }
@@ -36,7 +36,7 @@ export const useSaveVocabulary = () => {
          toast.info(t(err.message))
       },
       onSuccess: () => {
-         toast.success(t("translation.saved"))
+         toast.success(t('translation.saved'))
       }
    })
 }

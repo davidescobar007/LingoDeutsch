@@ -5,6 +5,13 @@
       "wordSpecificationTooltip": "Beim Speichern dieses Wortes kannst du es in der Sektion 'Üben' überprüfen.",
       "earnPoints": "Erhalte Punkte, indem du dieses Quiz abschließt."
    },
+   "grammar": {
+      "chooseLevel": "Wähle eine Stufe",
+      "A1": "Anfänger",
+      "A2": "Grundkenntnisse",
+      "B1": "Mittelstufe",
+      "B2": "Fortgeschrittene Mittelstufe"
+   },
    "practice": {
       "cardStat": {
          "easy": "Einfach",
@@ -14,7 +21,8 @@
       "noVocabulary": "Du hast noch keinen Wortschatz in deiner Bibliothek. Du kannst damit beginnen, Artikel zu lesen, um deinen Wortschatz aufzubauen.",
       "startAgain": "Von vorne beginnen",
       "cards": "Karten",
-      "noFilterResult": "Du hast noch keinen Wortschatz auf Niveau {level}."
+      "noFilterResult": "Du hast noch keinen Wortschatz auf Niveau {level}.",
+      "chooseLevel": "Wähle die Karten nach Level aus."
    },
    "quiz": {
       "checkAnswer": "Antwort überprüfen",

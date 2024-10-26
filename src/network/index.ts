@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 
-import { queryOperators } from "@/modules/global.types"
-import { pb } from "@/network/setup"
+import { queryOperators } from '@/modules/global.types'
+import { pb } from '@/network/setup'
 
 export const pbGetList = async (collection: string, options?: any) => {
    const records = await pb.collection(collection).getFullList(200, options)
@@ -17,13 +17,13 @@ export const pbGetSingleRecord = async (collection: string, recordId: string, ex
 
 export const pbGetSingleRecordQuery = async ({
    collection,
-   field,
+   field = 'id',
    operator = queryOperators.EQUAL_TO,
    param,
    ...rest
 }: {
    collection: string
-   field: any
+   field?: string
    operator?: string
    param: any
    [key: string]: any
@@ -50,7 +50,7 @@ export const fetchData = async (method: string, url: string, body = null, header
       const options: any = {
          method: method,
          headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             ...headers
          }
       }
@@ -60,7 +60,7 @@ export const fetchData = async (method: string, url: string, body = null, header
       const response = await fetch(url, options)
       const data = await response
 
-      if (!response.ok) return new Error(`${data}` || "Something went wrong")
+      if (!response.ok) return new Error(`${data}` || 'Something went wrong')
 
       return data
    } catch (error) {
@@ -69,12 +69,12 @@ export const fetchData = async (method: string, url: string, body = null, header
 }
 
 export const pbSignUp = async (provider: string, code: string, codeVerifier: any, redirectUrl: string) => {
-   const resultLoginData = await pb.collection("users").authWithOAuth2(provider, code, codeVerifier, redirectUrl)
+   const resultLoginData = await pb.collection('users').authWithOAuth2(provider, code, codeVerifier, redirectUrl)
    return resultLoginData
 }
 
 export const pbListAuthMethods = async () => {
-   const methods = await pb.collection("users").listAuthMethods()
+   const methods = await pb.collection('users').listAuthMethods()
    return methods
 }
 

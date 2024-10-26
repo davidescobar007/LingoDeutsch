@@ -1,14 +1,14 @@
 /* eslint-disable react/forbid-component-props */
-import { FunctionComponent } from "react"
-import { BsInfoCircleFill } from "react-icons/bs"
-import { RiSave2Line } from "react-icons/ri"
-import { useTranslations } from "next-intl"
+import { FunctionComponent } from 'react'
+import { BsInfoCircleFill } from 'react-icons/bs'
+import { RiSave2Line } from 'react-icons/ri'
+import { useTranslations } from 'next-intl'
 
-import { isUserLoged } from "@/modules/actions/users.actions"
-import { openModal } from "@/utils"
+import { isUserLoged } from '@/modules/actions/users.actions'
+import { openModal } from '@/utils'
 
-import Badge from "../../atoms/badge"
-import Title from "../../atoms/title"
+import Badge from '../../atoms/badge'
+import Title from '../../atoms/title'
 
 type TMoleculeImageCard = {
    image: string
@@ -52,7 +52,7 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
                {selectedWord && (
                   <span
                      className="tooltip tooltip-right tooltip-info"
-                     data-tip={t("learn.wordSpecificationTooltip")}
+                     data-tip={t('learn.wordSpecificationTooltip')}
                   >
                      <BsInfoCircleFill className="mr-3 mt-2 text-white" />
                   </span>
@@ -71,7 +71,7 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
             {translationData?.isFetching ? (
                <span className="loading loading-dots loading-md" />
             ) : translationData.isError ? (
-               t("translation.shortNotFoundTranslation")
+               t('translation.shortNotFoundTranslation')
             ) : (
                translationData?.spanish_translation
             )}

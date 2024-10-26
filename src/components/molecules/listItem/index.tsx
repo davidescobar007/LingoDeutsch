@@ -1,6 +1,6 @@
-import { FunctionComponent, ReactNode } from "react"
+import { FunctionComponent, ReactNode } from 'react'
 
-import AtomTitle from "@/components/atoms/title"
+import AtomTitle from '@/components/atoms/title'
 
 type TMoleculeListItem = {
    children: ReactNode
@@ -11,7 +11,7 @@ const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, sele
    return (
       <li
          className={`flex cursor-pointer select-none items-start rounded-2xl p-0 text-xl font-medium ${
-            selected && "border-accent border-2"
+            selected && 'border-accent border-2'
          }`}
       >
          <AtomTitle extraClassName="hover:bg-none">{children}</AtomTitle>

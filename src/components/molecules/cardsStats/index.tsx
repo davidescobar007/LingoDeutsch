@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react"
-import { useTranslations } from "next-intl"
+import { FunctionComponent } from 'react'
+import { useTranslations } from 'next-intl'
 
-import AtomStat from "@/components/atoms/stat"
-import { useGetCardsList } from "@/store/cards"
+import AtomStat from '@/components/atoms/stat'
+import { useGetCardsList } from '@/store/cards'
 
 const MoleculeCardsStats: FunctionComponent = () => {
    const t = useTranslations()
@@ -10,22 +10,22 @@ const MoleculeCardsStats: FunctionComponent = () => {
    return (
       <div className="stats mb-6 w-full shadow">
          <AtomStat
-            content={cards?.filter((card) => card.level === "easy").length}
-            endContent={t("practice.cards")}
+            content={cards?.filter((card) => card.level === 'easy').length}
+            endContent={t('practice.cards')}
             extraClassName="text-accent"
-            title={`🙂 ${t("practice.cardStat.easy")}`}
+            title={`🙂 ${t('practice.cardStat.easy')}`}
          />
          <AtomStat
-            content={cards?.filter((card) => card.level === "medium").length}
-            endContent={t("practice.cards")}
+            content={cards?.filter((card) => card.level === 'medium').length}
+            endContent={t('practice.cards')}
             extraClassName="text-primary"
-            title={`🤔 ${t("practice.cardStat.medium")}`}
+            title={`🤔 ${t('practice.cardStat.medium')}`}
          />
          <AtomStat
-            content={cards?.filter((card) => card.level === "hard").length}
-            endContent={t("practice.cards")}
+            content={cards?.filter((card) => card.level === 'hard').length}
+            endContent={t('practice.cards')}
             extraClassName="text-warning"
-            title={`😰 ${t("practice.cardStat.hard")}`}
+            title={`😰 ${t('practice.cardStat.hard')}`}
          />
       </div>
    )

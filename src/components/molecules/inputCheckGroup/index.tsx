@@ -1,35 +1,35 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-import AtomInput from "@/components/atoms/input"
+import AtomInput from '@/components/atoms/input'
 
 type TMoleculeInputCheckGroup = {
    text: string
    name: string
-   inputState: "success" | "error" | "selected"
+   inputState: 'success' | 'error' | 'selected'
    [index: string]: any
 }
 
 const inputStyles = {
-   selected: "border-4 border-accent bg-secondary",
-   success: "border-4 border-primary bg-secondary",
-   error: "border-4 border-error bg-secondary"
+   selected: 'border-4 border-accent bg-secondary',
+   success: 'border-4 border-primary bg-secondary',
+   error: 'border-4 border-error bg-secondary'
 }
 
 const inputEmoji = {
-   success: "✅",
-   error: "🚫",
-   selected: ""
+   success: '✅',
+   error: '🚫',
+   selected: ''
 }
 
 const emojiStyles = {
-   success: "animate__heartBeat",
-   error: "animate__shakeX",
-   selected: ""
+   success: 'animate__heartBeat',
+   error: 'animate__shakeX',
+   selected: ''
 }
 
 const MoleculeInputCheckGroup: FunctionComponent<TMoleculeInputCheckGroup> = ({
-   text = "",
-   name = "",
+   text = '',
+   name = '',
    inputState,
    ...rest
 }) => {

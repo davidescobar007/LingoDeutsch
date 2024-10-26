@@ -1,14 +1,13 @@
-import { FunctionComponent } from "react"
-import { useTranslation } from "react-i18next"
-import { HiTrash } from "react-icons/hi"
+import { FunctionComponent } from 'react'
+import { useTranslation } from 'react-i18next'
+import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
-import Title from "@/components/atoms/title"
+import AtomTitle from '@/components/atoms/title'
 
 type TAtomTable = {
    displayHeader?: boolean
-   displayIndex?: boolean
-   columns?: []
-   data?: []
+   columns?: { header: string; accessorKey: string; cell?: any; classNames?: string }[]
+   data?: any[]
    extraClassName?: string
    isDelete?: boolean
    title?: string
@@ -16,42 +15,52 @@ type TAtomTable = {
 
 const emptyArray: any = []
 
-const TableAtom: FunctionComponent<TAtomTable> = ({
+const MoleculeTable: FunctionComponent<TAtomTable> = ({
    displayHeader = true,
    columns = emptyArray,
    data = emptyArray,
-   displayIndex = false,
-   extraClassName = "",
+   extraClassName = '',
    isDelete = false,
    title = null
 }) => {
    const { t } = useTranslation()
+   const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() })
    return (
-      <>
+      <div className="overflow-x-auto">
          {title && (
-            <Title extraClassName="text-lg mb-4 font-semibold underline underline-offset-4" type="h3">
+            <AtomTitle extraClassName="text-lg mb-4 font-semibold underline underline-offset-4" type="h3">
                {title}
-            </Title>
+            </AtomTitle>
          )}
-         <table className={`table w-full ${extraClassName}`}>
+         <table className={`table ${extraClassName}`}>
             {displayHeader && columns.length > 0 && (
                <thead>
-                  <tr>
-                     {columns.map((column, index) => (
-                        <th className="text-sm" key={index}>
-                           {t(`data.${column}`)}
-                        </th>
-                     ))}
-                     {isDelete && <th className="text-sm">Actions</th>}
-                  </tr>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                     <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header: any) => {
+                           return (
+                              <th className={` text-sm ${header.column.columnDef.classNames}`} key={header.id}>
+                                 {header.column.columnDef.header}
+                              </th>
+                           )
+                        })}
+                     </tr>
+                  ))}
                </thead>
             )}
             <tbody>
-               {data.map((item, rowIndex) => (
+               {table.getRowModel().rows.map((row) => (
+                  <tr className="hover" key={row.id}>
+                     {row.getVisibleCells().map((cell) => (
+                        <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                     ))}
+                  </tr>
+               ))}
+               {/* {data.map((item: any, rowIndex: number) => (
                   <tr className="hover" key={rowIndex}>
                      {displayIndex && <td>{rowIndex + 1}</td>}
                      {columns.length
-                        ? columns.map((column, columnIndex) => <td key={columnIndex}>{item[column]}</td>)
+                        ? columns.map((column: any, columnIndex: any) => <td key={columnIndex}>{item[column]}</td>)
                         : Object.keys(item).map((key) => <td key={key}>{String(item[key])}</td>)}
                      {isDelete && (
                         <td>
@@ -61,11 +70,11 @@ const TableAtom: FunctionComponent<TAtomTable> = ({
                         </td>
                      )}
                   </tr>
-               ))}
+               ))} */}
             </tbody>
          </table>
-      </>
+      </div>
    )
 }
 
-export default TableAtom
+export default MoleculeTable

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
-"use client"
+'use client'
 
-import React from "react"
+import React from 'react'
 
 export const Loader = (): React.JSX.Element => {
    return (

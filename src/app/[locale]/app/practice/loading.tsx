@@ -1,4 +1,4 @@
-import { PracticeLoader } from "@/components/atoms/loader"
+import { PracticeLoader } from '@/components/atoms/loader'
 
 const Loading = () => {
    return (

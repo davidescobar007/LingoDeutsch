@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from "react"
+import { FunctionComponent, ReactNode } from 'react'
 
 type AlertAtomProps = {
    readonly children: ReactNode

@@ -1,27 +1,27 @@
-"use client"
+'use client'
 
-import { toast } from "react-toastify"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { useTranslations } from "next-intl"
+import { toast } from 'react-toastify'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
 
-import { getScoreList } from "@/modules/actions/global.actions"
-import { getLoginMethods, googleLogin, updateUSer, updateUserScore } from "@/modules/actions/users.actions"
+import { getScoreList } from '@/modules/actions/global.actions'
+import { getLoginMethods, googleLogin, updateUSer, updateUserScore } from '@/modules/actions/users.actions'
 
 export const useAuth = () => {
    const {
       data: authMethods,
       error,
       isLoading
-   } = useQuery({ queryKey: ["authMethodsList"], queryFn: getLoginMethods })
+   } = useQuery({ queryKey: ['authMethodsList'], queryFn: getLoginMethods })
    return { authMethods, error, isLoading }
 }
 
 export const useLogin = () => {
-   return useQuery({ queryKey: ["googleAuth"], queryFn: googleLogin })
+   return useQuery({ queryKey: ['googleAuth'], queryFn: googleLogin })
 }
 
 export const useScore = () => {
-   return useQuery({ queryKey: ["scoreList"], queryFn: getScoreList })
+   return useQuery({ queryKey: ['scoreList'], queryFn: getScoreList })
 }
 
 export const useUpdateUserscore = () => {
@@ -36,7 +36,7 @@ export const useUpdateUser = () => {
          toast.info(t(err.message))
       },
       onSuccess: () => {
-         toast.success(t("translation.saved"))
+         toast.success(t('translation.saved'))
       }
    })
 }

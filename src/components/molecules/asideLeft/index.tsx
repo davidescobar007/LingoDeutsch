@@ -1,19 +1,20 @@
 /* eslint-disable react/forbid-component-props */
-"use client"
-import { TbLanguage } from "react-icons/tb"
-import Image from "next/image"
-import { useTranslations } from "next-intl"
+'use client'
+import { TbLanguage } from 'react-icons/tb'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
-import AtomTitle from "@/components/atoms/title"
-import { isUserLoged } from "@/modules/actions/users.actions"
-import { Link, usePathname, useRouter } from "@/navigation"
-import { useLogin } from "@/store/user"
+import AtomTitle from '@/components/atoms/title'
+import { TUser } from '@/modules/actions/types'
+import { getUserInfo, isUserLoged } from '@/modules/actions/users.actions'
+import { grammarLevels } from '@/modules/global.types'
+import { Link, usePathname, useRouter } from '@/navigation'
 
-const selectedStyles = "rounded-xl border-2"
+const selectedStyles = 'rounded-xl border-2'
 const OrganismMenu = () => {
    const pathname = usePathname()
    const t = useTranslations()
-   const { data: user } = useLogin()
+   const user = getUserInfo() as TUser
    const router = useRouter()
 
    return (
@@ -37,20 +38,31 @@ const OrganismMenu = () => {
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
                <Link href="/app/learn">
                   <span className="text-3xl">📖</span>
-                  <AtomTitle extraClassName="hidden lg:block">{t("menu.learn")}</AtomTitle>
+                  <AtomTitle extraClassName="hidden lg:block">{t('menu.learn')}</AtomTitle>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
                <Link href="/app/practice">
                   <span className="text-3xl">💪</span>
-                  <AtomTitle extraClassName="hidden lg:block">{t("menu.practice")}</AtomTitle>
+                  <AtomTitle extraClassName="hidden lg:block">{t('menu.practice')}</AtomTitle>
                </Link>
             </li>
-            <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
-               <Link href="/app/grammar">
-                  <span className="text-3xl">📓</span>
-                  <AtomTitle extraClassName="hidden lg:block">{t("menu.grammar")}</AtomTitle>
-               </Link>
+            <li>
+               <details>
+                  <summary>
+                     <span className="text-3xl">📓</span>
+                     <AtomTitle extraClassName="hidden lg:block">{t('menu.grammar')}</AtomTitle>
+                  </summary>
+                  <ul>
+                     {grammarLevels.map(({ icon, label }) => (
+                        <li key={label}>
+                           <Link className="my-1 justify-between py-3 text-lg" href={`/app/grammar/${label}`}>
+                              {icon} {label}
+                           </Link>
+                        </li>
+                     ))}
+                  </ul>
+               </details>
             </li>
 
             {isUserLoged() && (
@@ -58,10 +70,15 @@ const OrganismMenu = () => {
                   <Link className="w-full" href="/app/profile">
                      <div className="avatar ml-2">
                         <div className="w-8 rounded-xl">
-                           <Image alt="avatar" height={35} src={user?.avatarUrl || ""} width={33} />
+                           <Image
+                              alt="avatar"
+                              height={35}
+                              src={user?.avatarUrl || user?.avatar || ''}
+                              width={33}
+                           />
                         </div>
                      </div>
-                     <AtomTitle extraClassName="hidden lg:block ml-1">{t("menu.profile")}</AtomTitle>
+                     <AtomTitle extraClassName="hidden lg:block ml-1">{t('menu.profile')}</AtomTitle>
                   </Link>
                </li>
             )}
@@ -77,9 +94,9 @@ const OrganismMenu = () => {
                      <li>
                         <div
                            className="my-1 justify-between py-3 text-lg"
-                           onClick={() => router.push("/app/learn", { locale: "de" })}
+                           onClick={() => router.push('/app/learn', { locale: 'de' })}
                         >
-                           {t("menu.germanOption")}
+                           {t('menu.germanOption')}
                            <span className="text-lg">
                               <Image
                                  alt="German flag"
@@ -94,9 +111,9 @@ const OrganismMenu = () => {
                      <li>
                         <div
                            className="my-1 justify-between py-3 text-lg"
-                           onClick={() => router.push("/app/learn", { locale: "es" })}
+                           onClick={() => router.push('/app/learn', { locale: 'es' })}
                         >
-                           {t("menu.spanishOption")}
+                           {t('menu.spanishOption')}
                            <span className="text-lg">
                               <Image
                                  alt="Spain flag"

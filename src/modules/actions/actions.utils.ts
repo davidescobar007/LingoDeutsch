@@ -1,4 +1,4 @@
-import { constants } from "../global.types"
+import { constants } from '../global.types'
 
 export const flattenObj = (input: Record<string, any>): Record<string, any> => {
    let result: Record<string, any> = {}
@@ -7,7 +7,7 @@ export const flattenObj = (input: Record<string, any>): Record<string, any> => {
       if (!input.hasOwnProperty(key)) {
          continue
       }
-      if (typeof input[key] === "object" && !Array.isArray(input[key])) {
+      if (typeof input[key] === 'object' && !Array.isArray(input[key])) {
          var subFlatObject = flattenObj(input[key])
          for (const subkey in subFlatObject) {
             result[subkey] = subFlatObject[subkey]

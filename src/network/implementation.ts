@@ -1,13 +1,13 @@
-import { headers, urls } from "@/modules/global.types"
-import { extractAndSortSentences } from "@/utils"
+import { headers, urls } from '@/modules/global.types'
+import { extractAndSortSentences } from '@/utils'
 
-import { fetchData } from "."
+import { fetchData } from '.'
 
 export const getWordsTranslationFetchImplementation = async (wordToTranslate: string) => {
    const urlCompletion = `${urls.linguatools}query=${wordToTranslate}&langpair=de-es`
    try {
-      if (wordToTranslate !== "" && wordToTranslate !== " ") {
-         const translationData: any = await fetchData("GET", urlCompletion, null, headers)
+      if (wordToTranslate !== '' && wordToTranslate !== ' ') {
+         const translationData: any = await fetchData('GET', urlCompletion, null, headers)
          let result = await translationData.text()
          result = result ? JSON.parse(result) : null
 
@@ -17,9 +17,9 @@ export const getWordsTranslationFetchImplementation = async (wordToTranslate: st
 
          const german_translation = result && result[0].l1_text
          const spanish_translation = result
-            .map((item, index) => (index < 3 && item.l2_text ? item.l2_text : ""))
+            .map((item, index) => (index < 3 && item.l2_text ? item.l2_text : ''))
             .filter(Boolean)
-            .join(", ")
+            .join(', ')
 
          const data = {
             german_translation,

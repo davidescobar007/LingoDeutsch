@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client"
-import { useEffect, useState } from "react"
-import { useTranslations } from "next-intl"
+'use client'
+import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
-import AtomButton from "@/components/atoms/button"
-import AtomProgressPercentage from "@/components/atoms/progressBar"
-import AtomTitle from "@/components/atoms/title"
-import MoleculeInputCheckGroup from "@/components/molecules/inputCheckGroup"
-import useRandomObjectFromArray from "@/hooks/useRandomObject"
-import { useArticle } from "@/store/articles"
-import { useLogin, useUpdateUserscore } from "@/store/user"
-import { getPercentage } from "@/utils"
+import AtomButton from '@/components/atoms/button'
+import AtomProgressPercentage from '@/components/atoms/progressBar'
+import AtomTitle from '@/components/atoms/title'
+import MoleculeInputCheckGroup from '@/components/molecules/inputCheckGroup'
+import useRandomObjectFromArray from '@/hooks/useRandomObject'
+import { useArticle } from '@/store/articles'
+import { useLogin, useUpdateUserscore } from '@/store/user'
+import { getPercentage } from '@/utils'
 
 const Quiz = ({ params: { id } }: { params: { id: string } }) => {
    const t = useTranslations()
@@ -52,13 +52,13 @@ const Quiz = ({ params: { id } }: { params: { id: string } }) => {
    }, [filteringComplete])
 
    const handleInputState = (inputValue: any) => {
-      let inputState = ""
+      let inputState = ''
       if (inputValue === checkedOption) {
-         inputState = "selected"
+         inputState = 'selected'
          if (isOptionRated && checkedOption === randomObject.correct_answer) {
-            inputState = "success"
+            inputState = 'success'
          } else if (isOptionRated && checkedOption !== randomObject.correct_answer) {
-            inputState = "error"
+            inputState = 'error'
          }
       }
       return inputState
@@ -70,11 +70,11 @@ const Quiz = ({ params: { id } }: { params: { id: string } }) => {
                <AtomProgressPercentage value={progressPercentage} />
                <AtomTitle extraClassName="font-medium text-xl">{randomObject.question}</AtomTitle>
                {Object.keys(randomObject).map((key) => {
-                  if (key.startsWith("option_")) {
+                  if (key.startsWith('option_')) {
                      return (
                         <MoleculeInputCheckGroup
                            checked={checkedOption === randomObject[key]}
-                           inputState={handleInputState(randomObject[key]) as "success" | "error" | "selected"}
+                           inputState={handleInputState(randomObject[key]) as 'success' | 'error' | 'selected'}
                            key={key}
                            name="radio-1"
                            onChange={() => updateCheckedOption(randomObject[key])}
@@ -84,11 +84,11 @@ const Quiz = ({ params: { id } }: { params: { id: string } }) => {
                      )
                   }
                })}
-               <AtomButton onClick={() => checkAnswerIfCorrect()}>{t("quiz.checkAnswer")}</AtomButton>
+               <AtomButton onClick={() => checkAnswerIfCorrect()}>{t('quiz.checkAnswer')}</AtomButton>
             </>
          ) : (
             <AtomTitle extraClassName="font-medium text-2xl mb-5 animate__animated animate__backInRight">
-               {t("quiz.quizResult", { totalRating, numberOfQuestions: arrayOfQuestions?.length })}
+               {t('quiz.quizResult', { totalRating, numberOfQuestions: arrayOfQuestions?.length })}
                <span className="font-bold">{Math.round((totalRating * 100) / arrayOfQuestions?.length)}</span>
             </AtomTitle>
          )}

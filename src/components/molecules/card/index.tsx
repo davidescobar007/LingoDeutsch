@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-import PictureAtom from "../../atoms/picture"
-import Title from "../../atoms/title"
+import PictureAtom from '../../atoms/picture'
+import Title from '../../atoms/title'
 
 type TMoleculeCard = {
    image: string

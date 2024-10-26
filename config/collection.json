@@ -1,0 +1,524 @@
+[
+   {
+      "id": "njv0jav9axsjzy4",
+      "name": "quizzes",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "ismh8iwp",
+            "name": "article_id",
+            "type": "relation",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "collectionId": "4xmmq88amuqe0sa",
+               "cascadeDelete": true,
+               "minSelect": null,
+               "maxSelect": 1,
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "we4b6hwl",
+            "name": "questions",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         }
+      ],
+      "indexes": [],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+   },
+   {
+      "id": "g9gcx6b5vs66kxg",
+      "name": "studyVocabulary",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "qdvvo8vf",
+            "name": "user_id",
+            "type": "relation",
+            "required": true,
+            "presentable": true,
+            "unique": false,
+            "options": {
+               "collectionId": "_pb_users_auth_",
+               "cascadeDelete": true,
+               "minSelect": null,
+               "maxSelect": 1,
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "jv74ueip",
+            "name": "word_id",
+            "type": "relation",
+            "required": false,
+            "presentable": true,
+            "unique": false,
+            "options": {
+               "collectionId": "jjau031qziiyjq7",
+               "cascadeDelete": true,
+               "minSelect": null,
+               "maxSelect": 1,
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "tj4pr7x1",
+            "name": "level",
+            "type": "select",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 1,
+               "values": ["easy", "medium", "hard"]
+            }
+         },
+         {
+            "system": false,
+            "id": "wonsvbz2",
+            "name": "level_history",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "phdbof4k",
+            "name": "times_seen",
+            "type": "number",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "noDecimal": false
+            }
+         },
+         {
+            "system": false,
+            "id": "jxkfdpse",
+            "name": "last_time_seen",
+            "type": "date",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": "",
+               "max": ""
+            }
+         }
+      ],
+      "indexes": [],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": "",
+      "updateRule": "",
+      "deleteRule": null,
+      "options": {}
+   },
+   {
+      "id": "jjau031qziiyjq7",
+      "name": "vocabulary",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "tiy4tk03",
+            "name": "german_translation",
+            "type": "text",
+            "required": true,
+            "presentable": true,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "hj0e48sf",
+            "name": "spanish_translation",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "ycjooibf",
+            "name": "english_translation",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "e0wr0mn9",
+            "name": "conjugation",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "cnwabmsu",
+            "name": "user",
+            "type": "relation",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "collectionId": "_pb_users_auth_",
+               "cascadeDelete": false,
+               "minSelect": null,
+               "maxSelect": null,
+               "displayFields": null
+            }
+         },
+         {
+            "system": false,
+            "id": "ku8gb4c8",
+            "name": "last_time_seen",
+            "type": "date",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": "",
+               "max": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "4dtut5a9",
+            "name": "examples",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "wmxmfzhk",
+            "name": "type_of_word",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         }
+      ],
+      "indexes": ["CREATE UNIQUE INDEX `idx_plleEgt` ON `vocabulary` (`german_translation`)"],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": "",
+      "updateRule": "",
+      "deleteRule": null,
+      "options": {}
+   },
+   {
+      "id": "4xmmq88amuqe0sa",
+      "name": "articles",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "y3cdss85",
+            "name": "title",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "9ydqusem",
+            "name": "text_content",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "vwlwta71",
+            "name": "imageFile",
+            "type": "file",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 1,
+               "maxSize": 500000,
+               "mimeTypes": ["image/webp", "image/jpeg", "image/png", "image/avif"],
+               "thumbs": ["0x300", "0x500", "0x700", "0x900", "0x1000"],
+               "protected": false
+            }
+         },
+         {
+            "system": false,
+            "id": "ptz0twzk",
+            "name": "level",
+            "type": "select",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 2,
+               "values": ["A1", "A2", "B1", "B2", "C1"]
+            }
+         },
+         {
+            "system": false,
+            "id": "zhraqg9n",
+            "name": "quizz",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "1qk73fvg",
+            "name": "author",
+            "type": "text",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "yzjfngrk",
+            "name": "link",
+            "type": "url",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "exceptDomains": null,
+               "onlyDomains": null
+            }
+         }
+      ],
+      "indexes": [],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+   },
+   {
+      "id": "_pb_users_auth_",
+      "name": "users",
+      "type": "auth",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "users_name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "presentable": true,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "pattern": ""
+            }
+         },
+         {
+            "system": false,
+            "id": "users_avatar",
+            "name": "avatar",
+            "type": "file",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 1,
+               "maxSize": 5242880,
+               "mimeTypes": ["image/jpeg", "image/png", "image/svg+xml", "image/gif", "image/webp"],
+               "thumbs": null,
+               "protected": false
+            }
+         },
+         {
+            "system": false,
+            "id": "5vxnbefu",
+            "name": "avatarUrl",
+            "type": "url",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "exceptDomains": null,
+               "onlyDomains": null
+            }
+         },
+         {
+            "system": false,
+            "id": "beyyridv",
+            "name": "score",
+            "type": "number",
+            "required": false,
+            "presentable": true,
+            "unique": false,
+            "options": {
+               "min": 0,
+               "max": null,
+               "noDecimal": true
+            }
+         }
+      ],
+      "indexes": [],
+      "listRule": "id = @request.auth.id",
+      "viewRule": "",
+      "createRule": "",
+      "updateRule": "id = @request.auth.id",
+      "deleteRule": "id = @request.auth.id",
+      "options": {
+         "allowEmailAuth": true,
+         "allowOAuth2Auth": true,
+         "allowUsernameAuth": true,
+         "exceptEmailDomains": null,
+         "manageRule": null,
+         "minPasswordLength": 8,
+         "onlyEmailDomains": null,
+         "requireEmail": false
+      }
+   },
+   {
+      "id": "ju4lv53l5fd05nc",
+      "name": "grammar",
+      "type": "base",
+      "system": false,
+      "schema": [
+         {
+            "system": false,
+            "id": "dpd97fcn",
+            "name": "level",
+            "type": "select",
+            "required": true,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "maxSelect": 1,
+               "values": ["A1", "A2", "B1", "B2"]
+            }
+         },
+         {
+            "system": false,
+            "id": "5xkaoj1a",
+            "name": "topic",
+            "type": "json",
+            "required": true,
+            "presentable": true,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "lixqxeew",
+            "name": "difficulty",
+            "type": "number",
+            "required": true,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "min": null,
+               "max": null,
+               "noDecimal": true
+            }
+         },
+         {
+            "system": false,
+            "id": "t3t1v5bs",
+            "name": "iterableData",
+            "type": "json",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {}
+         },
+         {
+            "system": false,
+            "id": "fsxul9bi",
+            "name": "content",
+            "type": "editor",
+            "required": false,
+            "presentable": false,
+            "unique": false,
+            "options": {
+               "convertUrls": false
+            }
+         }
+      ],
+      "indexes": [],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+   }
+]

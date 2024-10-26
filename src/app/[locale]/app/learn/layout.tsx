@@ -1,5 +1,5 @@
-"use client"
-import { ReactNode } from "react"
+'use client'
+import { ReactNode } from 'react'
 
 const LearnLayout = ({ children }: { children: ReactNode | any }) => {
    return children

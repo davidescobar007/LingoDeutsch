@@ -1,4 +1,4 @@
-import { ProfileLoader } from "@/components/atoms/loader"
+import { ProfileLoader } from '@/components/atoms/loader'
 
 const Loading = () => {
    return (

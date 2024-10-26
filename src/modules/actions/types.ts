@@ -127,3 +127,51 @@ export type TCard = {
    collectionId: string
    collectionName: string
 }
+
+export type TListItem = {
+   type: 'list-item'
+   text?: Array<{
+      content: string
+      isBold?: boolean
+      isItalic?: boolean
+      className?: string
+      isUnderline?: boolean
+   }>
+   classNames?: string
+}
+
+export type TIterableData = {
+   type: 'header' | 'paragraph' | 'list' | 'list-item' | 'table'
+   text?: {
+      content: string
+      isBold?: boolean
+      isItalic?: boolean
+      className: string
+      isUnderline?: boolean
+   }[]
+   headerLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+   classNames?: any
+   isOrderedList?: boolean
+   listItems?: TListItem[]
+   tableData?: {
+      columns: { header: string; accessorKey: string; cell?: any }[]
+      data: any[]
+   }
+}
+
+export type Tgrammar = {
+   content: string
+   difficulty: number
+   id: string
+   iterableData: TIterableData[]
+   level: string
+   topic?: {
+      de: string
+      es: string
+   }
+   created: string
+   updated: string
+   collectionId: string
+   collectionName: string
+   expand: {}
+}

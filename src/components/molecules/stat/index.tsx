@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 type TMoleculeStat = {
    extraClassName?: string
@@ -11,9 +11,9 @@ type TMoleculeStat = {
 const emptyFunction = () => {}
 
 const MoleculeStat: FunctionComponent<TMoleculeStat> = ({
-   extraClassName = "",
+   extraClassName = '',
    handleClick = emptyFunction,
-   emoji = "",
+   emoji = '',
    title,
    text
 }) => {

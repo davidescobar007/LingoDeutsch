@@ -5,6 +5,13 @@
       "wordSpecificationTooltip": "Al guardar esta palabra, podrás repasarla en la sección: Practicar",
       "earnPoints": "Obtén puntos al completar este quiz."
    },
+   "grammar": {
+      "chooseLevel": "Elige un nivel",
+      "A1": "Principiante",
+      "A2": "Elemental",
+      "B1": "Intermedio",
+      "B2": "Intermedio Alto"
+   },
    "practice": {
       "cardStat": {
          "easy": "Fácil",
@@ -14,7 +21,8 @@
       "noVocabulary": "Aun no tienes vocabulario guardado en tu librería, puedes empezar leyendo algún articulo para iniciar con tu vocabulario.",
       "startAgain": "Empezar de nuevo",
       "cards": "cartas",
-      "noFilterResult": "No cuentas con vocabulario de nivel {level} aún"
+      "noFilterResult": "No cuentas con vocabulario de nivel {level} aún",
+      "chooseLevel": "Elige las cartas por nivel"
    },
    "quiz": {
       "checkAnswer": "Revisar respuesta",

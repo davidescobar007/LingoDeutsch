@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 type TAtomInput = {
    type?: string
@@ -10,11 +10,11 @@ type TAtomInput = {
    [key: string]: any
 }
 const AtomInput: FunctionComponent<TAtomInput> = ({
-   type = "text",
-   extraClassName = "",
-   inputId = "",
+   type = 'text',
+   extraClassName = '',
+   inputId = '',
    withLabel = false,
-   labelText = "",
+   labelText = '',
    ...rest
 }) => {
    return (

@@ -1,18 +1,18 @@
-"use client"
+'use client'
 /* eslint-disable react/forbid-component-props */
 
-import { useEffect } from "react"
-import { FcGoogle } from "react-icons/fc"
-import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { TbLanguage, TbLogout, TbUser } from "react-icons/tb"
-import Image from "next/image"
-import { useTranslations } from "next-intl"
-import { AuthProviderInfo } from "pocketbase"
+import { useEffect } from 'react'
+import { FcGoogle } from 'react-icons/fc'
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
+import { TbLanguage, TbLogout, TbUser } from 'react-icons/tb'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+import { AuthProviderInfo } from 'pocketbase'
 
-import Title from "@/components/atoms/title"
-import { isUserLoged, logOut } from "@/modules/actions/users.actions"
-import { Link, useRouter } from "@/navigation"
-import { useAuth, useLogin } from "@/store/user"
+import Title from '@/components/atoms/title'
+import { isUserLoged, logOut } from '@/modules/actions/users.actions'
+import { Link, useRouter } from '@/navigation'
+import { useAuth, useLogin } from '@/store/user'
 
 const Navbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()
@@ -22,8 +22,8 @@ const Navbar = ({ locale }: { locale: string }) => {
 
    useEffect(() => {
       const params = new URL(window.location as any).searchParams
-      if (params.get("state")) {
-         router.push("/learn")
+      if (params.get('state')) {
+         router.push('/learn')
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
@@ -65,9 +65,9 @@ const Navbar = ({ locale }: { locale: string }) => {
                   <li>
                      <div
                         className="my-1 justify-between py-3 text-lg"
-                        onClick={() => router.push("/", { locale: "de" })}
+                        onClick={() => router.push('/', { locale: 'de' })}
                      >
-                        {t("menu.germanOption")}
+                        {t('menu.germanOption')}
                         <span className="text-lg">
                            <Image
                               alt="German flag"
@@ -82,9 +82,9 @@ const Navbar = ({ locale }: { locale: string }) => {
                   <li>
                      <div
                         className="my-1 justify-between py-3 text-lg"
-                        onClick={() => router.push("/", { locale: "es" })}
+                        onClick={() => router.push('/', { locale: 'es' })}
                      >
-                        {t("menu.spanishOption")}
+                        {t('menu.spanishOption')}
                         <span className="text-lg">
                            <Image
                               alt="Spain flag"
@@ -102,7 +102,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
-                        <Image alt="avatar" height={50} src={user?.avatarUrl || ""} width={50} />
+                        <Image alt="avatar" height={50} src={user?.avatarUrl || ''} width={50} />
                      </div>
                   </label>
                   <ul
@@ -111,7 +111,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                   >
                      <li>
                         <Link className="my-1 justify-between py-3 text-lg" href="/profile">
-                           {t("menu.profile")}
+                           {t('menu.profile')}
                            <span className="text-lg">
                               <TbUser />
                            </span>
@@ -119,7 +119,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                      </li>
                      <li>
                         <Link className="my-1 justify-between py-3 text-lg" href="/" onClick={() => logOut()}>
-                           {t("menu.logOut")}
+                           {t('menu.logOut')}
                            <span className="text-lg">
                               <TbLogout />
                            </span>
@@ -140,8 +140,8 @@ const Navbar = ({ locale }: { locale: string }) => {
                            <span className="mr-1 text-xl">
                               <FcGoogle />
                            </span>
-                           <span className="block font-bold md:hidden">{t("menu.logIn")}</span>
-                           <span className="hidden font-bold md:block">{t("menu.loginWithGoogle")}</span>
+                           <span className="block font-bold md:hidden">{t('menu.logIn')}</span>
+                           <span className="hidden font-bold md:block">{t('menu.loginWithGoogle')}</span>
                         </a>
                      ))}
                </div>

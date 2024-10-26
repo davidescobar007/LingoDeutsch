@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from "react"
+import { FunctionComponent, ReactNode } from 'react'
 
 type TMoleculeCardsStats = {
    title: string
@@ -7,7 +7,7 @@ type TMoleculeCardsStats = {
    extraClassName?: string
 }
 
-const AtomStat: FunctionComponent<TMoleculeCardsStats> = ({ title, content, endContent, extraClassName = "" }) => {
+const AtomStat: FunctionComponent<TMoleculeCardsStats> = ({ title, content, endContent, extraClassName = '' }) => {
    return (
       <div className={`stat place-items-center p-3 px-5 ${extraClassName}`}>
          <div className="stat-title font-medium">{title}</div>
