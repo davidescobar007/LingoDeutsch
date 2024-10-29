@@ -6,7 +6,7 @@ type TMoleculeCollapse = {
    children: ReactNode
    title: string
 }
-const MoleculeCollapse: FunctionComponent<TMoleculeCollapse> = ({ title, children }) => {
+export const MoleculeCollapse: FunctionComponent<TMoleculeCollapse> = ({ title, children }) => {
    return (
       <div className="collapse-arrow collapse my-2 border shadow-md">
          <input type="checkbox" />
@@ -17,5 +17,3 @@ const MoleculeCollapse: FunctionComponent<TMoleculeCollapse> = ({ title, childre
       </div>
    )
 }
-
-export default MoleculeCollapse

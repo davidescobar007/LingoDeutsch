@@ -17,7 +17,7 @@ interface MoleculeWordSpecificationProps {
 }
 const emptyFunction = () => {}
 
-const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProps> = ({
+export const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProps> = ({
    selectedWord,
    data,
    isLoading,
@@ -100,5 +100,3 @@ const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProp
       </div>
    )
 }
-
-export default MoleculeWordSpecification

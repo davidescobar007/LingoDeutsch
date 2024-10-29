@@ -8,7 +8,8 @@ type MoleculeScoreProps = {
    scoreList: TScore
    user: TUser | undefined
 }
-const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList, user }) => {
+
+export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList, user }) => {
    const t = useTranslations()
 
    const scoreMedals: { [key: string]: string } = {
@@ -41,5 +42,3 @@ const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList, user 
       </aside>
    )
 }
-
-export default MoleculeScore

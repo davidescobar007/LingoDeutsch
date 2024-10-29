@@ -1,5 +1,5 @@
 import { AtomTitle } from '@/components/atoms'
-import MoleculeTable from '@/components/molecules/table'
+import { MoleculeTable } from '@/components/molecules'
 import { TIterableData } from '@/modules/actions/types'
 
 export const RenderSchema = (uiSchema: TIterableData[]) => {

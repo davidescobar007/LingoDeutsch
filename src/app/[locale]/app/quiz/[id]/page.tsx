@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { AtomButton, AtomProgressPercentage, AtomTitle } from '@/components/atoms'
-import MoleculeInputCheckGroup from '@/components/molecules/inputCheckGroup'
+import { MoleculeInputCheckGroup } from '@/components/molecules'
 import useRandomObjectFromArray from '@/hooks/useRandomObject'
 import { useArticle } from '@/store/articles'
 import { useLogin, useUpdateUserscore } from '@/store/user'

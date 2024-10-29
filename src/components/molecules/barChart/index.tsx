@@ -10,8 +10,6 @@ type TMoleculeBadgeList = {
    data: ChartData<'bar'>
 }
 
-const MoleculeBarChart: FunctionComponent<TMoleculeBadgeList> = ({ data }) => {
+export const MoleculeBarChart: FunctionComponent<TMoleculeBadgeList> = ({ data }) => {
    return <Bar data={data} />
 }
-
-export default MoleculeBarChart

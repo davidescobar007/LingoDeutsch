@@ -11,7 +11,8 @@ import { grammarLevels } from '@/modules/global.types'
 import { Link, usePathname, useRouter } from '@/navigation'
 
 const selectedStyles = 'rounded-xl border-2'
-const OrganismMenu = () => {
+
+export const OrganismMenu = () => {
    const pathname = usePathname()
    const t = useTranslations()
    const user = getUserInfo() as TUser
@@ -132,5 +133,3 @@ const OrganismMenu = () => {
       </nav>
    )
 }
-
-export default OrganismMenu

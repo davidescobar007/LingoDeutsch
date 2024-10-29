@@ -7,7 +7,7 @@ type TMoleculeListItem = {
    selected: boolean
 }
 
-const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, selected }) => {
+export const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, selected }) => {
    return (
       <li
          className={`flex cursor-pointer select-none items-start rounded-2xl p-0 text-xl font-medium ${
@@ -18,5 +18,3 @@ const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, sele
       </li>
    )
 }
-
-export default MoleculeListItem

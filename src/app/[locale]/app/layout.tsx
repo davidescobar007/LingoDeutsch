@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 
 import Drawer from '@/components/_common/drawer'
 import Footer from '@/components/_common/footer'
-import OrganismMenu from '@/components/molecules/asideLeft'
+import { OrganismMenu } from '@/components/molecules'
 
 const Layout = ({ children }: { readonly children: ReactNode }) => {
    return (

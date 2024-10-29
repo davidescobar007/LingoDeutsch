@@ -8,7 +8,7 @@ type TMoleculeModal = {
    title?: string
 }
 
-const MoleculeModal: FunctionComponent<TMoleculeModal> = ({ title = 'Ooopss!', children }) => {
+export const MoleculeModal: FunctionComponent<TMoleculeModal> = ({ title = 'Ooopss!', children }) => {
    const t = useTranslations()
    return (
       <dialog className="modal" id="my_modal_1">
@@ -26,5 +26,3 @@ const MoleculeModal: FunctionComponent<TMoleculeModal> = ({ title = 'Ooopss!', c
       </dialog>
    )
 }
-
-export default MoleculeModal

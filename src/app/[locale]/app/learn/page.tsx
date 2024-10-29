@@ -2,8 +2,7 @@
 
 import LayoutContainer from '@/components/_common/layoutContainer'
 import { CardLoader } from '@/components/atoms'
-import MoleculeCard from '@/components/molecules/card'
-import MoleculeScore from '@/components/molecules/score'
+import { MoleculeCard, MoleculeScore } from '@/components/molecules'
 import { constants } from '@/modules/global.types'
 import { Link } from '@/navigation'
 import { useArticleList } from '@/store/articles'

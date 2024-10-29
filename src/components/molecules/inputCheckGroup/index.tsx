@@ -27,7 +27,7 @@ const emojiStyles = {
    selected: ''
 }
 
-const MoleculeInputCheckGroup: FunctionComponent<TMoleculeInputCheckGroup> = ({
+export const MoleculeInputCheckGroup: FunctionComponent<TMoleculeInputCheckGroup> = ({
    text = '',
    name = '',
    inputState,
@@ -48,5 +48,3 @@ const MoleculeInputCheckGroup: FunctionComponent<TMoleculeInputCheckGroup> = ({
       </div>
    )
 }
-
-export default MoleculeInputCheckGroup

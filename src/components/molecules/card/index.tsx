@@ -12,7 +12,7 @@ type TMoleculeCard = {
 
 const levelDefaultProp: string[] = []
 
-const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
+export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    image,
    title,
    content,
@@ -44,5 +44,3 @@ const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
       </article>
    )
 }
-
-export default MoleculeCard

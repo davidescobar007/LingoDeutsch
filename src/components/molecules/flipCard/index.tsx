@@ -7,10 +7,10 @@ type TMoleculeFlipCard = {
    spanishText: string
 }
 
-const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({ germanText, spanishText }) => {
+export const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({ germanText, spanishText }) => {
    return (
       <div className="flex justify-center">
-         <label className="swap swap-flip text-center">
+         <label aria-label="Flip card" className="swap swap-flip text-center">
             <input type="checkbox" />
             <div className="swap-off card text-primary-content bg-secondary shadow-sm">
                <div className="card-body">
@@ -30,5 +30,3 @@ const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({ germanText, sp
       </div>
    )
 }
-
-export default MoleculeFlipCard

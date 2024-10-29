@@ -16,7 +16,8 @@ type TMoleculeImageCard = {
    translationData: any
    saveVocabulary: any
 }
-const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
+
+export const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
    image,
    title,
    level,
@@ -83,5 +84,3 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
       </article>
    )
 }
-
-export default MoleculeImageCard

@@ -15,7 +15,7 @@ type TAtomTable = {
 
 const emptyArray: any = []
 
-const MoleculeTable: FunctionComponent<TAtomTable> = ({
+export const MoleculeTable: FunctionComponent<TAtomTable> = ({
    displayHeader = true,
    columns = emptyArray,
    data = emptyArray,
@@ -76,5 +76,3 @@ const MoleculeTable: FunctionComponent<TAtomTable> = ({
       </div>
    )
 }
-
-export default MoleculeTable

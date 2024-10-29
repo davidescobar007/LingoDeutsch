@@ -9,7 +9,11 @@ type TMoleculeBadgeList = {
    [index: string]: any
 }
 
-const MoleculeBadgeList: FunctionComponent<TMoleculeBadgeList> = ({ itemsArray, selectedItem, ...rest }) => {
+export const MoleculeBadgeList: FunctionComponent<TMoleculeBadgeList> = ({
+   itemsArray,
+   selectedItem,
+   ...rest
+}) => {
    return (
       <div className="mb-5 flex flex-nowrap">
          <div className="flex justify-around overflow-x-auto pb-2 pt-3">
@@ -31,5 +35,3 @@ const MoleculeBadgeList: FunctionComponent<TMoleculeBadgeList> = ({ itemsArray, 
       </div>
    )
 }
-
-export default MoleculeBadgeList

@@ -2,7 +2,7 @@ import { FunctionComponent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { redirect } from 'next/navigation'
 
-import { handleErrorModal } from '../../../context/actions/global.actions'
+import { handleErrorModal } from '@/modules/actions/global.actions'
 
 type tMoleculeProtectedRoute = {
    children: ReactNode
@@ -10,7 +10,7 @@ type tMoleculeProtectedRoute = {
 
 const storedData = localStorage.getItem('pocketbase_auth')
 
-const MoleculeProtectedRoute: FunctionComponent<tMoleculeProtectedRoute> = ({ children }) => {
+export const MoleculeProtectedRoute: FunctionComponent<tMoleculeProtectedRoute> = ({ children }) => {
    const { t } = useTranslation()
    const user = JSON.parse(storedData || '')
    if (user?.model?.id) {
@@ -20,5 +20,3 @@ const MoleculeProtectedRoute: FunctionComponent<tMoleculeProtectedRoute> = ({ ch
       redirect('/login')
    }
 }
-
-export default MoleculeProtectedRoute

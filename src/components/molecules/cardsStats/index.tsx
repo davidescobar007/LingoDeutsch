@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 import { AtomStat } from '@/components/atoms'
 import { useGetCardsList } from '@/store/cards'
 
-const MoleculeCardsStats: FunctionComponent = () => {
+export const MoleculeCardsStats: FunctionComponent = () => {
    const t = useTranslations()
    const { data: cards } = useGetCardsList()
    return (
@@ -30,5 +30,3 @@ const MoleculeCardsStats: FunctionComponent = () => {
       </div>
    )
 }
-
-export default MoleculeCardsStats

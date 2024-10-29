@@ -10,7 +10,7 @@ type TMoleculeStat = {
 
 const emptyFunction = () => {}
 
-const MoleculeStat: FunctionComponent<TMoleculeStat> = ({
+export const MoleculeStat: FunctionComponent<TMoleculeStat> = ({
    extraClassName = '',
    handleClick = emptyFunction,
    emoji = '',
@@ -28,5 +28,3 @@ const MoleculeStat: FunctionComponent<TMoleculeStat> = ({
       </div>
    )
 }
-
-export default MoleculeStat

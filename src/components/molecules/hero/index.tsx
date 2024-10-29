@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { AtomBadge, AtomButton, AtomTitle } from '@/components/atoms'
 import { constants } from '@/modules/global.types'
 
-import ImageCard from '../imageCard'
+import { MoleculeImageCard } from '../imageCard'
 
 type TMoleculeHero = {
    image?: string
@@ -23,7 +23,7 @@ type TMoleculeHero = {
 
 const emptyArray: [] = []
 
-const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
+export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
    image = '',
    title = '',
    text_content = '',
@@ -37,12 +37,13 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
    const [currentWordIntext, setCurrentWordIntext] = useState<string | null>(null)
 
    const imageURL = `${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${articleId}/${image}`
+
    return (
       <div className="md:w-16/24 w-full">
          <div className="hero-content p-0 text-center">
             <div>
                <div className="fixed inset-x-0 top-0 z-10 mx-auto w-full md:hidden">
-                  <ImageCard
+                  <MoleculeImageCard
                      image={imageURL}
                      level={level}
                      saveVocabulary={saveVocabulary}
@@ -101,5 +102,3 @@ const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
       </div>
    )
 }
-
-export default MoleculeHero
