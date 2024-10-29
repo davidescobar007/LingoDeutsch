@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { AuthProviderInfo } from 'pocketbase'
 
-import Title from '@/components/atoms/title'
+import { AtomTitle } from '@/components/atoms'
 import { isUserLoged, logOut } from '@/modules/actions/users.actions'
 import { Link, useRouter } from '@/navigation'
 import { useAuth, useLogin } from '@/store/user'
@@ -43,9 +43,12 @@ const Navbar = ({ locale }: { locale: string }) => {
                </Link>
             </div>
             <Link href="/">
-               <Title extraClassName="hidden md:block select-none text-xl font-bold flex content-center" type="h1">
+               <AtomTitle
+                  extraClassName="hidden md:block select-none text-xl font-bold flex content-center"
+                  type="h1"
+               >
                   LingoDeutsch
-               </Title>
+               </AtomTitle>
             </Link>
          </div>
          <div className="flex-none gap-2">

@@ -4,8 +4,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import Navbar from '@/components/_common/navbar'
-import { AtomTitle } from '@/components/atoms'
-import AtomButton from '@/components/atoms/button'
+import { AtomButton, AtomTitle } from '@/components/atoms'
 import { Link } from '@/navigation'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {

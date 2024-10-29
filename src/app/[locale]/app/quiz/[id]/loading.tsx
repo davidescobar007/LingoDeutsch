@@ -1,6 +1,6 @@
 'use client'
 
-import { QuizzLoader } from '@/components/atoms/loader'
+import { QuizzLoader } from '@/components/atoms'
 
 const Loading = () => {
    return <QuizzLoader />

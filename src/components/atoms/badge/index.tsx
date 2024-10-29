@@ -5,8 +5,6 @@ type TAtomBadge = {
    type?: string
 }
 
-const AtomBadge: FunctionComponent<TAtomBadge> = ({ children, type = 'primary' }) => {
+export const AtomBadge: FunctionComponent<TAtomBadge> = ({ children, type = 'primary' }) => {
    return <div className={`badge badge-${type} mr-2`}>{children}</div>
 }
-
-export default AtomBadge

@@ -1,9 +1,7 @@
 import { FunctionComponent } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { AtomTitle } from '@/components/atoms'
-import AtomButton from '@/components/atoms/button'
-import { Loader } from '@/components/atoms/loader'
+import { AtomButton, AtomTitle, Loader } from '@/components/atoms'
 import { isUserLoged } from '@/modules/actions/users.actions'
 import { Link } from '@/navigation'
 import { openModal } from '@/utils'

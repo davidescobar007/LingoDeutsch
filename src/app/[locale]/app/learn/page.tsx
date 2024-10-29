@@ -1,7 +1,7 @@
 'use client'
 
 import LayoutContainer from '@/components/_common/layoutContainer'
-import { CardLoader } from '@/components/atoms/loader'
+import { CardLoader } from '@/components/atoms'
 import MoleculeCard from '@/components/molecules/card'
 import MoleculeScore from '@/components/molecules/score'
 import { constants } from '@/modules/global.types'

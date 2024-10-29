@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { ArticleLoader } from '@/components/atoms/loader'
+import { ArticleLoader } from '@/components/atoms'
 import MoleculeHero from '@/components/molecules/hero'
 import MoleculeModal from '@/components/molecules/modal'
 import MoleculeWordSpecification from '@/components/molecules/wordSpecification'

@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { useTranslations } from 'next-intl'
 
-import AtomStat from '@/components/atoms/stat'
+import { AtomStat } from '@/components/atoms'
 import { useGetCardsList } from '@/store/cards'
 
 const MoleculeCardsStats: FunctionComponent = () => {

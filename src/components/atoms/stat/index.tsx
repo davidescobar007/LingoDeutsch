@@ -7,7 +7,12 @@ type TMoleculeCardsStats = {
    extraClassName?: string
 }
 
-const AtomStat: FunctionComponent<TMoleculeCardsStats> = ({ title, content, endContent, extraClassName = '' }) => {
+export const AtomStat: FunctionComponent<TMoleculeCardsStats> = ({
+   title,
+   content,
+   endContent,
+   extraClassName = ''
+}) => {
    return (
       <div className={`stat place-items-center p-3 px-5 ${extraClassName}`}>
          <div className="stat-title font-medium">{title}</div>
@@ -16,5 +21,3 @@ const AtomStat: FunctionComponent<TMoleculeCardsStats> = ({ title, content, endC
       </div>
    )
 }
-
-export default AtomStat

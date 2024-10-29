@@ -9,7 +9,7 @@ type TAtomInput = {
    dangerouslyResetClassName?: Boolean
    [key: string]: any
 }
-const AtomInput: FunctionComponent<TAtomInput> = ({
+export const AtomInput: FunctionComponent<TAtomInput> = ({
    type = 'text',
    extraClassName = '',
    inputId = '',
@@ -34,5 +34,3 @@ const AtomInput: FunctionComponent<TAtomInput> = ({
       </>
    )
 }
-
-export default AtomInput

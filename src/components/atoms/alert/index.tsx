@@ -4,7 +4,7 @@ type AlertAtomProps = {
    readonly children: ReactNode
 }
 
-const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children }) => {
+export const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children }) => {
    return (
       <div className="alert p-2 italic" role="alert">
          <svg
@@ -24,5 +24,3 @@ const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children }) => {
       </div>
    )
 }
-
-export default AlertAtom

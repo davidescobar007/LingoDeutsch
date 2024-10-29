@@ -17,7 +17,7 @@ const buttonTypes = {
    WARNING: 'btn-warning'
 }
 const emptyFunction = () => {}
-const AtomButton: FunctionComponent<TAtomButton> = ({
+export const AtomButton: FunctionComponent<TAtomButton> = ({
    children,
    type = 'button',
    typeOf = 'PRIMARY',
@@ -40,5 +40,3 @@ const AtomButton: FunctionComponent<TAtomButton> = ({
       </button>
    )
 }
-
-export default AtomButton

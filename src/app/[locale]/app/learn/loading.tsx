@@ -1,5 +1,5 @@
 import LayoutContainer from '@/components/_common/layoutContainer'
-import { CardLoader } from '@/components/atoms/loader'
+import { CardLoader } from '@/components/atoms'
 
 const Loader = () => (
    <LayoutContainer>

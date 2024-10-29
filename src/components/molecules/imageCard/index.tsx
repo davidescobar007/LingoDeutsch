@@ -4,11 +4,9 @@ import { BsInfoCircleFill } from 'react-icons/bs'
 import { RiSave2Line } from 'react-icons/ri'
 import { useTranslations } from 'next-intl'
 
+import { AtomBadge, AtomTitle } from '@/components/atoms'
 import { isUserLoged } from '@/modules/actions/users.actions'
 import { openModal } from '@/utils'
-
-import Badge from '../../atoms/badge'
-import Title from '../../atoms/title'
 
 type TMoleculeImageCard = {
    image: string
@@ -43,12 +41,12 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
             backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(65,65,65,0.35) 100%), url(${image})`
          }}
       >
-         <Title extraClassName="text-2xl w-full text-start text-white leading-7 font-medium" type="h3">
+         <AtomTitle extraClassName="text-2xl w-full text-start text-white leading-7 font-medium" type="h3">
             {title}
-         </Title>
+         </AtomTitle>
          <span />
          <div className="mt-2 w-11/12">
-            <Title extraClassName="text-xl text-start text-white underline font-medium flex" type="h3">
+            <AtomTitle extraClassName="text-xl text-start text-white underline font-medium flex" type="h3">
                {selectedWord && (
                   <span
                      className="tooltip tooltip-right tooltip-info"
@@ -58,7 +56,7 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
                   </span>
                )}
                {selectedWord}
-            </Title>
+            </AtomTitle>
          </div>
          {selectedWord && (
             <label className=" mt-2 w-1/12 justify-end" onClick={handleSaveTranslation}>
@@ -67,7 +65,7 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
                ) : null}
             </label>
          )}
-         <Title extraClassName="text-white w-full text-start" type="h4">
+         <AtomTitle extraClassName="text-white w-full text-start" type="h4">
             {translationData?.isFetching ? (
                <span className="loading loading-dots loading-md" />
             ) : translationData.isError ? (
@@ -75,11 +73,11 @@ const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
             ) : (
                translationData?.spanish_translation
             )}
-         </Title>
+         </AtomTitle>
 
          <div className="flex w-full justify-end">
             {level.map((item) => (
-               <Badge key={item}>{item}</Badge>
+               <AtomBadge key={item}>{item}</AtomBadge>
             ))}
          </div>
       </article>

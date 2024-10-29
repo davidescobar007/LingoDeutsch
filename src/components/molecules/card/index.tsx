@@ -1,8 +1,7 @@
 import { FunctionComponent } from 'react'
+import Image from 'next/image'
 
 import { AtomTitle } from '@/components/atoms'
-
-import PictureAtom from '../../atoms/picture'
 
 type TMoleculeCard = {
    image: string
@@ -25,7 +24,7 @@ const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
          <figure>
             <div className="avatar">
                <div className="h-48 w-44 rounded">
-                  <PictureAtom image={image} />
+                  <Image alt={title} layout="fill" objectFit="cover" src={image} />
                </div>
             </div>
          </figure>

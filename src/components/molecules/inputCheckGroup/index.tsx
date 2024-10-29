@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-import AtomInput from '@/components/atoms/input'
+import { AtomInput } from '@/components/atoms'
 
 type TMoleculeInputCheckGroup = {
    text: string

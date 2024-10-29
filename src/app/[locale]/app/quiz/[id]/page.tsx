@@ -3,9 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { AtomTitle } from '@/components/atoms'
-import AtomButton from '@/components/atoms/button'
-import AtomProgressPercentage from '@/components/atoms/progressBar'
+import { AtomButton, AtomProgressPercentage, AtomTitle } from '@/components/atoms'
 import MoleculeInputCheckGroup from '@/components/molecules/inputCheckGroup'
 import useRandomObjectFromArray from '@/hooks/useRandomObject'
 import { useArticle } from '@/store/articles'

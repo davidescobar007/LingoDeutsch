@@ -4,7 +4,7 @@ import ProgressBar from '@ramonak/react-progress-bar'
 type TAtomProgressPercentage = {
    value: number
 }
-const AtomProgressPercentage: FunctionComponent<TAtomProgressPercentage> = ({ value }) => {
+export const AtomProgressPercentage: FunctionComponent<TAtomProgressPercentage> = ({ value }) => {
    return (
       <section className="col-12 mb-5 text-center">
          <ProgressBar
@@ -18,4 +18,3 @@ const AtomProgressPercentage: FunctionComponent<TAtomProgressPercentage> = ({ va
       </section>
    )
 }
-export default AtomProgressPercentage
