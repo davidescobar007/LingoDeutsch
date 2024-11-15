@@ -1,4 +1,4 @@
-export { OrganismMenu } from './asideLeft'
+export { OrganismMenu } from '../_common/asideLeft'
 export { MoleculeBadgeList } from './badgeList'
 export { MoleculeBarChart } from './barChart'
 export { MoleculeCard } from './card'

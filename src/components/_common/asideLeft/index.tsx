@@ -19,8 +19,8 @@ export const OrganismMenu = () => {
    const router = useRouter()
 
    return (
-      <nav className=" min-h-full border-r-2 border-gray-300 p-4">
-         <ul className="menu">
+      <nav className="flex min-h-full flex-col justify-between border-r-2 border-gray-300 p-4">
+         <ul className="menu bg-red-3000 h-full min-h-full">
             <li className="mb-2">
                <Link className="hover:bg-inherit" href="/">
                   <Image
@@ -65,28 +65,12 @@ export const OrganismMenu = () => {
                   </ul>
                </details>
             </li>
+         </ul>
 
-            {isUserLoged() && (
-               <li className={`mb-2 ${pathname === `/app/profile` && selectedStyles}`}>
-                  <Link className="w-full" href="/app/profile">
-                     <div className="avatar ml-2">
-                        <div className="w-8 rounded-xl">
-                           <Image
-                              alt="avatar"
-                              height={35}
-                              src={user?.avatarUrl || user?.avatar || ''}
-                              width={33}
-                           />
-                        </div>
-                     </div>
-                     <AtomTitle extraClassName="hidden lg:block ml-1">{t('menu.profile')}</AtomTitle>
-                  </Link>
-               </li>
-            )}
-
-            <li className="mb-2">
-               <details className="px-2 pr-3">
-                  <summary>
+         <ul className="menu">
+            <li className="bg-red-4000 mb-2">
+               <details>
+                  <summary className="px-6 py-3">
                      <span className=" text-3xl">
                         <TbLanguage />
                      </span>
@@ -118,10 +102,10 @@ export const OrganismMenu = () => {
                            <span className="text-lg">
                               <Image
                                  alt="Spain flag"
-                                 height={25}
+                                 height={27}
                                  priority
                                  src="https://flagsapi.com/ES/flat/64.png"
-                                 width={30}
+                                 width={35}
                               />
                            </span>
                         </div>
@@ -129,6 +113,24 @@ export const OrganismMenu = () => {
                   </ul>
                </details>
             </li>
+
+            {isUserLoged() && (
+               <li className={`${pathname === `/app/profile` && selectedStyles} bg-red-4000`}>
+                  <Link href="/app/profile">
+                     <div className="avatar ml-2">
+                        <div className="w-9 rounded-xl">
+                           <Image
+                              alt="avatar"
+                              height={45}
+                              src={user?.avatarUrl || user?.avatar || ''}
+                              width={45}
+                           />
+                        </div>
+                     </div>
+                     <AtomTitle extraClassName="hidden lg:block ml-1">{t('menu.profile')}</AtomTitle>
+                  </Link>
+               </li>
+            )}
          </ul>
       </nav>
    )
