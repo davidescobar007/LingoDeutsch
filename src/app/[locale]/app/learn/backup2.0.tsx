@@ -12,26 +12,19 @@ import { useGetGrammarByLevel } from '@/store/grammar'
 import { useScore } from '@/store/user'
 import { getCookie } from '@/utils'
 
-const classes = {
-   container: 'flex w-full flex-col',
-   section: 'mb-10 w-full rounded-2xl bg-white shadow-md',
-   sectionContent: 'p-8',
-   timelineContainer: 'flex h-full flex-1 gap-10',
-   leftColumn: 'flex w-8/12 flex-wrap',
-   cardContainer: 'mb-12 w-full rounded-2xl bg-white p-8 shadow-md',
-   articleContainer: 'w-full rounded-2xl bg-white p-8 shadow-md',
-   articleContent: 'w-full',
-   articleList: 'rounded-box flex w-full space-x-4 overflow-x-scroll',
-   rightColumn: 'flex h-full w-3/12 flex-1 flex-col rounded-2xl bg-white p-8 shadow-md',
-   scoreContainer: 'flex-grow overflow-y-auto'
+const styles = {
+   container: 'flex h-[calc(100vh-300px)] w-full flex-col',
+   header: 'mb-6 min-h-52 w-full bg-white rounded-box p-5 shadow-md',
+   content: 'flex h-[calc(100vh-300px)] gap-5',
+   leftColumn: 'flex w-8/12 flex-wrap ',
+   leftColumnFirst: 'bg-white rounded-box p-5 shadow-md mb-6',
+   leftColumnSecond: 'bg-white rounded-box p-5 shadow-md',
+   fullWidth: 'w-full',
+   articleContainer: 'rounded-box flex h-72 w-full space-x-4 overflow-x-scroll py-5',
+   rightColumn: 'h-[calc(100vh-335px)] w-4/12 bg-white rounded-box p-5 shadow-md',
+   scoreContainer: 'h-[calc(100vh-450px)] px-7 overflow-y-auto'
 }
-var settings = {
-   dots: true,
-   infinite: true,
-   speed: 500,
-   slidesToShow: 1,
-   slidesToScroll: 1
-}
+
 const Learn = () => {
    const t = useTranslations()
    const user = getUserInfo() as TUser
@@ -47,17 +40,15 @@ const Learn = () => {
    ).filter((item: { text: string; url: string } | null): item is { text: string; url: string } => item !== null)
 
    return (
-      <div className={classes.container}>
-         <div className={classes.section}>
-            <div className={classes.sectionContent}>
-               <AtomTitle>Explora lecciones de gramática claras y organizadas.</AtomTitle>
-               <MoleculeTimeLine listOfItems={listOfItems} />
-            </div>
+      <div className={styles.container}>
+         <div className={styles.header}>
+            <AtomTitle>Explora lecciones de gramática claras y organizadas.</AtomTitle>
+            <MoleculeTimeLine listOfItems={listOfItems} />
          </div>
 
-         <div className={classes.timelineContainer}>
-            <div className={classes.leftColumn}>
-               <div className={classes.cardContainer}>
+         <div className={styles.content}>
+            <div className={styles.leftColumn}>
+               <div className={styles.fullWidth + ' ' + styles.leftColumnFirst}>
                   <AtomTitle extraClassName="mb-6">Estudia palabras clave con tarjetas interactivas.</AtomTitle>
                   <MoleculeStat
                      text1="Ver mi Vocabulario"
@@ -68,19 +59,18 @@ const Learn = () => {
                      value2="15%"
                   />
                </div>
-               <div className={classes.articleContainer}>
-                  <AtomTitle extraClassName="mb-6">
-                     Lee artículos, selecciona palabras y guárdalas para repasarlas después.
-                  </AtomTitle>
-                  <div className={classes.articleContent}>
+               <div className={styles.fullWidth + ' ' + styles.leftColumnSecond}>
+                  <AtomTitle>Lee artículos, selecciona palabras y guárdalas para repasarlas después.</AtomTitle>
+                  <div className={styles.fullWidth}>
                      {isFetching
                         ? Array.from({ length: 3 }).map(() => <CardLoader key={crypto.randomUUID()} />)
                         : articles && (
-                             <div className={classes.articleList}>
-                                {articles.map(({ title, id, imageFile }) => {
+                             <div className={styles.articleContainer}>
+                                {articles.map(({ text_content, title, id, imageFile }) => {
                                    return (
                                       <MoleculeCard
-                                         className="via-80%% min-w-96 from-10% to-10% before:!bg-transparent before:!bg-gradient-to-b before:!from-gray-700 before:!via-gray-600 before:!to-transparent"
+                                         className="min-w-96"
+                                         content={text_content}
                                          image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
                                          key={id}
                                          redirectTo={id}
@@ -94,9 +84,9 @@ const Learn = () => {
                </div>
             </div>
 
-            <div className={classes.rightColumn}>
+            <div className={styles.rightColumn}>
                <AtomTitle extraClassName="mb-6">{t('score.title')}</AtomTitle>
-               <div className={classes.scoreContainer} style={{ height: '500px' }}>
+               <div className={styles.scoreContainer}>
                   {scoreList && <MoleculeScore scoreList={scoreList} user={user} />}
                </div>
             </div>

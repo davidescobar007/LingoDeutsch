@@ -6,6 +6,7 @@
       "earnPoints": "Erhalte Punkte, indem du dieses Quiz abschließt."
    },
    "grammar": {
+      "title": "Beginne mit etwas Grammatik",
       "chooseLevel": "Wähle eine Stufe",
       "A1": "Anfänger",
       "A2": "Grundkenntnisse",
@@ -48,7 +49,7 @@
       "loginWithGoogle": "Mit Google einloggen",
       "logOut": "Ausloggen",
       "profile": "Profil",
-      "learn": "Lernen",
+      "home": "Startseite",
       "practice": "Üben",
       "spanishOption": "Spanisch",
       "germanOption": "Deutsch",

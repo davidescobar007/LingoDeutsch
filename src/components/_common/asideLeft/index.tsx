@@ -1,22 +1,26 @@
 /* eslint-disable react/forbid-component-props */
 'use client'
-import { TbLanguage } from 'react-icons/tb'
+import { TbBook2, TbLanguage } from 'react-icons/tb'
+import { TbBrain, TbHome } from 'react-icons/tb'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomTitle } from '@/components/atoms'
-import { TUser } from '@/modules/actions/types'
-import { getUserInfo, isUserLoged } from '@/modules/actions/users.actions'
+import { getUserInfo } from '@/modules/actions/users.actions'
 import { grammarLevels } from '@/modules/global.types'
 import { Link, usePathname, useRouter } from '@/navigation'
-
+import { useLogin } from '@/store/user'
 const selectedStyles = 'rounded-xl border-2'
 
 export const OrganismMenu = () => {
    const pathname = usePathname()
    const t = useTranslations()
-   const user = getUserInfo() as TUser
    const router = useRouter()
+
+   const { data: userFromLoginMethod } = useLogin()
+   const userFromLoggedInfo = getUserInfo()
+
+   const user = userFromLoggedInfo || userFromLoginMethod
 
    return (
       <nav className="flex min-h-full flex-col justify-between border-r-2 border-gray-300 p-4">
@@ -38,20 +42,26 @@ export const OrganismMenu = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
                <Link href="/app/learn">
-                  <span className="text-3xl">📖</span>
-                  <AtomTitle extraClassName="hidden lg:block">{t('menu.learn')}</AtomTitle>
+                  <span className="text-3xl">
+                     <TbHome />
+                  </span>
+                  <AtomTitle extraClassName="hidden lg:block">{t('menu.home')}</AtomTitle>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
                <Link href="/app/practice">
-                  <span className="text-3xl">💪</span>
+                  <span className="text-3xl">
+                     <TbBrain />
+                  </span>
                   <AtomTitle extraClassName="hidden lg:block">{t('menu.practice')}</AtomTitle>
                </Link>
             </li>
             <li>
                <details>
                   <summary>
-                     <span className="text-3xl">📓</span>
+                     <span className="text-3xl">
+                        <TbBook2 />
+                     </span>
                      <AtomTitle extraClassName="hidden lg:block">{t('menu.grammar')}</AtomTitle>
                   </summary>
                   <ul>
@@ -114,7 +124,7 @@ export const OrganismMenu = () => {
                </details>
             </li>
 
-            {isUserLoged() && (
+            {user && (
                <li className={`${pathname === `/app/profile` && selectedStyles} bg-red-4000`}>
                   <Link href="/app/profile">
                      <div className="avatar ml-2">

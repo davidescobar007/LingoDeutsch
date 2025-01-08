@@ -1,10 +1,12 @@
 /* eslint-disable no-useless-catch */
 
+import { RecordListQueryParams } from 'pocketbase'
+
 import { queryOperators } from '@/modules/global.types'
 import { pb } from '@/network/setup'
 
-export const pbGetList = async (collection: string, options?: any) => {
-   const records = await pb.collection(collection).getFullList(200, options)
+export const pbGetList = async (collection: string, queryParamas?: RecordListQueryParams) => {
+   const records = await pb.collection(collection).getFullList(200, queryParamas)
    return records
 }
 

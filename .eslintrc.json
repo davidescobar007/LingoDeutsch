@@ -52,6 +52,7 @@
       "react/button-has-type": "off",
       "react/jsx-no-literals": "off",
       "react/self-closing-comp": "error",
+      "react/forbid-component-props": "off",
       "react/jsx-props-no-spreading": "off",
       "react/forbid-prop-types": "off",
       "forbid-prop-types": "off",

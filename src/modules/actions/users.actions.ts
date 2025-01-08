@@ -64,17 +64,17 @@ export const updateUserState = async () => {
 export const googleLogin = async (): Promise<TUser> => {
    const { saveItem, storageItem } = localStorageHandler<TUser>('user')
    if (storageItem) {
-      return storageItem as TUser
+      return storageItem
    }
    const { origin, pathname } = window.location
    const redirectUrl = `${origin}/${pathname.split('/')[1]}/app/learn`
    const params = new URL(window.location as any).searchParams
-   const [provider] = JSON.parse(localStorage.getItem('provider') || '')
+   const [provider] = JSON.parse(localStorage.getItem('provider') ?? '')
    if (provider.state !== params.get('state')) {
-      throw "State parameters don't match."
+      throw new Error("State parameters don't match.")
    }
    const providerName = provider.name
-   const code = params.get('code') || ''
+   const code = params.get('code') ?? ''
    const codeVerifier = provider.codeVerifier
    try {
       const { record, meta }: RecordAuthResponse<TUser> = await pbSignUp(
@@ -97,12 +97,12 @@ export const googleLogin = async (): Promise<TUser> => {
    }
 }
 
-export const isUserLoged = (): boolean => pb.authStore.isValid
+export const isUserLoged = pb.authStore.isValid
 
 export const getUserInfo = (): TUser | null | Admin => pb.authStore.model
+
 export const logOut = () => {
    try {
-      console.log('siuuu')
       pbLogOut()
       localStorage.removeItem('user')
    } catch (error: string | any) {

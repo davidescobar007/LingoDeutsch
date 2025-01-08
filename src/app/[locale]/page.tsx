@@ -1,14 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import Navbar from '@/components/_common/navbar'
 import { AtomButton, AtomTitle } from '@/components/atoms'
-import { Link } from '@/navigation'
+import { Link, redirect } from '@/navigation'
+import { useLogin } from '@/store/user'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
    const t = useTranslations()
+   const { refetch } = useLogin()
+   const params = new URL(window.location.href).searchParams
+
+   useEffect(() => {
+      if (params.get('state')) {
+         refetch()
+         redirect('app/learn')
+      }
+   }, [params])
+
    return (
       <div className="flex h-screen flex-col">
          <Suspense fallback="loading Navigation bar...">

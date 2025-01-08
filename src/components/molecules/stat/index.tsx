@@ -1,30 +1,39 @@
 import { FunctionComponent } from 'react'
 
 type TMoleculeStat = {
-   extraClassName?: string
-   handleClick?: () => void
-   emoji?: string
-   title: string
-   text: string
+   title1: string
+   text1: string
+   value1: string
+   title2: string
+   text2: string
+   value2: string
 }
 
-const emptyFunction = () => {}
-
 export const MoleculeStat: FunctionComponent<TMoleculeStat> = ({
-   extraClassName = '',
-   handleClick = emptyFunction,
-   emoji = '',
-   title,
-   text
+   text1,
+   title1,
+   value1,
+   text2,
+   title2,
+   value2
 }) => {
    return (
-      <div
-         className={`stat border-accent mr-3 w-48 rounded-2xl border-2 p-1 hover:bg-gray-200  lg:w-64 ${extraClassName}`}
-         onClick={() => handleClick()}
-      >
-         <div className="stat-figure text-primary hidden text-xl lg:block">{emoji}</div>
-         <div className="stat-value  text-primary block truncate text-xl ">{title}</div>
-         <div className="stat-desc font-semibold text-gray-700">{text}</div>
+      <div className="stats bg-primary text-primary-content shadow">
+         <div className="stat w-60">
+            <div className="stat-title">{title1}</div>
+            <div className="stat-value">{value1}</div>
+            <div className="stat-actions">
+               <button className="btn btn-sm btn-secondary">{text1}</button>
+            </div>
+         </div>
+
+         <div className="stat w-60">
+            <div className="stat-title">{title2}</div>
+            <div className="stat-value">{value2}</div>
+            <div className="stat-actions">
+               <button className="btn btn-sm">{text2}</button>
+            </div>
+         </div>
       </div>
    )
 }

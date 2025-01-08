@@ -1,3 +1,5 @@
+'use client'
+
 const Loading = () => (
    <div className="flex h-svh items-center justify-center">
       <span className="loading loading-spinner loading-lg" />

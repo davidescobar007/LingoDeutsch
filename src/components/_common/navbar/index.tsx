@@ -10,24 +10,28 @@ import { useTranslations } from 'next-intl'
 import { AuthProviderInfo } from 'pocketbase'
 
 import { AtomTitle } from '@/components/atoms'
-import { isUserLoged, logOut } from '@/modules/actions/users.actions'
+import { getUserInfo, isUserLoged, logOut } from '@/modules/actions/users.actions'
 import { Link, useRouter } from '@/navigation'
-import { useAuth, useLogin } from '@/store/user'
+import { useAuth } from '@/store/user'
 
 const Navbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()
    const router = useRouter()
    const { authMethods } = useAuth()
-   const { data: user } = useLogin()
+
+   const user = getUserInfo()
 
    useEffect(() => {
       const params = new URL(window.location as any).searchParams
-      if (params.get('state')) {
-         router.push('/learn')
+      if (params.get('state') || user) {
+         setTimeout(() => {
+            router.push('/app/learn')
+         }, 1500)
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
+   console.log(isUserLoged)
    return (
       <header className="border-b-1 navbar border-neutral bg-base-100 flex h-14 px-4 shadow-md md:px-10 lg:px-20">
          <div className="flex-1">
@@ -101,7 +105,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                   </li>
                </ul>
             </div>
-            {isUserLoged() ? (
+            {isUserLoged && user ? (
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
@@ -132,21 +136,20 @@ const Navbar = ({ locale }: { locale: string }) => {
                </div>
             ) : (
                <div>
-                  {authMethods &&
-                     authMethods.map((provider: AuthProviderInfo) => (
-                        <a
-                           className="btn btn-outline btn-primary"
-                           href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/app/learn`}
-                           key={provider.authUrl}
-                           role="button"
-                        >
-                           <span className="mr-1 text-xl">
-                              <FcGoogle />
-                           </span>
-                           <span className="block font-bold md:hidden">{t('menu.logIn')}</span>
-                           <span className="hidden font-bold md:block">{t('menu.loginWithGoogle')}</span>
-                        </a>
-                     ))}
+                  {authMethods?.map((provider: AuthProviderInfo) => (
+                     <a
+                        className="btn btn-outline btn-primary"
+                        href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/app/learn`}
+                        key={provider.authUrl}
+                        role="button"
+                     >
+                        <span className="mr-1 text-xl">
+                           <FcGoogle />
+                        </span>
+                        <span className="block font-bold md:hidden">{t('menu.logIn')}</span>
+                        <span className="hidden font-bold md:block">{t('menu.loginWithGoogle')}</span>
+                     </a>
+                  ))}
                </div>
             )}
          </div>

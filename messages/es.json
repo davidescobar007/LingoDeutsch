@@ -6,6 +6,7 @@
       "earnPoints": "Obtén puntos al completar este quiz."
    },
    "grammar": {
+      "title": "Inicia con algo de gramática",
       "chooseLevel": "Elige un nivel",
       "A1": "Principiante",
       "A2": "Elemental",
@@ -48,7 +49,7 @@
       "loginWithGoogle": "Iniciar con Google",
       "logOut": "Salir",
       "profile": "Perfil",
-      "learn": "Aprender",
+      "home": "Inicio",
       "practice": "Practicar",
       "spanishOption": "Español",
       "germanOption": "Alemán",

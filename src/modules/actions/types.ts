@@ -29,7 +29,7 @@ export type TUser = {
    userScore?: number
 }
 
-export type TScore = Array<{
+export type TScore = {
    username: string
    id: string
    created: string
@@ -38,7 +38,7 @@ export type TScore = Array<{
    collectionName: string
    score: number
    position: number | string
-}>
+}[]
 
 export type TArticle = {
    author: string

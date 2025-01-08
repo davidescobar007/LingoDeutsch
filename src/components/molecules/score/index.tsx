@@ -19,26 +19,28 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
    }
 
    return (
-      <aside className="hidden w-4/12 lg:block">
-         <div className="stats stats-vertical shadow">
-            <div className="stat">
-               <div className="stat-title">Downloads</div>
-               <div className="stat-value">31K</div>
-               <div className="stat-desc">Jan 1st - Feb 1st</div>
-            </div>
-
-            <div className="stat">
-               <div className="stat-title">New Users</div>
-               <div className="stat-value">4,200</div>
-               <div className="stat-desc">↗︎ 400 (22%)</div>
-            </div>
-
-            <div className="stat">
-               <div className="stat-title">New Registers</div>
-               <div className="stat-value">1,200</div>
-               <div className="stat-desc">↘︎ 90 (14%)</div>
-            </div>
-         </div>
-      </aside>
+      <div className="">
+         <ul className="w-full">
+            {scoreList.map(({ username, score, position }, index) => (
+               <li className="mb-4" key={username + position}>
+                  <div
+                     className={`stat border-secondary rounded-xl border-2 shadow-md ${
+                        user?.username === username ? 'bg-secondary' : 'bg-white'
+                     }`}
+                  >
+                     <div className="stat-figure text-secondary text-3xl">{scoreMedals[index + 1] || '⚡'}</div>
+                     <div className="stat-title">
+                        <span className="font-bold">
+                           {position} - @{username}
+                        </span>
+                     </div>
+                     <div className="stat-value text-lg">
+                        {score} {t('score.span')}
+                     </div>
+                  </div>
+               </li>
+            ))}
+         </ul>
+      </div>
    )
 }
