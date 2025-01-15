@@ -18,21 +18,32 @@ export const MoleculeStat: FunctionComponent<TMoleculeStat> = ({
    value2
 }) => {
    return (
-      <div className="stats bg-primary text-primary-content shadow">
-         <div className="stat w-60">
+      <div className="stats  text-primary-content w-full shadow">
+         <div className="stat w-1/2">
+            <div className="stat-figure text-primary">
+               <svg
+                  className="inline-block h-8 w-8 stroke-current"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+               >
+                  <path
+                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                     strokeLinecap="round"
+                     strokeLinejoin="round"
+                     strokeWidth="2"
+                  />
+               </svg>
+            </div>
             <div className="stat-title">{title1}</div>
             <div className="stat-value">{value1}</div>
-            <div className="stat-actions">
-               <button className="btn btn-sm btn-secondary">{text1}</button>
-            </div>
+            <div className="stat-desc">{text1}</div>
          </div>
 
-         <div className="stat w-60">
+         <div className="stat w-1/2">
             <div className="stat-title">{title2}</div>
             <div className="stat-value">{value2}</div>
-            <div className="stat-actions">
-               <button className="btn btn-sm">{text2}</button>
-            </div>
+            <div className="stat-desc">{text2}</div>
          </div>
       </div>
    )

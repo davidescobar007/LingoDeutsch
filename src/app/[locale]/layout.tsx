@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { Red_Hat_Display } from 'next/font/google'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 
-import QueryProvider from '@/store/queryProvider'
+import QueryProvider from '@/hooks/queryProvider'
 
 import 'react-toastify/dist/ReactToastify.css'
 import './globals.scss'

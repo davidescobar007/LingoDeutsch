@@ -7,9 +7,9 @@ import { MoleculeCard, MoleculeScore, MoleculeStat, MoleculeTimeLine } from '@/c
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { constants } from '@/modules/global.types'
-import { useArticleList } from '@/store/articles'
-import { useGetGrammarByLevel } from '@/store/grammar'
-import { useScore } from '@/store/user'
+import { useArticleList } from '@/hooks/articles'
+import { useGetGrammarByLevel } from '@/hooks/grammar'
+import { useScore } from '@/hooks/user'
 import { getCookie } from '@/utils'
 
 const styles = {

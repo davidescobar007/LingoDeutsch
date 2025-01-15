@@ -4,7 +4,9 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
 
 import { getSingleArticle } from '@/modules/actions/articles.actions'
+import { getVocabularyStats } from '@/modules/actions/cards.actions'
 import { saveVocabularyToStudy, searchTranslationFromSources } from '@/modules/actions/translations.actions'
+import { TUser } from '@/modules/actions/types'
 
 export const useTranslation = ({
    wordToTranslate,
@@ -38,5 +40,12 @@ export const useSaveVocabulary = () => {
       onSuccess: () => {
          toast.success(t('translation.saved'))
       }
+   })
+}
+
+export const useGetVocabularyStats = (user: TUser) => {
+   return useQuery({
+      queryKey: ['vocabularyStats', user],
+      queryFn: () => getVocabularyStats(user)
    })
 }

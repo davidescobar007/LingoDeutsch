@@ -175,3 +175,8 @@ export type Tgrammar = {
    collectionName: string
    expand: {}
 }
+
+export type TVocabularyStats = {
+   last_time_seen: Date
+   total_words: string
+}

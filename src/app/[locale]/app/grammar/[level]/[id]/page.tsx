@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 
 import { AtomTitle } from '@/components/atoms'
 import { Link } from '@/navigation'
-import { useGetSingleGrammarTopic } from '@/store/grammar'
+import { useGetSingleGrammarTopic } from '@/hooks/grammar'
 import { getCookie, parseHtmlToTIterableData } from '@/utils'
 
 import { RenderSchema } from '../grammar.utils'

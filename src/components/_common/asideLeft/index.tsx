@@ -9,7 +9,7 @@ import { AtomTitle } from '@/components/atoms'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { grammarLevels } from '@/modules/global.types'
 import { Link, usePathname, useRouter } from '@/navigation'
-import { useLogin } from '@/store/user'
+import { useLogin } from '@/hooks/user'
 const selectedStyles = 'rounded-xl border-2'
 
 export const OrganismMenu = () => {

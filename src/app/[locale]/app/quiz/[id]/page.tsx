@@ -5,9 +5,9 @@ import { useTranslations } from 'next-intl'
 
 import { AtomButton, AtomProgressPercentage, AtomTitle } from '@/components/atoms'
 import { MoleculeInputCheckGroup } from '@/components/molecules'
-import useRandomObjectFromArray from '@/hooks/useRandomObject'
-import { useArticle } from '@/store/articles'
-import { useLogin, useUpdateUserscore } from '@/store/user'
+import useRandomObjectFromArray from '@/customHooks/useRandomObject'
+import { useArticle } from '@/hooks/articles'
+import { useLogin, useUpdateUserscore } from '@/hooks/user'
 import { getPercentage } from '@/utils'
 
 const Quiz = ({ params: { id } }: { params: { id: string } }) => {

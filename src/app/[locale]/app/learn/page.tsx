@@ -4,12 +4,13 @@ import { useTranslations } from 'next-intl'
 
 import { AtomTitle, CardLoader } from '@/components/atoms'
 import { MoleculeCard, MoleculeScore, MoleculeStat, MoleculeTimeLine } from '@/components/molecules'
+import { useArticleList } from '@/hooks/articles'
+import { useGetGrammarByLevel } from '@/hooks/grammar'
+import { useGetVocabularyStats } from '@/hooks/translations'
+import { useScore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { constants } from '@/modules/global.types'
-import { useArticleList } from '@/store/articles'
-import { useGetGrammarByLevel } from '@/store/grammar'
-import { useScore } from '@/store/user'
 import { getCookie } from '@/utils'
 
 const classes = {
@@ -37,6 +38,7 @@ const Learn = () => {
    const user = getUserInfo() as TUser
    const { data: listOfGrammarTopics } = useGetGrammarByLevel('A1')
    const { data: articles, isFetching } = useArticleList()
+   const { data: vocabularyStats } = useGetVocabularyStats(user)
    const { data: scoreList } = useScore()
    const language = useMemo(() => getCookie('NEXT_LOCALE'), []) as string
 
@@ -60,12 +62,12 @@ const Learn = () => {
                <div className={classes.cardContainer}>
                   <AtomTitle extraClassName="mb-6">Estudia palabras clave con tarjetas interactivas.</AtomTitle>
                   <MoleculeStat
-                     text1="Ver mi Vocabulario"
-                     text2="Ir a estudiar"
+                     text1="¡Sigue agregando más palabras!"
+                     text2="No olvides repasar regularmente. "
                      title1="Palabras guardadas"
-                     title2="Palabras estudiadas"
-                     value1="42"
-                     value2="15%"
+                     title2="Ultima revision"
+                     value1={(vocabularyStats?.total_words || 0).toString()}
+                     value2={(vocabularyStats?.last_time_seen as unknown as string) || ''}
                   />
                </div>
                <div className={classes.articleContainer}>

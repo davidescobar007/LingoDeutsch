@@ -62,7 +62,7 @@ export const checkVocaBularyExist = async (userId: string, wordId: string) => {
 
 export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
    try {
-      if (isUserLoged() && selectedWordTranslation?.id) {
+      if (isUserLoged && selectedWordTranslation?.id) {
          await delay()
          const userId = pb.authStore.model?.id || ''
          const valueExists = await checkVocaBularyExist(userId, selectedWordTranslation.id)

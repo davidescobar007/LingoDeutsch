@@ -57,7 +57,13 @@
    },
    "home": {
       "tittle": "¡Una forma de entrenar tu vocabulario en alemán mediante la lectura y la repetición!",
-      "button": "Empieza aquí"
+      "button": "Empieza aquí",
+      "moleculeStat": {
+         "text1": "¡Sigue agregando más palabras!",
+         "text2": "No olvides repasar regularmente.",
+         "title1": "Palabras guardadas",
+         "title2": "Ultima revision"
+      }
    },
    "profile": {
       "saveButton": "actualizar",

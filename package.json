@@ -20,7 +20,7 @@
       "@types/react-slick": "^0.23.13",
       "chart.js": "^4.4.1",
       "color-2-name": "^1.4.4",
-      "date-fns": "^3.3.1",
+      "date-fns": "^3.6.0",
       "debounce": "^1.2.1",
       "html-to-json-parser": "^2.0.1",
       "i18next": "^23.7.6",

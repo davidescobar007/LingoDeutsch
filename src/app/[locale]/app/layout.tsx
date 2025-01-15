@@ -5,7 +5,7 @@ import Drawer from '@/components/_common/drawer'
 import Footer from '@/components/_common/footer'
 import { OrganismMenu } from '@/components/molecules'
 import { useRouter } from '@/navigation'
-import { useLogin } from '@/store/user'
+import { useLogin } from '@/hooks/user'
 
 const Layout = ({ children }: { readonly children: ReactNode }) => {
    const { refetch } = useLogin()

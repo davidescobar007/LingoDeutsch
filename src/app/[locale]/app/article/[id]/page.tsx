@@ -6,8 +6,8 @@ import { useTranslations } from 'next-intl'
 
 import { ArticleLoader } from '@/components/atoms'
 import { MoleculeHero, MoleculeModal, MoleculeWordSpecification } from '@/components/molecules'
-import { useArticle } from '@/store/articles'
-import { useSaveVocabulary, useTranslation } from '@/store/translations'
+import { useArticle } from '@/hooks/articles'
+import { useSaveVocabulary, useTranslation } from '@/hooks/translations'
 
 const Page = ({ params: { id } }: { params: { id: string } }) => {
    const t = useTranslations()

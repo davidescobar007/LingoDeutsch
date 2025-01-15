@@ -12,6 +12,7 @@ export const constants = {
    ARTICLES: 'articles',
    QUIZZES: 'quizzes',
    STUDY_VOCABULARY: 'studyVocabulary',
+   VOCABULARY_STATS: 'vocabularyStats',
    GRAMMAR: 'grammar',
    DELAY: 500,
    CARDS_LEVEL: {

@@ -29,7 +29,7 @@ export const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificat
    const t = useTranslations()
 
    const handleSaveTranslation = () => {
-      if (!isUserLoged()) {
+      if (!isUserLoged) {
          openModal()
          return
       }

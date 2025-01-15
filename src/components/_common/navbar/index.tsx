@@ -12,7 +12,7 @@ import { AuthProviderInfo } from 'pocketbase'
 import { AtomTitle } from '@/components/atoms'
 import { getUserInfo, isUserLoged, logOut } from '@/modules/actions/users.actions'
 import { Link, useRouter } from '@/navigation'
-import { useAuth } from '@/store/user'
+import { useAuth } from '@/hooks/user'
 
 const Navbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()

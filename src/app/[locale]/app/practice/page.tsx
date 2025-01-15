@@ -6,8 +6,8 @@ import { useLocalStorage } from 'usehooks-ts'
 
 import { AtomButton, AtomProgressPercentage, AtomTitle, PracticeLoader } from '@/components/atoms'
 import { MoleculeBadgeList, MoleculeCardsStats, MoleculeFlipCard } from '@/components/molecules'
+import { useGetCardsList, useUpdateCard } from '@/hooks/cards'
 import { TCard } from '@/modules/actions/types'
-import { useGetCardsList, useUpdateCard } from '@/store/cards'
 import { getPercentage } from '@/utils'
 
 const Practice = () => {

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { AtomStat } from '@/components/atoms'
-import { useGetCardsList } from '@/store/cards'
+import { useGetCardsList } from '@/hooks/cards'
 
 export const MoleculeCardsStats: FunctionComponent = () => {
    const t = useTranslations()

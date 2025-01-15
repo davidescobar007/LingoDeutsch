@@ -8,7 +8,7 @@ import { FiChevronsDown } from 'react-icons/fi'
 
 import { MoleculeCollapse } from '@/components/molecules'
 import { Link } from '@/navigation'
-import { useGetGrammarByLevel } from '@/store/grammar'
+import { useGetGrammarByLevel } from '@/hooks/grammar'
 import { getCookie, parseHtmlToTIterableData } from '@/utils'
 
 import { RenderSchema } from './grammar.utils'
