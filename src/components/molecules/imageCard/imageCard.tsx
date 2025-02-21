@@ -28,7 +28,7 @@ export const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
    const t = useTranslations()
 
    const handleSaveTranslation = () => {
-      if (!isUserLoged()) {
+      if (!isUserLoged) {
          openModal()
          return
       }

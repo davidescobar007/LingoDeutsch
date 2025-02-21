@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-component-props */
 'use client'
+import { FunctionComponent } from 'react'
 import { TbBook2, TbLanguage } from 'react-icons/tb'
 import { TbBrain, TbHome } from 'react-icons/tb'
 import Image from 'next/image'
@@ -12,7 +13,7 @@ import { grammarLevels } from '@/modules/global.types'
 import { Link, usePathname, useRouter } from '@/navigation'
 const selectedStyles = 'rounded-xl border-2'
 
-export const OrganismMenu = () => {
+export const OrganismMenu: FunctionComponent = () => {
    const pathname = usePathname()
    const t = useTranslations()
    const router = useRouter()

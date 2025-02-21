@@ -1,8 +1,8 @@
 'use client'
 import { ReactNode, useEffect } from 'react'
 
-import Drawer from '@/components/_common/drawer'
-import Footer from '@/components/_common/footer'
+import Drawer from '@/components/_common/drawer/drawer'
+import Footer from '@/components/_common/footer/footer'
 import { OrganismMenu } from '@/components/molecules'
 import { useLogin } from '@/hooks/user'
 import { useRouter } from '@/navigation'

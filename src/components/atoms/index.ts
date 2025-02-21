@@ -1,7 +1,7 @@
-export { AlertAtom } from './alert'
-export { AtomBadge } from './badge'
-export { AtomButton } from './button'
-export { AtomInput } from './input'
+export { AlertAtom } from './alert/alert'
+export { AtomBadge } from './badge/badge'
+export { AtomButton } from './button/button'
+export { AtomInput } from './input/input'
 export {
    ArticleLoader,
    CardLoader,
@@ -10,7 +10,7 @@ export {
    ProfileLoader,
    QuizzLoader,
    SpinLoader
-} from './loader'
-export { AtomProgressPercentage } from './progressBar'
-export { AtomStat } from './stat'
-export { AtomTitle } from './title'
+} from './loader/loader'
+export { AtomProgressPercentage } from './progressBar/progressBar'
+export { AtomStat } from './stat/stat'
+export { AtomTitle } from './title/title'

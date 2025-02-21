@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import LayoutContainer from '@/components/_common/layoutContainer'
+import LayoutContainer from '@/components/_common/layoutContainer/layoutConntainer'
 
 const Layout = ({ children }: { children: ReactNode }) => {
    return <LayoutContainer isCenter>{children}</LayoutContainer>

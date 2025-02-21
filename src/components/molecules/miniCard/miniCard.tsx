@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 const hoverClasses = 'hover:border-primary transition-all duration-300 hover:shadow-md'
 const noHoverClasses =
@@ -11,7 +11,12 @@ type MoleculeMiniCardProps = {
    className?: string
 }
 
-export const MoleculeMiniCard = ({ icon, content, footer, className = '' }: MoleculeMiniCardProps) => {
+export const MoleculeMiniCard: FunctionComponent<MoleculeMiniCardProps> = ({
+   icon,
+   content,
+   footer,
+   className = ''
+}) => {
    return (
       <div className={`${hoverClasses} ${noHoverClasses} flex-col items-center justify-center ${className}`}>
          <span className="text-primary text-4xl">{icon}</span>

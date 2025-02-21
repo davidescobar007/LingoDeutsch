@@ -4,7 +4,7 @@ import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import Navbar from '@/components/_common/navbar'
+import Navbar from '@/components/_common/navbar/navBar'
 import { AtomButton, AtomTitle } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
 import { Link, redirect } from '@/navigation'

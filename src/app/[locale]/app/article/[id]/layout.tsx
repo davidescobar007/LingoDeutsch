@@ -1,7 +1,7 @@
 'use client'
 import { ReactNode } from 'react'
 
-import LayoutContainer from '@/components/_common/layoutContainer'
+import LayoutContainer from '@/components/_common/layoutContainer/layoutConntainer'
 
 const ArticleLayout = ({ children }: { children: ReactNode }) => {
    return <LayoutContainer>{children}</LayoutContainer>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 import { AtomButton, AtomTitle } from '@/components/atoms'
 
@@ -16,14 +16,14 @@ type TMoleculeCallToActionCardProps = {
    }
 }
 
-export const MoleculeCallToActionCard = ({
+export const MoleculeCallToActionCard: FunctionComponent<TMoleculeCallToActionCardProps> = ({
    icon = null,
    isIconFilled = false,
    title,
    content,
    dinamicContent = null,
    buttonProps: { buttonText, buttonIcon, isBlock, typeOf = 'PRIMARY' }
-}: TMoleculeCallToActionCardProps) => {
+}) => {
    return (
       <div className="outlinedCard">
          {icon && (

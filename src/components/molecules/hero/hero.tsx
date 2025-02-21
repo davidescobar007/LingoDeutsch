@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { AtomBadge, AtomButton, AtomTitle } from '@/components/atoms'
 import { constants } from '@/modules/global.types'
 
-import { MoleculeImageCard } from '../imageCard'
+import { MoleculeImageCard } from '../imageCard/imageCard'
 
 type TMoleculeHero = {
    image?: string
