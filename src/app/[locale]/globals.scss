@@ -25,3 +25,7 @@ body {
       transform: translate(0, -4px);
    }
 }
+
+.outlinedCard {
+   @apply hover:border-primary mb-5 flex rounded-lg border border-transparent bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md;
+}

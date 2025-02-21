@@ -4,8 +4,8 @@ import { ReactNode, useEffect } from 'react'
 import Drawer from '@/components/_common/drawer'
 import Footer from '@/components/_common/footer'
 import { OrganismMenu } from '@/components/molecules'
-import { useRouter } from '@/navigation'
 import { useLogin } from '@/hooks/user'
+import { useRouter } from '@/navigation'
 
 const Layout = ({ children }: { readonly children: ReactNode }) => {
    const { refetch } = useLogin()

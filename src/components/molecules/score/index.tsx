@@ -19,19 +19,19 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
    }
 
    return (
-      <div className="">
-         <ul className="w-full">
+      <div className="w-full">
+         <ul>
             {scoreList.map(({ username, score, position }, index) => (
-               <li className="mb-4" key={username + position}>
+               <li className="my-2" key={username + position}>
                   <div
-                     className={`stat border-secondary rounded-xl border-2 shadow-md ${
-                        user?.username === username ? 'bg-secondary' : 'bg-white'
+                     className={`stat ${
+                        user?.username === username ? 'border-secondary rounded-xl border-2' : ''
                      }`}
                   >
                      <div className="stat-figure text-secondary text-3xl">{scoreMedals[index + 1] || '⚡'}</div>
                      <div className="stat-title">
                         <span className="font-bold">
-                           {position} - @{username}
+                           <div className="badge badge-info mr-2 rounded-full p-3">{position}</div> @{username}
                         </span>
                      </div>
                      <div className="stat-value text-lg">

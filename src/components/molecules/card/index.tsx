@@ -12,12 +12,10 @@ type TMoleculeCard = {
    className?: string
 }
 
-const levelDefaultProp: string[] = []
-
 export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    image,
    title,
-   content,
+   content = '',
    className = '',
    redirectTo = '',
    ...rest
@@ -31,7 +29,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
             <Image alt={title} className="rounded-box opacity-95" layout="fill" objectFit="cover" src={image} />
          </figure>
          <div className="card-body">
-            <AtomTitle extraClassName="card-title mb-1 text-ellipsis overflow-hidden line-clamp-2 text-white h-14">
+            <AtomTitle extraClassName="card-title mb-1 text-ellipsis overflow-hidden line-clamp-2 text-white">
                {title}
             </AtomTitle>
             <p className="mb-2 mt-1 line-clamp-2 text-white">{content}</p>

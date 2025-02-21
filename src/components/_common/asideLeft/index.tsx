@@ -6,10 +6,10 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomTitle } from '@/components/atoms'
+import { useLogin } from '@/hooks/user'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { grammarLevels } from '@/modules/global.types'
 import { Link, usePathname, useRouter } from '@/navigation'
-import { useLogin } from '@/hooks/user'
 const selectedStyles = 'rounded-xl border-2'
 
 export const OrganismMenu = () => {

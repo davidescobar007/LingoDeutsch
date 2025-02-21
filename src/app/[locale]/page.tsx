@@ -6,8 +6,8 @@ import { useTranslations } from 'next-intl'
 
 import Navbar from '@/components/_common/navbar'
 import { AtomButton, AtomTitle } from '@/components/atoms'
-import { Link, redirect } from '@/navigation'
 import { useLogin } from '@/hooks/user'
+import { Link, redirect } from '@/navigation'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
    const t = useTranslations()
