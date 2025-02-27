@@ -46,7 +46,7 @@
       "quizResult": "Tuviste {totalRating} de {numberOfQuestions} correctas. Tu calificación es: "
    },
    "score": {
-      "title": "Tabla de puntos",
+      "title": "Lucha por la cima del ranking",
       "span": "puntos",
       "congratulations": "¡Felicidades! ¡Eres el número 1 de esta semana!"
    },

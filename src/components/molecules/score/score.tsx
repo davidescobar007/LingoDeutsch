@@ -52,7 +52,7 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
                   }`}
                   key={username + position}
                >
-                  <div className="flex w-9/12 justify-start gap-4">
+                  <div className="flex w-8/12 items-center justify-start gap-4">
                      <AtomText
                         className={`flex h-7 w-7 items-center justify-center rounded-full ${getPositionClass(
                            Number(position)
@@ -61,10 +61,15 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
                      >
                         {position}
                      </AtomText>
-                     <AtomText isBold>{`@${username}`}</AtomText>
+                     <div>
+                        <AtomText isBold>{`@${username}`}</AtomText>
+                        <div className="badge badge-secondary block sm:hidden">
+                           {score} {t('score.span')}
+                        </div>
+                     </div>
                   </div>
-                  <div className="flex w-3/12 justify-end gap-4">
-                     <div className="badge badge-secondary">
+                  <div className="flex w-4/12 justify-end gap-4">
+                     <div className="badge badge-secondary hidden sm:block">
                         {score} {t('score.span')}
                      </div>
                      {scoreMedals[index + 1] || (

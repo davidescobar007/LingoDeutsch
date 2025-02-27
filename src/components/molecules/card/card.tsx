@@ -22,7 +22,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    const t = useTranslations()
 
    return (
-      <div className="card my-6 h-96 w-64 shadow-lg">
+      <div className="card my-6 h-96 min-w-64 shadow-lg">
          <figure className="h-52">
             <Image
                alt={title}

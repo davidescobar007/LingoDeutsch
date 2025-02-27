@@ -26,7 +26,7 @@ export const EmblaCarousel: React.FC<PropType> = ({ options, children }) => {
    return (
       <section className="embla">
          <div className="embla__viewport" ref={emblaRef}>
-            <div className="embla__container">
+            <div className="embla__container gap-8">
                {React.Children.map(children, (child) =>
                   React.cloneElement(child, { className: `${child.props.className || ''} embla__slide` })
                )}
@@ -34,7 +34,7 @@ export const EmblaCarousel: React.FC<PropType> = ({ options, children }) => {
          </div>
 
          <div className="flex items-center justify-between">
-            <div className="flex gap-2">
+            <div className="flex gap-3">
                <PrevButton disabled={prevBtnDisabled} onClick={onPrevButtonClick} />
                <NextButton disabled={nextBtnDisabled} onClick={onNextButtonClick} />
             </div>

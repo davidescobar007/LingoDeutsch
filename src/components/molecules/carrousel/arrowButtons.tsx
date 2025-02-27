@@ -53,7 +53,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
 
    return (
       <button className="embla__button embla__button--prev" type="button" {...restProps}>
-         <Icon icon={<FaChevronCircleLeft />} iconSize="medium" />
+         <Icon icon={<FaChevronCircleLeft />} iconSize="large" />
          {children}
       </button>
    )
@@ -64,7 +64,7 @@ export const NextButton: React.FC<PropType> = (props) => {
 
    return (
       <button className="embla__button embla__button--next" type="button" {...restProps}>
-         <Icon icon={<FaChevronCircleRight />} iconSize="medium" />
+         <Icon icon={<FaChevronCircleRight />} iconSize="large" />
          {children}
       </button>
    )
