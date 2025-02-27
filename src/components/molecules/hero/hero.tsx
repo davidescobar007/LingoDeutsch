@@ -72,7 +72,7 @@ export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                </div>
 
                <div className="mt-44 w-full p-5 md:mt-0 md:p-0">
-                  <p className="text-justify text-lg leading-9 tracking-wide">
+                  <p className="text-justify  leading-9 tracking-wide">
                      {text_content
                         .replace(/\./g, '. ')
                         .split(' ')

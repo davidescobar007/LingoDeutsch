@@ -61,7 +61,7 @@ const Practice = () => {
             </div>
          ) : filteredCardsList?.length ? (
             <div className="w-full justify-center">
-               <AtomTitle extraClassName="text-xl font-semibold mb-3" type="h3">
+               <AtomTitle extraClassName=" font-semibold mb-3" type="h3">
                   {t('practice.chooseLevel')}
                </AtomTitle>
                <MoleculeBadgeList
@@ -80,28 +80,28 @@ const Practice = () => {
                         className="btn btn-outline btn-accent px-2 md:px-4"
                         onClick={() => handleNextCard(levelTranslations[0].value)}
                      >
-                        <span className="text-lg">🙂</span>
+                        <span className="">🙂</span>
                         {t('practice.cardStat.easy')}
                      </button>
                      <button
                         className="btn btn-outline btn-primary px-2 md:px-4"
                         onClick={() => handleNextCard(levelTranslations[1].value)}
                      >
-                        <span className="text-lg">🤔</span>
+                        <span className="">🤔</span>
                         {t('practice.cardStat.medium')}
                      </button>
                      <button
                         className="btn btn-outline btn-warning px-2 md:px-4"
                         onClick={() => handleNextCard(levelTranslations[2].value)}
                      >
-                        <span className="text-lg">😰</span>
+                        <span className="">😰</span>
                         {t('practice.cardStat.hard')}
                      </button>
                   </div>
                </footer>
             </div>
          ) : (
-            <AtomTitle extraClassName="text-xl font-semibold mb-3" type="h3">
+            <AtomTitle extraClassName=" font-semibold mb-3" type="h3">
                {t('practice.noVocabulary')}
             </AtomTitle>
          )}

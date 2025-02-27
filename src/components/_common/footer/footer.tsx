@@ -10,13 +10,13 @@ const Footer = () => {
       <footer className="md:hidden">
          <div className="btm-nav">
             <Link href={`/${language}/learn`}>
-               <span className={`${pathname === `/${language}/learn` && selectedItem} text-2xl`}>📖</span>
+               <span className={`${pathname === `/${language}/learn` && selectedItem}`}>📖</span>
             </Link>
             <Link href={`/${language}/practice`}>
-               <span className={`${pathname === `/${language}/practice` && selectedItem} text-2xl`}>💪</span>
+               <span className={`${pathname === `/${language}/practice` && selectedItem}`}>💪</span>
             </Link>
             <Link href={`/${language}/grammar`}>
-               <span className={`${pathname === `/${language}/grammar` && selectedItem} text-2xl`}>📓</span>
+               <span className={`${pathname === `/${language}/grammar` && selectedItem}`}>📓</span>
             </Link>
          </div>
       </footer>

@@ -10,9 +10,9 @@ import { useTranslations } from 'next-intl'
 import { AuthProviderInfo } from 'pocketbase'
 
 import { AtomTitle } from '@/components/atoms'
+import { useAuth } from '@/hooks/user'
 import { getUserInfo, isUserLoged, logOut } from '@/modules/actions/users.actions'
 import { Link, useRouter } from '@/navigation'
-import { useAuth } from '@/hooks/user'
 
 const Navbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()
@@ -47,10 +47,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                </Link>
             </div>
             <Link href="/">
-               <AtomTitle
-                  extraClassName="hidden md:block select-none text-xl font-bold flex content-center"
-                  type="h1"
-               >
+               <AtomTitle extraClassName="hidden md:block select-none flex content-center" type="h1">
                   LingoDeutsch
                </AtomTitle>
             </Link>
@@ -58,10 +55,10 @@ const Navbar = ({ locale }: { locale: string }) => {
          <div className="flex-none gap-2">
             <div className="dropdown dropdown-end dropdown-bottom">
                <label className="btn btn-ghost m-1 " tabIndex={0}>
-                  <span className=" text-2xl">
+                  <span className=" ">
                      <TbLanguage />
                   </span>
-                  <span className="text-xl">
+                  <span className="">
                      <MdOutlineKeyboardArrowDown className="text-gray-600" />
                   </span>
                </label>
@@ -70,12 +67,9 @@ const Navbar = ({ locale }: { locale: string }) => {
                   tabIndex={0}
                >
                   <li>
-                     <div
-                        className="my-1 justify-between py-3 text-lg"
-                        onClick={() => router.push('/', { locale: 'de' })}
-                     >
+                     <div className="my-1 justify-between py-3" onClick={() => router.push('/', { locale: 'de' })}>
                         {t('menu.germanOption')}
-                        <span className="text-lg">
+                        <span className="">
                            <Image
                               alt="German flag"
                               height={25}
@@ -87,12 +81,9 @@ const Navbar = ({ locale }: { locale: string }) => {
                      </div>
                   </li>
                   <li>
-                     <div
-                        className="my-1 justify-between py-3 text-lg"
-                        onClick={() => router.push('/', { locale: 'es' })}
-                     >
+                     <div className="my-1 justify-between py-3" onClick={() => router.push('/', { locale: 'es' })}>
                         {t('menu.spanishOption')}
-                        <span className="text-lg">
+                        <span className="">
                            <Image
                               alt="Spain flag"
                               height={25}
@@ -117,17 +108,17 @@ const Navbar = ({ locale }: { locale: string }) => {
                      tabIndex={0}
                   >
                      <li>
-                        <Link className="my-1 justify-between py-3 text-lg" href="/profile">
+                        <Link className="my-1 justify-between py-3" href="/profile">
                            {t('menu.profile')}
-                           <span className="text-lg">
+                           <span className="">
                               <TbUser />
                            </span>
                         </Link>
                      </li>
                      <li>
-                        <Link className="my-1 justify-between py-3 text-lg" href="/" onClick={() => logOut()}>
+                        <Link className="my-1 justify-between py-3" href="/" onClick={() => logOut()}>
                            {t('menu.logOut')}
-                           <span className="text-lg">
+                           <span className="">
                               <TbLogout />
                            </span>
                         </Link>
@@ -143,7 +134,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                         key={provider.authUrl}
                         role="button"
                      >
-                        <span className="mr-1 text-xl">
+                        <span className="mr-1 ">
                            <FcGoogle />
                         </span>
                         <span className="block font-bold md:hidden">{t('menu.logIn')}</span>

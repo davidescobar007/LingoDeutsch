@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import { AtomButton, AtomTitle } from '@/components/atoms'
+import { AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 
 type TMoleculeCallToActionCardProps = {
    icon?: React.ReactNode
@@ -25,25 +25,24 @@ export const MoleculeCallToActionCard: FunctionComponent<TMoleculeCallToActionCa
    buttonProps: { buttonText, buttonIcon, isBlock, typeOf = 'PRIMARY' }
 }) => {
    return (
-      <div className="outlinedCard">
+      <div className="card-outlined">
          {icon && (
-            <span className="flex items-center justify-center text-4xl">
+            <span className="flex items-center justify-center">
                {isIconFilled ? (
                   <div className="bg-secondary text-primary rounded-full p-3">{icon}</div>
                ) : (
                   <div className="text-primary">{icon}</div>
                )}
-               {/* <div className="bg-secondary text-primary rounded-full p-3">{icon}</div> */}
             </span>
          )}
          <div className="ml-5 w-full">
             <AtomTitle type="h4">{title}</AtomTitle>
-            <p className="w-full">{content}</p>
+            <AtomText type="paragraph">{content}</AtomText>
             <div className="w-full">{dinamicContent}</div>
 
             <AtomButton isBlock={isBlock} typeOf={typeOf}>
                {buttonText}
-               {buttonIcon ?? <span className="text-lg">{buttonIcon}</span>}
+               {buttonIcon ?? <span>{buttonIcon}</span>}
             </AtomButton>
          </div>
       </div>

@@ -66,7 +66,7 @@ const Quiz = ({ params: { id } }: { params: { id: string } }) => {
          {randomObject?.question ? (
             <>
                <AtomProgressPercentage value={progressPercentage} />
-               <AtomTitle extraClassName="font-medium text-xl">{randomObject.question}</AtomTitle>
+               <AtomTitle extraClassName="font-medium ">{randomObject.question}</AtomTitle>
                {Object.keys(randomObject).map((key) => {
                   if (key.startsWith('option_')) {
                      return (
@@ -85,7 +85,7 @@ const Quiz = ({ params: { id } }: { params: { id: string } }) => {
                <AtomButton onClick={() => checkAnswerIfCorrect()}>{t('quiz.checkAnswer')}</AtomButton>
             </>
          ) : (
-            <AtomTitle extraClassName="font-medium text-2xl mb-5 animate__animated animate__backInRight">
+            <AtomTitle extraClassName="font-medium  mb-5 animate__animated animate__backInRight">
                {t('quiz.quizResult', { totalRating, numberOfQuestions: arrayOfQuestions?.length })}
                <span className="font-bold">{Math.round((totalRating * 100) / arrayOfQuestions?.length)}</span>
             </AtomTitle>

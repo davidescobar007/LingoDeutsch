@@ -3,7 +3,23 @@
       "wordSpecification": "Selecciona cualquier palabra del texto para ver la traducción",
       "startQuiz": "Empezar quiz",
       "wordSpecificationTooltip": "Al guardar esta palabra, podrás repasarla en la sección: Practicar",
-      "earnPoints": "Obtén puntos al completar este quiz."
+      "earnPoints": "Obtén puntos al completar este quiz.",
+      "grammarTitle": "Domina la Gramática Alemana",
+      "startGrammarLesson": "Empezar Lección de Gramática",
+      "grammarContent": "Domina la gramática alemana con lecciones concisas y fáciles de entender. Ideal para todos los niveles.",
+      "grammarStepByStep": "Gramática Paso a Paso",
+      "expandVocabulary": "Amplía tu Vocabulario Alemán",
+      "myVocabularyProgress": "Mi Progreso en Vocabulario",
+      "saved": "Guardadas",
+      "learned": "Aprendidas",
+      "toReview": "Para Repasar",
+      "streak": "Mi racha",
+      "practiceVocabulary": "Practicar Vocabulario",
+      "learnAtLeast": "Aprende al menos 5 palabras nuevas.",
+      "yourChallenge": "¡Tu Desafío de Hoy!",
+      "masteredVocabulary": "Has dominado el 15% del vocabulario total.",
+      "vocabularyMastery": "Dominio de Vocabulario",
+      "readingExercises": "Ejercicios de Lectura"
    },
    "grammar": {
       "title": "Inicia con algo de gramática",
@@ -31,7 +47,8 @@
    },
    "score": {
       "title": "Tabla de puntos",
-      "span": "puntos"
+      "span": "puntos",
+      "congratulations": "¡Felicidades! ¡Eres el número 1 de esta semana!"
    },
    "translation": {
       "notFoundTranslation": "Lo sentimos, pero no hemos encontrado traducción en nuestros servidores para la palabra que buscas.",
@@ -80,6 +97,11 @@
       "delete": "Eliminar",
       "tableTitle": "Un vistazo a tus estadísticas",
       "words_by_level": "Palabras por nivel"
+   },
+   "card": {
+      "new": "Recién publicado",
+      "readTime": "3 minutos",
+      "readNow": "Leer Ahora"
    },
    "close": "cerrar",
    "back": "atrás"

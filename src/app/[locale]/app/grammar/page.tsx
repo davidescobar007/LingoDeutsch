@@ -20,14 +20,14 @@ const Page = () => {
                         className="border-primary my-3 flex cursor-pointer rounded-xl border p-2 shadow-md"
                         key={label}
                      >
-                        <div className="mr-2 flex items-center text-2xl">{icon}</div>
+                        <div className="mr-2 flex items-center">{icon}</div>
                         <div className="">
                            <AtomTitle type="h3">{label}</AtomTitle>
                            {t(`grammar.${label}`)}
                         </div>
                      </div>
                   </Link>
-                  {index !== grammarLevels.length - 1 && <FiChevronsDown className="w-full text-4xl" />}
+                  {index !== grammarLevels.length - 1 && <FiChevronsDown className="w-full" />}
                </>
             ))}
          </div>

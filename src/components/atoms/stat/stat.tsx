@@ -12,7 +12,7 @@ export const AtomStat: FunctionComponent<TAtomStat> = ({ title, content, endCont
       <div className={`stat place-items-center p-3 px-5 ${extraClassName}`}>
          <div className="stat-title font-medium">{title}</div>
          <div className="stat-value cursor-pointer select-none">{content}</div>
-         <div className="stat-desc mt-1 text-sm">{endContent}</div>
+         <div className="stat-desc mt-1">{endContent}</div>
       </div>
    )
 }

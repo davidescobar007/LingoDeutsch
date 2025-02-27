@@ -26,6 +26,82 @@ body {
    }
 }
 
-.outlinedCard {
+.card-outlined {
    @apply hover:border-primary mb-5 flex rounded-lg border border-transparent bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md;
+}
+
+.btn-primary {
+   @apply bg-primary text-white;
+}
+
+.slick-arrow {
+   color: #fff;
+   font-size: 50px;
+   line-height: 30%;
+   opacity: 0.75;
+   background-color: red !important;
+}
+
+.embla {
+   overflow: hidden;
+}
+
+.embla__container {
+   display: flex;
+}
+
+.embla__slide {
+   flex: 0 0 85%; /* Default: one slide per view */
+}
+
+@media (min-width: 768px) {
+   .embla__slide {
+      flex: 0 0 50%; /* Two slides per view on tablets and above */
+   }
+}
+
+@media (min-width: 1024px) {
+   .embla__slide {
+      flex: 0 0 33.33%; /* Three slides per view on desktops and above */
+   }
+}
+
+.embla__prev,
+.embla__next {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   cursor: pointer;
+}
+
+.embla__prev {
+   left: 10px;
+}
+
+.embla__next {
+   right: 10px;
+}
+
+.embla__dots {
+   display: flex;
+   justify-content: center;
+   padding-top: 1rem;
+}
+
+.embla__dot {
+   width: 10px;
+   height: 10px;
+   margin: 0 5px;
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: 50%;
+   border: none;
+   cursor: pointer;
+}
+
+.embla__dot.is-selected {
+   background-color: rgba(0, 0, 0, 0.9);
 }

@@ -1,12 +1,12 @@
 /* eslint-disable react/forbid-component-props */
 'use client'
 import { FunctionComponent } from 'react'
-import { TbBook2, TbLanguage } from 'react-icons/tb'
+import { TbBook2 } from 'react-icons/tb'
 import { TbBrain, TbHome } from 'react-icons/tb'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import { AtomTitle } from '@/components/atoms'
+import { AtomTitle, Icon } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { grammarLevels } from '@/modules/global.types'
@@ -42,25 +42,27 @@ export const OrganismMenu: FunctionComponent = () => {
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
-               <Link href="/app/learn">
-                  <span className="text-3xl">
-                     <TbHome />
-                  </span>
-                  <AtomTitle extraClassName="hidden lg:block">{t('menu.home')}</AtomTitle>
+               <Link className="flex items-center" href="/app/learn">
+                  <Icon icon={<TbHome />} />
+                  <AtomTitle extraClassName="hidden lg:block mb-0">{t('menu.home')}</AtomTitle>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
-               <Link href="/app/practice">
-                  <span className="text-3xl">
+               {/* <Link href="/app/practice">
+                  <span className="">
                      <TbBrain />
                   </span>
                   <AtomTitle extraClassName="hidden lg:block">{t('menu.practice')}</AtomTitle>
+               </Link> */}
+               <Link className="flex items-center" href="/app/practice">
+                  <Icon icon={<TbBrain />} />
+                  <AtomTitle extraClassName="hidden lg:block mb-0">{t('menu.practice')}</AtomTitle>
                </Link>
             </li>
             <li>
                <details>
                   <summary>
-                     <span className="text-3xl">
+                     <span className="">
                         <TbBook2 />
                      </span>
                      <AtomTitle extraClassName="hidden lg:block">{t('menu.grammar')}</AtomTitle>
@@ -68,7 +70,7 @@ export const OrganismMenu: FunctionComponent = () => {
                   <ul>
                      {grammarLevels.map(({ icon, label }) => (
                         <li key={label}>
-                           <Link className="my-1 justify-between py-3 text-lg" href={`/app/grammar/${label}`}>
+                           <Link className="my-1 justify-between py-3 " href={`/app/grammar/${label}`}>
                               {icon} {label}
                            </Link>
                         </li>
@@ -79,21 +81,21 @@ export const OrganismMenu: FunctionComponent = () => {
          </ul>
 
          <ul className="menu">
-            <li className="bg-red-4000 mb-2">
+            {/* <li className="bg-red-4000 mb-2">
                <details>
                   <summary className="px-6 py-3">
-                     <span className=" text-3xl">
+                     <span className=" ">
                         <TbLanguage />
                      </span>
                   </summary>
                   <ul>
                      <li>
                         <div
-                           className="my-1 justify-between py-3 text-lg"
+                           className="my-1 justify-between py-3 "
                            onClick={() => router.push('/app/learn', { locale: 'de' })}
                         >
                            {t('menu.germanOption')}
-                           <span className="text-lg">
+                           <span className="">
                               <Image
                                  alt="German flag"
                                  height={25}
@@ -106,11 +108,11 @@ export const OrganismMenu: FunctionComponent = () => {
                      </li>
                      <li>
                         <div
-                           className="my-1 justify-between py-3 text-lg"
+                           className="my-1 justify-between py-3 "
                            onClick={() => router.push('/app/learn', { locale: 'es' })}
                         >
                            {t('menu.spanishOption')}
-                           <span className="text-lg">
+                           <span className="">
                               <Image
                                  alt="Spain flag"
                                  height={27}
@@ -123,11 +125,11 @@ export const OrganismMenu: FunctionComponent = () => {
                      </li>
                   </ul>
                </details>
-            </li>
+            </li> */}
 
             {user && (
                <li className={`${pathname === `/app/profile` && selectedStyles} bg-red-4000`}>
-                  <Link href="/app/profile">
+                  <Link className="flex items-center" href="/app/profile">
                      <div className="avatar ml-2">
                         <div className="w-9 rounded-xl">
                            <Image
@@ -138,7 +140,7 @@ export const OrganismMenu: FunctionComponent = () => {
                            />
                         </div>
                      </div>
-                     <AtomTitle extraClassName="hidden lg:block ml-1">{t('menu.profile')}</AtomTitle>
+                     <AtomTitle extraClassName="hidden lg:block">{t('menu.profile')}</AtomTitle>
                   </Link>
                </li>
             )}

@@ -4,7 +4,7 @@ import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import Navbar from '@/components/_common/navbar/navBar'
+import Navbar from '@/components/_common/navbar/navbar'
 import { AtomButton, AtomTitle } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
 import { Link, redirect } from '@/navigation'
@@ -62,7 +62,7 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
                   </div>
 
                   <div className="flex w-2/3 flex-wrap items-center justify-center">
-                     <AtomTitle extraClassName="!text-3xl text-center">{t('home.tittle')}</AtomTitle>
+                     <AtomTitle extraClassName="text-center">{t('home.tittle')}</AtomTitle>
                      <Link href="/app/learn">
                         <AtomButton extraClassName="btn-wide"> {t('home.button')}</AtomButton>
                      </Link>

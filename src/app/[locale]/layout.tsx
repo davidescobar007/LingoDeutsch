@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Slide, ToastContainer } from 'react-toastify'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { Metadata } from 'next'
-import { Red_Hat_Display } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 
 import QueryProvider from '@/hooks/queryProvider'
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
    icons: 'images/icon-192x192.png'
 }
 
-const redHatDisplay = Red_Hat_Display({
-   weight: '500',
+const interFontDisplay = Inter({
+   weight: '400',
    subsets: ['latin'],
-   display: 'swap',
+   display: 'auto',
    style: 'normal'
 })
 
@@ -37,7 +37,7 @@ const RootLayout = ({
       <QueryProvider>
          <NextIntlClientProvider messages={messages}>
             <html data-theme="mytheme" lang={locale}>
-               <body className={`${redHatDisplay.className} text-gray-600`}> {children}</body>
+               <body className={`${interFontDisplay.className} text-gray-600`}> {children}</body>
                <ReactQueryDevtools initialIsOpen={false} />
                <ToastContainer
                   autoClose={5000}

@@ -10,7 +10,7 @@ type TMoleculeListItem = {
 export const MoleculeListItem: FunctionComponent<TMoleculeListItem> = ({ children, selected }) => {
    return (
       <li
-         className={`flex cursor-pointer select-none items-start rounded-2xl p-0 text-xl font-medium ${
+         className={`flex cursor-pointer select-none items-start rounded-2xl p-0  font-medium ${
             selected && 'border-accent border-2'
          }`}
       >

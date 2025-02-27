@@ -1,7 +1,9 @@
 import { FunctionComponent } from 'react'
+import { TbClock } from 'react-icons/tb'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
-import { AtomTitle } from '@/components/atoms'
+import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { Link } from '@/navigation'
 
 type TMoleculeCard = {
@@ -9,36 +11,44 @@ type TMoleculeCard = {
    title: string
    content?: string
    redirectTo?: string
-   className?: string
 }
 
 export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    image,
    title,
    content = '',
-   className = '',
-   redirectTo = '',
-   ...rest
+   redirectTo = ''
 }) => {
+   const t = useTranslations()
+
    return (
-      <article
-         className={`card image-full rounded-xl before:!bg-transparent  before:!bg-gradient-to-b before:!from-gray-700 before:!via-gray-600 before:!to-gray-500  ${className}`}
-         {...rest}
-      >
-         <figure>
-            <Image alt={title} className="rounded-box opacity-95" layout="fill" objectFit="cover" src={image} />
+      <div className="card my-6 h-96 w-64 shadow-lg">
+         <figure className="h-52">
+            <Image
+               alt={title}
+               className="min-h-full w-full object-cover"
+               height={400}
+               layout="responsive"
+               src={image}
+               width={400}
+            />
          </figure>
-         <div className="card-body">
-            <AtomTitle extraClassName="card-title mb-1 text-ellipsis overflow-hidden line-clamp-2 text-white">
+         <div className="card-body p-2">
+            <AtomText className="badge badge-secondary">{t('card.new')}</AtomText>
+            <AtomTitle extraClassName="h-16" type="h4">
                {title}
             </AtomTitle>
-            <p className="mb-2 mt-1 line-clamp-2 text-white">{content}</p>
-            <div className="card-actions justify-end">
+            <AtomText type="paragraph">{content}</AtomText>
+
+            <div className="card-actions items-center justify-between">
+               <AtomText>
+                  <Icon icon={<TbClock />} iconSize="medium" /> {t('card.readTime')}
+               </AtomText>
                <Link className="btn btn-primary" href={`/app/article/${redirectTo}`} role="button">
-                  Leer
+                  {t('card.readNow')}
                </Link>
             </div>
          </div>
-      </article>
+      </div>
    )
 }

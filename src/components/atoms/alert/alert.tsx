@@ -20,7 +20,7 @@ export const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children }) => {
                strokeWidth="2"
             />
          </svg>
-         <span className="text-sm">{children}</span>
+         <span className="">{children}</span>
       </div>
    )
 }

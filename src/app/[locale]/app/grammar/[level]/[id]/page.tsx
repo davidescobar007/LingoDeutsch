@@ -5,8 +5,8 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import { useTranslations } from 'next-intl'
 
 import { AtomTitle } from '@/components/atoms'
-import { Link } from '@/navigation'
 import { useGetSingleGrammarTopic } from '@/hooks/grammar'
+import { Link } from '@/navigation'
 import { getCookie, parseHtmlToTIterableData } from '@/utils'
 
 import { RenderSchema } from '../grammar.utils'
@@ -19,7 +19,7 @@ const Topic = ({ params: { id, level } }: { params: { id: string; level: string 
    return (
       <div className="w-full">
          <Link className="link text-accent flex" href={`/app/grammar/${level}`}>
-            <IoMdArrowRoundBack className="mr-1 mt-1 text-lg" />
+            <IoMdArrowRoundBack className="mr-1 mt-1" />
             {t('back')}
          </Link>
          {data?.topic && (

@@ -3,7 +3,23 @@
       "wordSpecification": "Wähle ein beliebiges Wort im Text aus, um die Übersetzung zu sehen",
       "startQuiz": "Quiz starten",
       "wordSpecificationTooltip": "Beim Speichern dieses Wortes kannst du es in der Sektion 'Üben' überprüfen.",
-      "earnPoints": "Erhalte Punkte, indem du dieses Quiz abschließt."
+      "earnPoints": "Erhalte Punkte, indem du dieses Quiz abschließt.",
+      "grammarTitle": "Beherrsche die deutsche Grammatik",
+      "startGrammarLesson": "Grammatiklektion starten",
+      "grammarContent": "Beherrsche die deutsche Grammatik mit prägnanten und leicht verständlichen Lektionen. Ideal für alle Niveaus.",
+      "grammarStepByStep": "Schritt-für-Schritt-Grammatik",
+      "expandVocabulary": "Erweitere deinen deutschen Wortschatz",
+      "myVocabularyProgress": "Mein Fortschritt im Wortschatz",
+      "saved": "Gespeichert",
+      "learned": "Gelernt",
+      "toReview": "Zu überprüfen",
+      "streak": "Meine Serie",
+      "practiceVocabulary": "Wortschatz üben",
+      "learnAtLeast": "Lerne mindestens 5 neue Wörter.",
+      "yourChallenge": "Deine Herausforderung für heute!",
+      "masteredVocabulary": "Du hast 15% des gesamten Wortschatzes gemeistert.",
+      "vocabularyMastery": "Wortschatzbeherrschung",
+      "readingExercises": "Leseübungen"
    },
    "grammar": {
       "title": "Beginne mit etwas Grammatik",
@@ -31,7 +47,8 @@
    },
    "score": {
       "title": "Punktetabelle",
-      "span": "Punkte"
+      "span": "Punkte",
+      "congratulations": "Herzlichen Glückwunsch! Du bist diese Woche die Nummer 1!"
    },
    "translation": {
       "notFoundTranslation": "Es tut uns leid, aber wir haben keine Übersetzung für das gesuchte Wort auf unseren Servern gefunden.",
@@ -76,5 +93,10 @@
       "words_by_level": "Wörter nach Niveau"
    },
    "close": "schließen",
-   "back": "zurück"
+   "back": "zurück",
+   "card": {
+      "new": "Neu veröffentlicht",
+      "readTime": "3 Minuten",
+      "readNow": "Jetzt lesen"
+   }
 }

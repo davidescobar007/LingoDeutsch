@@ -29,14 +29,14 @@ const Learn = () => {
    return (
       <div className="flex w-full flex-wrap gap-2">
          <div className="bg-orange-3000 w-full">
-            <h3 className="mb-5 text-xl">Explora lecciones de gramática claras y organizadas.</h3>
+            <h3 className="mb-5 ">Explora lecciones de gramática claras y organizadas.</h3>
             <MoleculeTimeLine listOfItems={listOfItems} />
          </div>
 
          <div className="flex w-full gap-3">
             <div className="flex w-full flex-wrap lg:w-2/3">
                <div className="w-full">
-                  <h4 className="mb-5 mt-16 text-xl">Estudia palabras clave con tarjetas interactivas.</h4>
+                  <h4 className="mb-5 mt-16 ">Estudia palabras clave con tarjetas interactivas.</h4>
                   <div className="w-full">
                      <MoleculeStat
                         text1="Ver mi Vocabulario"
@@ -50,7 +50,7 @@ const Learn = () => {
                </div>
 
                <div className="w-full">
-                  <h4 className="mb-5 mt-16 text-xl">
+                  <h4 className="mb-5 mt-16 ">
                      Lee artículos, selecciona palabras y guárdalas para repasarlas después.
                   </h4>
                   <div className="w-full">

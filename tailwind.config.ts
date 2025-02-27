@@ -110,16 +110,16 @@ const config: Config = {
          'lemonade',
          {
             mytheme: {
-               primary: '#58cc02', //green
-               secondary: '#ddf4ff', //light blue
-               accent: '#44ccff', //medium blue
-               neutral: '#777', //gray
-               'base-100': '#F8F9FC', //white
-               info: '#84d8ff', //same secondary blue
-               success: '#58cc02', //same primary green
-               warning: '#F5CE42', //orange
-               error: '#DC2855', //red
-               myCustom: '#21262c'
+               // You can name your theme anything, e.g., 'purpleApp' or 'languageLearningApp'
+               primary: '#805AF2', // Vibrant Purple
+               secondary: '#e5defc', // Light/Pastel Purple
+               accent: '#FFC107', // Amber/Gold
+               neutral: '#555555', // Medium Gray (for main text, consider adjusting shades if needed)
+               'base-100': '#FAFAFA', // Off-White/Light Gray (main background)
+               info: '#3AB7BF',
+               success: '#36D399',
+               warning: '#FBBD23',
+               error: '#F87272'
             }
          }
       ],

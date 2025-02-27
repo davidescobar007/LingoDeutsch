@@ -44,7 +44,7 @@ const Page = () => {
             </div>
          </div>
          <AtomTitle extraClassName="my-4 flex justify-center" type="h4">
-            {t('score.span')}: <span className="text-lg font-bold">{user.score} ✨</span>
+            {t('score.span')}: <span className=" font-bold">{user.score} ✨</span>
          </AtomTitle>
 
          <form className="form-control flex justify-center" onSubmit={handleSubmit}>

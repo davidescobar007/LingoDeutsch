@@ -28,7 +28,7 @@ export const MoleculeTable: FunctionComponent<TAtomTable> = ({
    return (
       <div className="overflow-x-auto">
          {title && (
-            <AtomTitle extraClassName="text-lg mb-4 font-semibold underline underline-offset-4" type="h3">
+            <AtomTitle extraClassName=" mb-4 font-semibold underline underline-offset-4" type="h3">
                {title}
             </AtomTitle>
          )}
@@ -39,7 +39,7 @@ export const MoleculeTable: FunctionComponent<TAtomTable> = ({
                      <tr key={headerGroup.id}>
                         {headerGroup.headers.map((header: any) => {
                            return (
-                              <th className={` text-sm ${header.column.columnDef.classNames}`} key={header.id}>
+                              <th className={`${header.column.columnDef.classNames}`} key={header.id}>
                                  {header.column.columnDef.header}
                               </th>
                            )
@@ -64,7 +64,7 @@ export const MoleculeTable: FunctionComponent<TAtomTable> = ({
                         : Object.keys(item).map((key) => <td key={key}>{String(item[key])}</td>)}
                      {isDelete && (
                         <td>
-                           <span className="cursor-pointer text-lg text-red-600">
+                           <span className="cursor-pointer  text-red-600">
                               <HiTrash />
                            </span>
                         </td>

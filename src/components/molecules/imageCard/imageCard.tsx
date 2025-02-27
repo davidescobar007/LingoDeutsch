@@ -42,12 +42,12 @@ export const MoleculeImageCard: FunctionComponent<TMoleculeImageCard> = ({
             backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(65,65,65,0.35) 100%), url(${image})`
          }}
       >
-         <AtomTitle extraClassName="text-2xl w-full text-start text-white leading-7 font-medium" type="h3">
+         <AtomTitle extraClassName=" w-full text-start text-white leading-7 font-medium" type="h3">
             {title}
          </AtomTitle>
          <span />
          <div className="mt-2 w-11/12">
-            <AtomTitle extraClassName="text-xl text-start text-white underline font-medium flex" type="h3">
+            <AtomTitle extraClassName=" text-start text-white underline font-medium flex" type="h3">
                {selectedWord && (
                   <span
                      className="tooltip tooltip-right tooltip-info"

@@ -7,8 +7,8 @@ import React, { useMemo } from 'react'
 import { FiChevronsDown } from 'react-icons/fi'
 
 import { MoleculeCollapse } from '@/components/molecules'
-import { Link } from '@/navigation'
 import { useGetGrammarByLevel } from '@/hooks/grammar'
+import { Link } from '@/navigation'
 import { getCookie, parseHtmlToTIterableData } from '@/utils'
 
 import { RenderSchema } from './grammar.utils'
@@ -34,9 +34,7 @@ const Page = ({ params: { level } }: { params: { level: string } }) => {
                               {content && RenderSchema(parseHtmlToTIterableData(content))}
                            </>
                         </MoleculeCollapse>
-                        {index !== listOfGrammarTopics.length - 1 && (
-                           <FiChevronsDown className="w-full text-3xl" />
-                        )}
+                        {index !== listOfGrammarTopics.length - 1 && <FiChevronsDown className="w-full" />}
                      </div>
                   </>
                )

@@ -38,10 +38,8 @@ export const MoleculeInputCheckGroup: FunctionComponent<TMoleculeInputCheckGroup
          <label className="label relative cursor-pointer justify-start">
             <AtomInput extraClassName="radio-accent radio mr-4" inputId={name} type="radio" {...rest} />
             {/* <input className="radio-accent radio mr-4" name={name} type="radio" {...rest} /> */}
-            <span className="label-text text-lg font-normal">{text}</span>
-            <span
-               className={`animate__animated ${emojiStyles[inputState]} absolute right-0 top-0 -mr-5 -mt-6 text-2xl`}
-            >
+            <span className="label-text  font-normal">{text}</span>
+            <span className={`animate__animated ${emojiStyles[inputState]} absolute right-0 top-0 -mr-5 -mt-6 `}>
                {inputEmoji[inputState]}
             </span>
          </label>

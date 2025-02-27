@@ -11,8 +11,8 @@ type TAtomButton = {
 }
 
 const buttonTypes = {
-   PRIMARY: 'btn-primary text-white',
-   SECONDARY: 'btn-secondary',
+   PRIMARY: 'btn-primary',
+   SECONDARY: 'btn-secondary text-neutral',
    INFO: 'btn-info',
    ACCENT: 'btn-accent',
    WARNING: 'btn-warning'
@@ -33,7 +33,7 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
       <button
          className={
             (dangerouslyResetClassName && extraClassName) ||
-            `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
+            `btn my-3  shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
                buttonTypes[typeOf]
             } ${extraClassName}`
          }
