@@ -54,7 +54,7 @@ export const searchTranslationFromSources = async (wordToTranslate: string): Pro
 }
 
 export const checkVocaBularyExist = async (userId: string, wordId: string) => {
-   const wordIsSaved = pbGetList(constants.STUDY_VOCABULARY, {
+   const wordIsSaved = pbGetList(constants.USER_VOCAB_PROGRESS, {
       filter: `user_id = "${userId}" && word_id = "${wordId}"`
    })
    return wordIsSaved
@@ -75,7 +75,7 @@ export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
             last_time_seen: null,
             level: 'hard'
          }
-         pbCreateRecord(constants.STUDY_VOCABULARY, data)
+         pbCreateRecord(constants.USER_VOCAB_PROGRESS, data)
       } else {
          throw new Error('translation.error')
       }

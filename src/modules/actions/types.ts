@@ -177,6 +177,13 @@ export type Tgrammar = {
 }
 
 export type TVocabularyStats = {
-   last_time_seen: Date
-   total_words: string
+   totalWords: number
+   learnedWords: number
+   toRecheck: number
+   percentageDominated: number
+   learningPace: number
+   last7Days: { [key: string]: number }
+   streak: number
+   isStreak: boolean
+   wordsLearnedToday: number
 }

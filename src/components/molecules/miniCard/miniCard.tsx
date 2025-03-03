@@ -5,7 +5,7 @@ import { AtomText } from '@/components/atoms'
 type MoleculeMiniCardProps = {
    icon: React.ReactNode
    content: string
-   footer: string
+   footer?: string | number
    className?: string
 }
 

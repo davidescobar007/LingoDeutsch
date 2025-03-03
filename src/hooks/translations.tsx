@@ -45,7 +45,7 @@ export const useSaveVocabulary = () => {
 
 export const useGetVocabularyStats = (user: TUser) => {
    return useQuery({
-      queryKey: ['vocabularyStats', user],
+      queryKey: ['userVocabularyStats', user],
       queryFn: () => getVocabularyStats(user)
    })
 }

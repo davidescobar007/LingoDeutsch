@@ -17,7 +17,7 @@
       "practiceVocabulary": "Wortschatz üben",
       "learnAtLeast": "Lerne mindestens 5 neue Wörter.",
       "yourChallenge": "Deine Herausforderung für heute!",
-      "masteredVocabulary": "Du hast 15% des gesamten Wortschatzes gemeistert.",
+      "masteredVocabulary": "Du hast {percentageDominated}% des gesamten Wortschatzes gemeistert.",
       "vocabularyMastery": "Wortschatzbeherrschung",
       "readingExercises": "Leseübungen"
    },

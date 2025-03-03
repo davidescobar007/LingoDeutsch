@@ -67,7 +67,7 @@ export const googleLogin = async (): Promise<TUser> => {
       return storageItem
    }
    const { origin, pathname } = window.location
-   const redirectUrl = `${origin}/${pathname.split('/')[1]}/app/learn`
+   const redirectUrl = `${origin}/${pathname.split('/')[1]}/app/home`
    const params = new URL(window.location as any).searchParams
    const [provider] = JSON.parse(localStorage.getItem('provider') ?? '')
    if (provider.state !== params.get('state')) {

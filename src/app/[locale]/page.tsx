@@ -1,25 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import Navbar from '@/components/_common/navbar/navbar'
 import { AtomButton, AtomTitle } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
-import { Link, redirect } from '@/navigation'
+import { Link } from '@/navigation'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
    const t = useTranslations()
    const { refetch } = useLogin()
-   const params = new URL(window.location.href).searchParams
-
-   useEffect(() => {
-      if (params.get('state')) {
-         refetch()
-         redirect('app/learn')
-      }
-   }, [params])
 
    return (
       <div className="flex h-screen flex-col">
@@ -63,7 +55,7 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
 
                   <div className="flex w-2/3 flex-wrap items-center justify-center">
                      <AtomTitle extraClassName="text-center">{t('home.tittle')}</AtomTitle>
-                     <Link href="/app/learn">
+                     <Link href="/app/home">
                         <AtomButton extraClassName="btn-wide"> {t('home.button')}</AtomButton>
                      </Link>
                   </div>

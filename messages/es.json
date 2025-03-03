@@ -17,7 +17,7 @@
       "practiceVocabulary": "Practicar Vocabulario",
       "learnAtLeast": "Aprende al menos 5 palabras nuevas.",
       "yourChallenge": "¡Tu Desafío de Hoy!",
-      "masteredVocabulary": "Has dominado el 15% del vocabulario total.",
+      "masteredVocabulary": "Has dominado el {percentageDominated}% del vocabulario total.",
       "vocabularyMastery": "Dominio de Vocabulario",
       "readingExercises": "Ejercicios de Lectura"
    },

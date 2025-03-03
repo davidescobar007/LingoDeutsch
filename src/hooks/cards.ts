@@ -8,6 +8,7 @@ import { getUserInfo } from '@/modules/actions/users.actions'
 
 export const useGetCardsList = (filter?: string) => {
    const userModel = getUserInfo() as TUser
+
    return useQuery({
       queryKey: ['cardsKey', filter],
       queryFn: () => getCardsList({ filter, user: userModel })

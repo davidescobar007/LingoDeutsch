@@ -5,7 +5,7 @@ const Drawer = ({ children, sideBar }: { children: ReactNode; sideBar: ReactNode
    return (
       <div className="drawer md:drawer-open">
          <input className="drawer-toggle" id="lingo-drawer" type="checkbox" />
-         <div className="drawer-content bg-blue-4000 flex justify-center p-10 xl:px-44">
+         <div className="drawer-content bg-blue-4000 flex justify-center px-4 pt-8 md:px-12 xl:px-28">
             {/* Page content here */ children}
             {/* <label className="btn btn-primary drawer-button md:hidden" htmlFor="lingo-drawer">
                Open drawer

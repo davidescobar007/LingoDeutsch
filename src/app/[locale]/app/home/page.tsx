@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-sort-props */
 'use client'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { TbBook, TbBook2, TbBrain, TbChecklist, TbFlame } from 'react-icons/tb'
 import { useTranslations } from 'next-intl'
 
@@ -18,9 +18,6 @@ import { useScore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { constants } from '@/modules/global.types'
-import { getCookie } from '@/utils'
-
-const SLIDES = Array.from(Array(10).keys())
 
 const Learn = () => {
    const t = useTranslations()
@@ -29,12 +26,11 @@ const Learn = () => {
    const { data: articles } = useArticleList()
    const { data: vocabularyStats } = useGetVocabularyStats(user)
    const { data: scoreList } = useScore()
-   const language = useMemo(() => getCookie('NEXT_LOCALE'), []) as string
 
    return (
       <div className="flex w-full flex-col 2xl:flex-row 2xl:gap-8">
          <div className="w-full 2xl:w-8/12">
-            <div className="mb-9">
+            <div className="mb-12">
                <AtomTitle type="h3">{t('learn.grammarTitle')}</AtomTitle>
                <MoleculeCallToActionCard
                   buttonProps={{
@@ -49,14 +45,14 @@ const Learn = () => {
                />
             </div>
 
-            <div className="mb-9">
+            <div className="mb-12">
                <AtomTitle type="h3">{t('learn.expandVocabulary')}</AtomTitle>
                <AtomText type="paragraph">{t('learn.myVocabularyProgress')}</AtomText>
-               <div className="-m-3 mb-3 mt-2 flex flex-wrap">
+               <div className="-m-3 mt-2 flex flex-wrap">
                   <div className="w-6/12  p-3 md:w-3/12">
                      <MoleculeMiniCard
                         content={t('learn.saved')}
-                        footer="42"
+                        footer={vocabularyStats?.totalWords}
                         icon={<Icon icon={<TbBook2 className="text-blue-500" />} iconSize="large" />}
                         className=""
                      />
@@ -64,7 +60,7 @@ const Learn = () => {
                   <div className="w-6/12  p-3 md:w-3/12 ">
                      <MoleculeMiniCard
                         content={t('learn.learned')}
-                        footer="15"
+                        footer={vocabularyStats?.learnedWords}
                         icon={<Icon icon={<TbBrain className="text-pink-500" />} iconSize="large" />}
                         className=" "
                      />
@@ -72,7 +68,7 @@ const Learn = () => {
                   <div className="w-6/12  p-3 md:w-3/12">
                      <MoleculeMiniCard
                         content={t('learn.toReview')}
-                        footer="8"
+                        footer={vocabularyStats?.toRecheck}
                         icon={<Icon icon={<TbChecklist className="text-green-500" />} iconSize="large" />}
                         className=""
                      />
@@ -80,7 +76,7 @@ const Learn = () => {
                   <div className="w-6/12  p-3 md:w-3/12">
                      <MoleculeMiniCard
                         content={t('learn.streak')}
-                        footer="5"
+                        footer={vocabularyStats?.streak}
                         icon={<Icon icon={<TbFlame className="text-orange-500" />} iconSize="large" />}
                         className=""
                      />
@@ -94,7 +90,11 @@ const Learn = () => {
                         }}
                         content={t('learn.learnAtLeast')}
                         dinamicContent={
-                           <progress className="progress progress-primary w-full" max="100" value={30} />
+                           <progress
+                              className="progress progress-primary w-full"
+                              max="5"
+                              value={vocabularyStats?.wordsLearnedToday}
+                           />
                         }
                         icon={<Icon icon={<TbChecklist />} iconSize="large" />}
                         title={t('learn.yourChallenge')}
@@ -103,9 +103,15 @@ const Learn = () => {
                   <div className="w-full p-3 md:w-6/12">
                      <MoleculeCallToActionCard
                         buttonProps={{ buttonText: t('learn.expandVocabulary'), isBlock: true }}
-                        content={t('learn.masteredVocabulary')}
+                        content={t('learn.masteredVocabulary', {
+                           percentageDominated: vocabularyStats?.percentageDominated
+                        })}
                         dinamicContent={
-                           <progress className="progress progress-primary w-full" max="100" value={30} />
+                           <progress
+                              className="progress progress-primary w-full"
+                              max="100"
+                              value={vocabularyStats?.percentageDominated}
+                           />
                         }
                         icon={<Icon icon={<TbBook2 />} iconSize="large" />}
                         title={t('learn.vocabularyMastery')}
@@ -114,7 +120,7 @@ const Learn = () => {
                </div>
             </div>
 
-            <div className="mb-9">
+            <div className="mb-12">
                <AtomTitle type="h3">{t('learn.readingExercises')}</AtomTitle>
                <div className="mb-3 w-full">
                   <MoleculeCarrousel options={{ containScroll: false, loop: true, align: 'start' }}>

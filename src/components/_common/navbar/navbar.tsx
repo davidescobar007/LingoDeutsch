@@ -1,7 +1,6 @@
 'use client'
 /* eslint-disable react/forbid-component-props */
 
-import { useEffect } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { TbLanguage, TbLogout, TbUser } from 'react-icons/tb'
@@ -21,17 +20,6 @@ const Navbar = ({ locale }: { locale: string }) => {
 
    const user = getUserInfo()
 
-   useEffect(() => {
-      const params = new URL(window.location as any).searchParams
-      if (params.get('state') || user) {
-         setTimeout(() => {
-            router.push('/app/learn')
-         }, 1500)
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
-
-   console.log(isUserLoged)
    return (
       <header className="border-b-1 navbar border-neutral bg-base-100 flex h-14 px-4 shadow-md md:px-10 lg:px-20">
          <div className="flex-1">
@@ -130,7 +118,7 @@ const Navbar = ({ locale }: { locale: string }) => {
                   {authMethods?.map((provider: AuthProviderInfo) => (
                      <a
                         className="btn btn-outline btn-primary"
-                        href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/app/learn`}
+                        href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/app/home`}
                         key={provider.authUrl}
                         role="button"
                      >

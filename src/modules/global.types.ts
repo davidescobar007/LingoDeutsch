@@ -11,7 +11,7 @@ export const constants = {
    VOCABULARY: 'vocabulary',
    ARTICLES: 'articles',
    QUIZZES: 'quizzes',
-   STUDY_VOCABULARY: 'studyVocabulary',
+   USER_VOCAB_PROGRESS: 'userVocabularyProgress',
    VOCABULARY_STATS: 'vocabularyStats',
    GRAMMAR: 'grammar',
    DELAY: 500,
