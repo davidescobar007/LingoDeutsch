@@ -27,11 +27,7 @@ body {
 }
 
 .card-outlined {
-   @apply hover:border-primary flex rounded-lg border border-transparent bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md;
-}
-
-.btn-primary {
-   @apply bg-primary text-white;
+   @apply hover:border-primary bg-neutral-content flex  rounded-lg border border-transparent p-5 shadow-sm transition-all duration-300 hover:shadow-md;
 }
 
 .slick-arrow {

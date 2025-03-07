@@ -110,16 +110,34 @@ const config: Config = {
          'lemonade',
          {
             mytheme: {
-               // You can name your theme anything, e.g., 'purpleApp' or 'languageLearningApp'
-               primary: '#805AF2', // Vibrant Purple
-               secondary: '#e5defc', // Light/Pastel Purple
-               accent: '#FFC107', // Amber/Gold
-               neutral: '#555555', // Medium Gray (for main text, consider adjusting shades if needed)
-               'base-100': '#FAFAFA', // Off-White/Light Gray (main background)
-               info: '#3AB7BF',
-               success: '#36D399',
-               warning: '#FBBD23',
-               error: '#F87272'
+               primary: '#805AF2', // Vibrant purple, used for main buttons, highlights, and active elements
+               'primary-content': '#FFFFFF', // White, ensures readability on primary-colored elements
+
+               secondary: '#e5defc', // Light pastel purple, for secondary buttons and subtle UI elements
+               'secondary-content': '#4D2C91', // Darker purple, maintaining good contrast on secondary elements
+
+               accent: '#FFC107', // Amber/Gold, used for accents like hover effects, interactive elements
+               'accent-content': '#5A3B00', // Dark gold/brown, ensuring visibility on accent elements
+
+               neutral: '#555555', // Medium gray, ideal for main text and general content
+               'neutral-content': '#FAFAFA', // Off-white, providing contrast for text on darker neutral backgrounds
+
+               'base-100': '#FAFAFA', // Off-white/light gray, main background color
+               'base-200': '#f4f6f7', // Slightly darker gray, for subtle section differentiation
+               'base-300': '#D6D6D6', // Light gray, for UI elements like dividers, borders
+               'base-content': '#222222', // Dark gray, used for general text ensuring readability
+
+               info: '#3AB7BF', // Teal, for informational messages and hints
+               'info-content': '#042A2E', // Deep teal, ensuring contrast on info messages
+
+               success: '#36D399', // Bright green, for success indicators and positive feedback
+               'success-content': '#064C2C', // Dark green, used for text on success elements
+
+               warning: '#FBBD23', // Gold/Yellow, for warnings and alerts
+               'warning-content': '#5A3E00', // Dark gold, ensuring text visibility on warnings
+
+               error: '#F87272', // Soft red, for error states and critical messages
+               'error-content': '#5A1A1A' // Deep red, maintaining contrast for error text
             }
          }
       ],

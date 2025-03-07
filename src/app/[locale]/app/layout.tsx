@@ -9,13 +9,13 @@ import { useRouter } from '@/navigation'
 
 const Layout = ({ children }: { readonly children: ReactNode }) => {
    const { refetch } = useLogin()
-   const params = new URL(window.location.href).searchParams
    const router = useRouter()
 
    useEffect(() => {
+      const params = new URL(window.location.href).searchParams
       if (params.get('state')) {
          refetch().finally(() => {
-            router.push('/app/learn')
+            router.push('/app/home')
          })
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps

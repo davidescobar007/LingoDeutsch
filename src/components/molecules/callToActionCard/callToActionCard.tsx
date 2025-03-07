@@ -12,7 +12,7 @@ type TMoleculeCallToActionCardProps = {
       buttonText: string
       buttonIcon?: React.ReactNode
       isBlock: boolean
-      typeOf?: 'PRIMARY' | 'INFO' | 'SECONDARY' | 'ACCENT' | 'WARNING'
+      typeOf?: 'PRIMARY' | 'INFO' | 'SECONDARY' | 'ACCENT' | 'WARNING' | 'OUTLINE'
    }
 }
 
@@ -40,7 +40,7 @@ export const MoleculeCallToActionCard: FunctionComponent<TMoleculeCallToActionCa
             <AtomText type="paragraph">{content}</AtomText>
             <div className="w-full">{dinamicContent}</div>
 
-            <AtomButton isBlock={isBlock} typeOf={typeOf}>
+            <AtomButton isBlock={isBlock} variant={typeOf}>
                {buttonText}
                {buttonIcon ?? <span>{buttonIcon}</span>}
             </AtomButton>

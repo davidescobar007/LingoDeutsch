@@ -78,7 +78,7 @@ export const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificat
                            <AtomButton
                               extraClassName="btn-outline btn-block mb-1"
                               onClick={handleSaveTranslation}
-                              typeOf="ACCENT"
+                              variant="ACCENT"
                            >
                               {isLoadingSaveVocabulary ? (
                                  <span className="loading loading-spinner" />

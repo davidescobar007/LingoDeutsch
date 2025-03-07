@@ -22,16 +22,9 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    const t = useTranslations()
 
    return (
-      <div className="card my-6 h-96 min-w-64 shadow-lg">
+      <div className="card bg-neutral-content my-6 h-96 min-w-64 shadow-lg">
          <figure className="h-52">
-            <Image
-               alt={title}
-               className="min-h-full w-full object-cover"
-               height={400}
-               layout="responsive"
-               src={image}
-               width={400}
-            />
+            <Image alt={title} className="min-h-full w-full object-cover" height={400} src={image} width={400} />
          </figure>
          <div className="card-body p-2">
             <AtomText className="badge badge-secondary">{t('card.new')}</AtomText>

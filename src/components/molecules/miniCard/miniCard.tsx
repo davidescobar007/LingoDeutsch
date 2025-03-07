@@ -16,7 +16,7 @@ export const MoleculeMiniCard: FunctionComponent<MoleculeMiniCardProps> = ({
    className = ''
 }) => {
    return (
-      <div className={`card-outlined flex-col items-center justify-center ${className}`}>
+      <div className={`card-outlined flex flex-col items-center justify-center ${className}`}>
          <span className="text-primary ">{icon}</span>
 
          <AtomText type="paragraph">{content}</AtomText>

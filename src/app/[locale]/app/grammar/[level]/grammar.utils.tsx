@@ -1,4 +1,4 @@
-import { AtomTitle } from '@/components/atoms'
+import { AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeTable } from '@/components/molecules'
 import { TIterableData } from '@/modules/actions/types'
 
@@ -7,7 +7,7 @@ export const RenderSchema = (uiSchema: TIterableData[]) => {
       switch (type) {
          case 'header':
             return (
-               <AtomTitle extraClassName={`${classNames} mt-5 font-extrabold`} type={headerLevel}>
+               <AtomTitle type={headerLevel}>
                   {text?.map((item) => {
                      return item.content
                   })}
@@ -15,7 +15,7 @@ export const RenderSchema = (uiSchema: TIterableData[]) => {
             )
 
          case 'paragraph':
-            return <p className="mb-3">{text?.map((item) => item.content)}</p>
+            return <AtomText>{text?.map((item) => item.content)}</AtomText>
          case 'list':
             return (
                <ul className="mb-3 list-disc">

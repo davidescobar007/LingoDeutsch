@@ -37,17 +37,19 @@ const RootLayout = ({
       <QueryProvider>
          <NextIntlClientProvider messages={messages}>
             <html data-theme="mytheme" lang={locale}>
-               <body className={`${interFontDisplay.className} text-gray-600`}> {children}</body>
-               <ReactQueryDevtools initialIsOpen={false} />
-               <ToastContainer
-                  autoClose={5000}
-                  closeOnClick
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  position="bottom-right"
-                  rtl={false}
-                  transition={Slide}
-               />
+               <body className={`${interFontDisplay.className} text-base-content bg-base-200`}>
+                  {children}
+                  <ReactQueryDevtools initialIsOpen={false} />
+                  <ToastContainer
+                     autoClose={5000}
+                     closeOnClick
+                     hideProgressBar={false}
+                     newestOnTop={false}
+                     position="bottom-right"
+                     rtl={false}
+                     transition={Slide}
+                  />
+               </body>
             </html>
          </NextIntlClientProvider>
       </QueryProvider>

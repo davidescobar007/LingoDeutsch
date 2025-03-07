@@ -3,11 +3,12 @@ import { FunctionComponent, ReactNode } from 'react'
 type TAtomButton = {
    children: ReactNode
    type?: 'button' | 'submit' | 'reset' | undefined
-   typeOf?: 'PRIMARY' | 'INFO' | 'SECONDARY' | 'ACCENT' | 'WARNING'
+   variant?: 'PRIMARY' | 'INFO' | 'SECONDARY' | 'ACCENT' | 'WARNING' | 'OUTLINE'
    extraClassName?: string
    dangerouslyResetClassName?: Boolean
    isBlock?: Boolean
    onClick?: () => any
+   disabled?: boolean
 }
 
 const buttonTypes = {
@@ -15,28 +16,31 @@ const buttonTypes = {
    SECONDARY: 'btn-secondary text-neutral',
    INFO: 'btn-info',
    ACCENT: 'btn-accent',
-   WARNING: 'btn-warning'
+   WARNING: 'btn-warning',
+   OUTLINE: 'btn-outline btn-primary'
 }
 const emptyFunction = () => {}
 
 export const AtomButton: FunctionComponent<TAtomButton> = ({
    children,
    type = 'button',
-   typeOf = 'PRIMARY',
+   variant: typeOf = 'PRIMARY',
    extraClassName = '',
    dangerouslyResetClassName = false,
    isBlock = false,
    onClick = emptyFunction,
+   disabled = false,
    ...rest
 }) => {
    return (
       <button
          className={
             (dangerouslyResetClassName && extraClassName) ||
-            `btn my-3  shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
+            `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
                buttonTypes[typeOf]
             } ${extraClassName}`
          }
+         disabled={disabled}
          onClick={onClick}
          type={type}
          {...rest}

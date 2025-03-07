@@ -1,59 +1,64 @@
 import React from 'react'
+import { BookOpenText, CheckCircle2 } from 'lucide-react'
 
-import { Link } from '@/navigation'
+import { AtomBadge, AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { Tgrammar } from '@/modules/actions/types'
 
 type MoleculeTimeLineProps = {
-   listOfItems: { text: string; url: string }[]
-   startClassName?: string
-   middleClassName?: string
-   endClassName?: string
-   containerClassName?: string
+   activeTopic: string | null
+   onSelectTopic: (id: string) => void
+   topics: Tgrammar[]
 }
 
-export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
-   listOfItems,
-   startClassName = 'timeline-start timeline-box',
-   middleClassName = 'timeline-middle',
-   endClassName = 'timeline-end timeline-box',
-   containerClassName = 'timeline w-full overflow-x-scroll py-5'
-}) => {
+export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({ activeTopic, onSelectTopic, topics }) => {
    return (
-      <ul className={containerClassName}>
-         {listOfItems?.map(({ text, url }, index) => {
-            if (!text && !url) return null
-            return index % 2 === 1 ? (
-               <li key={url}>
-                  <hr />
-                  <div className={middleClassName}>
-                     <div className="badge badge-primary badge-lg">{index + 1}</div>
+      <div className="relative flex">
+         <div className="absolute left-4 top-8 z-0 h-[calc(100%-55px)] w-1 bg-gray-200" />
+         <div className="relative flex-1 space-y-4">
+            {topics.map((topic) => (
+               <div
+                  className="flex cursor-pointer items-start py-2 transition-all hover:font-semibold"
+                  key={topic.id}
+                  onClick={() => onSelectTopic(topic.id)}
+               >
+                  <div
+                     className={`relative z-10 mr-3 mt-4 flex h-9 w-9 items-center justify-center rounded-full border-2 ${
+                        topic.isCompleted
+                           ? 'border-green-500 bg-green-100 text-green-700'
+                           : activeTopic === topic.id
+                           ? 'border-primary bg-primary text-white'
+                           : 'hover:border-primary/50 bg-secondary text-primary'
+                     }`}
+                  >
+                     {topic.isCompleted ? (
+                        <Icon icon={<CheckCircle2 size={20} />} />
+                     ) : (
+                        <Icon icon={<BookOpenText size={20} />} />
+                     )}
                   </div>
-                  <div className={endClassName}>
-                     <Link className="" href={url}>
-                        {text}
-                     </Link>
+                  <div className="flex-1 rounded-md p-2 hover:bg-slate-100">
+                     <div className="flex items-center justify-between">
+                        <AtomTitle
+                           extraClassName={`!mb-0 hover:font-semibold ${
+                              activeTopic === topic.id ? 'text-primary' : ''
+                           }`}
+                           type="h5"
+                        >
+                           {topic.topic?.es}
+                        </AtomTitle>
+                        <AtomBadge type="secondary">
+                           <AtomText fontSize="small">{topic.level}</AtomText>
+                        </AtomBadge>
+                     </div>
+                     <div>
+                        <AtomText className="" fontSize="small" isThin>
+                           {topic.isCompleted ? 'Completed' : 'Ready to start'}
+                        </AtomText>
+                     </div>
                   </div>
-                  <hr />
-               </li>
-            ) : (
-               <li key={url}>
-                  {index !== 0 && (
-                     <>
-                        <hr />
-                        <div className={startClassName} />
-                     </>
-                  )}
-                  <div className={startClassName}>
-                     <Link className="" href={url}>
-                        {text}
-                     </Link>
-                  </div>
-                  <div className="timeline-middle">
-                     <div className="badge badge-primary badge-lg">{index + 1}</div>
-                  </div>
-                  {index !== listOfItems.length - 1 && <hr />}
-               </li>
-            )
-         })}
-      </ul>
+               </div>
+            ))}
+         </div>
+      </div>
    )
 }

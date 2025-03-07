@@ -174,6 +174,7 @@ export type Tgrammar = {
    collectionId: string
    collectionName: string
    expand: {}
+   isCompleted: boolean
 }
 
 export type TVocabularyStats = {

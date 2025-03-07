@@ -1,15 +1,13 @@
 /* eslint-disable react/forbid-component-props */
 'use client'
 import { FunctionComponent } from 'react'
-import { TbBook2 } from 'react-icons/tb'
-import { TbBrain, TbHome } from 'react-icons/tb'
+import { BookIcon, BrainIcon, HomeIcon } from 'lucide-react' // Import Lucid icons
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import { AtomTitle, Icon } from '@/components/atoms'
+import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
 import { getUserInfo } from '@/modules/actions/users.actions'
-import { grammarLevels } from '@/modules/global.types'
 import { Link, usePathname, useRouter } from '@/navigation'
 const selectedStyles = 'rounded-xl border-2'
 
@@ -42,91 +40,32 @@ export const OrganismMenu: FunctionComponent = () => {
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
-               <Link className="flex items-center" href="/app/learn">
-                  <Icon icon={<TbHome />} />
-                  <AtomTitle extraClassName="hidden lg:block mb-0">{t('menu.home')}</AtomTitle>
+               <Link className="flex items-center" href="/app/home">
+                  <Icon icon={<HomeIcon />} iconSize="medium" /> {/* Use Lucid HomeIcon */}
+                  <AtomText className="mb-0 hidden lg:block" fontSize="large" isBold>
+                     {t('menu.home')}
+                  </AtomText>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
-               {/* <Link href="/app/practice">
-                  <span className="">
-                     <TbBrain />
-                  </span>
-                  <AtomTitle extraClassName="hidden lg:block">{t('menu.practice')}</AtomTitle>
-               </Link> */}
                <Link className="flex items-center" href="/app/practice">
-                  <Icon icon={<TbBrain />} />
-                  <AtomTitle extraClassName="hidden lg:block mb-0">{t('menu.practice')}</AtomTitle>
+                  <Icon icon={<BrainIcon />} /> {/* Use Lucid BrainIcon */}
+                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                     {t('menu.practice')}
+                  </AtomText>
                </Link>
             </li>
-            <li>
-               <details>
-                  <summary>
-                     <span className="">
-                        <TbBook2 />
-                     </span>
-                     <AtomTitle extraClassName="hidden lg:block">{t('menu.grammar')}</AtomTitle>
-                  </summary>
-                  <ul>
-                     {grammarLevels.map(({ icon, label }) => (
-                        <li key={label}>
-                           <Link className="my-1 justify-between py-3 " href={`/app/grammar/${label}`}>
-                              {icon} {label}
-                           </Link>
-                        </li>
-                     ))}
-                  </ul>
-               </details>
+            <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
+               <Link className="flex items-center" href="/app/grammar">
+                  <Icon icon={<BookIcon />} /> {/* Use Lucid BookIcon */}
+                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                     {t('menu.grammar')}
+                  </AtomText>
+               </Link>
             </li>
          </ul>
 
          <ul className="menu">
-            {/* <li className="bg-red-4000 mb-2">
-               <details>
-                  <summary className="px-6 py-3">
-                     <span className=" ">
-                        <TbLanguage />
-                     </span>
-                  </summary>
-                  <ul>
-                     <li>
-                        <div
-                           className="my-1 justify-between py-3 "
-                           onClick={() => router.push('/app/learn', { locale: 'de' })}
-                        >
-                           {t('menu.germanOption')}
-                           <span className="">
-                              <Image
-                                 alt="German flag"
-                                 height={25}
-                                 priority
-                                 src="https://flagsapi.com/DE/flat/64.png"
-                                 width={30}
-                              />
-                           </span>
-                        </div>
-                     </li>
-                     <li>
-                        <div
-                           className="my-1 justify-between py-3 "
-                           onClick={() => router.push('/app/learn', { locale: 'es' })}
-                        >
-                           {t('menu.spanishOption')}
-                           <span className="">
-                              <Image
-                                 alt="Spain flag"
-                                 height={27}
-                                 priority
-                                 src="https://flagsapi.com/ES/flat/64.png"
-                                 width={35}
-                              />
-                           </span>
-                        </div>
-                     </li>
-                  </ul>
-               </details>
-            </li> */}
-
             {user && (
                <li className={`${pathname === `/app/profile` && selectedStyles} bg-red-4000`}>
                   <Link className="flex items-center" href="/app/profile">

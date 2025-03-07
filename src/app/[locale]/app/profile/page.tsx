@@ -5,9 +5,9 @@ import { useTranslations } from 'next-intl'
 
 import { AtomButton, AtomInput, AtomTitle } from '@/components/atoms'
 import { ProfileLoader } from '@/components/atoms'
+import { useUpdateUser } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
-import { useUpdateUser } from '@/hooks/user'
 import { areObjectsDistinct } from '@/utils'
 
 const Page = () => {

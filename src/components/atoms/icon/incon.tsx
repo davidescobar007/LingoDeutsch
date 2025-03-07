@@ -6,7 +6,7 @@ type IconType = {
 
 export const Icon: FunctionComponent<IconType> = ({ icon, iconSize = 'medium' }) => {
    const classes = [
-      iconSize === 'small' && 'text-lg',
+      iconSize === 'small' && 'text-base',
       iconSize === 'medium' && 'text-xl',
       iconSize === 'large' && 'text-4xl'
    ]
