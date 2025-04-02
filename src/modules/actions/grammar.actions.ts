@@ -1,8 +1,8 @@
-import { pbGetList, pbGetSingleRecordQuery } from '@/network'
+import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from '@/network'
 
 import { constants, queryOperators } from '../global.types'
 
-import { Tgrammar } from './types'
+import { Tgrammar, TUser, TUserGrammarProgress } from './types'
 
 export const getGrammarByLevel = async (grammarLevel: string): Promise<Tgrammar[]> => {
    try {
@@ -29,4 +29,21 @@ export const getSingleGrammarById = async (id: string): Promise<Tgrammar> => {
    } catch (error: any) {
       return error
    }
+}
+
+export const getSavedGrammarTopicByUser = async (user: TUser): Promise<TUserGrammarProgress[]> => {
+   const savedGrammarTopics = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
+      filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}"`
+   })
+   return savedGrammarTopics as unknown as TUserGrammarProgress[]
+}
+
+export const saveGrammarUserProgress = async (user: TUser, grammar_id: string) => {
+   const createdRecord = pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, {
+      user_id: user.id,
+      grammar_id,
+      isCompleted: true,
+      dateCompleted: new Date().toISOString()
+   })
+   return createdRecord
 }

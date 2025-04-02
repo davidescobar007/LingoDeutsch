@@ -6,13 +6,6 @@ import { constants } from '../global.types'
 import { delay } from './actions.utils'
 import { TArticle } from './types'
 
-// const getAiArticle = async () => {
-//    const data = await aiModelRequest({
-//       content: "you are a blogger and will write an article about the city of Prague in b2 german  in 150 words"
-//    })
-//    console.log(data)
-// }
-
 const getArticlesList = async (): Promise<TArticle[]> => {
    try {
       const data = await pbGetList('articles')

@@ -188,3 +188,16 @@ export type TVocabularyStats = {
    isStreak: boolean
    wordsLearnedToday: number
 }
+
+export type TUserGrammarProgress = {
+   collectionId: string
+   collectionName: string
+   created: string
+   dateCompleted: string
+   grammar_id: string
+   id: string
+   isCompleted: boolean
+   updated: string
+   user_id: string
+   expand: {}
+}

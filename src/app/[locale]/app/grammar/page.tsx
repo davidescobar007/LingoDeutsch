@@ -6,16 +6,26 @@ import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeTimeLine } from '@/components/molecules'
-import { useGetGrammarByLevel, useGetSingleGrammarTopic } from '@/hooks/grammar'
+import {
+   useGetGrammarByLevel,
+   useGetSingleGrammarTopic,
+   useSavedGrammarTopicByUser,
+   useSaveGrammarProgress
+} from '@/hooks/grammar'
+import { TUser } from '@/modules/actions/types'
+import { getUserInfo } from '@/modules/actions/users.actions'
 import { parseHtmlToTIterableData } from '@/utils'
 
 import { RenderSchema } from './[level]/grammar.utils'
 
 const Grammar = () => {
    const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
+   const t = useTranslations()
+   const user = getUserInfo() as TUser
    const { data } = useGetGrammarByLevel('A1')
    const { data: grammarTopicContent } = useGetSingleGrammarTopic(selectedTopic as string)
-   const t = useTranslations()
+   const { data: userGrammarProgress } = useSavedGrammarTopicByUser(user)
+   const { mutate: saveGrammarProgress } = useSaveGrammarProgress()
 
    const scrollToGrammarContent = () => {
       const grammarContent = document.getElementById('grammar-content')
@@ -45,6 +55,7 @@ const Grammar = () => {
                   activeTopic={selectedTopic}
                   onSelectTopic={(topic) => handleSelectTopic(topic)}
                   topics={data || []}
+                  userGrammarProgress={userGrammarProgress}
                />
             </div>
          </aside>
@@ -60,10 +71,28 @@ const Grammar = () => {
                   {grammarTopicContent?.content &&
                      RenderSchema(parseHtmlToTIterableData(grammarTopicContent?.content as string))}
                   <footer className="mt-4 flex flex-wrap justify-end gap-4 border-t-2 py-4">
-                     <AtomButton variant="OUTLINE">
-                        Marcar leccion como aprendida <GraduationCap />
-                     </AtomButton>
-                     <AtomButton>
+                     {!userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic) && (
+                        <AtomButton
+                           onClick={() => {
+                              saveGrammarProgress({ user, grammar_id: selectedTopic })
+                           }}
+                           variant="OUTLINE"
+                        >
+                           Marcar leccion como aprendida <GraduationCap />
+                        </AtomButton>
+                     )}
+                     <AtomButton
+                        onClick={() => {
+                           const currentIndex = data?.findIndex((topic) => topic.id === selectedTopic)
+                           if (
+                              currentIndex !== undefined &&
+                              currentIndex >= 0 &&
+                              currentIndex < (data?.length || 0) - 1
+                           ) {
+                              setSelectedTopic(data?.[currentIndex + 1]?.id || null)
+                           }
+                        }}
+                     >
                         Siguien Leccion <ChevronRight />
                      </AtomButton>
                   </footer>
