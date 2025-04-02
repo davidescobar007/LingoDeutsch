@@ -1,8 +1,11 @@
 import { FunctionComponent, ReactNode } from 'react'
 
+import { Link } from '@/navigation'
+
 type TAtomButton = {
    children: ReactNode
-   type?: 'button' | 'submit' | 'reset' | undefined
+   type?: 'button' | 'submit' | 'reset' | 'link' | undefined
+   href?: string
    variant?: 'PRIMARY' | 'INFO' | 'SECONDARY' | 'ACCENT' | 'WARNING' | 'OUTLINE'
    extraClassName?: string
    dangerouslyResetClassName?: Boolean
@@ -24,6 +27,7 @@ const emptyFunction = () => {}
 export const AtomButton: FunctionComponent<TAtomButton> = ({
    children,
    type = 'button',
+   href = '',
    variant: typeOf = 'PRIMARY',
    extraClassName = '',
    dangerouslyResetClassName = false,
@@ -32,7 +36,20 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
    disabled = false,
    ...rest
 }) => {
-   return (
+   return type === 'link' ? (
+      <Link
+         href={href}
+         {...rest}
+         className={
+            (dangerouslyResetClassName && extraClassName) ||
+            `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
+               buttonTypes[typeOf]
+            } ${extraClassName}`
+         }
+      >
+         {children}
+      </Link>
+   ) : (
       <button
          className={
             (dangerouslyResetClassName && extraClassName) ||

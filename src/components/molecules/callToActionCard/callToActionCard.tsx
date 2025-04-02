@@ -40,7 +40,7 @@ export const MoleculeCallToActionCard: FunctionComponent<TMoleculeCallToActionCa
             <AtomText type="paragraph">{content}</AtomText>
             <div className="w-full">{dinamicContent}</div>
 
-            <AtomButton isBlock={isBlock} variant={typeOf}>
+            <AtomButton href="grammar" isBlock={isBlock} type="link" variant={typeOf}>
                {buttonText}
                {buttonIcon ?? <span>{buttonIcon}</span>}
             </AtomButton>
