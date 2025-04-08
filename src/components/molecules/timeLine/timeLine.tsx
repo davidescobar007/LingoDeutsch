@@ -58,7 +58,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                            }`}
                            type="h5"
                         >
-                           {topic.topic?.es}
+                           {topic.topic_name?.es}
                         </AtomTitle>
                         <AtomBadge type="secondary">
                            <AtomText fontSize="small">{topic.level}</AtomText>
@@ -66,7 +66,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                      </div>
                      <div>
                         <AtomText className="" fontSize="small" isThin>
-                           {topic.isCompleted ? 'Completed' : 'Ready to start'}
+                           {isTopicCompleted(topic.id) ? 'Completado' : 'Lista para aprender'}
                         </AtomText>
                      </div>
                   </div>

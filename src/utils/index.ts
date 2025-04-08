@@ -267,5 +267,6 @@ export function parseHtmlToTIterableData(html: string): TIterableData[] {
       }
    })
 
+   console.log(tIterableDataArray)
    return tIterableDataArray
 }

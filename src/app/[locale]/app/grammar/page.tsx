@@ -1,8 +1,11 @@
+/* eslint-disable react/no-unstable-nested-components */
 'use client'
 
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { BookOpen, ChevronRight, GraduationCap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import remarkGfm from 'remark-gfm'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeTimeLine } from '@/components/molecules'
@@ -14,9 +17,6 @@ import {
 } from '@/hooks/grammar'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
-import { parseHtmlToTIterableData } from '@/utils'
-
-import { RenderSchema } from './[level]/grammar.utils'
 
 const Grammar = () => {
    const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
@@ -64,12 +64,15 @@ const Grammar = () => {
                <>
                   <header className="bg-secondary mb-3 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md">
                      <AtomTitle extraClassName="text-primary mt-3" type="h3">
-                        {grammarTopicContent?.topic?.es}
+                        {grammarTopicContent?.topic_name?.es}
                      </AtomTitle>
                      <AtomBadge>{grammarTopicContent?.level}</AtomBadge>
                   </header>
-                  {grammarTopicContent?.content &&
-                     RenderSchema(parseHtmlToTIterableData(grammarTopicContent?.content as string))}
+                  {grammarTopicContent?.content && (
+                     <div className="markdown-content">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{grammarTopicContent.content}</ReactMarkdown>
+                     </div>
+                  )}
                   <footer className="mt-4 flex flex-wrap justify-end gap-4 border-t-2 py-4">
                      {!userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic) && (
                         <AtomButton

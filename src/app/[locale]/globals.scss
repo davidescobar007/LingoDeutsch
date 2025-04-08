@@ -101,3 +101,19 @@ body {
 .embla__dot.is-selected {
    background-color: rgba(0, 0, 0, 0.9);
 }
+
+.markdown-content {
+   @apply prose;
+
+   & h2,
+   h3,
+   h4,
+   h5,
+   h6 {
+      font-size: medium;
+   }
+
+   & table {
+      @apply table-zebra table;
+   }
+}

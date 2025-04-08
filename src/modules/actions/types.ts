@@ -161,11 +161,12 @@ export type TIterableData = {
 
 export type Tgrammar = {
    content: string
+
    difficulty: number
    id: string
    iterableData: TIterableData[]
    level: string
-   topic?: {
+   topic_name?: {
       de: string
       es: string
    }
