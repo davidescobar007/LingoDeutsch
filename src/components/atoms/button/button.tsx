@@ -41,10 +41,12 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
          href={href}
          {...rest}
          className={
-            (dangerouslyResetClassName && extraClassName) ||
-            `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
-               buttonTypes[typeOf]
-            } ${extraClassName}`
+            dangerouslyResetClassName && !extraClassName
+               ? 'unset-all'
+               : (dangerouslyResetClassName && extraClassName) ||
+                 `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
+                    buttonTypes[typeOf]
+                 } ${extraClassName}`
          }
       >
          {children}
@@ -52,10 +54,12 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
    ) : (
       <button
          className={
-            (dangerouslyResetClassName && extraClassName) ||
-            `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
-               buttonTypes[typeOf]
-            } ${extraClassName}`
+            dangerouslyResetClassName && !extraClassName
+               ? 'unset-all'
+               : (dangerouslyResetClassName && extraClassName) ||
+                 `btn my-3 shadow-md target:bg-transparent ${isBlock ? ' btn-block' : ''} ${
+                    buttonTypes[typeOf]
+                 } ${extraClassName}`
          }
          disabled={disabled}
          onClick={onClick}

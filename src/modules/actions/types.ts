@@ -63,26 +63,59 @@ export type TArticle = {
    expand: {}
 }
 
+type TconjugationPronouns = {
+   du: string
+   'er/sie/es': string
+   ich: string
+   ihr: string
+   'sie/Sie': string
+   wir: string
+}
+
 export type Ttranslation = {
-   collectionId?: string
-   collectionName?: string
-   conjugation?: {}
-   created?: string
-   english_translation?: string | null
-   examples?: {
-      data: Array<{
-         german: string
-         spanish: string
-      }>
+   conjugation?: {
+      futureI?: TconjugationPronouns
+      futureII?: TconjugationPronouns
+      pastPerfect?: TconjugationPronouns
+      perfectTense?: TconjugationPronouns
+      presentTense?: TconjugationPronouns
+      simplePast?: TconjugationPronouns
+      participlesI?: string
+      participlesII?: string
+      allPossibleWordForms: string[]
+      article?: 'der' | 'die' | 'das' | null
+      auxiliaryVerb?: string
+      pluralForm?: string
    }
+   cases?: {
+      singular: {
+         nominative: string
+         genitive: string
+         dative: string
+         accusative: string
+      }
+      plural?: {
+         nominative: string
+         genitive: string
+         dative: string
+         accusative: string
+      }
+   }
+   english_translation?: string | null
+   examples: {
+      english_translation: string
+      sentence: string
+      spanish_translation: string
+   }[]
    german_translation: string
    id?: string
-   last_time_seen?: string
    spanish_translation: string
    type_of_word?: string
-   updated?: string
-   user?: Array<TUser>
-   expand?: {}
+   frequency_Rank: number | null
+   antonyms?: string
+   synonyms?: string
+   ipa_pronunciation: string
+   cefrLevel?: string
 }
 
 export type TLinguaTools = Array<{
@@ -201,4 +234,96 @@ export type TUserGrammarProgress = {
    updated: string
    user_id: string
    expand: {}
+}
+
+export type TwordSpecification = {
+   allPossibleWordForms: string[]
+   antonyms: string[]
+   article: 'der' | 'die' | 'das'
+   auxiliaryVerb: string
+   baseForm: string
+   cases?: {
+      singular: {
+         nominative: string
+         genitive: string
+         dative: string
+         accusative: string
+      }
+      plural: {
+         nominative: string
+         genitive: string
+         dative: string
+         accusative: string
+      }
+   }
+   cefrLevel: string[]
+   conjugation?: {
+      futureI: {
+         du: string
+         'er/sie/es': string
+         ich: string
+         ihr: string
+         'sie/Sie': string
+         wir: string
+      }
+      futureII: {
+         du: string
+         'er/sie/es': string
+         ich: string
+         ihr: string
+         'sie/Sie': string
+         wir: string
+      }
+      pastPerfect: {
+         du: string
+         'er/sie/es': string
+         ich: string
+         ihr: string
+         'sie/Sie': string
+         wir: string
+      }
+      perfectTense: {
+         du: string
+         'er/sie/es': string
+         ich: string
+         ihr: string
+         'sie/Sie': string
+         wir: string
+      }
+      presentTense: {
+         du: string
+         'er/sie/es': string
+         ich: string
+         ihr: string
+         'sie/Sie': string
+         wir: string
+      }
+      simplePast: {
+         du: string
+         'er/sie/es': string
+         ich: string
+         ihr: string
+         'sie/Sie': string
+         wir: string
+      }
+   }
+   examples: {
+      english_translation: string
+      sentence: string
+      spanish_translation: string
+   }[]
+   frequencyRank: number
+   participleI?: string
+   participleII?: string
+   plural?: string
+   pronunciation: {
+      ipa: string
+   }
+   synonyms: string[]
+   translations: {
+      english: string[]
+      spanish: string[]
+   }
+   typeOfWord: string
+   word: string
 }

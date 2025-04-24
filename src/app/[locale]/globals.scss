@@ -117,3 +117,7 @@ body {
       @apply table-zebra table;
    }
 }
+
+.unset-all {
+   all: unset;
+}

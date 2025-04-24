@@ -42,24 +42,18 @@ export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
       <div className="md:w-16/24 w-full">
          <div className="hero-content p-0 text-center">
             <div>
-               <div className="fixed inset-x-0 top-0 z-10 mx-auto w-full md:hidden">
-                  <MoleculeImageCard
-                     image={imageURL}
-                     level={level}
-                     saveVocabulary={saveVocabulary}
-                     selectedWord={currentWordIntext}
-                     title={title}
-                     translationData={translationData}
-                  />
+               <div className=" inset-x-0 top-0 z-10 mx-auto w-full md:hidden">
+                  <MoleculeImageCard image={imageURL} level={level} title={title} />
                </div>
 
                <div className="mb-5 hidden text-left md:block">
                   <header className="mb-3">
                      <AtomTitle extraClassName="font-medium">{title}</AtomTitle>
-
-                     {level.map((item) => (
-                        <AtomBadge key={item}>{item}</AtomBadge>
-                     ))}
+                     <div className="flex justify-normal gap-3">
+                        {level.map((item) => (
+                           <AtomBadge key={item}>{item}</AtomBadge>
+                        ))}
+                     </div>
                   </header>
                   <Image
                      alt="image related to the title"
@@ -71,8 +65,8 @@ export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                   />
                </div>
 
-               <div className="mt-44 w-full p-5 md:mt-0 md:p-0">
-                  <p className="text-justify  leading-9 tracking-wide">
+               <div className="w-full">
+                  <p className="text-justify leading-8 tracking-wide">
                      {text_content
                         .replace(/\./g, '. ')
                         .split(' ')

@@ -8,16 +8,18 @@ type TText = {
    isItalic?: boolean
    isThin?: boolean
    fontSize?: 'small' | 'medium' | 'large'
+   isBlock?: boolean
 }
 
 export const AtomText: FunctionComponent<TText> = ({
    children,
    className = '',
-   type = 'span',
+   type = 'paragraph',
    isBold = false,
    isItalic = false,
    isThin = false,
-   fontSize = 'medium'
+   fontSize = 'medium',
+   isBlock = false
 }) => {
    const classes = [
       className,
@@ -26,7 +28,8 @@ export const AtomText: FunctionComponent<TText> = ({
       isThin && 'font-thin',
       fontSize === 'small' && 'text-xs',
       fontSize === 'medium' && 'text-base',
-      fontSize === 'large' && 'text-lg'
+      fontSize === 'large' && 'text-lg',
+      isBlock && 'w-full'
    ]
       .filter(Boolean)
       .join(' ')

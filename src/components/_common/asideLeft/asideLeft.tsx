@@ -41,7 +41,7 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/home">
-                  <Icon icon={<HomeIcon />} iconSize="medium" /> {/* Use Lucid HomeIcon */}
+                  <Icon icon={<HomeIcon />} iconSize="small" /> {/* Use Lucid HomeIcon */}
                   <AtomText className="mb-0 hidden lg:block" fontSize="large" isBold>
                      {t('menu.home')}
                   </AtomText>
