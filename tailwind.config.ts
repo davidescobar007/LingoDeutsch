@@ -119,12 +119,12 @@ const config: Config = {
                accent: '#FFC107', // Amber/Gold, used for accents like hover effects, interactive elements
                'accent-content': '#5A3B00', // Dark gold/brown, ensuring visibility on accent elements
 
-               neutral: '#555555', // Medium gray, ideal for main text and general content
+               neutral: '#444444', // Medium gray, ideal for main text and general content
                'neutral-content': '#FAFAFA', // Off-white, providing contrast for text on darker neutral backgrounds
 
                'base-100': '#FAFAFA', // Off-white/light gray, main background color
-               'base-200': '#f4f6f7', // Slightly darker gray, for subtle section differentiation
-               'base-300': '#D6D6D6', // Light gray, for UI elements like dividers, borders
+               'base-200': '#F9FAFB', // Slightly darker gray, for subtle section differentiation
+               'base-300': '#f4f6f7', // Light gray, for UI elements like dividers, borders
                'base-content': '#222222', // Dark gray, used for general text ensuring readability
 
                info: '#3AB7BF', // Teal, for informational messages and hints

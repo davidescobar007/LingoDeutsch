@@ -7,7 +7,7 @@ type TText = {
    isBold?: boolean
    isItalic?: boolean
    isThin?: boolean
-   fontSize?: 'small' | 'medium' | 'large'
+   fontSize?: 'small' | 'medium' | 'large' | 'huge'
    isBlock?: boolean
 }
 
@@ -25,10 +25,11 @@ export const AtomText: FunctionComponent<TText> = ({
       className,
       isBold && 'font-bold',
       isItalic && 'italic',
-      isThin && 'font-thin',
-      fontSize === 'small' && 'text-xs',
+      isThin && 'font-thin text-gray-500',
+      fontSize === 'small' && 'text-sm',
       fontSize === 'medium' && 'text-base',
       fontSize === 'large' && 'text-lg',
+      fontSize === 'huge' && 'text-xl',
       isBlock && 'w-full'
    ]
       .filter(Boolean)

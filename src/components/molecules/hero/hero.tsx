@@ -2,7 +2,6 @@
 
 import { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomTitle } from '@/components/atoms'
@@ -85,10 +84,10 @@ export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                            </span>
                         ))}
                   </p>
-                  <footer className="tooltip tooltip-accent mb-28 mt-7 lg:hidden" data-tip={t('learn.earnPoints')}>
-                     <Link href={`/quiz/${articleId}`}>
-                        <AtomButton>{t('learn.startQuiz')} 📝</AtomButton>
-                     </Link>
+                  <footer className="tooltip tooltip-accent mb-28 mt-7" data-tip={t('learn.earnPoints')}>
+                     <AtomButton href={`/app/quiz/${articleId}`} type="link">
+                        {t('learn.startQuiz')} 📝
+                     </AtomButton>
                   </footer>
                </div>
             </div>

@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl'
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { Ttranslation } from '@/modules/actions/types'
 import { isUserLoged } from '@/modules/actions/users.actions'
-import { Link } from '@/navigation'
 import { openModal } from '@/utils'
 
 interface MoleculeWordSpecificationProps {
@@ -85,12 +84,6 @@ export const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificat
                </div>
             )}
          </section>
-
-         <Link href={`/app/quiz/${articleId}`}>
-            <AtomButton isBlock variant="OUTLINE">
-               {t('learn.startQuiz')} 📝
-            </AtomButton>
-         </Link>
       </div>
    )
 }

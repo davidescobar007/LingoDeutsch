@@ -2,6 +2,7 @@ import { closest } from 'color-2-name'
 
 import { TIterableData, TListItem } from '@/modules/actions/types'
 import { tailwindColors } from '@/modules/global.types'
+
 export const getRandomFromArray = (array: any[]) => {
    const random = Math.floor(Math.random() * array.length)
    return array[random]

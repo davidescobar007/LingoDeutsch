@@ -44,7 +44,6 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
             title={article?.title}
             translationData={{ ...translationData, isError, isFetching }}
          />
-         {/* Desktop Word Specification (Sticky) */}
          <div className="w-7/24 sticky top-4 hidden md:block">
             <MoleculeWordSpecification
                articleId={id}
@@ -56,8 +55,6 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
                selectedWord={wordToTranslate}
             />
          </div>
-
-         {/* Mobile Drawer for Word Specification */}
 
          {isMobile && translationData && (
             <Drawer.Root onOpenChange={setIsDrawerOpen} open={isDrawerOpen} shouldScaleBackground>

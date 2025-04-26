@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 }
 
 const interFontDisplay = Inter({
-   weight: '400',
+   weight: '500',
    subsets: ['latin'],
    display: 'auto',
    style: 'normal'
@@ -37,7 +37,7 @@ const RootLayout = ({
       <QueryProvider>
          <NextIntlClientProvider messages={messages}>
             <html data-theme="mytheme" lang={locale}>
-               <body className={`${interFontDisplay.className} text-base-content bg-base-200`}>
+               <body className={`${interFontDisplay.className} text-neutral bg-base-300`}>
                   {children}
                   <ReactQueryDevtools initialIsOpen={false} />
                   <ToastContainer

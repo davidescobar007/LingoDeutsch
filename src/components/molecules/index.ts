@@ -1,4 +1,5 @@
 export { OrganismMenu } from '../_common/asideLeft/asideLeft'
+export { MoleculeAlert } from './alert/alert'
 export { MoleculeBadgeList } from './badgeList/badgeList'
 export { MoleculeBarChart } from './barChart/barChart'
 export { MoleculeCallToActionCard } from './callToActionCard/callToActionCard'
