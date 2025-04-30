@@ -124,16 +124,18 @@ const Learn = () => {
                <AtomTitle type="h3">{t('learn.readingExercises')}</AtomTitle>
                <div className="mb-3 w-full">
                   <MoleculeCarrousel options={{ containScroll: false, loop: true, align: 'start' }}>
-                     {articles.map(({ id, title, imageFile }) => {
-                        return (
-                           <MoleculeCard
-                              image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
-                              key={id}
-                              redirectTo={id}
-                              title={title}
-                           />
-                        )
-                     })}
+                     {articles
+                        ? articles.map(({ id, title, imageFile }) => {
+                             return (
+                                <MoleculeCard
+                                   image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
+                                   key={id}
+                                   redirectTo={id}
+                                   title={title}
+                                />
+                             )
+                          })
+                        : []}
                   </MoleculeCarrousel>
                </div>
             </div>

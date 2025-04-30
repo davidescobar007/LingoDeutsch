@@ -14,6 +14,7 @@ export const constants = {
    USER_VOCAB_PROGRESS: 'userVocabularyProgress',
    VOCABULARY_STATS: 'vocabularyStats',
    USER_GRAMMAR_PROGRESS: 'userGrammarProgress',
+   USER_ARTICLE_PROGRESS: 'userArticlesProgress',
    GRAMMAR: 'grammar',
    DELAY: 500,
    CARDS_LEVEL: {

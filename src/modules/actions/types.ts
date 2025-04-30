@@ -52,15 +52,27 @@ export type TArticle = {
    text_content: string
    title: string
    updated: string
-   quizz: Array<{
+   quizz: {
       question: string
       option_one: string
       option_two: string
       option_three: string
-      option_four: string
-      correct_answer: string
-   }>
+      option_four?: string
+      option_five?: string
+      correct_answer: 'option_one' | 'option_two' | 'option_three' | 'option_four' | 'option_five'
+   }[]
    expand: {}
+}
+
+export type TArticleUser = {
+   id: string
+   article_id: string
+   user_id: string
+   is_completed: boolean
+   highest_score_ever: number
+   number_of_attempts: number
+   created?: string
+   updated?: string
 }
 
 type TconjugationPronouns = {

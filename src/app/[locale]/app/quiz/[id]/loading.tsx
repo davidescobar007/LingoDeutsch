@@ -1,9 +1,7 @@
 'use client'
 
-import { QuizzLoader } from '@/components/atoms'
-
 const Loading = () => {
-   return <QuizzLoader />
+   return <span className="loader" />
 }
 
 export default Loading

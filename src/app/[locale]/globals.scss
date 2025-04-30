@@ -121,3 +121,7 @@ body {
 .unset-all {
    all: unset;
 }
+
+.countdown-box {
+   @apply bg-neutral mx-0.5 inline-block rounded-lg px-3 py-2 text-xl font-bold text-white;
+}

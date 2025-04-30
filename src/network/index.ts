@@ -34,6 +34,19 @@ export const pbGetSingleRecordQuery = async ({
    return records
 }
 
+export const pbGetSingleRecordWithComplexfilter = async ({
+   collection,
+   filter,
+   expand = null
+}: {
+   collection: string
+   filter: string
+   expand?: any
+}) => {
+   const record = await pb.collection(collection).getFirstListItem(filter, { expand })
+   return record
+}
+
 export const pbCreateRecord = async (collection: string, data: any) => {
    return await pb.collection(collection).create(data, { $autoCancel: false })
 }

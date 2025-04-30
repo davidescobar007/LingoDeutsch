@@ -36,8 +36,8 @@ export const getScore = async (userId: string): Promise<number> => {
 
 export const updateUSer = async (user: TUser) => pbUpdateRecord(constants.USERS, user.id, user)
 
-export const updateUserScore = async (user: TUser): Promise<void> => {
-   user.score = Math.round(Number(user.score))
+export const updateUserScore = async ({ user, newScore }: { user: TUser; newScore: number }): Promise<void> => {
+   user.score = Math.round(newScore + (user.score ?? 0))
    await pbUpdateRecord(constants.USERS, user.id, user)
 }
 
