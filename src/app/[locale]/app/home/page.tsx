@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-sort-props */
 'use client'
 import React from 'react'
-import { TbBook, TbBook2, TbBrain, TbChecklist, TbFlame } from 'react-icons/tb'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
@@ -36,10 +35,10 @@ const Learn = () => {
                   buttonProps={{
                      buttonText: t('learn.startGrammarLesson'),
                      isBlock: false,
-                     buttonIcon: <TbBook />
+                     buttonIcon: <Icon icon="book-open-check" iconState="white" />
                   }}
                   content={t('learn.grammarContent')}
-                  icon={<Icon icon={<TbBook />} iconSize="large" />}
+                  icon={<Icon icon="book-open-check" iconSize="large" iconState="primary" />}
                   isIconFilled
                   title={t('learn.grammarStepByStep')}
                />
@@ -53,7 +52,7 @@ const Learn = () => {
                      <MoleculeMiniCard
                         content={t('learn.saved')}
                         footer={vocabularyStats?.totalWords}
-                        icon={<Icon icon={<TbBook2 className="text-blue-500" />} iconSize="large" />}
+                        icon={<Icon icon="library" className="!text-blue-500" iconSize="large" />}
                         className=""
                      />
                   </div>
@@ -61,7 +60,7 @@ const Learn = () => {
                      <MoleculeMiniCard
                         content={t('learn.learned')}
                         footer={vocabularyStats?.learnedWords}
-                        icon={<Icon icon={<TbBrain className="text-pink-500" />} iconSize="large" />}
+                        icon={<Icon icon="brain-cog" className="text-pink-500" iconSize="large" />}
                         className=" "
                      />
                   </div>
@@ -69,7 +68,7 @@ const Learn = () => {
                      <MoleculeMiniCard
                         content={t('learn.toReview')}
                         footer={vocabularyStats?.toRecheck}
-                        icon={<Icon icon={<TbChecklist className="text-green-500" />} iconSize="large" />}
+                        icon={<Icon icon="clipboard-check" className="!text-green-500" iconSize="large" />}
                         className=""
                      />
                   </div>
@@ -77,7 +76,7 @@ const Learn = () => {
                      <MoleculeMiniCard
                         content={t('learn.streak')}
                         footer={vocabularyStats?.streak}
-                        icon={<Icon icon={<TbFlame className="text-orange-500" />} iconSize="large" />}
+                        icon={<Icon icon="flame" className="text-orange-500" iconSize="large" />}
                         className=""
                      />
                   </div>
@@ -96,7 +95,7 @@ const Learn = () => {
                               value={vocabularyStats?.wordsLearnedToday}
                            />
                         }
-                        icon={<Icon icon={<TbChecklist />} iconSize="large" />}
+                        icon={<Icon icon="clipboard-check" iconSize="large" iconState="primary" />}
                         title={t('learn.yourChallenge')}
                      />
                   </div>
@@ -113,7 +112,7 @@ const Learn = () => {
                               value={vocabularyStats?.percentageDominated}
                            />
                         }
-                        icon={<Icon icon={<TbBook2 />} iconSize="large" />}
+                        icon={<Icon icon="library" iconSize="large" iconState="primary" />}
                         title={t('learn.vocabularyMastery')}
                      />
                   </div>

@@ -1,6 +1,4 @@
 import React, { ReactElement } from 'react'
-import { GiPlainCircle } from 'react-icons/gi'
-import { RiCheckboxBlankCircleLine } from 'react-icons/ri'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 
@@ -43,9 +41,9 @@ export const EmblaCarousel: React.FC<PropType> = ({ options, children }) => {
                {scrollSnaps.map((_, index) => (
                   <DotButton key={index} onClick={() => onDotButtonClick(index)}>
                      {index === selectedIndex ? (
-                        <Icon icon={<GiPlainCircle />} iconSize="medium" />
+                        <Icon fill="#805AF2" icon="circle" iconSize="medium" />
                      ) : (
-                        <Icon icon={<RiCheckboxBlankCircleLine />} iconSize="medium" />
+                        <Icon icon="circle" iconSize="medium" />
                      )}
                   </DotButton>
                ))}

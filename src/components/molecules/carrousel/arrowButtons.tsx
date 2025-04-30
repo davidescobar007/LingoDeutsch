@@ -1,6 +1,5 @@
 /* eslint-disable react/no-multi-comp */
 import React, { ComponentPropsWithRef, useCallback, useEffect, useState } from 'react'
-import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'
 import { EmblaCarouselType } from 'embla-carousel'
 
 import { Icon } from '@/components/atoms'
@@ -53,7 +52,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
 
    return (
       <button className="embla__button embla__button--prev" type="button" {...restProps}>
-         <Icon icon={<FaChevronCircleLeft />} iconSize="large" />
+         <Icon fill="transparent" icon="circle-chevron-left" iconSize="large" />
          {children}
       </button>
    )
@@ -64,7 +63,7 @@ export const NextButton: React.FC<PropType> = (props) => {
 
    return (
       <button className="embla__button embla__button--next" type="button" {...restProps}>
-         <Icon icon={<FaChevronCircleRight />} iconSize="large" />
+         <Icon icon="circle-chevron-right" iconSize="large" />
          {children}
       </button>
    )

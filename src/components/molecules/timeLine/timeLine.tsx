@@ -1,5 +1,4 @@
 import React from 'react'
-import { BookOpenText, CheckCircle2 } from 'lucide-react'
 
 import { AtomBadge, AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { Tgrammar, TUserGrammarProgress } from '@/modules/actions/types'
@@ -41,13 +40,22 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                               : 'border-green-500 bg-green-100 text-green-700'
                            : activeTopic === topic.id
                            ? 'border-primary bg-primary text-white'
-                           : 'hover:border-primary/50 bg-secondary text-primary'
+                           : 'hover:border-primary/50 bg-secondary '
                      }`}
                   >
                      {isTopicCompleted(topic.id) ? (
-                        <Icon icon={<CheckCircle2 size={20} />} />
+                        <Icon
+                           className={`text-green-600 ${activeTopic === topic.id ? 'text-white' : ''}`}
+                           icon="check"
+                           iconSize="medium"
+                        />
                      ) : (
-                        <Icon icon={<BookOpenText size={20} />} />
+                        <Icon
+                           className={`text-primary ${activeTopic === topic.id ? 'text-white' : ''}`}
+                           icon="book-open-check"
+                           iconSize="medium"
+                           iconState="primary"
+                        />
                      )}
                   </div>
                   <div className="flex-1 rounded-md p-2 hover:bg-slate-100">
@@ -60,7 +68,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                         >
                            {topic.topic_name?.es}
                         </AtomTitle>
-                        <AtomBadge type="secondary">
+                        <AtomBadge color="secondary">
                            <AtomText fontSize="small">{topic.level}</AtomText>
                         </AtomBadge>
                      </div>

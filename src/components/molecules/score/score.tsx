@@ -1,8 +1,5 @@
 'use client'
 import { FunctionComponent, JSX } from 'react'
-import { BsStars } from 'react-icons/bs'
-import { TbCrown, TbMedal, TbTrophy } from 'react-icons/tb'
-import { TiStarFullOutline } from 'react-icons/ti'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
@@ -30,16 +27,16 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
    const t = useTranslations()
 
    const scoreMedals: { [key: string]: JSX.Element } = {
-      '1': <Icon icon={<TbCrown className="text-yellow-400" />} iconSize="medium" />,
-      '2': <Icon icon={<TbTrophy className="text-slate-400" />} iconSize="medium" />,
-      '3': <Icon icon={<TbMedal className="text-amber-600" />} iconSize="medium" />
+      '1': <Icon className="text-yellow-400" icon="crown" iconSize="medium" />,
+      '2': <Icon className="text-slate-400" icon="trophy" iconSize="medium" />,
+      '3': <Icon className="text-amber-600" icon="medal" iconSize="medium" />
    }
 
    return (
       <div className="w-full">
          <AtomTitle type="h3">{t('score.title')}</AtomTitle>
          <div className="alert mb-8 border-yellow-200 bg-yellow-50" role="alert">
-            <BsStars className="text-yellow-700" />
+            <Icon className="text-yellow-700" icon="stars" />
             <AtomText className="text-yellow-700" isBold>
                {t('score.congratulations')}
             </AtomText>
@@ -72,9 +69,7 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
                      <div className="badge badge-secondary hidden sm:block">
                         {score} {t('score.span')}
                      </div>
-                     {scoreMedals[index + 1] || (
-                        <Icon icon={<TiStarFullOutline className="text-primary" />} iconSize="medium" />
-                     )}
+                     {scoreMedals[index + 1] || <Icon icon="star" iconSize="medium" iconState="primary" />}
                   </div>
                </li>
             ))}

@@ -1,7 +1,6 @@
 /* eslint-disable react/forbid-component-props */
 'use client'
 import { FunctionComponent } from 'react'
-import { BookIcon, BrainIcon, HomeIcon } from 'lucide-react' // Import Lucid icons
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
@@ -41,7 +40,7 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/home">
-                  <Icon icon={<HomeIcon />} iconSize="small" /> {/* Use Lucid HomeIcon */}
+                  <Icon icon="home" iconSize="small" />
                   <AtomText className="mb-0 hidden lg:block" fontSize="large" isBold>
                      {t('menu.home')}
                   </AtomText>
@@ -49,7 +48,7 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/practice">
-                  <Icon icon={<BrainIcon />} /> {/* Use Lucid BrainIcon */}
+                  <Icon icon="brain" iconSize="small" />
                   <AtomText className="hidden lg:block" fontSize="large" isBold>
                      {t('menu.practice')}
                   </AtomText>
@@ -57,7 +56,7 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/grammar">
-                  <Icon icon={<BookIcon />} /> {/* Use Lucid BookIcon */}
+                  <Icon icon="book" iconSize="small" />
                   <AtomText className="hidden lg:block" fontSize="large" isBold>
                      {t('menu.grammar')}
                   </AtomText>
