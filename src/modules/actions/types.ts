@@ -41,18 +41,16 @@ export type TScore = {
 }[]
 
 export type TArticle = {
-   author: string
-   collectionId: string
-   collectionName: string
-   created: string
+   created?: string
    id: string
    imageFile: string
    level: Array<string>
-   link: string
-   text_content: string
+   text_content?: string
    title: string
-   updated: string
-   quizz: {
+   updated?: string
+   estimated_read_time?: string
+   is_completed?: boolean | null
+   quizz?: {
       question: string
       option_one: string
       option_two: string
@@ -61,7 +59,7 @@ export type TArticle = {
       option_five?: string
       correct_answer: 'option_one' | 'option_two' | 'option_three' | 'option_four' | 'option_five'
    }[]
-   expand: {}
+   expand?: {}
 }
 
 export type TArticleUser = {

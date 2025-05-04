@@ -15,5 +15,6 @@ export {
 } from './loader/loader'
 export { AtomText } from './paragraph/paragraph'
 export { AtomProgressPercentage } from './progressBar/progressBar'
+export { Select } from './select/select'
 export { AtomStat } from './stat/stat'
 export { AtomTitle } from './title/title'

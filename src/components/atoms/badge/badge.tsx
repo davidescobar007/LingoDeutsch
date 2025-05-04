@@ -33,5 +33,5 @@ export const AtomBadge: FunctionComponent<TAtomBadge> = ({
    const colorClass = color === 'default' ? 'badge' : `badge-${color}`
    const outlineClass = outline ? 'badge-outline' : ''
    const sizeClass = size ? `badge-${size}` : ''
-   return <div className={`badge ${colorClass} ${outlineClass} ${sizeClass} ${className}`.trim()}>{children}</div>
+   return <div className={`badge ${colorClass} ${outlineClass} ${sizeClass} ${className}`}>{children}</div>
 }

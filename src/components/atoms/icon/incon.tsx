@@ -7,7 +7,7 @@ import {
    BookOpenCheck,
    Brain,
    BrainCog,
-   CheckCircle2,
+   Check,
    Circle,
    CircleChevronLeft,
    CircleChevronRight,
@@ -24,6 +24,7 @@ import {
    Settings,
    Sparkles,
    Star,
+   Timer,
    Trophy,
    XCircle
 } from 'lucide-react'
@@ -56,6 +57,7 @@ type IconType = {
       | 'medal'
       | 'star'
       | 'stars'
+      | 'timer'
    iconSize?: 'small' | 'medium' | 'large'
    iconState?: 'warning' | 'error' | 'success' | 'info' | 'primary' | 'neutral' | 'white'
    className?: string
@@ -108,7 +110,7 @@ export const Icon: FunctionComponent<IconType> = ({
    const size = iconSizeMap[iconSize] || 24
 
    const iconType: Record<IconType['icon'], JSX.Element | null> = {
-      check: <CheckCircle2 className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
+      check: <Check className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
       cross: <XCircle className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
       info: <Info className={`${iconStateClass}  ${className}`} fill={fill} size={size} />,
       warning: <AlertTriangle className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
@@ -137,7 +139,8 @@ export const Icon: FunctionComponent<IconType> = ({
       trophy: <Trophy className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
       medal: <Medal className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
       star: <Star className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      stars: <Sparkles className={`${iconStateClass} ${className}`} fill={fill} size={size} />
+      stars: <Sparkles className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
+      timer: <Timer className={`${iconStateClass} ${className}`} fill={fill} size={size} />
    }
    return <div onClick={onClick}>{iconType[icon] || null}</div>
 }

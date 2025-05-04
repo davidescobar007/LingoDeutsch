@@ -6,7 +6,7 @@ import { queryOperators } from '@/modules/global.types'
 import { pb } from '@/network/setup'
 
 export const pbGetList = async (collection: string, queryParamas?: RecordListQueryParams) => {
-   const records = await pb.collection(collection).getFullList(200, queryParamas)
+   const records = await pb.collection(collection).getFullList(100, queryParamas)
    return records
 }
 

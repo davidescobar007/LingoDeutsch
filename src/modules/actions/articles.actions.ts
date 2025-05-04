@@ -14,9 +14,21 @@ import { delay } from './actions.utils'
 import { TArticle, TArticleUser } from './types'
 import { isUserLoged } from './users.actions'
 
-const getArticlesList = async (): Promise<TArticle[]> => {
+const getArticlesList = async ({
+   level,
+   sortCriteria
+}: {
+   level?: string
+   sortCriteria?: string
+}): Promise<TArticle[]> => {
    try {
-      const data = await pbGetList('articles')
+      const options: any = {
+         fields: 'id,title,level,created,updated,imageFile,estimated_read_time',
+         sort: sortCriteria === 'recent' ? '-created' : sortCriteria === 'old' ? 'created' : '-updated'
+      }
+      if (level) options.filter = `level~"${level}"`
+
+      const data = await pbGetList('articles', options)
       return data as unknown as TArticle[]
    } catch (error: any) {
       return error
@@ -73,4 +85,43 @@ const getArticleByUser = async ({
       throw error
    }
 }
-export { getArticleByUser as getArticlesByUser, getArticlesList, getSingleArticle, saveArticleUser }
+
+const getArticlesListByUser = async ({
+   userId,
+   isCompleted,
+   sortCriteria,
+   level
+}: {
+   userId: string
+   isCompleted?: boolean
+   sortCriteria?: string
+   level?: string
+}): Promise<TArticle[]> => {
+   try {
+      const isCompletedFilter = isCompleted ? ` && is_completed=${isCompleted}` : ''
+      const levelFilter = level ? ` && article_id.level~"${level}"` : ''
+      const data = await pbGetList(constants.USER_ARTICLE_PROGRESS, {
+         filter: `user_id="${userId}"${isCompletedFilter} ${levelFilter}`,
+         expand: 'article_id',
+         fields:
+            'id,article_id,is_completed,expand.article_id.created,expand.article_id.title,expand.article_id.imageFile,expand.article_id.estimated_read_time',
+         sort: sortCriteria === 'recent' ? '-created' : sortCriteria === 'old' ? 'created' : '-updated'
+      })
+      const transformedData = data.map((item) => ({
+         ...item.expand.article_id,
+         is_completed: item.is_completed,
+         id: item.article_id
+      }))
+      return transformedData as unknown as TArticle[]
+   } catch (error: any) {
+      return error
+   }
+}
+
+export {
+   getArticleByUser as getArticlesByUser,
+   getArticlesList,
+   getArticlesListByUser,
+   getSingleArticle,
+   saveArticleUser
+}
