@@ -13,7 +13,7 @@ type TMoleculeCard = {
    redirectTo?: string
    timeToRead?: string
    isCompleted?: boolean | null
-   date: Date
+   date?: Date
 }
 
 export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
@@ -23,7 +23,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    redirectTo = '',
    timeToRead = '',
    isCompleted = false,
-   date
+   date = null
 }) => {
    const t = useTranslations()
 
@@ -34,7 +34,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
          </figure>
          <div className="card-body p-2">
             <AtomBadge color={isCompleted ? 'success' : 'secondary'}>
-               {isCompleted ? 'Aprendido' : calculateDateDistance(new Date(date))}
+               {isCompleted ? 'Aprendido' : date ? calculateDateDistance(new Date(date)) : ''}
             </AtomBadge>
             <AtomTitle extraClassName="h-16" type="h4">
                {title}

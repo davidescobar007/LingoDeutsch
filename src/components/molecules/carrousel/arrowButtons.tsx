@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable react/no-multi-comp */
 import React, { ComponentPropsWithRef, useCallback, useEffect, useState } from 'react'
 import { EmblaCarouselType } from 'embla-carousel'

@@ -40,7 +40,7 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/home">
-                  <Icon icon="home" iconSize="small" />
+                  <Icon icon="home" iconSize="medium" />
                   <AtomText className="mb-0 hidden lg:block" fontSize="large" isBold>
                      {t('menu.home')}
                   </AtomText>
@@ -48,15 +48,16 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/practice">
-                  <Icon icon="brain" iconSize="small" />
+                  <Icon icon="brain" iconSize="medium" />
                   <AtomText className="hidden lg:block" fontSize="large" isBold>
-                     {t('menu.practice')}
+                     {/* {t('menu.practice')} */}
+                     Vocabulario
                   </AtomText>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/grammar">
-                  <Icon icon="book" iconSize="small" />
+                  <Icon icon="book" iconSize="medium" />
                   <AtomText className="hidden lg:block" fontSize="large" isBold>
                      {t('menu.grammar')}
                   </AtomText>
