@@ -20,7 +20,7 @@ const Vocabulary = () => {
          <AtomTitle type="h5">Practica por nivel de dificultad</AtomTitle>
 
          <div className="flex w-full flex-wrap justify-between gap-4">
-            <div className="card bg-base-100 w-full shadow-xl sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.666rem)]">
+            <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 w-full shadow-xl">
                <div className="card-body">
                   <h2 className="card-title">Card title!</h2>
                   <p>If a dog chews shoes whose shoes does he choose?</p>
@@ -29,7 +29,7 @@ const Vocabulary = () => {
                   </div>
                </div>
             </div>
-            <div className="card bg-base-100 w-full shadow-xl sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.666rem)]">
+            <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 w-full shadow-xl">
                <div className="card-body">
                   <h2 className="card-title">Card title!</h2>
                   <p>If a dog chews shoes whose shoes does he choose?</p>
@@ -38,7 +38,7 @@ const Vocabulary = () => {
                   </div>
                </div>
             </div>
-            <div className="card bg-base-100 w-full shadow-xl sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.666rem)]">
+            <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 w-full shadow-xl">
                <div className="card-body">
                   <h2 className="card-title">Card title!</h2>
                   <p>If a dog chews shoes whose shoes does he choose?</p>
