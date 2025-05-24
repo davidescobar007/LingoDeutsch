@@ -20,6 +20,8 @@ import {
    Info,
    Library,
    Medal,
+   MoveDown,
+   MoveUp,
    Scale,
    Settings,
    Sparkles,
@@ -58,11 +60,14 @@ type IconType = {
       | 'star'
       | 'stars'
       | 'timer'
+      | 'move-down'
+      | 'move-up'
    iconSize?: 'small' | 'medium' | 'large'
    iconState?: 'warning' | 'error' | 'success' | 'info' | 'primary' | 'neutral' | 'white'
    className?: string
    onClick?: () => void
    fill?: string
+   disabled?: boolean
 }
 
 const defaultOnClick = () => {}
@@ -71,20 +76,11 @@ export const Icon: FunctionComponent<IconType> = ({
    icon,
    iconSize = 'medium',
    iconState = 'neutral',
-
    className = '',
    onClick = defaultOnClick,
-   fill = 'transparent'
+   fill = 'transparent',
+   disabled = false
 }) => {
-   const iconStateMap: Record<NonNullable<IconType['iconState']>, string> = {
-      warning: 'text-warning',
-      error: 'text-error',
-      success: 'text-success',
-      info: 'text-info',
-      primary: 'text-primary',
-      neutral: 'text-neutral',
-      white: 'text-white'
-   }
    const iconStateClass =
       iconState === 'warning'
          ? 'text-warning'
@@ -102,6 +98,9 @@ export const Icon: FunctionComponent<IconType> = ({
          ? className
          : 'text-neutral'
 
+   const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : ''
+   const combinedClassName = `${iconStateClass} ${className} ${disabledClass}`.trim()
+
    const iconSizeMap: Record<'small' | 'medium' | 'large', number> = {
       small: 16,
       medium: 24,
@@ -110,37 +109,35 @@ export const Icon: FunctionComponent<IconType> = ({
    const size = iconSizeMap[iconSize] || 24
 
    const iconType: Record<IconType['icon'], JSX.Element | null> = {
-      check: <Check className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      cross: <XCircle className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      info: <Info className={`${iconStateClass}  ${className}`} fill={fill} size={size} />,
-      warning: <AlertTriangle className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      error: <CircleX className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      gauge: <Gauge className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      bookmark: <BookmarkCheck className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      'bookmark-x': <BookmarkX className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      settings: <Settings className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      balance: <Scale className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      home: <Home className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      brain: <Brain className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      book: <Book className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      'book-open-check': <BookOpenCheck className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      library: <Library className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      'brain-cog': <BrainCog className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      'clipboard-check': <ClipboardCheck className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      flame: <Flame className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      'circle-chevron-left': (
-         <CircleChevronLeft className={`${iconStateClass} ${className}`} fill={fill} size={size} />
-      ),
-      'circle-chevron-right': (
-         <CircleChevronRight className={`${iconStateClass} ${className}`} fill={fill} size={size} />
-      ),
-      circle: <Circle className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      crown: <Crown className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      trophy: <Trophy className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      medal: <Medal className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      star: <Star className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      stars: <Sparkles className={`${iconStateClass} ${className}`} fill={fill} size={size} />,
-      timer: <Timer className={`${iconStateClass} ${className}`} fill={fill} size={size} />
+      check: <Check className={combinedClassName} fill={fill} size={size} />,
+      cross: <XCircle className={combinedClassName} fill={fill} size={size} />,
+      info: <Info className={combinedClassName} fill={fill} size={size} />,
+      warning: <AlertTriangle className={combinedClassName} fill={fill} size={size} />,
+      error: <CircleX className={combinedClassName} fill={fill} size={size} />,
+      gauge: <Gauge className={combinedClassName} fill={fill} size={size} />,
+      bookmark: <BookmarkCheck className={combinedClassName} fill={fill} size={size} />,
+      'bookmark-x': <BookmarkX className={combinedClassName} fill={fill} size={size} />,
+      settings: <Settings className={combinedClassName} fill={fill} size={size} />,
+      balance: <Scale className={combinedClassName} fill={fill} size={size} />,
+      home: <Home className={combinedClassName} fill={fill} size={size} />,
+      brain: <Brain className={combinedClassName} fill={fill} size={size} />,
+      book: <Book className={combinedClassName} fill={fill} size={size} />,
+      'book-open-check': <BookOpenCheck className={combinedClassName} fill={fill} size={size} />,
+      library: <Library className={combinedClassName} fill={fill} size={size} />,
+      'brain-cog': <BrainCog className={combinedClassName} fill={fill} size={size} />,
+      'clipboard-check': <ClipboardCheck className={combinedClassName} fill={fill} size={size} />,
+      flame: <Flame className={combinedClassName} fill={fill} size={size} />,
+      'circle-chevron-left': <CircleChevronLeft className={combinedClassName} fill={fill} size={size} />,
+      'circle-chevron-right': <CircleChevronRight className={combinedClassName} fill={fill} size={size} />,
+      circle: <Circle className={combinedClassName} fill={fill} size={size} />,
+      crown: <Crown className={combinedClassName} fill={fill} size={size} />,
+      trophy: <Trophy className={combinedClassName} fill={fill} size={size} />,
+      medal: <Medal className={combinedClassName} fill={fill} size={size} />,
+      star: <Star className={combinedClassName} fill={fill} size={size} />,
+      stars: <Sparkles className={combinedClassName} fill={fill} size={size} />,
+      timer: <Timer className={combinedClassName} fill={fill} size={size} />,
+      'move-down': <MoveDown className={combinedClassName} fill={fill} size={size} />,
+      'move-up': <MoveUp className={combinedClassName} fill={fill} size={size} />
    }
-   return <div onClick={onClick}>{iconType[icon] || null}</div>
+   return <div onClick={disabled ? defaultOnClick : onClick}>{iconType[icon] || null}</div>
 }

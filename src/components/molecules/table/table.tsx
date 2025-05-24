@@ -1,46 +1,117 @@
-import { FunctionComponent } from 'react'
-import { useTranslation } from 'react-i18next'
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { ChangeEvent, FunctionComponent, useMemo, useState } from 'react'
+import {
+   ColumnDef,
+   ColumnFiltersState,
+   flexRender,
+   getCoreRowModel,
+   getFilteredRowModel,
+   getPaginationRowModel,
+   getSortedRowModel,
+   SortingState,
+   useReactTable
+} from '@tanstack/react-table'
 
-import { AtomTitle } from '@/components/atoms'
+import { AtomButton, AtomInput, AtomText, AtomTitle, Icon } from '@/components/atoms'
 
 type TAtomTable = {
-   displayHeader?: boolean
-   columns?: { header: string; accessorKey: string; cell?: any; classNames?: string }[]
+   columns?: ColumnDef<any, any>[]
    data?: any[]
+   displayHeader?: boolean
    extraClassName?: string
-   isDelete?: boolean
    title?: string
+   initialSorting?: SortingState // Added initialSorting prop
 }
 
 const emptyArray: any = []
 
 export const MoleculeTable: FunctionComponent<TAtomTable> = ({
-   displayHeader = true,
    columns = emptyArray,
    data = emptyArray,
+   displayHeader = true,
    extraClassName = '',
-   isDelete = false,
-   title = null
+   title = null,
+   initialSorting = undefined
 }) => {
-   const { t } = useTranslation()
-   const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() })
+   const [sorting, setSorting] = useState<SortingState>(() => {
+      if (initialSorting) {
+         return initialSorting
+      }
+      if (columns && columns.length > 0) {
+         const firstColumn = columns[0]
+         let columnIdToUse: string | undefined = firstColumn.id
+
+         if (!columnIdToUse && 'accessorKey' in firstColumn && typeof firstColumn.accessorKey === 'string') {
+            columnIdToUse = firstColumn.accessorKey
+         }
+
+         if (columnIdToUse) {
+            return [{ id: columnIdToUse, desc: false }] // Changed to asc (alphabetical)
+         }
+      }
+      return [] // Default to no sorting
+   })
+   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+   const [globalFilter, setGlobalFilter] = useState('')
+
+   const memoizedColumns = useMemo(() => columns, [columns])
+   const memoizedData = useMemo(() => data, [data])
+
+   const table = useReactTable({
+      data: memoizedData,
+      columns: memoizedColumns,
+      state: {
+         sorting,
+         columnFilters,
+         globalFilter
+      },
+      onSortingChange: setSorting,
+      onColumnFiltersChange: setColumnFilters,
+      onGlobalFilterChange: setGlobalFilter,
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      initialState: {
+         pagination: {
+            pageSize: 5
+         }
+      }
+   })
    return (
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-xl bg-white p-4">
          {title && (
-            <AtomTitle extraClassName=" mb-4 font-semibold underline underline-offset-4" type="h3">
+            <AtomTitle extraClassName="mb-4" type="h5">
                {title}
             </AtomTitle>
          )}
+         <div className="mb-4 flex justify-end">
+            <AtomInput
+               onChange={(event: ChangeEvent<HTMLInputElement>) => setGlobalFilter(String(event.target.value))}
+               placeholder="Buscar"
+               value={globalFilter ?? ''}
+            />
+         </div>
          <table className={`table ${extraClassName}`}>
-            {displayHeader && columns.length > 0 && (
+            {displayHeader && memoizedColumns.length > 0 && (
                <thead>
                   {table.getHeaderGroups().map((headerGroup) => (
                      <tr key={headerGroup.id}>
                         {headerGroup.headers.map((header: any) => {
                            return (
-                              <th className={`${header.column.columnDef.classNames}`} key={header.id}>
-                                 {header.column.columnDef.header}
+                              <th
+                                 className={`${
+                                    header.column.columnDef.classNames || ''
+                                 } cursor-pointer select-none`}
+                                 key={header.id}
+                                 onClick={header.column.getToggleSortingHandler()}
+                              >
+                                 <AtomText className="flex items-center" type="span">
+                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                    {{
+                                       asc: <Icon icon="move-up" iconSize="small" iconState="info" />,
+                                       desc: <Icon icon="move-down" iconSize="small" iconState="info" />
+                                    }[header.column.getIsSorted() as string] ?? null}
+                                 </AtomText>
                               </th>
                            )
                         })}
@@ -56,23 +127,44 @@ export const MoleculeTable: FunctionComponent<TAtomTable> = ({
                      ))}
                   </tr>
                ))}
-               {/* {data.map((item: any, rowIndex: number) => (
-                  <tr className="hover" key={rowIndex}>
-                     {displayIndex && <td>{rowIndex + 1}</td>}
-                     {columns.length
-                        ? columns.map((column: any, columnIndex: any) => <td key={columnIndex}>{item[column]}</td>)
-                        : Object.keys(item).map((key) => <td key={key}>{String(item[key])}</td>)}
-                     {isDelete && (
-                        <td>
-                           <span className="cursor-pointer  text-red-600">
-                              <HiTrash />
-                           </span>
-                        </td>
-                     )}
-                  </tr>
-               ))} */}
             </tbody>
          </table>
+         <div className="pagination mt-4 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+               {/* Pagination buttons with numbers */}
+               {table.getPageCount() > 1 &&
+                  [...Array(table.getPageCount()).keys()].map((page) => (
+                     <AtomButton
+                        disabled={table.getState().pagination.pageIndex === page}
+                        extraClassName={table.getState().pagination.pageIndex === page ? 'btn-active' : ''}
+                        key={page}
+                        onClick={() => table.setPageIndex(page)}
+                        size="sm"
+                     >
+                        {page + 1}
+                     </AtomButton>
+                  ))}
+            </div>
+            <span className="flex items-center gap-1">
+               <div>Pagina</div>
+               <strong>
+                  {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+               </strong>
+            </span>
+            <select
+               className="select select-bordered"
+               onChange={(e) => {
+                  table.setPageSize(Number(e.target.value))
+               }}
+               value={table.getState().pagination.pageSize}
+            >
+               {[10, 20, 50].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                     {pageSize}
+                  </option>
+               ))}
+            </select>
+         </div>
       </div>
    )
 }

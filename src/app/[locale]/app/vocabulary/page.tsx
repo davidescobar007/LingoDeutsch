@@ -1,8 +1,51 @@
 'use client'
+import { useMemo } from 'react'
+
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
-import { MoleculeMiniCard } from '@/components/molecules'
+import { MoleculeCard, MoleculeMiniCard, MoleculeTable } from '@/components/molecules'
+import { useGetVocabularyList } from '@/hooks/cards'
 
 const Vocabulary = () => {
+   const { data } = useGetVocabularyList()
+   console.log(data)
+
+   const tableData = useMemo(() => {
+      if (!data) return []
+      return data.map((item: any) => {
+         let levelDisplay = item.level || '-'
+         if (item.level === 'hard') {
+            levelDisplay = `🔴 ${item.level}`
+         } else if (item.level === 'medium') {
+            levelDisplay = `🟡 ${item.level}`
+         } else if (item.level === 'easy') {
+            levelDisplay = `🟢 ${item.level}`
+         }
+         return {
+            german: item.expand?.word_id?.german_translation || '-',
+            spanish: item.expand?.word_id?.spanish_translation || '-',
+            level: levelDisplay
+         }
+      })
+   }, [data])
+
+   const columns = useMemo(
+      () => [
+         {
+            header: 'Alemán',
+            accessorKey: 'german'
+         },
+         {
+            header: 'Español',
+            accessorKey: 'spanish'
+         },
+         {
+            header: 'Nivel',
+            accessorKey: 'level'
+         }
+      ],
+      []
+   )
+
    return (
       <div className="w-full">
          <header className="w-full">
@@ -12,41 +55,27 @@ const Vocabulary = () => {
                practicar.
             </AtomText>
          </header>
-         <MoleculeMiniCard
-            className="!border-primary"
-            content="tienes 250 palabras guardadas en tu vocabulario"
-            icon={<Icon icon="book" iconSize="large" iconState="primary" />}
-         />
+         <div className="my-4 flex justify-center">
+            <MoleculeMiniCard
+               className="!border-primary"
+               content="tienes 250 palabras guardadas en tu vocabulario"
+               icon={<Icon icon="book" iconSize="large" iconState="primary" />}
+            />
+         </div>
          <AtomTitle type="h5">Practica por nivel de dificultad</AtomTitle>
 
-         <div className="flex w-full flex-wrap justify-between gap-4">
-            <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 w-full shadow-xl">
-               <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                     <button className="btn btn-primary">Buy Now</button>
-                  </div>
-               </div>
-            </div>
-            <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 w-full shadow-xl">
-               <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                     <button className="btn btn-primary">Buy Now</button>
-                  </div>
-               </div>
-            </div>
-            <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 w-full shadow-xl">
-               <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                     <button className="btn btn-primary">Buy Now</button>
-                  </div>
-               </div>
-            </div>
+         <div className="mb-8 flex w-full flex-wrap justify-between gap-4">
+            <MoleculeCard buttonText="Practicar" cardType="simple" content="Brot, Wasser, Tag" title="🟢 Facil" />
+            <MoleculeCard buttonText="Practicar" cardType="simple" content="Brot, Wasser, Tag" title="🟡 Medio" />
+            <MoleculeCard
+               buttonText="Practicar"
+               cardType="simple"
+               content="Brot, Wasser, Tag"
+               title="🔴 Dificil"
+            />
+         </div>
+         <div>
+            <MoleculeTable columns={columns} data={tableData} title="Tu vocabulario" />
          </div>
       </div>
    )

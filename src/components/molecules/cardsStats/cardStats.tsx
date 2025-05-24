@@ -2,11 +2,11 @@ import { FunctionComponent } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { AtomStat } from '@/components/atoms'
-import { useGetCardsList } from '@/hooks/cards'
+import { useGetVocabularyList } from '@/hooks/cards'
 
 export const MoleculeCardsStats: FunctionComponent = () => {
    const t = useTranslations()
-   const { data: cards } = useGetCardsList()
+   const { data: cards } = useGetVocabularyList()
    return (
       <div className="stats mb-6 w-full shadow">
          <AtomStat

@@ -6,7 +6,7 @@ import { getCardsList, updateCard } from '@/modules/actions/cards.actions'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 
-export const useGetCardsList = (filter?: string) => {
+export const useGetVocabularyList = (filter?: string) => {
    const userModel = getUserInfo() as TUser
 
    return useQuery({
