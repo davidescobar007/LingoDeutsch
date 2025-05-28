@@ -15,6 +15,7 @@ type TMoleculeCard = {
    date?: Date
    cardType?: 'withImage' | 'simple'
    buttonText?: string
+   footerText?: string
 }
 
 export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
@@ -26,7 +27,8 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    isCompleted = false,
    date = null,
    buttonText = '',
-   cardType = 'withImage'
+   cardType = 'withImage',
+   footerText
 }) => {
    if (cardType === 'simple') {
       return (
@@ -36,9 +38,9 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
                <AtomText>{content}</AtomText>
                <div className="card-actions mt-4 items-center justify-between">
                   <AtomText fontSize="small" isThin type="span">
-                     10 palabras
+                     {footerText}
                   </AtomText>
-                  <AtomButton>{buttonText}</AtomButton>
+                  {buttonText && <AtomButton>{buttonText}</AtomButton>}
                </div>
             </div>
          </div>
@@ -71,9 +73,11 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
                <div className="flex items-center gap-1">
                   <Icon icon="timer" iconSize="small" iconState="primary" /> {timeToRead} min
                </div>
-               <Link className="btn btn-primary" href={`/app/article/${redirectTo}`} role="button">
-                  {buttonText}
-               </Link>
+               {buttonText && redirectTo && (
+                  <Link className="btn btn-primary" href={`/app/article/${redirectTo}`} role="button">
+                     {buttonText}
+                  </Link>
+               )}
             </div>
          </div>
       </div>
