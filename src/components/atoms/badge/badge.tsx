@@ -1,16 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export type BadgeColor =
-   | 'neutral'
-   | 'primary'
-   | 'secondary'
-   | 'accent'
-   | 'ghost'
-   | 'info'
-   | 'success'
-   | 'warning'
-   | 'error'
-   | 'default'
+export type BadgeColor = 'neutral' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
 
 export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg'
 
@@ -24,14 +14,20 @@ type TAtomBadge = {
 
 export const AtomBadge: FunctionComponent<TAtomBadge> = ({
    children,
-   color = 'default',
+   color = undefined,
    outline = false,
    size = 'md',
    className = ''
 }) => {
-   // Compose badge classes according to daisyUI v4
-   const colorClass = color === 'default' ? 'badge' : `badge-${color}`
-   const outlineClass = outline ? 'badge-outline' : ''
-   const sizeClass = size ? `badge-${size}` : ''
-   return <div className={`badge ${colorClass} ${outlineClass} ${sizeClass} ${className}`}>{children}</div>
+   const classes = [
+      'badge',
+      color && ` badge-${color}`,
+      outline && ' badge-outline',
+      size !== 'md' && ` badge-${size} `,
+      className
+   ]
+      .filter(Boolean)
+      .join(' ')
+
+   return <div className={classes}>{children}</div>
 }

@@ -127,17 +127,17 @@ const config: Config = {
                'base-300': '#f4f6f7', // Light gray, for UI elements like dividers, borders
                'base-content': '#222222', // Dark gray, used for general text ensuring readability
 
-               info: '#3AB7BF', // Teal, for informational messages and hints
-               'info-content': '#042A2E', // Deep teal, ensuring contrast on info messages
+               info: '#3B82F6', // Blue for German content and informational messages
+               'info-content': '#1E40AF', // Dark blue for text on info elements
 
-               success: '#36D399', // Bright green, for success indicators and positive feedback
-               'success-content': '#064C2C', // Dark green, used for text on success elements
+               success: '#00e200', // Green for Spanish content, success states, and easy difficulty
+               'success-content': '#065F46', // Dark green for text on success elements
 
-               warning: '#FBBD23', // Gold/Yellow, for warnings and alerts
-               'warning-content': '#5A3E00', // Dark gold, ensuring text visibility on warnings
+               warning: '#F59E0B', // Orange for warnings, medium difficulty, and review states
+               'warning-content': '#92400E', // Dark orange for text on warning elements
 
-               error: '#F87272', // Soft red, for error states and critical messages
-               'error-content': '#5A1A1A' // Deep red, maintaining contrast for error text
+               error: '#EF4444', // Red for error states and hard difficulty
+               'error-content': '#7F1D1D' // Dark red for text on error elements
             }
          }
       ],

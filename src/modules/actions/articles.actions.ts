@@ -48,13 +48,13 @@ const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUs
          user_id: userArticle.user_id,
          is_completed: Boolean(score >= 70),
          highest_score_ever: score,
-         number_of_attempts: 1
+         number_of_attempts: '1'
       })
    } else {
       pbUpdateRecord(constants.USER_ARTICLE_PROGRESS, userArticle.id, {
          is_completed: Boolean(score >= 70),
          highest_score_ever: score > userArticle.highest_score_ever ? score : userArticle.highest_score_ever,
-         number_of_attempts: userArticle.number_of_attempts + 1
+         number_of_attempts: Number(userArticle.number_of_attempts) + 1
       })
    }
 }
@@ -79,7 +79,7 @@ const getArticleByUser = async ({
             user_id: userId,
             is_completed: false,
             highest_score_ever: 0,
-            number_of_attempts: 0
+            number_of_attempts: '0'
          } as TArticleUser
       }
       throw error

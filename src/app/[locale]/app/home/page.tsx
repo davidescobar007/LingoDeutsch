@@ -131,6 +131,7 @@ const Learn = () => {
                                    key={id}
                                    redirectTo={id}
                                    title={title}
+                                   buttonText="Leer artículo"
                                 />
                              )
                           })

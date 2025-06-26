@@ -68,7 +68,7 @@ export type TArticleUser = {
    user_id: string
    is_completed: boolean
    highest_score_ever: number
-   number_of_attempts: number
+   number_of_attempts: string
    created?: string
    updated?: string
 }
@@ -153,6 +153,11 @@ export type TCard = {
          updated: string
          collectionId: string
          collectionName: string
+         examples: Array<{
+            english_translation: string
+            sentence: string
+            spanish_translation: string
+         }>
          expand: {}
       }
    }

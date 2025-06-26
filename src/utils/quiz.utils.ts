@@ -1,3 +1,5 @@
+import { addHours, isAfter } from 'date-fns'
+
 export function calculateScore(
    correctAnswers: number,
    totalQuestions: number,
@@ -26,10 +28,8 @@ export function calculateScore(
 }
 
 export function calculateFutureDate(pastDate: Date, hoursToAdd: number): { futureDate: Date; isFuture: boolean } {
-   const millisecondsToAdd = hoursToAdd * 60 * 60 * 1000 // Convert hours (including fractions) to milliseconds
-   const futureTime = pastDate.getTime() + millisecondsToAdd
-   const futureDate = new Date(futureTime)
+   const futureDate = addHours(pastDate, hoursToAdd)
    const now = new Date()
-   const isFuture = futureDate > now
+   const isFuture = isAfter(futureDate, now)
    return { futureDate, isFuture }
 }

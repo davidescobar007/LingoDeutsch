@@ -8,6 +8,7 @@ import {
    Brain,
    BrainCog,
    Check,
+   CheckCircle,
    Circle,
    CircleChevronLeft,
    CircleChevronRight,
@@ -16,24 +17,29 @@ import {
    Crown,
    Flame,
    Gauge,
+   GraduationCap,
    Home,
    Info,
    Library,
    Medal,
    MoveDown,
    MoveUp,
+   PartyPopper,
    Scale,
    Settings,
    Sparkles,
    Star,
+   Target,
    Timer,
    Trophy,
-   XCircle
+   XCircle,
+   Zap
 } from 'lucide-react'
 
 type IconType = {
    icon:
       | 'check'
+      | 'check-circle'
       | 'cross'
       | 'info'
       | 'warning'
@@ -62,6 +68,10 @@ type IconType = {
       | 'timer'
       | 'move-down'
       | 'move-up'
+      | 'graduation-cap'
+      | 'party-popper'
+      | 'target'
+      | 'zap'
    iconSize?: 'small' | 'medium' | 'large'
    iconState?: 'warning' | 'error' | 'success' | 'info' | 'primary' | 'neutral' | 'white'
    className?: string
@@ -110,6 +120,7 @@ export const Icon: FunctionComponent<IconType> = ({
 
    const iconType: Record<IconType['icon'], JSX.Element | null> = {
       check: <Check className={combinedClassName} fill={fill} size={size} />,
+      'check-circle': <CheckCircle className={combinedClassName} fill={fill} size={size} />,
       cross: <XCircle className={combinedClassName} fill={fill} size={size} />,
       info: <Info className={combinedClassName} fill={fill} size={size} />,
       warning: <AlertTriangle className={combinedClassName} fill={fill} size={size} />,
@@ -137,7 +148,11 @@ export const Icon: FunctionComponent<IconType> = ({
       stars: <Sparkles className={combinedClassName} fill={fill} size={size} />,
       timer: <Timer className={combinedClassName} fill={fill} size={size} />,
       'move-down': <MoveDown className={combinedClassName} fill={fill} size={size} />,
-      'move-up': <MoveUp className={combinedClassName} fill={fill} size={size} />
+      'move-up': <MoveUp className={combinedClassName} fill={fill} size={size} />,
+      'graduation-cap': <GraduationCap className={combinedClassName} fill={fill} size={size} />,
+      'party-popper': <PartyPopper className={combinedClassName} fill={fill} size={size} />,
+      target: <Target className={combinedClassName} fill={fill} size={size} />,
+      zap: <Zap className={combinedClassName} fill={fill} size={size} />
    }
    return <div onClick={disabled ? defaultOnClick : onClick}>{iconType[icon] || null}</div>
 }

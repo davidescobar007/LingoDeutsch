@@ -14,7 +14,7 @@ export const QuizModeSelection: React.FC<QuizModeSelectionProps> = ({ setMode })
          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             {/* Proporcional */}
             <div
-               className="cursor-pointer rounded-2xl border border-violet-400 bg-violet-50 p-6 shadow-md transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-400"
+               className="border-primary/30 bg-primary/5 focus:ring-primary cursor-pointer rounded-2xl border-2 p-6 shadow-md transition hover:shadow-lg focus:outline-none focus:ring-2"
                onClick={() => setMode('proportional')}
                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setMode('proportional')}
                role="button"
@@ -40,7 +40,7 @@ export const QuizModeSelection: React.FC<QuizModeSelectionProps> = ({ setMode })
             </div>
             {/* Todo o Nada */}
             <div
-               className="cursor-pointer rounded-2xl border border-yellow-400 bg-yellow-50 p-6 shadow-md transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+               className="border-warning/30 bg-warning/5 focus:ring-warning cursor-pointer rounded-2xl border-2 p-6 shadow-md transition hover:shadow-lg focus:outline-none focus:ring-2"
                onClick={() => setMode('all_or_nothing')}
                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setMode('all_or_nothing')}
                role="button"
@@ -61,9 +61,7 @@ export const QuizModeSelection: React.FC<QuizModeSelectionProps> = ({ setMode })
                   Ejemplo: 7/10 correctas = 100 puntos.
                   <br />
                </AtomText>
-               <AtomBadge className="mt-2" color="warning">
-                  Más desafiante
-               </AtomBadge>
+               <AtomBadge className="bg-warning/80 badge mt-2">Más desafiante</AtomBadge>
             </div>
          </div>
       </div>

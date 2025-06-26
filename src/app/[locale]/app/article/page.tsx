@@ -99,6 +99,7 @@ const Article = () => {
                        return (
                           <div className="" key={title}>
                              <MoleculeCard
+                                buttonText="Leer articulo"
                                 date={created as unknown as Date}
                                 image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
                                 isCompleted={is_completed}

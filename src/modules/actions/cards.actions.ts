@@ -2,24 +2,24 @@ import { pbGetList, pbUpdateRecord } from '@/network'
 
 import { constants } from '../global.types'
 
-import { shuffleArray } from './actions.utils'
+import { delay, shuffleArray } from './actions.utils'
 import { handleErrorModal } from './global.actions'
 import { TCard, TUser, TVocabularyStats } from './types'
 
 export const getCardsList = async ({
    user,
-   filter
+   level
 }: {
    user: TUser
-   filter?: string | undefined
+   level?: string | undefined
 }): Promise<TCard[]> => {
    try {
       if (!user?.id) throw new Error('need signup')
 
       const fields =
-         'expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen'
+         'expand.word_id.german_translation,expand.word_id.spanish_translation,id,level,last_time_seen,times_seen,expand.word_id.examples'
       const baseFilter = `user_id = "${user.id}"`
-      const levelFilter = filter ? ` && level="${filter}"` : ''
+      const levelFilter = level ? ` && level="${level}"` : ''
 
       const cards = shuffleArray(
          await pbGetList(constants.USER_VOCAB_PROGRESS, {
@@ -29,7 +29,7 @@ export const getCardsList = async ({
          })
       )
 
-      if (cards.length || !filter) return cards as unknown as TCard[]
+      if (cards.length || !level) return cards as unknown as TCard[]
 
       const fallbackCards = shuffleArray(
          await pbGetList(constants.USER_VOCAB_PROGRESS, {
@@ -47,6 +47,7 @@ export const getCardsList = async ({
 }
 
 export const updateCard = async (card: TCard) => {
+   delay()
    const currentDate = new Date()
    card.last_time_seen = currentDate
    card.times_seen = Number(card.times_seen + 1)

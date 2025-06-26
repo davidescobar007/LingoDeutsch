@@ -20,11 +20,13 @@ const WaitingRoom = ({ futureDate, id }: WaitingRoomProps) => {
          <AtomText fontSize="large" isBlock type="span">
             Mientras tanto, puedes:
          </AtomText>
-         <div className=" flex flex-wrap justify-center gap-4">
+         <div className=" flex flex-wrap items-center justify-center gap-4">
             <AtomButton href={`/app/article/${id}`} type="link">
                Volver al artículo
             </AtomButton>
-            <AtomButton href="/app/practice"> Revisar vocabulario</AtomButton>
+            <AtomButton href="/app/vocabulary" type="link">
+               Revisar vocabulario
+            </AtomButton>
          </div>
       </div>
    )

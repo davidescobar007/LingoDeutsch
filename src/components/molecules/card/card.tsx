@@ -16,7 +16,10 @@ type TMoleculeCard = {
    cardType?: 'withImage' | 'simple'
    buttonText?: string
    footerText?: string
+   onClick?: () => void
 }
+
+const defaultOnClick = () => {}
 
 export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    image,
@@ -28,7 +31,8 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    date = null,
    buttonText = '',
    cardType = 'withImage',
-   footerText
+   footerText = '',
+   onClick = defaultOnClick
 }) => {
    if (cardType === 'simple') {
       return (
@@ -40,7 +44,11 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
                   <AtomText fontSize="small" isThin type="span">
                      {footerText}
                   </AtomText>
-                  {buttonText && <AtomButton>{buttonText}</AtomButton>}
+                  {buttonText && (
+                     <AtomButton href={redirectTo} onClick={onClick} type={redirectTo ? 'link' : 'button'}>
+                        {buttonText}
+                     </AtomButton>
+                  )}
                </div>
             </div>
          </div>
@@ -60,6 +68,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
                />
             </figure>
          )}
+
          <div className="card-body p-2">
             <AtomBadge color={isCompleted ? 'success' : 'secondary'}>
                {isCompleted ? 'Aprendido' : date ? calculateDateDistance(new Date(date)) : ''}

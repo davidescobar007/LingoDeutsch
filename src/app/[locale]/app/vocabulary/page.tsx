@@ -2,11 +2,11 @@
 import { useMemo } from 'react'
 
 import { AtomText, AtomTitle } from '@/components/atoms'
-import { MoleculeCard, MoleculeTable } from '@/components/molecules'
+import { MoleculeAlert, MoleculeCard, MoleculeTable } from '@/components/molecules'
 import { useGetVocabularyList } from '@/hooks/cards'
 
 const Vocabulary = () => {
-   const { data } = useGetVocabularyList()
+   const { data } = useGetVocabularyList({})
    const easyWords = data?.filter((item: any) => item.level === 'easy')
    const mediumWords = data?.filter((item: any) => item.level === 'medium')
    const hardWords = data?.filter((item: any) => item.level === 'hard')
@@ -16,11 +16,11 @@ const Vocabulary = () => {
       return data.map((item: any) => {
          let levelDisplay = item.level || '-'
          if (item.level === 'hard') {
-            levelDisplay = `🔴 ${item.level}`
+            levelDisplay = `🔴 Dificil`
          } else if (item.level === 'medium') {
-            levelDisplay = `🟡 ${item.level}`
+            levelDisplay = `🟡 Medio`
          } else if (item.level === 'easy') {
-            levelDisplay = `🟢 ${item.level}`
+            levelDisplay = `🟢 Facil`
          }
          return {
             german: item.expand?.word_id?.german_translation || '-',
@@ -57,24 +57,30 @@ const Vocabulary = () => {
                practicar.
             </AtomText>
          </header>
+         {/* Always informative banner */}
+         <section className="my-8">
+            {data?.length ? (
+               <MoleculeAlert
+                  message={`Tienes ${data.length} palabra${
+                     data.length === 1 ? '' : 's'
+                  } en tu vocabulario. ¡Selecciona un nivel para practicar!`}
+                  type="success"
+               />
+            ) : (
+               <MoleculeAlert
+                  message="Tu vocabulario está vacío. Puedes guardar palabras a tu diccionario personal mientras lees artículos en la sección de lectura. ¡Haz clic en cualquier palabra de un artículo para añadirla!"
+                  type="info"
+               />
+            )}
+         </section>
+
          {data?.length === 0 ? (
-            <>
-               <section className="bg-secondary my-8 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md">
-                  <AtomTitle extraClassName="text-primary mt-3" type="h4">
-                     No tienes palabras en tu vocabulario
-                  </AtomTitle>
-               </section>
-               <AtomText>
-                  Empieza a practicar con las palabras que has guardado en la seccion de articulos
-               </AtomText>
-            </>
+            <AtomText>
+               💡 Consejo: Visita la sección de artículos y comienza a leer. Cuando encuentres una palabra nueva,
+               simplemente haz clic en ella para guardarla en tu vocabulario personal.
+            </AtomText>
          ) : (
             <>
-               <section className="bg-secondary my-8 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md">
-                  <AtomTitle extraClassName="text-primary mt-3" type="h4">
-                     {`Tienes ${data?.length} palabras en tu vocabulario`}
-                  </AtomTitle>
-               </section>
                <AtomTitle type="h5">Practica por nivel de dificultad</AtomTitle>
 
                <div className="mb-8 flex w-full flex-wrap justify-between gap-4">
@@ -85,9 +91,10 @@ const Vocabulary = () => {
                         easyWords
                            ?.map((item) => item.expand?.word_id?.german_translation)
                            .slice(0, 3)
-                           .join(', ') || ''
+                           .join(', ') || 'No tienes palabras en este nivel'
                      }
                      footerText={`${easyWords?.length} palabras`}
+                     redirectTo="vocabulary/practice?level=easy"
                      title="🟢 Facil"
                   />
                   <MoleculeCard
@@ -100,6 +107,7 @@ const Vocabulary = () => {
                            .join(', ') || 'No tienes palabras en este nivel'
                      }
                      footerText={`${mediumWords?.length} palabras`}
+                     redirectTo="vocabulary/practice?level=medium"
                      title="🟡 Medio"
                   />
 
@@ -110,12 +118,14 @@ const Vocabulary = () => {
                         hardWords
                            ?.map((item) => item.expand?.word_id?.german_translation)
                            .slice(0, 3)
-                           .join(', ') || ''
+                           .join(', ') || 'No tienes palabras en este nivel'
                      }
                      footerText={`${hardWords?.length} palabras`}
+                     redirectTo="vocabulary/practice?level=hard"
                      title="🔴 Dificil"
                   />
                </div>
+
                <div className="shadow-xl">
                   <MoleculeTable columns={columns} data={tableData} title="Tu vocabulario" />
                </div>

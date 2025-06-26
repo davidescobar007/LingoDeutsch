@@ -13,13 +13,32 @@ export type StatItem = {
 export interface MoleculeStatProps {
    items: StatItem[]
    className?: string
+   layout?: 'horizontal' | 'vertical' | 'responsive' // responsive is default (vertical on mobile, horizontal on large screens)
+   gap?: 'small' | 'medium' | 'large'
 }
 
-export const MoleculeStat: FunctionComponent<MoleculeStatProps> = ({ items, className = '' }) => {
+export const MoleculeStat: FunctionComponent<MoleculeStatProps> = ({
+   items,
+   className = '',
+   layout = 'responsive',
+   gap = 'medium'
+}) => {
+   const layoutClasses = {
+      horizontal: 'stats-horizontal',
+      vertical: 'stats-vertical',
+      responsive: 'stats-vertical lg:stats-horizontal'
+   }
+
+   const gapClasses = {
+      small: 'gap-2',
+      medium: 'gap-4',
+      large: 'gap-6'
+   }
+
    return (
-      <div className="stats stats-vertical lg:stats-horizontal max-w-full shadow">
+      <div className={`stats ${layoutClasses[layout]} max-w-full shadow ${gapClasses[gap]} ${className}`}>
          {items.map((item, idx) => (
-            <div className="stat" key={idx}>
+            <div className={`stat ${item.className || ''}`} key={idx}>
                {item.icon && <div className="stat-figure">{item.icon}</div>}
                <AtomText className="stat-title" type="paragraph">
                   {item.title}
