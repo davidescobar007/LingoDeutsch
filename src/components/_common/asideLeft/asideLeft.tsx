@@ -46,20 +46,27 @@ export const OrganismMenu: FunctionComponent = () => {
                   </AtomText>
                </Link>
             </li>
-            <li className={`mb-2 ${pathname === `/app/practice` && selectedStyles}`}>
-               <Link className="flex items-center" href="/app/practice">
-                  <Icon icon="brain" iconSize="medium" />
-                  <AtomText className="hidden lg:block" fontSize="large" isBold>
-                     {/* {t('menu.practice')} */}
-                     Vocabulario
-                  </AtomText>
-               </Link>
-            </li>
             <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/grammar">
                   <Icon icon="book" iconSize="medium" />
                   <AtomText className="hidden lg:block" fontSize="large" isBold>
                      {t('menu.grammar')}
+                  </AtomText>
+               </Link>
+            </li>
+            <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
+               <Link className="flex items-center" href="/app/article">
+                  <Icon icon="book-open-text" iconSize="medium" />
+                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                     Lectura
+                  </AtomText>
+               </Link>
+            </li>
+            <li className={`mb-2 ${pathname === `/app/vocabulary` && selectedStyles}`}>
+               <Link className="flex items-center" href="/app/vocabulary">
+                  <Icon icon="brain" iconSize="medium" />
+                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                     Vocabulario
                   </AtomText>
                </Link>
             </li>

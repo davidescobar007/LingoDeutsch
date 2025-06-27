@@ -5,6 +5,7 @@ import {
    BookmarkCheck,
    BookmarkX,
    BookOpenCheck,
+   BookOpenText,
    Brain,
    BrainCog,
    Check,
@@ -53,6 +54,7 @@ type IconType = {
       | 'brain'
       | 'book'
       | 'book-open-check'
+      | 'book-open-text'
       | 'library'
       | 'brain-cog'
       | 'clipboard-check'
@@ -152,7 +154,8 @@ export const Icon: FunctionComponent<IconType> = ({
       'graduation-cap': <GraduationCap className={combinedClassName} fill={fill} size={size} />,
       'party-popper': <PartyPopper className={combinedClassName} fill={fill} size={size} />,
       target: <Target className={combinedClassName} fill={fill} size={size} />,
-      zap: <Zap className={combinedClassName} fill={fill} size={size} />
+      zap: <Zap className={combinedClassName} fill={fill} size={size} />,
+      'book-open-text': <BookOpenText className={combinedClassName} fill={fill} size={size} />
    }
    return <div onClick={disabled ? defaultOnClick : onClick}>{iconType[icon] || null}</div>
 }

@@ -53,8 +53,9 @@ const Vocabulary = () => {
          <header className="w-full">
             <AtomTitle type="h3">Tu guia de Vocabulario</AtomTitle>
             <AtomText>
-               Explora tu guía de vocabulario. Selecciona tu set de palabras por nivel para empezar a aprender y
-               practicar.
+               {data?.length
+                  ? 'Explora tu guía de vocabulario. Selecciona tu set de palabras por nivel para empezar a aprender y practicar.'
+                  : 'Tu espacio personal para guardar y practicar nuevas palabras en alemán.'}
             </AtomText>
          </header>
          {/* Always informative banner */}
@@ -68,18 +69,13 @@ const Vocabulary = () => {
                />
             ) : (
                <MoleculeAlert
-                  message="Tu vocabulario está vacío. Puedes guardar palabras a tu diccionario personal mientras lees artículos en la sección de lectura. ¡Haz clic en cualquier palabra de un artículo para añadirla!"
+                  message="Tu vocabulario está vacío. Visita la sección de artículos y haz clic en cualquier palabra mientras lees para guardarla en tu diccionario personal y comenzar a practicar."
                   type="info"
                />
             )}
          </section>
 
-         {data?.length === 0 ? (
-            <AtomText>
-               💡 Consejo: Visita la sección de artículos y comienza a leer. Cuando encuentres una palabra nueva,
-               simplemente haz clic en ella para guardarla en tu vocabulario personal.
-            </AtomText>
-         ) : (
+         {data?.length === 0 ? null : (
             <>
                <AtomTitle type="h5">Practica por nivel de dificultad</AtomTitle>
 
