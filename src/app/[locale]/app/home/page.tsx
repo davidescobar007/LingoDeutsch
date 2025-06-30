@@ -46,76 +46,58 @@ const Learn = () => {
 
             <div className="mb-12">
                <AtomTitle type="h3">{t('learn.expandVocabulary')}</AtomTitle>
-               <AtomText type="paragraph">{t('learn.myVocabularyProgress')}</AtomText>
-               <div className="-m-3 mt-2 flex flex-wrap">
-                  <div className="w-6/12  p-3 md:w-3/12">
-                     <MoleculeMiniCard
-                        content={t('learn.saved')}
-                        footer={vocabularyStats?.totalWords}
-                        icon={<Icon icon="library" className="!text-blue-500" iconSize="large" />}
-                        className=""
-                     />
-                  </div>
-                  <div className="w-6/12  p-3 md:w-3/12 ">
-                     <MoleculeMiniCard
-                        content={t('learn.learned')}
-                        footer={vocabularyStats?.learnedWords}
-                        icon={<Icon icon="brain-cog" className="text-pink-500" iconSize="large" />}
-                        className=" "
-                     />
-                  </div>
-                  <div className="w-6/12  p-3 md:w-3/12">
-                     <MoleculeMiniCard
-                        content={t('learn.toReview')}
-                        footer={vocabularyStats?.toRecheck}
-                        icon={<Icon icon="clipboard-check" className="!text-green-500" iconSize="large" />}
-                        className=""
-                     />
-                  </div>
-                  <div className="w-6/12  p-3 md:w-3/12">
-                     <MoleculeMiniCard
-                        content={t('learn.streak')}
-                        footer={vocabularyStats?.streak}
-                        icon={<Icon icon="flame" className="text-orange-500" iconSize="large" />}
-                        className=""
-                     />
-                  </div>
-                  <div className="w-full p-3 md:w-6/12">
-                     <MoleculeCallToActionCard
-                        buttonProps={{
-                           buttonText: t('learn.practiceVocabulary'),
-                           isBlock: true,
-                           typeOf: 'SECONDARY'
-                        }}
-                        content={t('learn.learnAtLeast')}
-                        dinamicContent={
-                           <progress
-                              className="progress progress-primary w-full"
-                              max="5"
-                              value={vocabularyStats?.wordsLearnedToday}
-                           />
-                        }
-                        icon={<Icon icon="clipboard-check" iconSize="large" iconState="primary" />}
-                        title={t('learn.yourChallenge')}
-                     />
-                  </div>
-                  <div className="w-full p-3 md:w-6/12">
-                     <MoleculeCallToActionCard
-                        buttonProps={{ buttonText: t('learn.expandVocabulary'), isBlock: true }}
-                        content={t('learn.masteredVocabulary', {
-                           percentageDominated: vocabularyStats?.percentageDominated
-                        })}
-                        dinamicContent={
+               <AtomText type="paragraph">{t('learn.vocabularyProgress')}</AtomText>
+
+               <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3">
+                  <MoleculeMiniCard
+                     content={t('learn.totalWords')}
+                     footer={vocabularyStats?.totalWords || 0}
+                     icon={<Icon icon="library" className="!text-blue-500" iconSize="large" />}
+                     variant="compact"
+                  />
+                  <MoleculeMiniCard
+                     content={t('learn.learned')}
+                     footer={vocabularyStats?.learnedWords || 0}
+                     icon={<Icon icon="brain-cog" className="!text-green-500" iconSize="large" />}
+                     variant="compact"
+                  />
+                  <MoleculeMiniCard
+                     content={t('learn.dailyGoal')}
+                     footer={`${vocabularyStats?.wordsLearnedToday || 0}/5`}
+                     icon={<Icon icon="star" className="!text-orange-500" iconSize="large" />}
+                     variant="compact"
+                     className="col-span-2 md:col-span-1"
+                  />
+               </div>
+
+               <div className="mt-6">
+                  <MoleculeCallToActionCard
+                     buttonProps={{
+                        buttonText: t('learn.goToVocabulary'),
+                        isBlock: true,
+                        typeOf: 'PRIMARY',
+                        href: 'vocabulary'
+                     }}
+                     content={t('learn.vocabularyOverview', {
+                        mastered: Math.round(vocabularyStats?.percentageDominated || 0),
+                        streak: vocabularyStats?.streak || 0
+                     })}
+                     dinamicContent={
+                        <div className="space-y-2">
+                           <div className="flex justify-between text-sm">
+                              <span>{t('learn.progress')}</span>
+                              <span>{Math.round(vocabularyStats?.percentageDominated || 0)}%</span>
+                           </div>
                            <progress
                               className="progress progress-primary w-full"
                               max="100"
-                              value={vocabularyStats?.percentageDominated}
+                              value={vocabularyStats?.percentageDominated || 0}
                            />
-                        }
-                        icon={<Icon icon="library" iconSize="large" iconState="primary" />}
-                        title={t('learn.vocabularyMastery')}
-                     />
-                  </div>
+                        </div>
+                     }
+                     icon={<Icon icon="gauge" iconSize="large" iconState="primary" />}
+                     title={t('learn.vocabularyPreview')}
+                  />
                </div>
             </div>
 

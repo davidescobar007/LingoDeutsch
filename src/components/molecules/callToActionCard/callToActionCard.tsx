@@ -12,7 +12,8 @@ type TMoleculeCallToActionCardProps = {
       buttonText: string
       buttonIcon?: React.ReactNode
       isBlock: boolean
-      typeOf?: 'PRIMARY' | 'INFO' | 'SECONDARY' | 'ACCENT' | 'WARNING' | 'OUTLINE'
+      typeOf?: 'PRIMARY' | 'SECONDARY' | 'ACCENT' | 'WARNING' | 'OUTLINE'
+      href?: string
    }
 }
 
@@ -22,7 +23,7 @@ export const MoleculeCallToActionCard: FunctionComponent<TMoleculeCallToActionCa
    title,
    content,
    dinamicContent = null,
-   buttonProps: { buttonText, buttonIcon, isBlock, typeOf = 'PRIMARY' }
+   buttonProps: { buttonText, buttonIcon, isBlock, typeOf = 'PRIMARY', href }
 }) => {
    return (
       <div className="card-outlined">
@@ -40,7 +41,7 @@ export const MoleculeCallToActionCard: FunctionComponent<TMoleculeCallToActionCa
             <AtomText type="paragraph">{content}</AtomText>
             <div className="w-full">{dinamicContent}</div>
 
-            <AtomButton href="grammar" isBlock={isBlock} type="link" variant={typeOf}>
+            <AtomButton href={href} isBlock={isBlock} type="link" variant={typeOf}>
                {buttonText}
                {buttonIcon ?? <span>{buttonIcon}</span>}
             </AtomButton>

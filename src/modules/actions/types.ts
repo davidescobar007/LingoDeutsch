@@ -226,15 +226,11 @@ export type Tgrammar = {
    isCompleted: boolean
 }
 
-export type TVocabularyStats = {
+export type TVocabularyStatsUI = {
    totalWords: number
    learnedWords: number
-   toRecheck: number
    percentageDominated: number
-   learningPace: number
-   last7Days: { [key: string]: number }
    streak: number
-   isStreak: boolean
    wordsLearnedToday: number
 }
 

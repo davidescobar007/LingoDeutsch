@@ -4,7 +4,7 @@ import { constants } from '../global.types'
 
 import { delay, shuffleArray } from './actions.utils'
 import { handleErrorModal } from './global.actions'
-import { TCard, TUser, TVocabularyStats } from './types'
+import { TCard, TUser, TVocabularyStatsUI } from './types'
 
 export const getCardsList = async ({
    user,
@@ -62,77 +62,49 @@ export const updateCard = async (card: TCard) => {
    await pbUpdateRecord(constants.USER_VOCAB_PROGRESS, card.id, card)
 }
 
-export const getVocabularyStats = async (user: TUser): Promise<TVocabularyStats> => {
+export const getVocabularyStats = async (user: TUser): Promise<TVocabularyStatsUI> => {
    try {
       if (!user?.id) throw new Error('need signup')
 
       const userVocabularyProgress = await getCardsList({ user })
       const totalWords = userVocabularyProgress.length
       const learnedWords = userVocabularyProgress.filter((card) => card.level === 'easy').length
-      const toRecheck = userVocabularyProgress.filter((card) => card.level === 'hard').length
-      const percentageDominated = totalWords ? (learnedWords / totalWords) * 100 : 0
+      const percentageDominated = totalWords ? Math.round((learnedWords / totalWords) * 100) : 0
 
-      // Calculate learning pace
-      const validDates = userVocabularyProgress
-         .map((card) => new Date(card.last_time_seen))
-         .filter((date) => !isNaN(date.getTime()))
-
-      if (validDates.length === 0) throw new Error('No valid dates found')
-
-      const firstSeenDate = new Date(Math.min(...validDates.map((date) => date.getTime())))
-      const daysSinceFirstSeen = (new Date().getTime() - firstSeenDate.getTime()) / (1000 * 60 * 60 * 24)
-      const learningPace = parseFloat((totalWords / daysSinceFirstSeen).toFixed(1))
-
-      // Calculate words learned in the last 7 days
-      const last7Days = userVocabularyProgress.reduce(
-         (acc, card) => {
-            const date = new Date(card.last_time_seen)
-            if (isNaN(date.getTime())) return acc
-
-            const day = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date) as keyof typeof acc
-            if (!acc[day]) acc[day] = 0
-            acc[day] += 1
-            return acc
-         },
-         { Monday: 0, Tuesday: 0, Wednesday: 0, Thursday: 0, Friday: 0, Saturday: 0, Sunday: 0 }
-      )
-
-      // Calculate streak of consecutive days
-      validDates.sort((a, b) => a.getTime() - b.getTime())
-      let streak = 1
-      let maxStreak = 1
-
-      for (let i = 1; i < validDates.length; i++) {
-         const diffInTime = validDates[i].getTime() - validDates[i - 1].getTime()
-         const diffInDays = diffInTime / (1000 * 3600 * 24)
-
-         if (diffInDays === 1) {
-            streak++
-            if (streak > maxStreak) {
-               maxStreak = streak
-            }
-         } else {
-            streak = 1
-         }
-      }
-
-      // Calculate words learned today
       const today = new Date().toDateString()
       const wordsLearnedToday = userVocabularyProgress.filter(
          (card) => new Date(card.last_time_seen).toDateString() === today
       ).length
 
-      const isStreak = maxStreak > 1
+      const uniqueDates = [
+         ...new Set(
+            userVocabularyProgress
+               .map((card) => new Date(card.last_time_seen).toDateString())
+               .filter((dateStr) => dateStr !== 'Invalid Date')
+         )
+      ].sort((a, b) => new Date(b).getTime() - new Date(a).getTime()) // Most recent first
+
+      let streak = 0
+      if (uniqueDates.length > 0) {
+         let checkDate = new Date()
+
+         for (const dateStr of uniqueDates) {
+            const checkDateStr = checkDate.toDateString()
+
+            if (dateStr === checkDateStr) {
+               streak++
+               checkDate.setDate(checkDate.getDate() - 1)
+            } else {
+               break
+            }
+         }
+      }
 
       return {
          totalWords,
          learnedWords,
-         toRecheck,
          percentageDominated,
-         learningPace,
-         last7Days,
          streak,
-         isStreak,
          wordsLearnedToday
       }
    } catch (error) {
