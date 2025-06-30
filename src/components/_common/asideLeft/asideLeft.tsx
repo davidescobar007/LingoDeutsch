@@ -56,7 +56,7 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
             <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/article">
-                  <Icon icon="book-open-text" iconSize="medium" />
+                  <Icon icon="scroll-text" iconSize="medium" />
                   <AtomText className="hidden lg:block" fontSize="large" isBold>
                      Lectura
                   </AtomText>

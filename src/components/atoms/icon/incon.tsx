@@ -27,6 +27,7 @@ import {
    MoveUp,
    PartyPopper,
    Scale,
+   ScrollText,
    Settings,
    Sparkles,
    Star,
@@ -74,6 +75,7 @@ type IconType = {
       | 'party-popper'
       | 'target'
       | 'zap'
+      | 'scroll-text'
    iconSize?: 'small' | 'medium' | 'large'
    iconState?: 'warning' | 'error' | 'success' | 'info' | 'primary' | 'neutral' | 'white'
    className?: string
@@ -155,7 +157,8 @@ export const Icon: FunctionComponent<IconType> = ({
       'party-popper': <PartyPopper className={combinedClassName} fill={fill} size={size} />,
       target: <Target className={combinedClassName} fill={fill} size={size} />,
       zap: <Zap className={combinedClassName} fill={fill} size={size} />,
-      'book-open-text': <BookOpenText className={combinedClassName} fill={fill} size={size} />
+      'book-open-text': <BookOpenText className={combinedClassName} fill={fill} size={size} />,
+      'scroll-text': <ScrollText className={combinedClassName} fill={fill} size={size} />
    }
    return <div onClick={disabled ? defaultOnClick : onClick}>{iconType[icon] || null}</div>
 }

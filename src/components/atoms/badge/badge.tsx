@@ -10,6 +10,7 @@ type TAtomBadge = {
    outline?: boolean
    size?: BadgeSize
    className?: string
+   onClick?: () => void
 }
 
 export const AtomBadge: FunctionComponent<TAtomBadge> = ({
@@ -17,17 +18,23 @@ export const AtomBadge: FunctionComponent<TAtomBadge> = ({
    color = undefined,
    outline = false,
    size = 'md',
-   className = ''
+   className = '',
+   onClick = undefined
 }) => {
    const classes = [
       'badge',
       color && ` badge-${color}`,
       outline && ' badge-outline',
       size !== 'md' && ` badge-${size} `,
+      onClick && 'cursor-pointer',
       className
    ]
       .filter(Boolean)
       .join(' ')
 
-   return <div className={classes}>{children}</div>
+   return (
+      <div className={classes} onClick={onClick}>
+         {children}
+      </div>
+   )
 }
