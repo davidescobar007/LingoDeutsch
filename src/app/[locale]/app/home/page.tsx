@@ -8,6 +8,8 @@ import {
    MoleculeCallToActionCard,
    MoleculeCard,
    MoleculeCarrousel,
+   MoleculeGrammarPreview,
+   MoleculeLearningHero,
    MoleculeMiniCard,
    MoleculeScore
 } from '@/components/molecules'
@@ -29,18 +31,56 @@ const Learn = () => {
    return (
       <div className="flex w-full flex-col 2xl:flex-row 2xl:gap-8">
          <div className="w-full 2xl:w-8/12">
+            <MoleculeLearningHero
+               title={t('learn.welcomeBack', { name: '{name}' })}
+               subtitle={t('learn.myVocabularyProgress')}
+               ctaButton={t('learn.continueJourney')}
+               user={user}
+               vocabularyStats={vocabularyStats || null}
+            />
+
             <div className="mb-12">
-               <AtomTitle type="h3">{t('learn.grammarTitle')}</AtomTitle>
-               <MoleculeCallToActionCard
-                  buttonProps={{
-                     buttonText: t('learn.startGrammarLesson'),
-                     isBlock: false,
-                     buttonIcon: <Icon icon="book-open-check" iconState="white" />
-                  }}
-                  content={t('learn.grammarContent')}
-                  icon={<Icon icon="book-open-check" iconSize="large" iconState="primary" />}
-                  isIconFilled
-                  title={t('learn.grammarStepByStep')}
+               <div className="mb-2 flex items-center justify-between">
+                  <AtomTitle type="h3">{t('learn.grammarTitle')}</AtomTitle>
+               </div>
+               <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">{t('grammar.grammarPreview')}</p>
+
+               {/* New Grammar Preview Component */}
+               <MoleculeGrammarPreview
+                  popularTopics={[
+                     { label: 'Artículos', colorTheme: 'blue' },
+                     { label: 'Presente', colorTheme: 'green' },
+                     { label: 'Pasado', colorTheme: 'purple' },
+                     { label: 'Pronombres', colorTheme: 'orange' },
+                     { label: 'Adjetivos', colorTheme: 'teal' },
+                     { label: 'Casos', colorTheme: 'red' },
+                     { label: 'Verbos Modales', colorTheme: 'yellow' },
+                     { label: 'Preposiciones', colorTheme: 'indigo' }
+                  ]}
+                  grammarLevels={[
+                     {
+                        level: 'A1',
+                        title: t('grammar.A1'),
+                        description: t('grammar.idealForBeginners'),
+                        count: 8,
+                        colorTheme: 'green'
+                     },
+                     {
+                        level: 'A2',
+                        title: t('grammar.A2'),
+                        description: t('grammar.basicConversation'),
+                        count: 12,
+                        colorTheme: 'blue'
+                     },
+                     {
+                        level: 'B1',
+                        title: t('grammar.B1'),
+                        description: t('grammar.completeToUnlock'),
+                        count: 15,
+                        colorTheme: 'purple'
+                     }
+                  ]}
+                  onViewAllClick={() => (window.location.href = '/grammar')}
                />
             </div>
 
@@ -82,19 +122,6 @@ const Learn = () => {
                         mastered: Math.round(vocabularyStats?.percentageDominated || 0),
                         streak: vocabularyStats?.streak || 0
                      })}
-                     dinamicContent={
-                        <div className="space-y-2">
-                           <div className="flex justify-between text-sm">
-                              <span>{t('learn.progress')}</span>
-                              <span>{Math.round(vocabularyStats?.percentageDominated || 0)}%</span>
-                           </div>
-                           <progress
-                              className="progress progress-primary w-full"
-                              max="100"
-                              value={vocabularyStats?.percentageDominated || 0}
-                           />
-                        </div>
-                     }
                      icon={<Icon icon="gauge" iconSize="large" iconState="primary" />}
                      title={t('learn.vocabularyPreview')}
                   />

@@ -12,6 +12,19 @@ const config: Config = {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
          },
+         animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            shimmer: 'shimmer 3s linear infinite'
+         },
+         keyframes: {
+            shimmer: {
+               '0%': { transform: 'translateX(0)' },
+               '100%': { transform: 'translateX(400%)' }
+            }
+         },
+         borderWidth: {
+            '3': '3px'
+         },
 
          width: {
             '1/24': '4.166667%',

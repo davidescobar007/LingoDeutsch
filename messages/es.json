@@ -1,5 +1,9 @@
 {
    "learn": {
+      "welcomeBack": "Bienvenido de nuevo, {name}",
+      "startLearningToday": "¡Comienza a aprender hoy y alcanza tus metas!",
+      "streakMessage": "¡Excelente trabajo! Llevas {days} días consecutivos aprendiendo.",
+      "continueJourney": "Continuar aprendiendo",
       "wordSpecification": "Selecciona cualquier palabra del texto para ver la traducción",
       "startQuiz": "Empezar quiz",
       "wordSpecificationTooltip": "Al guardar esta palabra, podrás repasarla en la sección: Practicar",
@@ -26,7 +30,8 @@
       "progress": "Progreso",
       "masteredVocabulary": "Has dominado el {percentageDominated}% del vocabulario total.",
       "vocabularyMastery": "Dominio de Vocabulario",
-      "readingExercises": "Ejercicios de Lectura"
+      "readingExercises": "Ejercicios de Lectura",
+      "viewAll": "Ver todos"
    },
    "grammar": {
       "title": "Inicia con algo de gramática",
@@ -34,7 +39,42 @@
       "A1": "Principiante",
       "A2": "Elemental",
       "B1": "Intermedio",
-      "B2": "Intermedio Alto"
+      "B2": "Intermedio Alto",
+      "lessons": "lecciones",
+      "startLevel": "Comenzar nivel",
+      "timeToComplete": "min para completar",
+      "grammarPreview": "Descubre los niveles de gramática estructurados por niveles.",
+      "whatYouWillLearn": "Lo que aprenderás:",
+      "lastLesson": "Última lección:",
+      "completeToUnlock": "Completa nivel A2 para desbloquear",
+      "beginner": "Para principiantes",
+      "elementary": "Nivel elemental",
+      "intermediate": "Nivel intermedio",
+      "advanced": "Avanzado",
+      "idealForBeginners": "Ideal para comenzar",
+      "basicConversation": "Conversación básica",
+      "fluentLevel": "Nivel fluido",
+      "lock": "Bloqueado",
+      "progress": "progreso",
+      "popularTopics": "Temas de gramática populares",
+      "readyToImprove": "¿Listo para mejorar tu alemán?",
+      "discoverAllTopics": "Descubre todos los temas de gramática",
+      "viewAllTopics": "Ver todos los temas",
+      "featuredTopics": "Temas destacados",
+      "topics": "temas",
+      "examples": "Ejemplos",
+      "practiceNow": "Practicar ahora",
+      "levelIndicator": "Nivel {level}",
+      "articles": "Artículos",
+      "articlesDescription": "Los artículos en alemán (der, die, das) indican el género de los sustantivos y se declinan según el caso.",
+      "presentTense": "Presente",
+      "presentTenseDescription": "El presente en alemán se usa para acciones actuales y habituales, con conjugaciones específicas para cada persona.",
+      "cases": "Casos gramaticales",
+      "casesDescription": "El alemán tiene cuatro casos: nominativo, acusativo, dativo y genitivo, que cambian la forma de los artículos y adjetivos.",
+      "pastTense": "Pasado",
+      "pastTenseDescription": "El pasado en alemán incluye el Präteritum (simple) y el Perfekt (compuesto con auxiliar y participio).",
+      "modalVerbs": "Verbos modales",
+      "modalVerbsDescription": "Los verbos modales (können, müssen, dürfen) expresan capacidad, obligación o permiso y alteran la posición del verbo principal."
    },
    "practice": {
       "cardStat": {
