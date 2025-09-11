@@ -9,28 +9,31 @@ type TText = {
    isThin?: boolean
    fontSize?: 'small' | 'medium' | 'large' | 'huge'
    isBlock?: boolean
+   isPrimary?: boolean
 }
 
 export const AtomText: FunctionComponent<TText> = ({
    children,
    className = '',
-   type = 'paragraph',
+   type = 'span',
    isBold = false,
    isItalic = false,
    isThin = false,
    fontSize = 'medium',
-   isBlock = false
+   isBlock = false,
+   isPrimary = false
 }) => {
    const classes = [
       className,
       isBold && 'font-bold',
       isItalic && 'italic',
-      isThin && 'font-light text-gray-500',
+      isThin && 'font-light text-gray-600',
       fontSize === 'small' && 'text-sm',
       fontSize === 'medium' && 'text-base',
       fontSize === 'large' && 'text-lg',
       fontSize === 'huge' && 'text-xl',
-      isBlock && 'w-full'
+      isBlock && 'w-full',
+      isPrimary && 'text-primary'
    ]
       .filter(Boolean)
       .join(' ')

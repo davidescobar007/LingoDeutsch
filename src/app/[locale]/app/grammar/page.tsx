@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unstable-nested-components */
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { BookOpen, ChevronRight, GraduationCap } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import remarkGfm from 'remark-gfm'
 
@@ -20,12 +21,25 @@ import { getUserInfo } from '@/modules/actions/users.actions'
 
 const Grammar = () => {
    const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
+   const searchParams = useSearchParams()
+   const topicFromUrl = searchParams.get('topic')
    const t = useTranslations()
    const user = getUserInfo() as TUser
    const { data } = useGetGrammarByLevel('A1')
    const { data: grammarTopicContent } = useGetSingleGrammarTopic(selectedTopic as string)
    const { data: userGrammarProgress } = useSavedGrammarTopicByUser(user)
    const { mutate: saveGrammarProgress } = useSaveGrammarProgress()
+
+   // Set selected topic from URL parameter when component mounts or URL changes
+   useEffect(() => {
+      if (topicFromUrl && data) {
+         // Check if the topic ID exists in the data
+         const topicExists = data.some((topic) => topic.id === topicFromUrl)
+         if (topicExists) {
+            setSelectedTopic(topicFromUrl)
+         }
+      }
+   }, [topicFromUrl, data])
 
    const scrollToGrammarContent = () => {
       const grammarContent = document.getElementById('grammar-content')

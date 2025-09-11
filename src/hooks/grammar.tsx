@@ -9,7 +9,7 @@ import {
 } from '@/modules/actions/grammar.actions'
 import { TUser } from '@/modules/actions/types'
 
-export const useGetGrammarByLevel = (grammarLevel: string) => {
+export const useGetGrammarByLevel = (grammarLevel: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2') => {
    return useQuery({
       queryKey: ['grammarByLevel', grammarLevel],
       queryFn: () => getGrammarByLevel(grammarLevel)

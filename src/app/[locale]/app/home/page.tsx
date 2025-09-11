@@ -12,6 +12,7 @@ import {
    MoleculeVocabularyPreview
 } from '@/components/molecules'
 import { useArticleList } from '@/hooks/articles'
+import { useGetGrammarByLevel } from '@/hooks/grammar'
 import { useGetVocabularyStats } from '@/hooks/translations'
 import { useScore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
@@ -25,6 +26,7 @@ const Learn = () => {
    const { data: articles } = useArticleList()
    const { data: vocabularyStats } = useGetVocabularyStats(user)
    const { data: scoreList } = useScore()
+   const { data: grammarList } = useGetGrammarByLevel('A1')
 
    return (
       <div className="flex w-full flex-col 2xl:flex-row 2xl:gap-8">
@@ -39,22 +41,25 @@ const Learn = () => {
                />
             </div> */}
 
-            <div className="mb-12">
-               <AtomTitle type="h3">{t('learn.grammarTitle')}</AtomTitle>
-               <AtomText type="span">{t('grammar.grammarPreview')}</AtomText>
+            <div>
+               <AtomTitle type="h2">👋 Hola {user?.name}, ¿listo para aprender alemán hoy?</AtomTitle>
+               <AtomText type="span">Comienza tu lección diaria y sigue aprendiendo.</AtomText>
+            </div>
 
-               {/* New Grammar Preview Component */}
+            <div className="mb-12">
                <MoleculeGrammarPreview
-                  popularTopics={[
-                     { label: 'Artículos', colorTheme: 'blue' },
-                     { label: 'Presente', colorTheme: 'green' },
-                     { label: 'Pasado', colorTheme: 'purple' },
-                     { label: 'Pronombres', colorTheme: 'orange' },
-                     { label: 'Adjetivos', colorTheme: 'teal' },
-                     { label: 'Casos', colorTheme: 'red' },
-                     { label: 'Verbos Modales', colorTheme: 'yellow' },
-                     { label: 'Preposiciones', colorTheme: 'indigo' }
-                  ]}
+                  popularTopics={
+                     grammarList
+                        ?.sort(() => 0.5 - Math.random())
+                        .slice(0, 6)
+                        .map((grammar, index) => ({
+                           id: grammar.id,
+                           label: grammar.topic_name?.es || 'Tema de gramática',
+                           colorTheme: (
+                              ['blue', 'green', 'purple', 'orange', 'teal', 'red', 'yellow', 'indigo'] as const
+                           )[index % 8]
+                        })) || []
+                  }
                />
             </div>
 

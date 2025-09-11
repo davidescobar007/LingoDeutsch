@@ -1,97 +1,95 @@
-import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
-import { AtomButton, AtomText, AtomTitle, Icon } from '@/components/atoms'
-
-type _GrammarTopic = {
-   level: string
-   title: string
-   description: string
-   count: number
-   colorTheme: 'green' | 'blue' | 'purple'
-}
+import { AtomText, Icon } from '@/components/atoms'
 
 type GrammarPreviewProps = {
    popularTopics: {
+      id: string
       label: string
       colorTheme: 'blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red' | 'yellow' | 'indigo'
    }[]
 }
 
+// Array of emojis relevant to German language learning
+const germanLearningEmojis = [
+   '🇩🇪', // German flag
+   '📚', // Books
+   '✏️', // Pencil
+   '📝', // Writing
+   '🎓', // Graduation cap
+   '🧠', // Brain
+   '💡', // Light bulb
+   '📖', // Open book
+   '✍️', // Writing hand
+   '🎯', // Target
+   '⭐', // Star
+   '🔤', // Letters
+   '📋', // Clipboard
+   '🎪', // Learning/practice
+   '🏆', // Trophy
+   '🎨', // Art/creativity
+   '🔍', // Magnifying glass
+   '⚡', // Lightning/energy
+   '🎊', // Celebration
+   '🚀' // Rocket/progress
+]
+
+// Function to shuffle emojis and ensure no repeats until all are used
+const getShuffledEmojis = (count: number) => {
+   const result: string[] = []
+   const availableEmojis = [...germanLearningEmojis]
+
+   for (let i = 0; i < count; i++) {
+      // If we've used all emojis, reset the pool
+      if (availableEmojis.length === 0) {
+         availableEmojis.push(...germanLearningEmojis)
+      }
+
+      // Pick a random emoji from available ones
+      const randomIndex = Math.floor(Math.random() * availableEmojis.length)
+      const selectedEmoji = availableEmojis.splice(randomIndex, 1)[0]
+      result.push(selectedEmoji)
+   }
+
+   return result
+}
+
 export const MoleculeGrammarPreview = ({ popularTopics }: GrammarPreviewProps) => {
-   const t = useTranslations()
+   const shuffledEmojis = getShuffledEmojis(popularTopics.length)
 
    return (
-      <div className="from-primary via-primary/80 to-accent relative overflow-hidden rounded-xl bg-gradient-to-br shadow-lg transition-shadow duration-200 hover:shadow-xl">
-         <div className="bg-primary-content/10 absolute inset-0 backdrop-blur-sm" />
-         <div className="relative z-10">
-            {/* Top section - Popular topics cloud */}
-            <div className="border-primary-content/20 border-b p-4 sm:p-6">
-               <div className="mb-3 flex items-center">
-                  <Icon className="text-primary-content mb-3 mr-1.5" icon="library" iconSize="medium" />
-                  <AtomTitle extraClassName="text-primary-content" type="h5">
-                     {t('grammar.popularTopics')}
-                  </AtomTitle>
-               </div>
+      <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
+         <div className="flex w-full justify-between">
+            <AtomText fontSize="huge" isBold>
+               Gramatica Alemana
+            </AtomText>
+            <Link href="/grammar">
+               <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
+                  Ir a sección <Icon className="text-primary" icon="move-right" iconSize="small" />
+               </AtomText>
+            </Link>
+         </div>
 
-               <div className="flex flex-wrap gap-2 sm:gap-4">
-                  {popularTopics.map((topic, index) => {
-                     const getColorClass = (colorTheme: string) => {
-                        const colors = {
-                           blue: 'bg-info/80',
-                           green: 'bg-success/80',
-                           purple: 'bg-primary/80',
-                           orange: 'bg-warning/80',
-                           teal: 'bg-info/60',
-                           red: 'bg-error/80',
-                           yellow: 'bg-warning/60',
-                           indigo: 'bg-primary/60'
-                        }
-                        return colors[colorTheme as keyof typeof colors] || colors.purple
-                     }
-                     return (
-                        <div className="flex items-center gap-1.5 sm:gap-2" key={index}>
-                           <div
-                              className={`h-1.5 w-1.5 sm:h-2 sm:w-2 ${getColorClass(
-                                 topic.colorTheme
-                              )} rounded-full shadow-sm`}
-                           />
-                           <AtomText className="text-primary-content" fontSize="small" type="span">
-                              {topic.label}
-                           </AtomText>
-                        </div>
-                     )
-                  })}
-               </div>
-            </div>
+         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {popularTopics.map((topic, index) => (
+               <Link href={`grammar?topic=${topic.id}`} key={index}>
+                  <div
+                     className={`flex h-16 cursor-pointer items-center rounded-2xl border bg-white px-4 py-3 transition-all duration-200 hover:scale-[1.02] border-${topic.colorTheme}-200 hover:border-${topic.colorTheme}-300 dark:bg-gray-800 dark:border-${topic.colorTheme}-700/50 dark:hover:border-${topic.colorTheme}-600/50`}
+                  >
+                     {/* Emoji */}
+                     <div className="mr-3 flex h-8 w-8 items-center justify-center text-lg">
+                        {shuffledEmojis[index]}
+                     </div>
 
-            {/* Bottom CTA */}
-            <div className="bg-primary/20 text-primary-content flex flex-col gap-3 rounded-b-xl p-4 sm:flex-row sm:items-center sm:p-5">
-               <div className="flex-grow text-center sm:text-left">
-                  <AtomTitle extraClassName="text-primary-content text-base sm:text-lg" type="h5">
-                     {t('grammar.readyToImprove')}
-                  </AtomTitle>
-                  <AtomText className="text-primary-content/90 text-sm sm:text-base" type="paragraph">
-                     {t('grammar.discoverAllTopics')}
-                  </AtomText>
-                  <div className="mt-2 flex flex-wrap justify-center gap-2 opacity-60 sm:justify-start">
-                     <AtomText className="text-primary-content" fontSize="small" type="span">
-                        A1-A2
-                     </AtomText>
-                     <AtomText className="text-primary-content" fontSize="small" type="span">
-                        B1-B2
-                     </AtomText>
-                     <AtomText className="text-primary-content" fontSize="small" type="span">
-                        C1-C2
-                     </AtomText>
+                     {/* Topic Content */}
+                     <div className="min-w-0 flex-1">
+                        <AtomText className="block truncate" fontSize="small" isBold>
+                           {topic.label}
+                        </AtomText>
+                     </div>
                   </div>
-               </div>
-               <div className="flex justify-center sm:justify-end">
-                  <AtomButton href="grammar" size="sm" type="link" variant="SECONDARY">
-                     Ir a sección
-                     <Icon className="ml-1.5" icon="circle-chevron-right" iconSize="small" />
-                  </AtomButton>
-               </div>
-            </div>
+               </Link>
+            ))}
          </div>
       </div>
    )
