@@ -64,9 +64,6 @@ const Learn = () => {
             </div>
 
             <div className="mb-12">
-               <AtomTitle type="h3">{t('learn.expandVocabulary')}</AtomTitle>
-               <AtomText type="span">{t('vocabulary.vocabularyPreview')}</AtomText>
-
                {/* New Vocabulary Preview Component */}
                <MoleculeVocabularyPreview vocabularyStats={vocabularyStats} />
             </div>

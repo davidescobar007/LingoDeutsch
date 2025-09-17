@@ -1,5 +1,6 @@
 import { FunctionComponent, JSX } from 'react'
 import {
+   Activity,
    AlertTriangle,
    Book,
    BookmarkCheck,
@@ -19,6 +20,7 @@ import {
    Flame,
    Gauge,
    GraduationCap,
+   Heart,
    Home,
    Info,
    Library,
@@ -41,6 +43,7 @@ import {
 
 type IconType = {
    icon:
+      | 'activity'
       | 'check'
       | 'check-circle'
       | 'cross'
@@ -73,6 +76,7 @@ type IconType = {
       | 'move-down'
       | 'move-up'
       | 'graduation-cap'
+      | 'heart'
       | 'party-popper'
       | 'target'
       | 'zap'
@@ -125,6 +129,7 @@ export const Icon: FunctionComponent<IconType> = ({
    const size = iconSizeMap[iconSize] || 24
 
    const iconType: Record<IconType['icon'], JSX.Element | null> = {
+      activity: <Activity className={combinedClassName} fill={fill} size={size} />,
       check: <Check className={combinedClassName} fill={fill} size={size} />,
       'check-circle': <CheckCircle className={combinedClassName} fill={fill} size={size} />,
       cross: <XCircle className={combinedClassName} fill={fill} size={size} />,
@@ -156,6 +161,7 @@ export const Icon: FunctionComponent<IconType> = ({
       'move-down': <MoveDown className={combinedClassName} fill={fill} size={size} />,
       'move-up': <MoveUp className={combinedClassName} fill={fill} size={size} />,
       'graduation-cap': <GraduationCap className={combinedClassName} fill={fill} size={size} />,
+      heart: <Heart className={combinedClassName} fill={fill} size={size} />,
       'party-popper': <PartyPopper className={combinedClassName} fill={fill} size={size} />,
       target: <Target className={combinedClassName} fill={fill} size={size} />,
       zap: <Zap className={combinedClassName} fill={fill} size={size} />,

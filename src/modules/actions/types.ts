@@ -143,7 +143,7 @@ export type TLinguaTools = Array<{
    sentences: Array<Array<string>>
 }>
 
-export type TCard = {
+export type TVocabularyCard = {
    expand: {
       word_id: {
          german_translation: string
@@ -230,8 +230,15 @@ export type TVocabularyStatsUI = {
    totalWords: number
    learnedWords: number
    percentageDominated: number
-   streak: number
+   last7DayStreak: {
+      day: string
+      date: string
+      completed: boolean
+      isToday: boolean
+   }[]
    wordsLearnedToday: number
+   weakWords: number
+   dueForReview: number
 }
 
 export type TUserGrammarProgress = {

@@ -5,7 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { AtomButton, AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { MoleculeFlipCard, MoleculeStat } from '@/components/molecules'
 import { useGetVocabularyList, useUpdateCard } from '@/hooks/cards'
-import { TCard } from '@/modules/actions/types' // Assuming TCard is exported from here
+import { isWordDue } from '@/modules/actions/actions.utils'
+import { TVocabularyCard } from '@/modules/actions/types' // Assuming TCard is exported from here
 
 const PracticeVocabulary = () => {
    const searchParams = useSearchParams()
@@ -14,23 +15,27 @@ const PracticeVocabulary = () => {
    const level = ['easy', 'medium', 'hard'].includes(queryParams.level)
       ? (queryParams.level as 'easy' | 'medium' | 'hard')
       : undefined
-   const { data: listOfWords, isLoading, refetch } = useGetVocabularyList({ level })
+   const isIntelligentMode = queryParams.level === 'intelligent'
+   const { data, isLoading, refetch } = useGetVocabularyList({ level })
+   const dueForReview = (data ?? []).filter((card) => isWordDue(card))
    const { mutateAsync, isPending } = useUpdateCard()
 
    const [currentIndex, setCurrentIndex] = useState(0)
    const [rankings, setRankings] = useState<Record<string, 'easy' | 'medium' | 'hard'>>({})
    const [isCompleted, setIsCompleted] = useState(false)
    const [updateError, setUpdateError] = useState<string | null>(null)
+   const listOfWords = isIntelligentMode ? dueForReview : data || []
 
    useEffect(() => {
       setCurrentIndex(0)
       setRankings({})
       setIsCompleted(false)
       setUpdateError(null)
-   }, [listOfWords])
+   }, [data])
 
    // Reset state when level filter changes
    useEffect(() => {
+      console.log('object')
       setCurrentIndex(0)
       setRankings({})
       setIsCompleted(false)
@@ -45,7 +50,7 @@ const PracticeVocabulary = () => {
       return <div className="flex h-screen items-center justify-center">No words found for this level.</div>
    }
 
-   const currentWord: TCard | undefined = listOfWords[currentIndex]
+   const currentWord: TVocabularyCard | undefined = listOfWords[currentIndex]
    const wordText = currentWord?.expand?.word_id?.german_translation
    const translationText = currentWord?.expand?.word_id?.spanish_translation
 

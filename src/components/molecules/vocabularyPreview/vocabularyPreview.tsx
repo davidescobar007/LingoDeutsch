@@ -1,16 +1,27 @@
-import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
-import { AtomButton, AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { AtomText, Icon } from '@/components/atoms'
 
 type VocabularyStats = {
    totalWords?: number
    learnedWords?: number
    wordsLearnedToday?: number
    streak?: number
+   weakWords?: number
+   dueForReview?: number
 }
 
 type VocabularyPreviewProps = {
    vocabularyStats?: VocabularyStats
+}
+
+type VocabularyCard = {
+   id: string
+   label: string
+   value: number
+   colorLight: string
+   colorDark: string
+   icon?: string
 }
 
 const defaultVocabularyStats: VocabularyStats = {}
@@ -18,78 +29,100 @@ const defaultVocabularyStats: VocabularyStats = {}
 export const MoleculeVocabularyPreview = ({
    vocabularyStats = defaultVocabularyStats
 }: VocabularyPreviewProps) => {
-   const t = useTranslations()
-
    const totalWords = vocabularyStats?.totalWords || 0
-   const learnedWords = vocabularyStats?.learnedWords || 0
-   const todayWords = vocabularyStats?.wordsLearnedToday || 0
-   const streak = vocabularyStats?.streak || 0
+   const dueForReview = vocabularyStats?.dueForReview || 0
+   const weakWords = vocabularyStats?.weakWords || 0
+
+   // Define the 3 actionable vocabulary cards with theme-aligned colors
+   const vocabularyCards: VocabularyCard[] = [
+      {
+         id: 'total',
+         label: 'Total palabras',
+         value: totalWords,
+         colorLight: 'text-info',
+         colorDark: 'dark:text-info'
+      },
+      {
+         id: 'due',
+         label: 'Pendientes de revisar',
+         value: dueForReview,
+         colorLight: 'text-warning',
+         colorDark: 'dark:text-warning',
+         icon: '⏰'
+      },
+      {
+         id: 'weak',
+         label: 'Palabras difíciles',
+         value: weakWords,
+         colorLight: 'text-error',
+         colorDark: 'dark:text-error',
+         icon: '🎯'
+      }
+   ]
+
+   const getCardStyles = (card: VocabularyCard) => {
+      const baseStyles =
+         'flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border px-6 py-4 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl transform-gpu'
+
+      switch (card.id) {
+         case 'total':
+            return `${baseStyles} bg-gradient-to-br from-info/10 to-info/20 border-info/30 hover:border-info/50 hover:from-info/15 hover:to-info/25`
+         case 'due':
+            return `${baseStyles} bg-gradient-to-br from-warning/10 to-warning/20 border-warning/30 hover:border-warning/50 hover:from-warning/15 hover:to-warning/25`
+         case 'weak':
+            return `${baseStyles} bg-gradient-to-br from-error/10 to-error/20 border-error/30 hover:border-error/50 hover:from-error/15 hover:to-error/25`
+         default:
+            return baseStyles
+      }
+   }
+
+   const getCardLink = (cardId: string) => {
+      switch (cardId) {
+         case 'total':
+            return 'vocabulary'
+         case 'due':
+            return 'vocabulary?filter=due'
+         case 'weak':
+            return 'vocabulary?filter=weak'
+         default:
+            return 'vocabulary'
+      }
+   }
+
+   const getCardValueClasses = (card: VocabularyCard) => {
+      return `text-3xl font-bold ${card.colorLight} ${card.colorDark}`
+   }
 
    return (
-      <div className="from-primary via-primary/80 to-accent relative overflow-hidden rounded-xl bg-gradient-to-tl shadow-lg transition-shadow duration-200 hover:shadow-xl">
-         <div className="bg-primary-content/10 absolute inset-0 backdrop-blur-sm" />
-         <div className="relative z-10">
-            {/* Top section - Your vocabulary stats */}
-            <div className="border-primary-content/20 border-b p-4 sm:p-6">
-               <div className="mb-3 flex items-center">
-                  <Icon className="text-primary-content mb-3 mr-1.5" icon="book" iconSize="medium" />
-                  <AtomTitle extraClassName="text-primary-content" type="h5">
-                     {t('vocabulary.yourVocabulary')}
-                  </AtomTitle>
-               </div>
+      <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
+         <div className="flex w-full justify-between">
+            <AtomText fontSize="huge" isBold>
+               Tu Vocabulario
+            </AtomText>
+            <Link href="/vocabulary">
+               <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
+                  Empezar <Icon className="text-primary" icon="move-right" iconSize="small" />
+               </AtomText>
+            </Link>
+         </div>
 
-               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                  <div className="text-center">
-                     <div className="text-primary-content text-2xl font-bold">{totalWords}</div>
-                     <AtomText className="text-primary-content/80" fontSize="small" type="span">
-                        {t('vocabulary.totalWords')}
+         <div className="flex w-full flex-wrap gap-4 sm:flex-nowrap">
+            {vocabularyCards.map((card) => (
+               <Link className="w-full sm:flex-1" href={getCardLink(card.id)} key={card.id}>
+                  <div className={getCardStyles(card)}>
+                     {/* Label */}
+                     <AtomText className="mb-2 text-center text-gray-600 dark:text-gray-400" fontSize="small">
+                        {card.label}
                      </AtomText>
-                  </div>
-                  <div className="text-center">
-                     <div className="text-primary-content text-2xl font-bold">{learnedWords}</div>
-                     <AtomText className="text-primary-content/80" fontSize="small" type="span">
-                        {t('vocabulary.mastered')}
-                     </AtomText>
-                  </div>
-                  <div className="text-center">
-                     <div className="text-primary-content text-2xl font-bold">{todayWords}</div>
-                     <AtomText className="text-primary-content/80" fontSize="small" type="span">
-                        {t('vocabulary.today')}
-                     </AtomText>
-                  </div>
-                  <div className="text-center">
-                     <div className="text-primary-content text-2xl font-bold">{streak}</div>
-                     <AtomText className="text-primary-content/80" fontSize="small" type="span">
-                        {t('vocabulary.streak')}
-                     </AtomText>
-                  </div>
-               </div>
-            </div>
 
-            
-
-            {/* Bottom CTA */}
-            <div className="bg-primary/20 text-primary-content flex flex-col gap-3 rounded-b-xl p-4 sm:flex-row sm:items-center sm:p-5">
-               <div className="flex-grow text-center sm:text-left">
-                  <AtomTitle extraClassName="text-primary-content text-base sm:text-lg" type="h5">
-                     {totalWords > 0 ? t('vocabulary.keepLearning') : t('vocabulary.startBuilding')}
-                  </AtomTitle>
-                  <AtomText className="text-primary-content/90 text-sm sm:text-base" type="paragraph">
-                     {totalWords > 0 ? t('vocabulary.practiceYourWords') : t('vocabulary.readArticlesToBuild')}
-                  </AtomText>
-               </div>
-               <div className="flex justify-center sm:justify-end">
-                  <AtomButton href="vocabulary" size="sm" type="link" variant="SECONDARY">
-                     <span className="hidden sm:inline">
-                        {totalWords > 0 ? t('vocabulary.practiceNow') : t('vocabulary.getStarted')}
-                     </span>
-                     <span className="sm:hidden">
-                        {totalWords > 0 ? t('vocabulary.practice') : t('vocabulary.start')}
-                     </span>
-                     <Icon className="ml-1.5" icon="circle-chevron-right" iconSize="small" />
-                  </AtomButton>
-               </div>
-            </div>
+                     {/* Value with optional icon */}
+                     <div className="flex items-center gap-2">
+                        {card.icon && <span className="animate-pulse text-2xl">{card.icon}</span>}
+                        <span className={`${getCardValueClasses(card)} drop-shadow-sm`}>{card.value}</span>
+                     </div>
+                  </div>
+               </Link>
+            ))}
          </div>
       </div>
    )

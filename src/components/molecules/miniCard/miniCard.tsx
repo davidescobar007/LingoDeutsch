@@ -38,6 +38,7 @@ type MoleculeMiniCardProps = {
       selected?: string
       default?: string
    }
+   gradient?: boolean
 }
 
 export const MoleculeMiniCard: FunctionComponent<MoleculeMiniCardProps> = ({
@@ -55,7 +56,8 @@ export const MoleculeMiniCard: FunctionComponent<MoleculeMiniCardProps> = ({
    progressIndicator = undefined,
    actionButton = undefined,
    state = undefined,
-   stateColors = undefined
+   stateColors = undefined,
+   gradient = false
 }) => {
    // Determine effective state
    const effectiveState = state || (isSelected ? 'selected' : 'default')

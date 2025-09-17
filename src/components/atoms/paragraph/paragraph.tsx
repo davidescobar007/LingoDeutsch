@@ -8,6 +8,17 @@ type TText = {
    isItalic?: boolean
    isThin?: boolean
    fontSize?: 'small' | 'medium' | 'large' | 'huge'
+   color?:
+      | 'primary'
+      | 'secondary'
+      | 'accent'
+      | 'warning'
+      | 'error'
+      | 'info'
+      | 'light'
+      | 'dark'
+      | 'success'
+      | 'danger'
    isBlock?: boolean
    isPrimary?: boolean
 }
@@ -20,6 +31,7 @@ export const AtomText: FunctionComponent<TText> = ({
    isItalic = false,
    isThin = false,
    fontSize = 'medium',
+   color = '',
    isBlock = false,
    isPrimary = false
 }) => {
@@ -31,9 +43,20 @@ export const AtomText: FunctionComponent<TText> = ({
       fontSize === 'small' && 'text-sm',
       fontSize === 'medium' && 'text-base',
       fontSize === 'large' && 'text-lg',
-      fontSize === 'huge' && 'text-xl',
+      fontSize === 'huge' && 'text-2xl',
       isBlock && 'w-full',
-      isPrimary && 'text-primary'
+      color === 'primary' && 'text-primary',
+      color === 'secondary' && 'text-secondary',
+      color === 'accent' && 'text-accent',
+      color === 'warning' && 'text-warning',
+      color === 'error' && 'text-error',
+      color === 'info' && 'text-info',
+      color === 'light' && 'text-gray-200',
+      color === 'dark' && 'text-gray-800',
+      color === 'success' && 'text-success',
+      color === 'danger' && 'text-danger',
+      isPrimary && 'text-primary',
+      'text-gray-500'
    ]
       .filter(Boolean)
       .join(' ')

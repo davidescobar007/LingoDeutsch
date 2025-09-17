@@ -2,17 +2,17 @@ import { pbGetList, pbUpdateRecord } from '@/network'
 
 import { constants } from '../global.types'
 
-import { delay, shuffleArray } from './actions.utils'
+import { calculateStreak, delay, getWordsLearnedToday, isWordDue, shuffleArray } from './actions.utils'
 import { handleErrorModal } from './global.actions'
-import { TCard, TUser, TVocabularyStatsUI } from './types'
+import { TUser, TVocabularyCard, TVocabularyStatsUI } from './types'
 
-export const getCardsList = async ({
+export const getVocabularyList = async ({
    user,
    level
 }: {
    user: TUser
    level?: string | undefined
-}): Promise<TCard[]> => {
+}): Promise<TVocabularyCard[]> => {
    try {
       if (!user?.id) throw new Error('need signup')
 
@@ -29,7 +29,7 @@ export const getCardsList = async ({
          })
       )
 
-      if (cards.length || !level) return cards as unknown as TCard[]
+      if (cards.length || !level) return cards as unknown as TVocabularyCard[]
 
       const fallbackCards = shuffleArray(
          await pbGetList(constants.USER_VOCAB_PROGRESS, {
@@ -39,14 +39,14 @@ export const getCardsList = async ({
          })
       )
 
-      return fallbackCards as unknown as TCard[]
+      return fallbackCards as unknown as TVocabularyCard[]
    } catch (error: any) {
       handleErrorModal(error)
       return error
    }
 }
 
-export const updateCard = async (card: TCard) => {
+export const updateVocabulary = async (card: TVocabularyCard) => {
    delay()
    const currentDate = new Date()
    card.last_time_seen = currentDate
@@ -66,46 +66,27 @@ export const getVocabularyStats = async (user: TUser): Promise<TVocabularyStatsU
    try {
       if (!user?.id) throw new Error('need signup')
 
-      const userVocabularyProgress = await getCardsList({ user })
-      const totalWords = userVocabularyProgress.length
-      const learnedWords = userVocabularyProgress.filter((card) => card.level === 'easy').length
+      const cards: TVocabularyCard[] = await getVocabularyList({ user })
+
+      // Calculate basic metrics
+      const totalWords = cards.length
+      const learnedWords = cards.filter((card) => card.level === 'easy').length
+      const weakWords = cards.filter((card) => card.level !== 'easy').length
+      const dueForReview = cards.filter(isWordDue).length
+
+      // Calculate derived metrics
       const percentageDominated = totalWords ? Math.round((learnedWords / totalWords) * 100) : 0
-
-      const today = new Date().toDateString()
-      const wordsLearnedToday = userVocabularyProgress.filter(
-         (card) => new Date(card.last_time_seen).toDateString() === today
-      ).length
-
-      const uniqueDates = [
-         ...new Set(
-            userVocabularyProgress
-               .map((card) => new Date(card.last_time_seen).toDateString())
-               .filter((dateStr) => dateStr !== 'Invalid Date')
-         )
-      ].sort((a, b) => new Date(b).getTime() - new Date(a).getTime()) // Most recent first
-
-      let streak = 0
-      if (uniqueDates.length > 0) {
-         let checkDate = new Date()
-
-         for (const dateStr of uniqueDates) {
-            const checkDateStr = checkDate.toDateString()
-
-            if (dateStr === checkDateStr) {
-               streak++
-               checkDate.setDate(checkDate.getDate() - 1)
-            } else {
-               break
-            }
-         }
-      }
+      const last7DayStreak = calculateStreak(cards)
+      const wordsLearnedToday = getWordsLearnedToday(cards)
 
       return {
          totalWords,
          learnedWords,
          percentageDominated,
-         streak,
-         wordsLearnedToday
+         last7DayStreak,
+         wordsLearnedToday,
+         weakWords,
+         dueForReview
       }
    } catch (error) {
       console.log(error)

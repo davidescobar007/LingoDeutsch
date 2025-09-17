@@ -73,17 +73,17 @@ export const searchTranslationFromSources = async (wordToTranslate: string): Pro
          cases: translationFromAPI.cases
             ? {
                  singular: {
-                    nominative: translationFromAPI.cases.singular.nominative,
-                    genitive: translationFromAPI.cases.singular.genitive,
-                    dative: translationFromAPI.cases.singular.dative,
-                    accusative: translationFromAPI.cases.singular.accusative
+                    nominative: translationFromAPI.cases.singular?.nominative,
+                    genitive: translationFromAPI.cases.singular?.genitive,
+                    dative: translationFromAPI.cases.singular?.dative,
+                    accusative: translationFromAPI.cases.singular?.accusative
                  },
                  plural: translationFromAPI.cases.plural
                     ? {
-                         nominative: translationFromAPI.cases.plural.nominative,
-                         genitive: translationFromAPI.cases.plural.genitive,
-                         dative: translationFromAPI.cases.plural.dative,
-                         accusative: translationFromAPI.cases.plural.accusative
+                         nominative: translationFromAPI.cases.plural?.nominative,
+                         genitive: translationFromAPI.cases.plural?.genitive,
+                         dative: translationFromAPI.cases.plural?.dative,
+                         accusative: translationFromAPI.cases.plural?.accusative
                       }
                     : undefined
               }
