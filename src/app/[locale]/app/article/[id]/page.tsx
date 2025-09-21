@@ -70,7 +70,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
                                     {translationData.german_translation}
                                  </AtomText>
                                  <div className="flex justify-end ">
-                                    <AtomBadge type="secondary">{translationData.type_of_word}</AtomBadge>
+                                    <AtomBadge color="accent">{translationData.type_of_word}</AtomBadge>
 
                                     <BookmarkPlus
                                        className="text-primary hover:bg-primary -mt-2 ml-2 cursor-pointer rounded-md p-1 hover:text-white"

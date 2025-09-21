@@ -4,19 +4,21 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 import { AtomButton, AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { MoleculeFlipCard, MoleculeStat } from '@/components/molecules'
-import { useGetVocabularyList, useUpdateCard } from '@/hooks/cards'
+import { useGetVocabularyList, useGetVocabularyStats, useUpdateCard } from '@/hooks/cards'
 import { isWordDue } from '@/modules/actions/actions.utils'
 import { TVocabularyCard } from '@/modules/actions/types' // Assuming TCard is exported from here
 
 const PracticeVocabulary = () => {
    const searchParams = useSearchParams()
    const router = useRouter()
+   const { refetch: refetchVocabulary } = useGetVocabularyList({})
+   const { refetch: refetchVocabularyStats } = useGetVocabularyStats()
    const queryParams = Object.fromEntries(searchParams.entries())
    const level = ['easy', 'medium', 'hard'].includes(queryParams.level)
       ? (queryParams.level as 'easy' | 'medium' | 'hard')
       : undefined
    const isIntelligentMode = queryParams.level === 'intelligent'
-   const { data, isLoading, refetch } = useGetVocabularyList({ level })
+   const { data, isLoading, refetch, isFetching } = useGetVocabularyList({ level })
    const dueForReview = (data ?? []).filter((card) => isWordDue(card))
    const { mutateAsync, isPending } = useUpdateCard()
 
@@ -42,12 +44,24 @@ const PracticeVocabulary = () => {
       setUpdateError(null)
    }, [level])
 
-   if (isLoading) {
+   useEffect(() => {
+      if (isCompleted) {
+         console.log('Practice session completed successfully!')
+         refetchVocabulary()
+         refetchVocabularyStats()
+      }
+   }, [isCompleted])
+
+   if (isLoading || isFetching) {
       return <div className="flex h-screen items-center justify-center">Loading...</div>
    }
 
    if (!listOfWords || listOfWords.length === 0) {
-      return <div className="flex h-screen items-center justify-center">No words found for this level.</div>
+      return (
+         <div className="flex h-screen items-center justify-center">
+            <AtomText>No hay palabras para practicar en este nivel aún.</AtomText>
+         </div>
+      )
    }
 
    const currentWord: TVocabularyCard | undefined = listOfWords[currentIndex]
@@ -133,15 +147,6 @@ const PracticeVocabulary = () => {
                <AtomTitle type="h4">¡Sesión de práctica completada!</AtomTitle>
 
                {/* Perfect score celebration */}
-               {getStudyStats().completionRate === 100 &&
-                  getStudyStats().easyWords > getStudyStats().mediumWords &&
-                  getStudyStats().easyWords > getStudyStats().hardWords && (
-                     <div className="animate__animated animate__tada mb-4 flex flex-col items-center justify-center">
-                        <AtomText fontSize="large" isBold type="span">
-                           🎉 ¡Excelente! ¡Todas las palabras fueron fáciles! 🎉
-                        </AtomText>
-                     </div>
-                  )}
 
                <MoleculeStat
                   items={[
@@ -160,7 +165,10 @@ const PracticeVocabulary = () => {
                            />
                         ),
                         title: 'Progreso de la sesión',
-                        value: `${getStudyStats().completionRate}%`,
+                        value:
+                           getStudyStats().completionRate === 100
+                              ? '¡Completado!'
+                              : `${getStudyStats().completionRate}%`,
                         description: `${getStudyStats().rankedWords} de ${
                            getStudyStats().totalWords
                         } palabras completadas`

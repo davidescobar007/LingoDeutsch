@@ -2,11 +2,12 @@ import { FunctionComponent, ReactNode } from 'react'
 
 type AlertAtomProps = {
    readonly children: ReactNode
+   className?: string
 }
 
-export const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children }) => {
+export const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children, className = '' }) => {
    return (
-      <div className="alert p-2 italic" role="alert">
+      <div className={`alert bg-base-100 p-2 italic ${className}`} role="alert">
          <svg
             className="stroke-info h-6 w-6 shrink-0"
             fill="none"
@@ -20,7 +21,7 @@ export const AlertAtom: FunctionComponent<AlertAtomProps> = ({ children }) => {
                strokeWidth="2"
             />
          </svg>
-         <span className="">{children}</span>
+         <span>{children}</span>
       </div>
    )
 }

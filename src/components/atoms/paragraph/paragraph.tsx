@@ -36,6 +36,7 @@ export const AtomText: FunctionComponent<TText> = ({
    isPrimary = false
 }) => {
    const classes = [
+      'leading-relaxed',
       className,
       isBold && 'font-bold',
       isItalic && 'italic',
@@ -56,7 +57,7 @@ export const AtomText: FunctionComponent<TText> = ({
       color === 'success' && 'text-success',
       color === 'danger' && 'text-danger',
       isPrimary && 'text-primary',
-      'text-gray-500'
+      'text-gray-600'
    ]
       .filter(Boolean)
       .join(' ')

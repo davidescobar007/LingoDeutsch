@@ -3,7 +3,7 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
 
-import { AtomText, AtomTitle } from '@/components/atoms'
+import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import {
    MoleculeCard,
    MoleculeCarrousel,
@@ -18,6 +18,7 @@ import { useScore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { constants } from '@/modules/global.types'
+import { Link } from '@/navigation'
 
 const Learn = () => {
    const t = useTranslations()
@@ -64,29 +65,38 @@ const Learn = () => {
             </div>
 
             <div className="mb-12">
-               {/* New Vocabulary Preview Component */}
                <MoleculeVocabularyPreview vocabularyStats={vocabularyStats} />
             </div>
 
             <div className="mb-12">
-               <AtomTitle type="h3">{t('learn.readingExercises')}</AtomTitle>
-               <div className="mb-3 w-full">
-                  <MoleculeCarrousel options={{ containScroll: false, loop: true, align: 'start' }}>
-                     {articles
-                        ? articles.map(({ id, title, imageFile }) => {
-                             return (
-                                <MoleculeCard
-                                   image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
-                                   key={id}
-                                   redirectTo={id}
-                                   title={title}
-                                   buttonText="Leer artículo"
-                                />
-                             )
-                          })
-                        : []}
-                  </MoleculeCarrousel>
+               <div className="-mb-2 flex w-full justify-between pt-10">
+                  <AtomText fontSize="large" isBold>
+                     Tu Vocabulario
+                  </AtomText>
+                  <Link href="article">
+                     <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
+                        Ver todos <Icon className="text-primary" icon="move-right" iconSize="small" />
+                     </AtomText>
+                  </Link>
                </div>
+
+               <MoleculeCarrousel options={{ containScroll: false, loop: true, align: 'start' }}>
+                  {articles
+                     ? articles.map(({ id, title, imageFile, created, estimated_read_time }) => {
+                          return (
+                             <MoleculeCard
+                                image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
+                                key={id}
+                                redirectTo={id}
+                                title={title}
+                                buttonText="Leer artículo"
+                                date={created ? new Date(created) : undefined}
+                                timeToRead={estimated_read_time || ''}
+                             />
+                          )
+                       })
+                     : []}
+               </MoleculeCarrousel>
             </div>
          </div>
 

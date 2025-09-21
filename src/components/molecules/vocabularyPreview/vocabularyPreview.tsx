@@ -96,7 +96,7 @@ export const MoleculeVocabularyPreview = ({
    return (
       <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
          <div className="flex w-full justify-between">
-            <AtomText fontSize="huge" isBold>
+            <AtomText fontSize="large" isBold>
                Tu Vocabulario
             </AtomText>
             <Link href="/vocabulary">
@@ -111,7 +111,7 @@ export const MoleculeVocabularyPreview = ({
                <Link className="w-full sm:flex-1" href={getCardLink(card.id)} key={card.id}>
                   <div className={getCardStyles(card)}>
                      {/* Label */}
-                     <AtomText className="mb-2 text-center text-gray-600 dark:text-gray-400" fontSize="small">
+                     <AtomText className="mb-2 text-center" fontSize="small" isThin>
                         {card.label}
                      </AtomText>
 

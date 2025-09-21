@@ -60,7 +60,7 @@ export const MoleculeGrammarPreview = ({ popularTopics }: GrammarPreviewProps) =
    return (
       <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
          <div className="flex w-full justify-between">
-            <AtomText fontSize="huge" isBold>
+            <AtomText fontSize="large" isBold>
                Gramatica Alemana
             </AtomText>
             <Link href="grammar">
@@ -74,7 +74,7 @@ export const MoleculeGrammarPreview = ({ popularTopics }: GrammarPreviewProps) =
             {popularTopics.map((topic, index) => (
                <Link href={`grammar?topic=${topic.id}`} key={index}>
                   <div
-                     className={`flex h-16 transform-gpu cursor-pointer items-center rounded-2xl border bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md border-${topic.colorTheme}-200 hover:border-${topic.colorTheme}-300 dark:bg-gray-800 dark:border-${topic.colorTheme}-700/50 dark:hover:border-${topic.colorTheme}-600/50`}
+                     className={`flex h-16 transform-gpu cursor-pointer items-center rounded-2xl border bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md border-${topic.colorTheme}-200 hover:border-${topic.colorTheme}-300`}
                   >
                      {/* Emoji */}
                      <div className="mr-3 flex h-8 w-8 items-center justify-center text-lg">

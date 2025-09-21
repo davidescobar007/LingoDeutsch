@@ -10,12 +10,12 @@ import { getUserInfo } from '@/modules/actions/users.actions'
 import { constants } from '@/modules/global.types'
 
 const levelOptions = [
-   { value: 'A1', label: 'A1' },
-   { value: 'A2', label: 'A2' },
-   { value: 'B1', label: 'B1' },
-   { value: 'B2', label: 'B2' },
-   { value: 'C1', label: 'C1' },
-   { value: 'C2', label: 'C2' }
+   { value: 'A1', label: 'A1 - Principiante' },
+   { value: 'A2', label: 'A2 - Elemental' },
+   { value: 'B1', label: 'B1 - Intermedio' },
+   { value: 'B2', label: 'B2 - Intermedio avanzado' },
+   { value: 'C1', label: 'C1 - Avanzado' },
+   { value: 'C2', label: 'C2 - Proficiente' }
 ]
 
 const stateOptions = [
@@ -50,7 +50,7 @@ const Article = () => {
 
    useEffect(() => {
       refetch()
-   }, [level, state, sortCriteria])
+   }, [level, state, sortCriteria, refetch])
 
    const onSubmitForm: SubmitHandler<any> = (data) => {
       setLevel(data.level)
@@ -67,21 +67,67 @@ const Article = () => {
                estado y ordenarlos por fecha de publicacion o por estado.
             </AtomText>
          </header>
-         <div className="card-outlined !border-primary my-4 w-full shadow-xl">
-            <FormProvider {...methods}>
-               <form
-                  className="flex w-full flex-wrap justify-between gap-2"
-                  onSubmit={methods.handleSubmit(onSubmitForm)}
-               >
-                  <Select id="level" label="Nivel" options={levelOptions} />
-                  <Select id="state" label="Estado" options={stateOptions} />
-                  <Select id="sortCriteria" label="Ordernar por" options={sortCriteriaOptions} />
+         <div className="card my-6 w-full shadow-lg transition-all duration-300 hover:shadow-xl">
+            <div className="card-body p-6">
+               <div className="mb-4">
+                  <h3 className="text-primary mb-1 text-lg font-semibold">🔍 Personaliza tu búsqueda</h3>
+               </div>
 
-                  <AtomButton isBlock type="submit" variant="PRIMARY">
-                     Buscar
-                  </AtomButton>
-               </form>
-            </FormProvider>
+               <FormProvider {...methods}>
+                  <form className="space-y-4" onSubmit={methods.handleSubmit(onSubmitForm)}>
+                     {/* Form Grid - responsive layout */}
+                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                        <div className="form-control">
+                           <label className="label">
+                              <span className="label-text font-medium">📚 Nivel de alemán</span>
+                           </label>
+                           <Select id="level" label="" options={levelOptions} />
+                           <label className="label">
+                              <span className="label-text-alt text-xs">Elige tu nivel actual</span>
+                           </label>
+                        </div>
+
+                        <div className="form-control">
+                           <label className="label">
+                              <span className="label-text font-medium">⭐ Estado del artículo</span>
+                           </label>
+                           <Select id="state" label="" options={stateOptions} />
+                           <label className="label">
+                              <span className="label-text-alt text-xs">Filtra por progreso</span>
+                           </label>
+                        </div>
+
+                        <div className="form-control">
+                           <label className="label">
+                              <span className="label-text font-medium">🗂️ Ordenar por</span>
+                           </label>
+                           <Select id="sortCriteria" label="" options={sortCriteriaOptions} />
+                           <label className="label">
+                              <span className="label-text-alt text-xs">Organiza los resultados</span>
+                           </label>
+                        </div>
+                     </div>
+
+                     {/* Enhanced Submit Button */}
+                     <div className="divider my-2" />
+                     <div className="flex flex-col items-center gap-3 sm:flex-row">
+                        <AtomButton disabled={isLoading} type="submit" variant="PRIMARY">
+                           {isLoading ? (
+                              <>
+                                 <span className="loading loading-spinner loading-sm" />
+                                 Buscando...
+                              </>
+                           ) : (
+                              <>
+                                 🔍 Buscar artículos
+                                 <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                              </>
+                           )}
+                        </AtomButton>
+                     </div>
+                  </form>
+               </FormProvider>
+            </div>
          </div>
          {isLoading ? (
             'Buscando...'

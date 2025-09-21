@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react'
-import { BookmarkPlus, WholeWord } from 'lucide-react'
+import { FunctionComponent, useState } from 'react'
+import { CheckCircle, WholeWord } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
@@ -19,15 +19,16 @@ interface MoleculeWordSpecificationProps {
 const emptyFunction = () => {}
 
 export const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificationProps> = ({
-   selectedWord,
-   data,
+   selectedWord: _selectedWord,
+   data = undefined,
    isLoading,
-   isError,
+   isError: _isError,
    saveVocabulary = emptyFunction,
    isLoadingSaveVocabulary,
-   articleId
+   articleId: _articleId
 }) => {
-   const t = useTranslations()
+   const _t = useTranslations()
+   const [isSaved, setIsSaved] = useState(false)
 
    const handleSaveTranslation = () => {
       if (!isUserLoged) {
@@ -35,54 +36,97 @@ export const MoleculeWordSpecification: FunctionComponent<MoleculeWordSpecificat
          return
       }
       saveVocabulary(data)
+      setIsSaved(true)
+      setTimeout(() => setIsSaved(false), 2000) // Reset after 2 seconds
    }
+
    return (
       <div className="sticky top-4">
-         <section className="card-outlined !border-primary flex flex-wrap justify-center rounded-2xl !border p-2 text-center">
-            {isLoading ? (
-               <AtomText>Loading...</AtomText>
-            ) : !data ? (
-               <>
-                  <WholeWord size={40} />
-                  <AtomTitle extraClassName="w-full" type="h4">
-                     Explorador de Palabras
-                  </AtomTitle>
-                  <AtomText>
-                     Haz click en la cualquier palabra del articulo para ver su significado y ejemplos de uso.
-                  </AtomText>
-               </>
-            ) : (
-               <div className="flex flex-wrap justify-start text-start">
-                  <div className="flex w-full justify-between">
-                     <AtomText fontSize="large" isBlock isBold>
-                        {data.german_translation}
-                     </AtomText>
-                     <div className="flex justify-end ">
-                        <AtomBadge type="secondary">{data.type_of_word}</AtomBadge>
-
-                        <BookmarkPlus
-                           className="text-primary hover:bg-primary -mt-2 ml-2 cursor-pointer rounded-md p-1 hover:text-white"
-                           onClick={handleSaveTranslation}
-                           size={35}
-                        />
+         <section className="bg-base-100 relative overflow-hidden rounded-3xl border  border-white/20  p-6 shadow-xl backdrop-blur-sm transition-all duration-500 ">
+            <div className="relative z-10">
+               {isLoading ? (
+                  <div className="flex flex-col items-center space-y-4 py-8">
+                     <div className="flex space-x-2">
+                        <div className="h-3 w-3 animate-bounce rounded-full bg-blue-400 [animation-delay:-0.3s]" />
+                        <div className="h-3 w-3 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.15s]" />
+                        <div className="h-3 w-3 animate-bounce rounded-full bg-blue-600" />
+                     </div>
+                     <div className="w-full space-y-3">
+                        <div className="h-6 animate-pulse rounded-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200" />
+                        <div className="h-4 w-3/4 animate-pulse rounded-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200" />
+                        <div className="h-4 w-1/2 animate-pulse rounded-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200" />
                      </div>
                   </div>
-                  <AtomText isBlock isThin>
-                     {data?.spanish_translation}
-                  </AtomText>
-                  <AtomText className="mt-4" fontSize="medium" isBlock isBold>
-                     Ejemplo
-                  </AtomText>
-                  {data.examples.length > 0 && (
-                     <AtomText fontSize="medium" isThin>
-                        {data.examples[Math.floor(Math.random() * data.examples.length)].sentence}
+               ) : !data ? (
+                  <div className="flex flex-col items-center space-y-4 py-8 text-center">
+                     <div className="relative">
+                        <WholeWord className=" text-primary" size={48} />
+                     </div>
+                     <AtomTitle type="h4">Explorador de Palabras</AtomTitle>
+                     <AtomText type="paragraph">
+                        Haz click en cualquier palabra del artículo para ver su significado y ejemplos de uso.
                      </AtomText>
-                  )}
-                  <AtomButton isBlock onClick={handleSaveTranslation} variant="PRIMARY">
-                     Guardar en mi vocabulario
-                  </AtomButton>
-               </div>
-            )}
+                  </div>
+               ) : (
+                  <div className="animate-in fade-in-50 slide-in-from-bottom-4 space-y-6 duration-500">
+                     {/* Word Header */}
+                     <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                           <AtomText color="primary" fontSize="huge" isBold>
+                              {data.german_translation}
+                           </AtomText>
+                        </div>
+                        <div className="flex items-center space-x-2 pt-2">
+                           <AtomBadge color="secondary">{data.type_of_word}</AtomBadge>
+                        </div>
+                     </div>
+
+                     {/* Translation */}
+                     <div className="rounded-2xl border border-white/30 bg-white/50 p-4">
+                        <AtomText isBlock isThin>
+                           {data?.spanish_translation}
+                        </AtomText>
+                     </div>
+
+                     {/* Example Section */}
+                     {data.examples && data.examples.length > 0 && (
+                        <div className="space-y-3">
+                           <AtomText fontSize="medium" isBold>
+                              💡 Ejemplo
+                           </AtomText>
+                           <div className="rounded-2xl border-l-4 border-yellow-400 bg-gradient-to-r from-yellow-50 to-amber-50 p-4 shadow-sm">
+                              <AtomText className="italic leading-relaxed text-gray-700" fontSize="medium" isThin>
+                                 &ldquo;{data.examples[Math.floor(Math.random() * data.examples.length)]?.sentence}
+                                 &rdquo;
+                              </AtomText>
+                           </div>
+                        </div>
+                     )}
+
+                     {/* Save Button */}
+                     <AtomButton
+                        disabled={isLoadingSaveVocabulary}
+                        isBlock
+                        onClick={handleSaveTranslation}
+                        variant="OUTLINE"
+                     >
+                        {isLoadingSaveVocabulary ? (
+                           <div className="flex items-center justify-center space-x-2">
+                              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                              <span>Guardando...</span>
+                           </div>
+                        ) : isSaved ? (
+                           <div className="flex items-center justify-center space-x-2">
+                              <CheckCircle size={18} />
+                              <span>¡Guardado!</span>
+                           </div>
+                        ) : (
+                           'Guardar en mi vocabulario'
+                        )}
+                     </AtomButton>
+                  </div>
+               )}
+            </div>
          </section>
       </div>
    )

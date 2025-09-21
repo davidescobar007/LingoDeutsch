@@ -4,7 +4,7 @@ import { FunctionComponent, useState } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import { AtomBadge, AtomButton, AtomTitle } from '@/components/atoms'
+import { AlertAtom, AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { constants } from '@/modules/global.types'
 
 import { MoleculeImageCard } from '../imageCard/imageCard'
@@ -50,42 +50,59 @@ export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
                      <AtomTitle extraClassName="font-medium">{title}</AtomTitle>
                      <div className="flex justify-normal gap-3">
                         {level.map((item) => (
-                           <AtomBadge key={item}>{item}</AtomBadge>
+                           <AtomBadge color="primary" key={item}>
+                              {item}
+                           </AtomBadge>
                         ))}
                      </div>
                   </header>
-                  <Image
-                     alt="image related to the title"
-                     height={50}
-                     src={imageURL}
-                     // eslint-disable-next-line react/forbid-component-props
-                     style={{ borderRadius: '10px' }}
-                     width={1000}
-                  />
+                  <div className="group relative overflow-hidden rounded-2xl shadow-2xl">
+                     {/* Gradient overlay */}
+                     <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                     {/* Main image with enhanced styling */}
+                     <Image
+                        alt="image related to the title"
+                        className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105 lg:h-80"
+                        height={400}
+                        src={imageURL}
+                        width={1000}
+                     />
+                  </div>
                </div>
 
                <div className="w-full">
-                  <p className="text-justify leading-8 tracking-wide">
-                     {text_content
-                        .replace(/\./g, '. ')
-                        .split(' ')
-                        .map((word, index) => (
-                           <span
-                              className={`${
-                                 currentWordIntext === word && 'bg-accent'
-                              } hover:bg-accent cursor-pointer rounded-lg duration-300 ease-in-out`}
-                              key={`${word}${index}`}
-                              onClick={() => {
-                                 setCurrentWordIntext(word)
-                                 searchWordTranslation(word)
-                              }}
-                           >
-                              {`${word} `}
-                           </span>
-                        ))}
-                  </p>
+                  <AlertAtom className="mb-4">
+                     Presiona sobre una palabra para obtener su traducción, luego no olvides realizar el quiz al
+                     final de la sección.
+                  </AlertAtom>
+                  <div className="bg-base-100 rounded-2xl p-6 shadow-xl md:p-4">
+                     <AtomText
+                        className="!text-justify leading-10 tracking-normal"
+                        fontSize="large"
+                        type="paragraph"
+                     >
+                        {text_content
+                           .replace(/\./g, '. ')
+                           .split(' ')
+                           .map((word, index) => (
+                              <span
+                                 className={`${
+                                    currentWordIntext === word && 'bg-accent'
+                                 } hover:bg-accent cursor-pointer rounded-lg duration-300 ease-in-out`}
+                                 key={`${word}${index}`}
+                                 onClick={() => {
+                                    setCurrentWordIntext(word)
+                                    searchWordTranslation(word)
+                                 }}
+                              >
+                                 {`${word} `}
+                              </span>
+                           ))}
+                     </AtomText>
+                  </div>
                   <footer className="tooltip tooltip-accent mb-28 mt-7" data-tip={t('learn.earnPoints')}>
-                     <AtomButton href={`/app/quiz/${articleId}`} type="link">
+                     <AtomButton gradient href={`/app/quiz/${articleId}`} type="link">
                         {t('learn.startQuiz')} 📝
                      </AtomButton>
                   </footer>

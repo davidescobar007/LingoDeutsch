@@ -2,8 +2,6 @@ import { FunctionComponent } from 'react'
 import Image from 'next/image'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle, Icon } from '@/components/atoms'
-import { Link } from '@/navigation'
-import { calculateDateDistance } from '@/utils/date.utils'
 
 type TMoleculeCard = {
    image?: string
@@ -70,9 +68,6 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
          )}
 
          <div className="card-body p-2">
-            <AtomBadge color={isCompleted ? 'success' : 'secondary'}>
-               {isCompleted ? 'Aprendido' : date ? calculateDateDistance(new Date(date)) : ''}
-            </AtomBadge>
             <AtomTitle extraClassName="h-16" type="h4">
                {title}
             </AtomTitle>
@@ -82,10 +77,12 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
                <div className="flex items-center gap-1">
                   <Icon icon="timer" iconSize="small" iconState="primary" /> {timeToRead} min
                </div>
+
+               {isCompleted && <AtomBadge color="accent">Aprendido</AtomBadge>}
                {buttonText && redirectTo && (
-                  <Link className="btn btn-primary" href={`/app/article/${redirectTo}`} role="button">
+                  <AtomButton href={`/app/article/${redirectTo}`} isBlock type="link">
                      {buttonText}
-                  </Link>
+                  </AtomButton>
                )}
             </div>
          </div>
