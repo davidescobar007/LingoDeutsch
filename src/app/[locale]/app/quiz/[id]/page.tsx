@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { CheckCircle2, XCircle } from 'lucide-react'
 
-import { AtomButton, AtomText, AtomTitle } from '@/components/atoms'
+import { AtomBadge, AtomButton, AtomProgressPercentage, AtomText } from '@/components/atoms'
 import { useArticle, useGetArticleByUser, useSaveArticleUser } from '@/hooks/articles' // Assumes this fetches TArticle by id
 import { useUpdateUserscore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
@@ -11,7 +11,6 @@ import { calculateFutureDate, calculateScore } from '@/utils/quiz.utils'
 
 import { QuizModeSelection } from './QuizModeSelection'
 import { QuizResult } from './QuizResult'
-import WaitingRoom from './watingRoom'
 
 type QuizQuestion = {
    question: string
@@ -72,9 +71,9 @@ const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
    }
 
    if (userArticle?.updated && !mode) {
-      const { futureDate, isFuture } = calculateFutureDate(new Date(userArticle.updated), 1.25)
+      const { isFuture } = calculateFutureDate(new Date(userArticle.updated), 1.25)
       if (isFuture) {
-         return <WaitingRoom futureDate={futureDate} id={id} />
+         // return <WaitingRoom futureDate={futureDate} id={id} />
       }
    }
 
@@ -84,14 +83,27 @@ const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
    }
 
    if (showResult) {
-      return (
-         <QuizResult article={article} mode={mode} questions={questions} score={score} userAnswers={userAnswers} />
-      )
+      return <QuizResult id={id} mode={mode} questions={questions} score={score} userAnswers={userAnswers} />
    }
 
    return (
       <div className="mx-auto flex w-full flex-col gap-4">
-         <AtomTitle>{question.question}</AtomTitle>
+         <div className="fflex items-center justify-between ">
+            <div className="flex items-center gap-3">
+               <AtomBadge color="primary" size="lg">
+                  {current + 1}
+               </AtomBadge>
+               <AtomText>
+                  Pregunta {current + 1} de {questions.length}
+               </AtomText>
+            </div>
+         </div>
+
+         <AtomProgressPercentage value={Math.round(((current + 1) / questions.length) * 100)} />
+
+         <AtomText fontSize="huge" isBlock isBold>
+            {question.question}
+         </AtomText>
          <div className="flex flex-col gap-5">
             {options.map((option) => {
                const isSelected = selected === option
@@ -121,7 +133,13 @@ const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
             })}
          </div>
          <AtomButton disabled={!selected} extraClassName="mt-4" onClick={handleNext}>
-            {current === questions.length - 1 ? 'Finalizar' : 'Siguiente'}
+            {current === questions.length - 1 ? (
+               <span className="flex items-center gap-2">🏁 Finalizar Quiz</span>
+            ) : (
+               <span className="flex items-center gap-2">
+                  Siguiente ({current + 2}/{questions.length}) →
+               </span>
+            )}
          </AtomButton>
          {selected && (
             <div className="mt-4 flex items-center justify-center gap-2">

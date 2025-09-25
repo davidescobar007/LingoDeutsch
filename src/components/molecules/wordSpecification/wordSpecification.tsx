@@ -1,3 +1,4 @@
+'use client'
 import { FunctionComponent, useState } from 'react'
 import { CheckCircle, WholeWord } from 'lucide-react'
 import { useTranslations } from 'next-intl'

@@ -1,6 +1,17 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export type BadgeColor = 'neutral' | 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
+export type BadgeColor =
+   | 'default'
+   | 'neutral'
+   | 'primary'
+   | 'secondary'
+   | 'accent'
+   | 'ghost'
+   | 'info'
+   | 'success'
+   | 'warning'
+   | 'error'
+
 export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg'
 
 type TAtomBadge = {
@@ -14,7 +25,7 @@ type TAtomBadge = {
 
 export const AtomBadge: FunctionComponent<TAtomBadge> = ({
    children,
-   color = 'neutral',
+   color = 'default',
    outline = false,
    size = 'md',
    className = '',
@@ -23,9 +34,9 @@ export const AtomBadge: FunctionComponent<TAtomBadge> = ({
    // Build daisyUI badge classes
    const badgeClasses = [
       'badge', // Base daisyUI badge class
-      color && `badge-${color}`, // daisyUI color variants
+      color !== 'default' && `badge-${color}`, // daisyUI color variants (default has no class)
       outline && 'badge-outline', // daisyUI outline variant
-      size !== 'md' && `badge-${size}`, // daisyUI size variants
+      size !== 'md' && `badge-${size}`, // daisyUI size variants (md is default)
       onClick && 'cursor-pointer hover:scale-105 transition-transform duration-200', // Interactive styles
       className // Additional custom classes
    ]
