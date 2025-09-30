@@ -173,9 +173,6 @@ const Vocabulary = () => {
                   {totalDueCount > 0 && (
                      <div className="mb-8">
                         <div className="bg-base-100 border-primary/20 hover:border-primary/40 group cursor-pointer overflow-hidden rounded-3xl border-2 p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
-                           <div className="bg-primary/10 text-primary absolute right-2 top-2 rounded-full px-2 py-1 text-xs font-medium">
-                              Neuroadaptivo
-                           </div>
                            <div className="relative">
                               <div className="mb-6 flex items-center gap-4">
                                  <div className="from-primary to-secondary flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br shadow-lg">

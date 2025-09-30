@@ -11,6 +11,7 @@ import { calculateFutureDate, calculateScore } from '@/utils/quiz.utils'
 
 import { QuizModeSelection } from './QuizModeSelection'
 import { QuizResult } from './QuizResult'
+import WaitingRoom from './watingRoom'
 
 type QuizQuestion = {
    question: string
@@ -71,9 +72,9 @@ const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
    }
 
    if (userArticle?.updated && !mode) {
-      const { isFuture } = calculateFutureDate(new Date(userArticle.updated), 1.25)
+      const { isFuture, futureDate } = calculateFutureDate(new Date(userArticle.updated), 1.25)
       if (isFuture) {
-         // return <WaitingRoom futureDate={futureDate} id={id} />
+         return <WaitingRoom futureDate={futureDate} id={id} />
       }
    }
 
