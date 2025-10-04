@@ -1,5 +1,5 @@
 'use client'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
    getArticlesByUser,
@@ -19,15 +19,20 @@ export const useArticleList = ({ level, sortCriteria }: { level?: string; sortCr
 
 export const useArticle = (articleId: string) => {
    return useQuery({
-      queryKey: ['articlesList', articleId],
+      queryKey: ['article', articleId],
       queryFn: () => getSingleArticle(articleId)
    })
 }
 
 export const useSaveArticleUser = () => {
+   const queryClient = useQueryClient()
+
    return useMutation({
       mutationFn: ({ userArticle, score }: { userArticle: TArticleUser; score: number }) =>
-         saveArticleUser({ userArticle, score })
+         saveArticleUser({ userArticle, score }),
+      onSuccess: (data, variables) => {
+         queryClient.invalidateQueries({ queryKey: ['article', variables.userArticle.article_id] })
+      }
    })
 }
 

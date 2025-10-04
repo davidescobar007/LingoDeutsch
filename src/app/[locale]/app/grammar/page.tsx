@@ -60,11 +60,11 @@ const Grammar = () => {
    }, [grammarTopicContent, visibleSections])
 
    const getTotalSections = (content: string): number => {
-      return content.split(/^---$/m).length
+      return content?.split(/^---$/m).length
    }
 
    const getContentSections = (content: string): string[] => {
-      const sections = content.split(/^---$/m)
+      const sections = content?.split(/^---$/m)
       return sections
    }
 
@@ -128,7 +128,7 @@ const Grammar = () => {
             {grammarTopicContent && selectedTopic ? (
                <>
                   <header
-                     className="animate__animated animate__tada bg-secondary mb-3 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md"
+                     className="animate__animated animate__bounce animate__delay-1s bg-secondary mb-3 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md"
                      id="grammar-topic-header"
                   >
                      <AtomTitle extraClassName="text-primary mt-3" type="h3">
