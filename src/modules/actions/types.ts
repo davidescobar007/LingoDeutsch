@@ -209,7 +209,6 @@ export type TIterableData = {
 
 export type Tgrammar = {
    content: string
-
    difficulty: number
    id: string
    iterableData: TIterableData[]
@@ -224,6 +223,16 @@ export type Tgrammar = {
    collectionName: string
    expand: {}
    isCompleted: boolean
+   quiz: {
+      id: string
+      type: string
+      question: {
+         de: string
+         es: string
+      }
+      options: Record<string, string>
+      correctAnswers: string[]
+   }[]
 }
 
 export type TVocabularyStatsUI = {
