@@ -167,6 +167,9 @@ const Grammar = () => {
                               Marcar leccion como aprendida <GraduationCap />
                            </AtomButton>
                         )}
+                        <AtomButton href={`/app/quiz/${selectedTopic}?type=grammar`} type="link">
+                           Empezar quiz
+                        </AtomButton>
                         <AtomButton
                            onClick={() => {
                               const currentIndex = data?.findIndex((topic) => topic.id === selectedTopic)

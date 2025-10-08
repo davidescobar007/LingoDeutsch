@@ -1,9 +1,10 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CheckCircle2, XCircle } from 'lucide-react'
 
 import { AtomBadge, AtomButton, AtomProgressPercentage, AtomText } from '@/components/atoms'
-import { useArticle, useGetArticleByUser, useSaveArticleUser } from '@/hooks/articles' // Assumes this fetches TArticle by id
+import { useGetArticleByUser, useSaveArticleUser } from '@/hooks/articles'
+import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
@@ -14,114 +15,149 @@ import { QuizResult } from './QuizResult'
 import WaitingRoom from './watingRoom'
 
 type QuizQuestion = {
-   question: string
-   option_one: string
-   option_two: string
-   option_three: string
-   option_four?: string
-   option_five?: string
-   correct_answer: 'option_one' | 'option_two' | 'option_three' | 'option_four' | 'option_five'
+   id: string
+   type: string
+   question: {
+      de: string
+      es: string
+   }
+   options: Record<string, string>
+   correctAnswers: string[]
 }
 
-const getOptions = (q: QuizQuestion) =>
-   [q.option_one, q.option_two, q.option_three, q.option_four, q.option_five].filter((opt): opt is string =>
-      Boolean(opt)
-   )
+type QuizPageProps = {
+   params: { id: string }
+   searchParams: { type?: 'article' | 'grammar' }
+}
 
-const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
+const getQuestionOptions = (question: QuizQuestion): string[] => {
+   if (!question?.options || typeof question.options !== 'object') return []
+   return Object.values(question.options).filter(Boolean)
+}
+
+const getOptionKey = (options: Record<string, string>, value: string): string | undefined => {
+   return Object.entries(options).find(([_, optionValue]) => optionValue === value)?.[0]
+}
+
+const isAnswerCorrect = (options: Record<string, string>, selected: string, correctAnswers: string[]): boolean => {
+   const selectedKey = getOptionKey(options, selected)
+   return selectedKey ? correctAnswers.includes(selectedKey) : false
+}
+
+const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
    const user = getUserInfo() as TUser
-   const { data: article, isLoading } = useArticle(id)
+   const quizType = searchParams?.type || 'article'
+   const isArticleQuiz = quizType === 'article'
+
+   const { data: quizzData, isLoading } = useGetQuiz({ id, type: quizType })
    const { data: userArticle } = useGetArticleByUser(user.id, id)
+   const { mutate: updateUserScore } = useUpdateUserscore()
+   const { mutate: saveArticleUser } = useSaveArticleUser()
+
    const [current, setCurrent] = useState(0)
    const [selected, setSelected] = useState<string | null>(null)
    const [showResult, setShowResult] = useState(false)
    const [score, setScore] = useState(0)
    const [mode, setMode] = useState<'proportional' | 'all_or_nothing' | null>(null)
    const [userAnswers, setUserAnswers] = useState<string[]>([])
-   const { mutate: updateUserScore } = useUpdateUserscore()
-   const { mutate: saveArticleUser } = useSaveArticleUser()
+   const [hasSubmittedScore, setHasSubmittedScore] = useState(false)
+
+   const questions = (quizzData?.quiz || quizzData?.quizz || []) as QuizQuestion[]
+   const question = questions[current]
+   const options = getQuestionOptions(question)
 
    useEffect(() => {
-      if (!showResult && !mode) return
+      if ((!showResult && !mode) || !questions.length || hasSubmittedScore) return
       const finalScore = mode ? calculateScore(score, questions.length, mode) : 0
-      if (userArticle) saveArticleUser({ userArticle, score: finalScore })
+      if (isArticleQuiz && userArticle) saveArticleUser({ userArticle, score: finalScore })
       if (finalScore >= 40) updateUserScore({ newScore: finalScore, user })
+      setHasSubmittedScore(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [showResult])
+   }, [showResult, mode, questions.length, score, isArticleQuiz, userArticle, hasSubmittedScore, user])
 
-   if (isLoading) return <div>Cargando...</div>
-   if (!article || !article.quizz || article.quizz.length === 0) return <div>No se encontró ningún quiz.</div>
-
-   const questions = article.quizz
-   const question = questions[current]
-   const options = getOptions(question)
-
-   const handleSelect = (option: string) => {
-      setSelected(option)
-   }
+   const handleSelect = (option: string) => setSelected(option)
 
    const handleNext = () => {
-      if (selected === question[question.correct_answer]) setScore((s) => s + 1)
+      if (selected && isAnswerCorrect(question.options, selected, question.correctAnswers)) {
+         setScore((s) => s + 1)
+      }
       setUserAnswers((answers) => [...answers, selected || ''])
       setSelected(null)
-      if (current < questions.length - 1) {
-         setCurrent((c) => c + 1)
-      } else {
-         setShowResult(true)
-      }
+      setCurrent((c) => (c < questions.length - 1 ? c + 1 : c))
+      if (current >= questions.length - 1) setShowResult(true)
    }
 
-   if (userArticle?.updated && !mode) {
+   if (isLoading) return <div>Cargando...</div>
+   if (!questions.length) return <div>No se encontró ningún quiz.</div>
+   if (!question?.options || !question?.correctAnswers) return <div>Error: Datos del quiz incorrectos.</div>
+
+   if (isArticleQuiz && userArticle?.updated && !mode) {
       const { isFuture, futureDate } = calculateFutureDate(new Date(userArticle.updated), 1.25)
-      if (isFuture) {
-         return <WaitingRoom futureDate={futureDate} id={id} />
-      }
+      if (isFuture) return <WaitingRoom futureDate={futureDate} id={id} />
    }
 
-   // Mode selection before quiz starts
-   if (!mode) {
-      return <QuizModeSelection setMode={setMode} />
-   }
+   if (!mode) return <QuizModeSelection setMode={setMode} />
+   if (showResult)
+      return (
+         <QuizResult
+            id={id}
+            mode={mode}
+            questions={questions}
+            score={score}
+            typeOfQuizz={quizType}
+            userAnswers={userAnswers}
+         />
+      )
 
-   if (showResult) {
-      return <QuizResult id={id} mode={mode} questions={questions} score={score} userAnswers={userAnswers} />
-   }
+   const isLastQuestion = current === questions.length - 1
+   const selectedIsCorrect = selected
+      ? isAnswerCorrect(question.options, selected, question.correctAnswers)
+      : false
+   const questionText =
+      typeof question.question === 'string' ? question.question : question.question?.de || 'Pregunta no disponible'
 
    return (
       <div className="mx-auto flex w-full flex-col gap-4">
-         <div className="fflex items-center justify-between ">
-            <div className="flex items-center gap-3">
-               <AtomBadge color="primary" size="lg">
-                  {current + 1}
-               </AtomBadge>
-               <AtomText>
-                  Pregunta {current + 1} de {questions.length}
-               </AtomText>
-            </div>
+         <div className="flex items-center gap-3">
+            <AtomBadge color="primary" size="lg">
+               {current + 1}
+            </AtomBadge>
+            <AtomText>
+               Pregunta {current + 1} de {questions.length}
+            </AtomText>
          </div>
 
          <AtomProgressPercentage value={Math.round(((current + 1) / questions.length) * 100)} />
 
-         <AtomText fontSize="huge" isBlock isBold>
-            {question.question}
+         <AtomText fontSize="huge" isBold>
+            {questionText}
          </AtomText>
+         {typeof question.question !== 'string' && (
+            <AtomText fontSize="small" isThin>
+               {question.question?.es || ''}
+            </AtomText>
+         )}
+
          <div className="flex flex-col gap-5">
             {options.map((option) => {
                const isSelected = selected === option
-               const isCorrect = option === question[question.correct_answer] && selected
-               const isIncorrect = isSelected && option !== question[question.correct_answer]
+               const optionKey = getOptionKey(question.options, option)
+               const isCorrect = optionKey ? question.correctAnswers.includes(optionKey) && !!selected : false
+               const isIncorrect = isSelected && optionKey ? !question.correctAnswers.includes(optionKey) : false
+
+               const buttonClass = `flex items-center justify-between rounded-xl border-2 p-4 text-lg font-medium shadow transition-all duration-500 focus:ring-primary focus:outline-none focus:ring-2
+                  ${
+                     isSelected
+                        ? isCorrect
+                           ? 'border-green-500 bg-green-50 text-green-800'
+                           : 'border-red-400 bg-red-50 text-red-800'
+                        : 'hover:border-primary hover:bg-primary/10 border-gray-200 bg-white hover:scale-[1.03]'
+                  }
+                  ${isSelected ? 'scale-[1.01]' : ''}`
+
                return (
                   <button
-                     className={`flex items-center justify-between rounded-xl border-2 p-4 text-lg font-medium shadow transition-all duration-500
-                        ${
-                           isSelected
-                              ? isCorrect
-                                 ? 'border-green-500 bg-green-50 text-green-800'
-                                 : 'border-red-400 bg-red-50 text-red-800'
-                              : 'hover:border-primary hover:bg-primary/10 border-gray-200 bg-white hover:scale-[1.03]'
-                        }
-                        ${isSelected ? 'scale-[1.01]' : ''}
-                        focus:ring-primary focus:outline-none focus:ring-2`}
+                     className={buttonClass}
                      disabled={!!selected}
                      key={option}
                      onClick={() => handleSelect(option)}
@@ -133,8 +169,9 @@ const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
                )
             })}
          </div>
+
          <AtomButton disabled={!selected} extraClassName="mt-4" onClick={handleNext}>
-            {current === questions.length - 1 ? (
+            {isLastQuestion ? (
                <span className="flex items-center gap-2">🏁 Finalizar Quiz</span>
             ) : (
                <span className="flex items-center gap-2">
@@ -142,9 +179,10 @@ const QuizPage = ({ params: { id } }: { params: { id: string } }) => {
                </span>
             )}
          </AtomButton>
+
          {selected && (
             <div className="mt-4 flex items-center justify-center gap-2">
-               {selected === question[question.correct_answer] ? (
+               {selectedIsCorrect ? (
                   <>
                      <CheckCircle2 className="text-green-700" size={28} />
                      <AtomText className="text-lg font-bold text-green-700">¡Correcto! ¡Bien hecho!</AtomText>

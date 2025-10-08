@@ -50,14 +50,15 @@ export type TArticle = {
    updated?: string
    estimated_read_time?: string
    is_completed?: boolean | null
-   quizz?: {
-      question: string
-      option_one: string
-      option_two: string
-      option_three: string
-      option_four?: string
-      option_five?: string
-      correct_answer: 'option_one' | 'option_two' | 'option_three' | 'option_four' | 'option_five'
+   quiz?: {
+      id: string
+      type: string
+      question: {
+         de: string
+         es: string
+      }
+      options: Record<string, string>
+      correctAnswers: string[]
    }[]
    expand?: {}
 }
@@ -353,4 +354,33 @@ export type TwordSpecification = {
    }
    typeOfWord: string
    word: string
+}
+
+export type TQuizQuestion = {
+   id: string
+   updated: string
+   created?: string
+   collectionId?: string
+   collectionName?: string
+   expand?: Record<string, any>
+   quiz?: {
+      id: string
+      type: string
+      question: {
+         de: string
+         es: string
+      }
+      options: Record<string, string>
+      correctAnswers: string[]
+   }[]
+   quizz?: {
+      id: string
+      type: string
+      question: {
+         de: string
+         es: string
+      }
+      options: Record<string, string>
+      correctAnswers: string[]
+   }[]
 }

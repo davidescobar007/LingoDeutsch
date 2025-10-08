@@ -1,8 +1,9 @@
 'use client'
 
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { CheckCircle2, XCircle } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import { useLocale } from 'next-intl'
 
 import likeAnimation from '@/assets/animated/like.json'
 import sadAnimation from '@/assets/animated/sad.json'
@@ -13,15 +14,32 @@ import { calculateScore } from '@/utils/quiz.utils'
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
+type QuizQuestion = {
+   id: string
+   type: string
+   question: {
+      de: string
+      es: string
+   }
+   options: Record<string, string>
+   correctAnswers: string[]
+}
+
 type QuizResultProps = {
    score: number
-   questions: any[]
+   questions: QuizQuestion[]
    mode: 'proportional' | 'all_or_nothing'
    userAnswers: string[]
    id: string
+   typeOfQuizz: 'article' | 'grammar'
 }
 
-export const QuizResult: React.FC<QuizResultProps> = ({ score, questions, mode, userAnswers, id }) => {
+const getOptionKey = (options: Record<string, string>, value: string): string | undefined => {
+   return Object.entries(options).find(([_, optionValue]) => optionValue === value)?.[0]
+}
+
+export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuizz }: QuizResultProps) => {
+   const locale = useLocale() as 'de' | 'es'
    const finalScore = calculateScore(score, questions.length, mode)
    const isApproved = finalScore >= 70
 
@@ -177,12 +195,22 @@ export const QuizResult: React.FC<QuizResultProps> = ({ score, questions, mode, 
                   </div>
                   <div className="hidden lg:block">
                      <div className="mt-4 flex flex-wrap justify-between">
-                        <AtomButton href="/app/article" isBlock type="link">
-                           Buscar otros artículos
-                        </AtomButton>
-                        <AtomButton href={`/app/article/${id}`} isBlock type="link" variant="OUTLINE">
-                           Leer de nuevo
-                        </AtomButton>
+                        {typeOfQuizz === 'article' && (
+                           <>
+                              <AtomButton href="/app/article" isBlock type="link">
+                                 Buscar otros artículos
+                              </AtomButton>
+                              <AtomButton href={`/app/article/${id}`} isBlock type="link" variant="OUTLINE">
+                                 Leer de nuevo
+                              </AtomButton>
+                           </>
+                        )}
+
+                        {typeOfQuizz === 'grammar' && (
+                           <AtomButton href="/app/grammar" isBlock type="link">
+                              Seguir con gramática
+                           </AtomButton>
+                        )}
                      </div>
                   </div>
                </div>
@@ -197,14 +225,29 @@ export const QuizResult: React.FC<QuizResultProps> = ({ score, questions, mode, 
                   <ul className="mt-6 space-y-4">
                      {questions.map((q, idx) => {
                         const userAnswer = userAnswers[idx]
-                        const correctValue = q[q.correct_answer]
-                        const isCorrect = userAnswer === correctValue
+                        const userAnswerKey = getOptionKey(q.options, userAnswer)
+                        const isCorrect = userAnswerKey ? q.correctAnswers.includes(userAnswerKey) : false
+
+                        const correctAnswerTexts = q.correctAnswers
+                           .map((key) => q.options[key])
+                           .filter(Boolean)
+                           .join(', ')
+
+                        const questionText =
+                           typeof q.question === 'string'
+                              ? q.question
+                              : q.question[locale] || 'Pregunta no disponible'
+
+                        const feedbackMessage = isCorrect
+                           ? `Tu respuesta: ${userAnswer || 'Sin respuesta'}`
+                           : `Tu respuesta: ${userAnswer || 'Sin respuesta'} | Correcta(s): ${correctAnswerTexts}`
+
                         return (
-                           <li className="group" key={idx}>
+                           <li className="group" key={q.id || idx}>
                               <div className="transform transition-all duration-200 group-hover:scale-[1.02]">
                                  <MoleculeAlert
                                     message={`Tu respuesta: ${userAnswer || 'Sin respuesta'}`}
-                                    title={`${idx + 1}. ${q.question}`}
+                                    title={`${idx + 1}. ${questionText}`}
                                     type={isCorrect ? 'success' : 'error'}
                                  />
                               </div>
@@ -216,12 +259,21 @@ export const QuizResult: React.FC<QuizResultProps> = ({ score, questions, mode, 
 
                <div className="block lg:hidden">
                   <div className="mt-4 flex flex-wrap justify-between">
-                     <AtomButton href="/app/article" isBlock type="link">
-                        Buscar otros artículos
-                     </AtomButton>
-                     <AtomButton href={`/app/article/${id}`} isBlock type="link" variant="OUTLINE">
-                        Leer de nuevo
-                     </AtomButton>
+                     {typeOfQuizz === 'article' && (
+                        <>
+                           <AtomButton href="/app/article" isBlock type="link">
+                              Buscar otros artículos
+                           </AtomButton>
+                           <AtomButton href={`/app/article/${id}`} isBlock type="link" variant="OUTLINE">
+                              Leer de nuevo
+                           </AtomButton>
+                        </>
+                     )}
+                     {typeOfQuizz === 'grammar' && (
+                        <AtomButton href="/app/grammar" isBlock type="link">
+                           Seguir con gramática
+                        </AtomButton>
+                     )}
                   </div>
                </div>
             </div>

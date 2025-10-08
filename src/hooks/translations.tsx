@@ -26,7 +26,7 @@ export const useTranslation = ({
 export const useArticle = (articleId: string) => {
    return useQuery({
       queryKey: ['articlesList', articleId],
-      queryFn: () => getSingleArticle(articleId)
+      queryFn: () => getSingleArticle({ articleId })
    })
 }
 

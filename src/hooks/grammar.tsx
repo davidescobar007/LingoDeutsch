@@ -19,7 +19,7 @@ export const useGetGrammarByLevel = (grammarLevel: 'A1' | 'A2' | 'B1' | 'B2' | '
 export const useGetSingleGrammarTopic = (id: string) => {
    return useQuery({
       queryKey: ['grammarById', id],
-      queryFn: () => getSingleGrammarById(id)
+      queryFn: () => getSingleGrammarById({ id })
    })
 }
 

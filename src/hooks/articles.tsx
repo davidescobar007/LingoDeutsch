@@ -20,7 +20,7 @@ export const useArticleList = ({ level, sortCriteria }: { level?: string; sortCr
 export const useArticle = (articleId: string) => {
    return useQuery({
       queryKey: ['article', articleId],
-      queryFn: () => getSingleArticle(articleId)
+      queryFn: () => getSingleArticle({ articleId })
    })
 }
 
@@ -43,14 +43,6 @@ export const useGetArticleByUser = (userId: string, articleId: string) => {
       queryFn: () => getArticlesByUser({ userId, articleId })
    })
 }
-
-// export const useGetArticlesListByUser = (userId: string, isCompleted: boolean) => {
-//    return useQuery({
-//       queryKey: ['userArticlesList', userId],
-//       enabled: !!userId && !!isCompleted,
-//       queryFn: () => getArticlesListByUser({ userId, isCompleted })
-//    })
-// }
 
 export const useGetArticlesListByUserAndState = ({
    userId,

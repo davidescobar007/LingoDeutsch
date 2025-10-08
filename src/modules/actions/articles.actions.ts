@@ -11,7 +11,7 @@ import {
 import { constants } from '../global.types'
 
 import { delay } from './actions.utils'
-import { TArticle, TArticleUser } from './types'
+import { TArticle, TArticleUser, TQuizQuestion } from './types'
 import { isUserLoged } from './users.actions'
 
 const getArticlesList = async ({
@@ -35,10 +35,23 @@ const getArticlesList = async ({
    }
 }
 
-const getSingleArticle = async (articleId: string): Promise<TArticle> => {
-   const article = await pbGetSingleRecord(constants.ARTICLES, articleId)
+const getSingleArticle = async ({ articleId }: { articleId: string }): Promise<TArticle> => {
+   const article = await pbGetSingleRecord({
+      collection: constants.ARTICLES,
+      recordId: articleId
+   })
    await delay()
    return article as unknown as TArticle
+}
+
+const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise<TQuizQuestion> => {
+   const article = await pbGetSingleRecord({
+      collection: constants.ARTICLES,
+      recordId: articleId,
+      fields: 'id,updated,quizz'
+   })
+   await delay()
+   return article as unknown as TQuizQuestion
 }
 
 const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUser; score: number }) => {
@@ -119,6 +132,7 @@ const getArticlesListByUser = async ({
 }
 
 export {
+   getArticleQuiz,
    getArticleByUser as getArticlesByUser,
    getArticlesList,
    getArticlesListByUser,
