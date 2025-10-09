@@ -1,8 +1,8 @@
-### Generate quiz JSON aligned to lesson content, CEFR level, and topic vocabulary
+### Generate quiz array aligned to lesson content, CEFR level, and topic vocabulary
 
 **Instructions:**
 
-- Output must be valid JSON only, matching the exact template schema below.
+- Output must be an array of question objects only, matching the exact template schema below.
 - Use the lesson content provided in the “content” field as the only source of truth. Reuse the same vocabulary, examples, and phrasing whenever possible.
 - Adapt language complexity to the specified CEFR level and the topic’s vocabulary scope.
 - Ensure every correct answer is directly supported by the lesson text.
@@ -22,27 +22,24 @@
 - `multipleMinCorrect`: Integer (default 2).
 - `balance`: Object controlling mix, e.g., `{ "single": 2, "multiple": 1, "true_or_false": 1 }` (best-effort if counts don’t sum exactly).
 
-**Target schema to produce:**
-```json
-{
-  "quiz": [
-    {
-      "id": "q1",
-      "type": "single|multiple|true_or_false",
-      "question": {
-        "de": "string",
-        "es": "string"
-      },
-      "options": {
-        "o1": "string",
-        "o2": "string",
-        "o3": "string"
-      },
-      "correctAnswers": ["o1"]
-    }
-  ]
-}
-
+**Target schema to produce (array of question objects):**
+```javascript
+[
+  {
+    "id": "q1",
+    "type": "single|multiple|true_or_false|autocomplete",
+    "question": {
+      "de": "string",
+      "es": "string"
+    },
+    "options": {
+      "o1": "string",
+      "o2": "string",
+      "o3": "string"
+    },
+    "correctAnswers": ["o1"]
+  }
+]
 ```
 
 **Authoring requirements:**
@@ -103,71 +100,72 @@
    - Cover at least 3 distinct sub-points from the lesson.
 
 9. **Output format**  
-   - Return JSON that strictly matches the template. No comments, no extra keys, no explanations.
+   - Return an array of question objects that strictly matches the template. No comments, no extra keys, no explanations, no wrapper object.
 
-   **Example output** (based on an A1 lesson on *Alphabet und Aussprache*; `allowedTypes` `["single","multiple","true_or_false"]`; `numQuestions` 4; `minOptions` 3; `maxOptions` 4; `multipleMinCorrect` 2; `requireSpanishQuestion=true`):
+   **Example output** (based on an A1 lesson on *Alphabet und Aussprache*; `allowedTypes` `["single","multiple","true_or_false","autocomplete"]`; `numQuestions` 4; `minOptions` 3; `maxOptions` 4; `multipleMinCorrect` 2; `requireSpanishQuestion=true`):
 
-```json
-{
-  "quiz": [
-    {
-      "id": "q1",
-      "type": "single",
-      "question": {
-        "de": "Wie klingt der Buchstabe „z“ im Deutschen?",
-        "es": "¿Cómo suena la letra «z» en alemán?"
-      },
-      "options": {
-        "o1": "Wie „s“",
-        "o2": "Wie „ts“",
-        "o3": "Wie „sch“",
-        "o4": "Wie ein stimmhaftes englisches „z“"
-      },
-      "correctAnswers": ["o2"]
-    },
-    {
-      "id": "q2",
-      "type": "true_or_false",
-      "question": {
-        "de": "„sp“ am Wortanfang klingt wie „shp“.",
-        "es": "«sp» al inicio de palabra suena como «shp»."
-      },
-      "options": {
-        "o1": "Wahr",
-        "o2": "Falsch"
-      },
-      "correctAnswers": ["o1"]
-    },
-    {
-      "id": "q3",
-      "type": "multiple",
-      "question": {
-        "de": "Welche Buchstaben sind Umlaute?",
-        "es": "¿Qué letras son vocales con diéresis (umlaut)?"
-      },
-      "options": {
-        "o1": "ä",
-        "o2": "ö",
-        "o3": "ü",
-        "o4": "ß"
-      },
-      "correctAnswers": ["o1", "o2", "o3"]
-    },
-    {
-    "id": "q5",
-    "type": "autocomplete",
+
+```javascript
+[
+  {
+    "id": "q1",
+    "type": "single",
     "question": {
-        "de": "Das ist ein ___.",
-        "es": "Completa la frase: 'Das ist ein ...'"
+      "de": "Wie klingt der Buchstabe „z" im Deutschen?",
+      "es": "¿Cómo suena la letra «z» en alemán?"
     },
     "options": {
-        "o1": "Hund",
-        "o2": "Katze",
-        "o3": "Auto"
+      "o1": "Wie „s"",
+      "o2": "Wie „ts"",
+      "o3": "Wie „sch"",
+      "o4": "Wie ein stimmhaftes englisches „z""
+    },
+    "correctAnswers": ["o2"]
+  },
+  {
+    "id": "q2",
+    "type": "true_or_false",
+    "question": {
+      "de": "„sp" am Wortanfang klingt wie „shp".",
+      "es": "«sp» al inicio de palabra suena como «shp»."
+    },
+    "options": {
+      "o1": "Wahr",
+      "o2": "Falsch"
     },
     "correctAnswers": ["o1"]
-    }
-  ]
+  },
+  {
+    "id": "q3",
+    "type": "multiple",
+    "question": {
+      "de": "Welche Buchstaben sind Umlaute?",
+      "es": "¿Qué letras son vocales con diéresis (umlaut)?"
+    },
+    "options": {
+      "o1": "ä",
+      "o2": "ö",
+      "o3": "ü",
+      "o4": "ß"
+    },
+    "correctAnswers": ["o1", "o2", "o3"]
+  },
+  {
+    "id": "q4",
+    "type": "autocomplete",
+    "question": {
+      "de": "Das ist ein ___.",
+      "es": "Completa la frase: 'Das ist ein ...'"
+    },
+    "options": {
+      "o1": "Hund",
+      "o2": "Katze",
+      "o3": "Auto"
+    },
+    "correctAnswers": ["o1"]
+  }
+]
+```
   ```
 
 **Implementation hint:**

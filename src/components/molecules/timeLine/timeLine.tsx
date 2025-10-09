@@ -26,7 +26,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
       <div className="relative flex">
          <div className="absolute left-4 top-8 z-0 h-[calc(100%-55px)] w-1 bg-gray-200" />
          <div className="relative flex-1 space-y-4">
-            {topics.map((topic) => (
+            {topics?.map((topic) => (
                <div
                   className="flex cursor-pointer items-start py-2 transition-all hover:font-semibold"
                   key={topic.id}

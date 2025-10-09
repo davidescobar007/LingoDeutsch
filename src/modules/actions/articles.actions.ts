@@ -59,15 +59,17 @@ const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUs
       pbCreateRecord(constants.USER_ARTICLE_PROGRESS, {
          article_id: userArticle.article_id,
          user_id: userArticle.user_id,
-         is_completed: Boolean(score >= 70),
-         highest_score_ever: score,
-         number_of_attempts: '1'
+         is_completed: Boolean(score >= 60),
+         highest_score_ever:
+            score > (userArticle.highest_score_ever || 0) ? score : userArticle.highest_score_ever || 0,
+         number_of_attempts: (Number(userArticle.number_of_attempts) || 0) + 1
       })
    } else {
       pbUpdateRecord(constants.USER_ARTICLE_PROGRESS, userArticle.id, {
-         is_completed: Boolean(score >= 70),
-         highest_score_ever: score > userArticle.highest_score_ever ? score : userArticle.highest_score_ever,
-         number_of_attempts: Number(userArticle.number_of_attempts) + 1
+         is_completed: Boolean(score >= 60),
+         highest_score_ever:
+            score > (userArticle.highest_score_ever || 0) ? score : userArticle.highest_score_ever || 0,
+         number_of_attempts: (Number(userArticle.number_of_attempts) || 0) + 1
       })
    }
 }

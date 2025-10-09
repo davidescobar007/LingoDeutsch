@@ -4,13 +4,13 @@ import { CheckCircle2, XCircle } from 'lucide-react'
 
 import { AtomBadge, AtomButton, AtomProgressPercentage, AtomText } from '@/components/atoms'
 import { useGetArticleByUser, useSaveArticleUser } from '@/hooks/articles'
+import { useGetGrammarByLevel, useGetSingleGrammarTopicByUser, useSaveGrammarProgress } from '@/hooks/grammar'
 import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { calculateFutureDate, calculateScore } from '@/utils/quiz.utils'
 
-import { QuizModeSelection } from './QuizModeSelection'
 import { QuizResult } from './QuizResult'
 import WaitingRoom from './watingRoom'
 
@@ -51,14 +51,16 @@ const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
 
    const { data: quizzData, isLoading } = useGetQuiz({ id, type: quizType })
    const { data: userArticle } = useGetArticleByUser(user.id, id)
+   const { data: grammarTopics } = useGetGrammarByLevel('A1')
+   const { data: userGrammarProgress } = useGetSingleGrammarTopicByUser({ user, id })
    const { mutate: updateUserScore } = useUpdateUserscore()
    const { mutate: saveArticleUser } = useSaveArticleUser()
+   const { mutate: saveGrammarProgress } = useSaveGrammarProgress()
 
    const [current, setCurrent] = useState(0)
    const [selected, setSelected] = useState<string | null>(null)
    const [showResult, setShowResult] = useState(false)
    const [score, setScore] = useState(0)
-   const [mode, setMode] = useState<'proportional' | 'all_or_nothing' | null>(null)
    const [userAnswers, setUserAnswers] = useState<string[]>([])
    const [hasSubmittedScore, setHasSubmittedScore] = useState(false)
 
@@ -66,14 +68,24 @@ const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
    const question = questions[current]
    const options = getQuestionOptions(question)
 
+   const getNextTopicId = (): string | undefined => {
+      if (quizType !== 'grammar' || !grammarTopics?.length) return undefined
+      const currentIndex = grammarTopics.findIndex((topic) => topic.id === id)
+      const hasNextTopic = currentIndex !== -1 && currentIndex < grammarTopics.length - 1
+      return hasNextTopic ? grammarTopics[currentIndex + 1]?.id : undefined
+   }
+
+   const nextTopicId = getNextTopicId()
+
    useEffect(() => {
-      if ((!showResult && !mode) || !questions.length || hasSubmittedScore) return
-      const finalScore = mode ? calculateScore(score, questions.length, mode) : 0
+      if (!showResult || !questions.length || hasSubmittedScore) return
+      const finalScore = calculateScore(score, questions.length)
       if (isArticleQuiz && userArticle) saveArticleUser({ userArticle, score: finalScore })
+      if (quizType === 'grammar' && finalScore) saveGrammarProgress({ grammar_id: id, user, score: finalScore })
       if (finalScore >= 40) updateUserScore({ newScore: finalScore, user })
       setHasSubmittedScore(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [showResult, mode, questions.length, score, isArticleQuiz, userArticle, hasSubmittedScore, user])
+   }, [showResult, questions.length, score, isArticleQuiz, userArticle, hasSubmittedScore, user])
 
    const handleSelect = (option: string) => setSelected(option)
 
@@ -91,17 +103,23 @@ const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
    if (!questions.length) return <div>No se encontró ningún quiz.</div>
    if (!question?.options || !question?.correctAnswers) return <div>Error: Datos del quiz incorrectos.</div>
 
-   if (isArticleQuiz && userArticle?.updated && !mode) {
+   // Check waiting room for article quizzes
+   if (isArticleQuiz && userArticle?.updated) {
       const { isFuture, futureDate } = calculateFutureDate(new Date(userArticle.updated), 1.25)
-      if (isFuture) return <WaitingRoom futureDate={futureDate} id={id} />
+      if (isFuture) return <WaitingRoom futureDate={futureDate} id={id} quizType="article" />
    }
 
-   if (!mode) return <QuizModeSelection setMode={setMode} />
+   // Check waiting room for grammar quizzes
+   if (quizType === 'grammar' && userGrammarProgress?.updated) {
+      const { isFuture, futureDate } = calculateFutureDate(new Date(userGrammarProgress.updated), 1.25)
+      if (isFuture) return <WaitingRoom futureDate={futureDate} id={id} quizType="grammar" />
+   }
+
    if (showResult)
       return (
          <QuizResult
             id={id}
-            mode={mode}
+            nextTopicId={nextTopicId}
             questions={questions}
             score={score}
             typeOfQuizz={quizType}

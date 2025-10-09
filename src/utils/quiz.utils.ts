@@ -1,30 +1,10 @@
 import { addHours, isAfter } from 'date-fns'
 
-export function calculateScore(
-   correctAnswers: number,
-   totalQuestions: number,
-   mode: 'proportional' | 'all_or_nothing'
-): number {
+export function calculateScore(correctAnswers: number, totalQuestions: number): number {
    if (totalQuestions === 0) {
       return 0
    }
-   const percent = (correctAnswers / totalQuestions) * 100
-
-   if (mode === 'proportional') {
-      if (percent < 40) {
-         return 0
-      }
-      return Math.round(percent)
-   }
-
-   if (mode === 'all_or_nothing') {
-      if (percent < 70) {
-         return 0
-      }
-      return 100
-   }
-
-   return 0
+   return Math.round((correctAnswers / totalQuestions) * 100)
 }
 
 export function calculateFutureDate(pastDate: Date, hoursToAdd: number): { futureDate: Date; isFuture: boolean } {

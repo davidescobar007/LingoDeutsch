@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { BookOpen, ChevronRight, GraduationCap } from 'lucide-react'
+import { BookOpen, ChevronRight } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
@@ -104,6 +104,14 @@ const Grammar = () => {
       router.replace(`?${params.toString()}`, { scroll: false })
    }
 
+   const handleNextTopic = () => {
+      const currentIndex = data?.findIndex((topic) => topic.id === selectedTopic)
+      if (currentIndex !== undefined && currentIndex >= 0 && currentIndex < (data?.length || 0) - 1) {
+         setVisibleSections(1)
+         setSelectedTopic(data?.[currentIndex + 1]?.id || null)
+      }
+   }
+
    return (
       <main className="flex w-full flex-wrap justify-between gap-7 rounded-xl ">
          <header className="w-full">
@@ -128,7 +136,7 @@ const Grammar = () => {
             {grammarTopicContent && selectedTopic ? (
                <>
                   <header
-                     className="animate__animated animate__bounce animate__delay-1s bg-secondary mb-3 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md"
+                     className="bg-secondary mb-3 flex items-center justify-between rounded-md border-b-2 p-2 shadow-md"
                      id="grammar-topic-header"
                   >
                      <AtomTitle extraClassName="text-primary mt-3" type="h3">
@@ -156,35 +164,34 @@ const Grammar = () => {
                   </>
 
                   {visibleSections >= getTotalSections(grammarTopicContent.content) && (
-                     <footer className="mt-4 flex flex-wrap justify-end gap-4 border-t-2 py-4">
-                        {!userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic) && (
-                           <AtomButton
-                              onClick={() => {
-                                 saveGrammarProgress({ user, grammar_id: selectedTopic })
-                              }}
-                              variant="OUTLINE"
-                           >
-                              Marcar leccion como aprendida <GraduationCap />
-                           </AtomButton>
-                        )}
-                        <AtomButton href={`/app/quiz/${selectedTopic}?type=grammar`} type="link">
-                           Empezar quiz
-                        </AtomButton>
-                        <AtomButton
-                           onClick={() => {
-                              const currentIndex = data?.findIndex((topic) => topic.id === selectedTopic)
-                              if (
-                                 currentIndex !== undefined &&
-                                 currentIndex >= 0 &&
-                                 currentIndex < (data?.length || 0) - 1
-                              ) {
-                                 setVisibleSections(1)
-                                 setSelectedTopic(data?.[currentIndex + 1]?.id || null)
-                              }
-                           }}
-                        >
-                           Siguien Leccion <ChevronRight />
-                        </AtomButton>
+                     <footer className="mt-4 border-t-2 py-4">
+                        <div className="flex flex-col gap-4">
+                           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                              <AtomButton href={`/app/quiz/${selectedTopic}?type=grammar`} type="link">
+                                 <span className="flex items-center justify-center gap-2">🎯 Empezar Quiz</span>
+                              </AtomButton>
+                              <AtomButton onClick={() => handleNextTopic()} variant="OUTLINE">
+                                 Siguiente Lección <ChevronRight />
+                              </AtomButton>
+                           </div>
+
+                           {!userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic) && (
+                              <div className="mt-5 flex justify-center sm:justify-end">
+                                 <AtomText fontSize="small" isThin type="paragraph">
+                                    ¿Ya dominas este tema?{' '}
+                                    <span
+                                       className="link link-primary"
+                                       onClick={() => {
+                                          saveGrammarProgress({ user, grammar_id: selectedTopic, score: 100 })
+                                          handleNextTopic()
+                                       }}
+                                    >
+                                       Márcalo como aprendido
+                                    </span>
+                                 </AtomText>
+                              </div>
+                           )}
+                        </div>
                      </footer>
                   )}
                </>

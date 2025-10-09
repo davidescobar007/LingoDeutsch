@@ -5,6 +5,7 @@ import {
    getGrammarByLevel,
    getSavedGrammarTopicByUser,
    getSingleGrammarById,
+   getSingleGrammarTopicByUser,
    saveGrammarUserProgress
 } from '@/modules/actions/grammar.actions'
 import { TUser } from '@/modules/actions/types'
@@ -23,6 +24,14 @@ export const useGetSingleGrammarTopic = (id: string) => {
    })
 }
 
+export const useGetSingleGrammarTopicByUser = ({ id, user }: { id: string; user: TUser }) => {
+   return useQuery({
+      queryKey: ['grammarByIdAndUser', id, user],
+      queryFn: () => getSingleGrammarTopicByUser({ grammar_id: id, user }),
+      enabled: Boolean(user)
+   })
+}
+
 export const useSavedGrammarTopicByUser = (user: TUser) => {
    return useQuery({
       queryKey: ['savedGrammarTopicByUser', user],
@@ -34,10 +43,10 @@ export const useSavedGrammarTopicByUser = (user: TUser) => {
 export const useSaveGrammarProgress = () => {
    const queryClient = useQueryClient()
    return useMutation({
-      mutationFn: ({ user, grammar_id }: { user: TUser; grammar_id: string }) =>
-         saveGrammarUserProgress(user, grammar_id),
-      onSuccess: () => {
-         toast.success('¡Leccioón guardada con éxito!')
+      mutationFn: ({ user, grammar_id, score }: { user: TUser; grammar_id: string; score: number }) =>
+         saveGrammarUserProgress(user, grammar_id, score),
+      onSuccess: (_, userGrammarInfo) => {
+         if (userGrammarInfo.score >= 60) toast.success('¡Lección guardada con éxito!')
          queryClient.invalidateQueries({
             queryKey: ['savedGrammarTopicByUser']
          })

@@ -28,20 +28,30 @@ type QuizQuestion = {
 type QuizResultProps = {
    score: number
    questions: QuizQuestion[]
-   mode: 'proportional' | 'all_or_nothing'
    userAnswers: string[]
    id: string
    typeOfQuizz: 'article' | 'grammar'
+   nextTopicId?: string
 }
 
 const getOptionKey = (options: Record<string, string>, value: string): string | undefined => {
    return Object.entries(options).find(([_, optionValue]) => optionValue === value)?.[0]
 }
 
-export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuizz }: QuizResultProps) => {
+export const QuizResult = ({
+   score,
+   questions,
+   userAnswers,
+   id,
+   typeOfQuizz,
+   nextTopicId = undefined
+}: QuizResultProps) => {
    const locale = useLocale() as 'de' | 'es'
-   const finalScore = calculateScore(score, questions.length, mode)
-   const isApproved = finalScore >= 70
+   const finalScore = calculateScore(score, questions.length)
+   const isApproved = finalScore >= 60
+
+   // Determine grammar navigation: next topic if approved, same topic if not
+   const grammarTopicId = isApproved && nextTopicId ? nextTopicId : id
 
    const getPerformanceData = (score: number) => {
       if (score >= 80)
@@ -90,7 +100,7 @@ export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuiz
                            ¡Felicitaciones! Quiz Aprobado
                         </AtomText>
                         <br />
-                        <AtomText fontSize="medium">Has superado el umbral mínimo del 70%</AtomText>
+                        <AtomText fontSize="medium">Has superado el umbral mínimo del 60%</AtomText>
                      </div>
                   </>
                ) : (
@@ -103,7 +113,7 @@ export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuiz
                            Quiz No Aprobado
                         </AtomText>
                         <br />
-                        <AtomText fontSize="medium">Necesitas al menos 70% para aprobar</AtomText>
+                        <AtomText fontSize="medium">Necesitas al menos 60% para aprobar</AtomText>
                      </div>
                   </>
                )}
@@ -142,20 +152,6 @@ export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuiz
                            {performance.key === 1 && <>¡Increíble! Has superado el quiz con gran destreza.</>}
                            {performance.key === 2 && <>¡Muy bien! Estás en el camino correcto.</>}
                            {performance.key === 3 && <>¡No te desanimes! Cada intento te acerca más a la meta.</>}
-                        </AtomText>
-                     </div>
-                  </div>
-
-                  {/* Mode Info */}
-                  <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                     <div className="text-center">
-                        <div className="mb-2 text-2xl">⚙️</div>
-                        <AtomText fontSize="small" isThin type="span">
-                           Modo de Evaluación
-                        </AtomText>
-                        <br />
-                        <AtomText color="primary" isBold>
-                           {mode === 'all_or_nothing' ? 'Todo/Nada' : 'Proporcional'}
                         </AtomText>
                      </div>
                   </div>
@@ -207,7 +203,7 @@ export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuiz
                         )}
 
                         {typeOfQuizz === 'grammar' && (
-                           <AtomButton href="/app/grammar" isBlock type="link">
+                           <AtomButton href={`/app/grammar?topic=${grammarTopicId}`} isBlock type="link">
                               Seguir con gramática
                            </AtomButton>
                         )}
@@ -246,7 +242,7 @@ export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuiz
                            <li className="group" key={q.id || idx}>
                               <div className="transform transition-all duration-200 group-hover:scale-[1.02]">
                                  <MoleculeAlert
-                                    message={`Tu respuesta: ${userAnswer || 'Sin respuesta'}`}
+                                    message={feedbackMessage}
                                     title={`${idx + 1}. ${questionText}`}
                                     type={isCorrect ? 'success' : 'error'}
                                  />
@@ -270,7 +266,7 @@ export const QuizResult = ({ score, questions, mode, userAnswers, id, typeOfQuiz
                         </>
                      )}
                      {typeOfQuizz === 'grammar' && (
-                        <AtomButton href="/app/grammar" isBlock type="link">
+                        <AtomButton href={`/app/grammar?topic=${grammarTopicId}`} isBlock type="link">
                            Seguir con gramática
                         </AtomButton>
                      )}

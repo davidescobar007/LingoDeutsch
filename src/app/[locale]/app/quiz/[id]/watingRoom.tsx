@@ -6,9 +6,12 @@ import { MoleculeAlert } from '@/components/molecules'
 type WaitingRoomProps = {
    futureDate: Date
    id: string
+   quizType?: 'article' | 'grammar'
 }
 
-const WaitingRoom = ({ futureDate, id }: WaitingRoomProps) => {
+const WaitingRoom = ({ futureDate, id, quizType = 'article' }: WaitingRoomProps) => {
+   const isArticleQuiz = quizType === 'article'
+
    return (
       <div className="flex flex-col items-center gap-4 text-center">
          <MoleculeAlert
@@ -21,12 +24,25 @@ const WaitingRoom = ({ futureDate, id }: WaitingRoomProps) => {
             Mientras tanto, puedes:
          </AtomText>
          <div className=" flex flex-wrap items-center justify-center gap-4">
-            <AtomButton href={`/app/article/${id}`} type="link">
-               Volver al artículo
-            </AtomButton>
-            <AtomButton href="/app/vocabulary" type="link">
-               Revisar vocabulario
-            </AtomButton>
+            {isArticleQuiz ? (
+               <>
+                  <AtomButton href={`/app/article/${id}`} type="link">
+                     Volver al artículo
+                  </AtomButton>
+                  <AtomButton href="/app/article" type="link" variant="OUTLINE">
+                     Buscar otros artículos
+                  </AtomButton>
+               </>
+            ) : (
+               <>
+                  <AtomButton href={`/app/grammar?topic=${id}`} type="link">
+                     Volver al tema
+                  </AtomButton>
+                  <AtomButton href="/app/grammar" type="link" variant="OUTLINE">
+                     Explorar gramática
+                  </AtomButton>
+               </>
+            )}
          </div>
       </div>
    )

@@ -86,7 +86,7 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
       .filter(Boolean)
       .join(' ')
 
-   const defaultLinkBase = `btn my-3 shadow-md target:bg-transparent${isBlock ? ' btn-block' : ''}`
+   const defaultLinkBase = `btn shadow-md target:bg-transparent${isBlock ? ' btn-block' : ''}`
    const linkVariantClasses = gradient ? gradientClasses[typeOf] : variantClasses[typeOf]
    const linkDefaultClasses = [
       defaultLinkBase,

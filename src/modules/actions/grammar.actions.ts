@@ -51,11 +51,24 @@ export const getSavedGrammarTopicByUser = async (user: TUser): Promise<TUserGram
    return savedGrammarTopics as unknown as TUserGrammarProgress[]
 }
 
-export const saveGrammarUserProgress = async (user: TUser, grammar_id: string) => {
+export const getSingleGrammarTopicByUser = async ({
+   user,
+   grammar_id
+}: {
+   user: TUser
+   grammar_id: string
+}): Promise<TUserGrammarProgress> => {
+   const savedGrammarTopic = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
+      filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`
+   })
+   return savedGrammarTopic[0] as unknown as TUserGrammarProgress
+}
+
+export const saveGrammarUserProgress = async (user: TUser, grammar_id: string, score: number) => {
    const createdRecord = pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, {
       user_id: user.id,
       grammar_id,
-      isCompleted: true,
+      isCompleted: score >= 60,
       dateCompleted: new Date().toISOString()
    })
    return createdRecord
