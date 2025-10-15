@@ -190,7 +190,7 @@ export const QuizResult = ({
                      </div>
                   </div>
                   <div className="hidden lg:block">
-                     <div className="mt-4 flex flex-wrap justify-between">
+                     <div className="mt-4 flex flex-wrap justify-between gap-3">
                         {typeOfQuizz === 'article' && (
                            <>
                               <AtomButton href="/app/article" isBlock type="link">
@@ -254,7 +254,7 @@ export const QuizResult = ({
                </div>
 
                <div className="block lg:hidden">
-                  <div className="mt-4 flex flex-wrap justify-between">
+                  <div className="mt-4 flex flex-wrap justify-between gap-3">
                      {typeOfQuizz === 'article' && (
                         <>
                            <AtomButton href="/app/article" isBlock type="link">

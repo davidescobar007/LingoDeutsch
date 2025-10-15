@@ -1,8 +1,8 @@
-### Generate quiz JSON aligned to article content, CEFR level, and article vocabulary
+### Generate quiz Array aligned to article content, CEFR level, and article vocabulary
 
 **Instructions:**
 
-- Output must be valid JSON only, matching the exact template schema below.
+- Output must be an array of question objects only, matching the exact template schema below.
 - Use the article content provided in the "content" field as the only source of truth. Reuse the same vocabulary, examples, and phrasing whenever possible.
 - Adapt language complexity to the specified CEFR level and the article's vocabulary scope.
 - Ensure every correct answer is directly supported by the article text.
@@ -14,7 +14,7 @@
 - `cefrLevel`: One of `"A1"`, `"A2"`, `"B1"`, `"B2"`, `"C1"`, `"C2"`.
 - `topic`: Short topic label (e.g., `"Deutsche Kultur"`, `"Umwelt"`, `"Technologie"`).
 - `languagePrimary`: `"de"` (German is always primary for options; questions must include both `de` and `es`).
-- `numQuestions`: Integer 3–10.
+- `numQuestions`: Integer 5–12.
 - `allowedTypes`: Array subset of `["single", "multiple", "true_or_false", "autocomplete"]`.
 - `requireSpanishQuestion`: boolean (`true` = every question has both `de` and `es`).
 - `minOptions`: Integer (default 3).
@@ -23,9 +23,8 @@
 - `balance`: Object controlling mix, e.g., `{ "single": 2, "multiple": 1, "true_or_false": 1 }` (best-effort if counts don't sum exactly).
 
 **Target schema to produce:**
-```json
-{
-  "quiz": [
+```javascript
+[
     {
       "id": "q1",
       "type": "single|multiple|true_or_false|autocomplete",
@@ -41,7 +40,7 @@
       "correctAnswers": ["o1"]
     }
   ]
-}
+
 
 ```
 
@@ -107,13 +106,12 @@
    - Cover different sections or aspects of the article (introduction, main points, conclusion, etc.).
 
 9. **Output format**  
-   - Return JSON that strictly matches the template. No comments, no extra keys, no explanations.
+   - Return an array of question objects that strictly matches the template. No comments, no extra keys, no explanations, no wrapper object.
 
    **Example output** (based on a B1 article about *Oktoberfest*; `allowedTypes` `["single","multiple","true_or_false","autocomplete"]`; `numQuestions` 5; `minOptions` 3; `maxOptions` 4; `multipleMinCorrect` 2; `requireSpanishQuestion=true`):
 
-```json
-{
-  "quiz": [
+```javascript
+[
     {
       "id": "q1",
       "type": "single",
@@ -187,7 +185,6 @@
       "correctAnswers": ["o2"]
     }
   ]
-}
 ```
 
 **Implementation hint:**

@@ -79,92 +79,98 @@ export const MoleculeTable: FunctionComponent<TAtomTable> = ({
       }
    })
    return (
-      <div className="overflow-x-auto rounded-xl bg-white p-4">
-         {title && (
-            <AtomTitle extraClassName="mb-4" type="h5">
-               {title}
-            </AtomTitle>
-         )}
-         <div className="mb-4 flex justify-end">
-            <AtomInput
-               onChange={(event: ChangeEvent<HTMLInputElement>) => setGlobalFilter(String(event.target.value))}
-               placeholder="Buscar"
-               value={globalFilter ?? ''}
-            />
+      <div className="bg-base-100 border-primary/20 overflow-hidden rounded-3xl border-2 shadow-lg">
+         <div className="p-6">
+            {title && (
+               <AtomTitle extraClassName="mb-6" type="h5">
+                  {title}
+               </AtomTitle>
+            )}
+            <div className="mb-6 flex justify-end">
+               <AtomInput
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => setGlobalFilter(String(event.target.value))}
+                  placeholder="Buscar"
+                  value={globalFilter ?? ''}
+               />
+            </div>
          </div>
-         <table className={`table ${extraClassName}`}>
-            {displayHeader && memoizedColumns.length > 0 && (
-               <thead>
-                  {table.getHeaderGroups().map((headerGroup) => (
-                     <tr key={headerGroup.id}>
-                        {headerGroup.headers.map((header: any) => {
-                           return (
-                              <th
-                                 className={`${
-                                    header.column.columnDef.classNames || ''
-                                 } cursor-pointer select-none`}
-                                 key={header.id}
-                                 onClick={header.column.getToggleSortingHandler()}
-                              >
-                                 <AtomText className="flex items-center" type="span">
-                                    {flexRender(header.column.columnDef.header, header.getContext())}
-                                    {{
-                                       asc: <Icon icon="move-up" iconSize="small" iconState="info" />,
-                                       desc: <Icon icon="move-down" iconSize="small" iconState="info" />
-                                    }[header.column.getIsSorted() as string] ?? null}
-                                 </AtomText>
-                              </th>
-                           )
-                        })}
+         <div className="overflow-x-auto">
+            <table className={`table ${extraClassName}`}>
+               {displayHeader && memoizedColumns.length > 0 && (
+                  <thead>
+                     {table.getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                           {headerGroup.headers.map((header: any) => {
+                              return (
+                                 <th
+                                    className={`${
+                                       header.column.columnDef.classNames || ''
+                                    } cursor-pointer select-none`}
+                                    key={header.id}
+                                    onClick={header.column.getToggleSortingHandler()}
+                                 >
+                                    <AtomText className="flex items-center" type="span">
+                                       {flexRender(header.column.columnDef.header, header.getContext())}
+                                       {{
+                                          asc: <Icon icon="move-up" iconSize="small" iconState="info" />,
+                                          desc: <Icon icon="move-down" iconSize="small" iconState="info" />
+                                       }[header.column.getIsSorted() as string] ?? null}
+                                    </AtomText>
+                                 </th>
+                              )
+                           })}
+                        </tr>
+                     ))}
+                  </thead>
+               )}
+               <tbody>
+                  {table.getRowModel().rows.map((row) => (
+                     <tr className="hover" key={row.id}>
+                        {row.getVisibleCells().map((cell) => (
+                           <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                        ))}
                      </tr>
                   ))}
-               </thead>
-            )}
-            <tbody>
-               {table.getRowModel().rows.map((row) => (
-                  <tr className="hover" key={row.id}>
-                     {row.getVisibleCells().map((cell) => (
-                        <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+               </tbody>
+            </table>
+         </div>
+         <div className="bg-base-100 border-base-200 border-t p-6">
+            <div className="pagination flex flex-wrap items-center justify-between gap-4">
+               <div className="flex flex-wrap items-center gap-2">
+                  {/* Pagination buttons with numbers */}
+                  {table.getPageCount() > 1 &&
+                     [...Array(table.getPageCount()).keys()].map((page) => (
+                        <AtomButton
+                           disabled={table.getState().pagination.pageIndex === page}
+                           extraClassName={table.getState().pagination.pageIndex === page ? 'btn-active' : ''}
+                           key={page}
+                           onClick={() => table.setPageIndex(page)}
+                           size="sm"
+                        >
+                           {page + 1}
+                        </AtomButton>
                      ))}
-                  </tr>
-               ))}
-            </tbody>
-         </table>
-         <div className="pagination mt-4 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-               {/* Pagination buttons with numbers */}
-               {table.getPageCount() > 1 &&
-                  [...Array(table.getPageCount()).keys()].map((page) => (
-                     <AtomButton
-                        disabled={table.getState().pagination.pageIndex === page}
-                        extraClassName={table.getState().pagination.pageIndex === page ? 'btn-active' : ''}
-                        key={page}
-                        onClick={() => table.setPageIndex(page)}
-                        size="sm"
-                     >
-                        {page + 1}
-                     </AtomButton>
+               </div>
+               <span className="flex items-center gap-1">
+                  <div>Pagina</div>
+                  <strong>
+                     {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+                  </strong>
+               </span>
+               <select
+                  className="select select-bordered select-sm"
+                  onChange={(e) => {
+                     table.setPageSize(Number(e.target.value))
+                  }}
+                  value={table.getState().pagination.pageSize}
+               >
+                  {[10, 20, 50].map((pageSize) => (
+                     <option key={pageSize} value={pageSize}>
+                        {pageSize}
+                     </option>
                   ))}
+               </select>
             </div>
-            <span className="flex items-center gap-1">
-               <div>Pagina</div>
-               <strong>
-                  {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
-               </strong>
-            </span>
-            <select
-               className="select select-bordered"
-               onChange={(e) => {
-                  table.setPageSize(Number(e.target.value))
-               }}
-               value={table.getState().pagination.pageSize}
-            >
-               {[10, 20, 50].map((pageSize) => (
-                  <option key={pageSize} value={pageSize}>
-                     {pageSize}
-                  </option>
-               ))}
-            </select>
          </div>
       </div>
    )

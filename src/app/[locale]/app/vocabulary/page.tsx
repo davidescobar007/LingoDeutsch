@@ -90,7 +90,7 @@ const Vocabulary = () => {
             )}
          </section>
 
-         {data?.length === 0 ? null : (
+         {data?.length && (
             <>
                <section className="mb-8">
                   {/* Tu Racha Semanal */}
@@ -117,7 +117,7 @@ const Vocabulary = () => {
                                  <div className="group flex flex-1 flex-col items-center gap-2" key={i}>
                                     {/* Indicador de estado */}
                                     <div
-                                       className={`flex h-12 w-12  items-center justify-center rounded-full text-xl ${
+                                       className={`flex h-9 w-9  items-center justify-center rounded-full text-xl ${
                                           item.completed
                                              ? 'bg-success text-white shadow-lg'
                                              : 'bg-error/20 text-error'
@@ -233,12 +233,12 @@ const Vocabulary = () => {
                   )}
                   {/* Niveles de dificultad con diseño limpio */}
                   <div className="mb-8">
-                     <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:[&>*:nth-child(3):last-child]:col-span-2 sm:[&>*:nth-child(3):last-child]:mx-auto sm:[&>*:nth-child(3):last-child]:max-w-md lg:[&>*:nth-child(3):last-child]:col-span-1 lg:[&>*:nth-child(3):last-child]:mx-0 lg:[&>*:nth-child(3):last-child]:max-w-none">
                         {/* Nivel Básico */}
                         <div className="bg-base-100 border-success/20 hover:border-success/40 group overflow-hidden rounded-3xl border-2 p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
-                           <div className="relative">
-                              <div className="mb-4 flex items-center gap-4">
-                                 <div className="bg-success/10 flex h-14 w-14 items-center justify-center rounded-2xl">
+                           <div className="relative flex h-full flex-col">
+                              <div className="mb-4 flex h-[88px] items-start gap-4">
+                                 <div className="bg-success/10 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl">
                                     <span className="text-2xl">🟢</span>
                                  </div>
                                  <div>
@@ -250,7 +250,7 @@ const Vocabulary = () => {
                                  </div>
                               </div>
 
-                              <div className="mb-6 space-y-3">
+                              <div className="mb-6 flex-grow space-y-3">
                                  <div className="flex items-center justify-between">
                                     <AtomText fontSize="small">Disponibles</AtomText>
                                     <AtomText fontSize="large" isBold>
@@ -271,29 +271,31 @@ const Vocabulary = () => {
                                  </AtomText>
                               </div>
 
-                              {easyWords?.length ? (
-                                 <AtomButton
-                                    href="vocabulary/practice?level=easy"
-                                    isBlock
-                                    size="sm"
-                                    type="link"
-                                    variant="SUCCESS"
-                                 >
-                                    Practicar Nivel Básico
-                                 </AtomButton>
-                              ) : (
-                                 <div className="p-4 text-center">
-                                    <AtomText fontSize="small">No tienes palabras en este nivel</AtomText>
-                                 </div>
-                              )}
+                              <div className="mt-auto">
+                                 {easyWords?.length ? (
+                                    <AtomButton
+                                       href="vocabulary/practice?level=easy"
+                                       isBlock
+                                       size="sm"
+                                       type="link"
+                                       variant="SUCCESS"
+                                    >
+                                       Practicar Nivel Básico
+                                    </AtomButton>
+                                 ) : (
+                                    <div className="p-4 text-center">
+                                       <AtomText fontSize="small">No tienes palabras en este nivel</AtomText>
+                                    </div>
+                                 )}
+                              </div>
                            </div>
                         </div>
 
                         {/* Nivel Intermedio */}
                         <div className="bg-base-100 border-warning/20 hover:border-warning/40 group overflow-hidden rounded-3xl border-2 p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
-                           <div className="relative">
-                              <div className="mb-4 flex items-center gap-4">
-                                 <div className="bg-warning/10 flex h-14 w-14 items-center justify-center rounded-2xl">
+                           <div className="relative flex h-full flex-col">
+                              <div className="mb-4 flex min-h-[88px] items-start gap-4">
+                                 <div className="bg-warning/10 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl">
                                     <span className="text-2xl">🟡</span>
                                  </div>
                                  <div>
@@ -305,7 +307,7 @@ const Vocabulary = () => {
                                  </div>
                               </div>
 
-                              <div className="mb-6 space-y-3">
+                              <div className="mb-6 flex-grow space-y-3">
                                  <div className="flex items-center justify-between">
                                     <AtomText fontSize="small">Disponibles</AtomText>
                                     <AtomText fontSize="large" isBold>
@@ -326,31 +328,33 @@ const Vocabulary = () => {
                                  </AtomText>
                               </div>
 
-                              {mediumWords?.length ? (
-                                 <AtomButton
-                                    href="vocabulary/practice?level=medium"
-                                    isBlock
-                                    size="sm"
-                                    type="link"
-                                    variant="ACCENT"
-                                 >
-                                    Practicar Nivel Intermedio
-                                 </AtomButton>
-                              ) : (
-                                 <div className="p-4 text-center">
-                                    <AtomText fontSize="small" isBold>
-                                       No tienes palabras en este nivel
-                                    </AtomText>
-                                 </div>
-                              )}
+                              <div className="mt-auto">
+                                 {mediumWords?.length ? (
+                                    <AtomButton
+                                       href="vocabulary/practice?level=medium"
+                                       isBlock
+                                       size="sm"
+                                       type="link"
+                                       variant="ACCENT"
+                                    >
+                                       Practicar Nivel Intermedio
+                                    </AtomButton>
+                                 ) : (
+                                    <div className="p-4 text-center">
+                                       <AtomText fontSize="small" isBold>
+                                          No tienes palabras en este nivel
+                                       </AtomText>
+                                    </div>
+                                 )}
+                              </div>
                            </div>
                         </div>
 
                         {/* Nivel Avanzado */}
                         <div className="bg-base-100 border-error/20 hover:border-error/40 group cursor-pointer overflow-hidden rounded-3xl border-2 p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
-                           <div className="relative">
-                              <div className="mb-4 flex items-center gap-4">
-                                 <div className="bg-error/10 flex h-14 w-14 items-center justify-center rounded-2xl">
+                           <div className="relative flex h-full flex-col">
+                              <div className="mb-4 flex min-h-[88px] items-start gap-4">
+                                 <div className="bg-error/10 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl">
                                     <span className="text-2xl">🔴</span>
                                  </div>
                                  <div>
@@ -362,7 +366,7 @@ const Vocabulary = () => {
                                  </div>
                               </div>
 
-                              <div className="mb-6 space-y-3">
+                              <div className="mb-6 flex-grow space-y-3">
                                  <div className="flex items-center justify-between">
                                     <AtomText fontSize="small">Disponibles</AtomText>
                                     <AtomText fontSize="large" isBold>
@@ -383,104 +387,30 @@ const Vocabulary = () => {
                                  </AtomText>
                               </div>
 
-                              {hardWords?.length ? (
-                                 <AtomButton
-                                    href="vocabulary/practice?level=hard"
-                                    isBlock
-                                    size="sm"
-                                    type="link"
-                                    variant="ERROR"
-                                 >
-                                    Practicar Nivel Avanzado
-                                 </AtomButton>
-                              ) : (
-                                 <div className="p-4 text-center">
-                                    <AtomText fontSize="small">No tienes palabras en este nivel</AtomText>
-                                 </div>
-                              )}
+                              <div className="mt-auto">
+                                 {hardWords?.length ? (
+                                    <AtomButton
+                                       href="vocabulary/practice?level=hard"
+                                       isBlock
+                                       size="sm"
+                                       type="link"
+                                       variant="ERROR"
+                                    >
+                                       Practicar Nivel Avanzado
+                                    </AtomButton>
+                                 ) : (
+                                    <div className="p-4 text-center">
+                                       <AtomText fontSize="small">No tienes palabras en este nivel</AtomText>
+                                    </div>
+                                 )}
+                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </section>
 
-               {/* ============ OPCIONES DE REPETICIÓN ESPACIADA ============ */}
-
-               {/* New Section: Vocabulary Topics by CEFR Level */}
-               {/* <section className="my-12">
-                  <AtomTitle type="h5">Añade vocabulario por tema</AtomTitle>
-                  <AtomText className="mb-6">
-                     Expande tu vocabulario con palabras organizadas por nivel CEFR y tema específico.
-                  </AtomText>
-
-                  <div className="mb-6 flex flex-wrap gap-2">
-                     {Object.keys(vocabularyTopics).map((level) => (
-                        <AtomBadge
-                           className="transition-all hover:scale-105"
-                           color="primary"
-                           key={level}
-                           onClick={() => setSelectedLevel(level as VocabularyLevel)}
-                           outline={selectedLevel !== level}
-                           size="lg"
-                        >
-                           {level}
-                        </AtomBadge>
-                     ))}
-                  </div>
-
-                  <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-                     {vocabularyTopics[selectedLevel as keyof typeof vocabularyTopics].map((topic, index) => {
-                        // Mock data for demonstration
-                        const hasProgress = index % 3 === 0
-                        const progressValue = hasProgress
-                           ? index % 6 === 0
-                              ? 100 // Every 6th card is mastered (100%)
-                              : Math.floor(Math.random() * 80) + 10 // Random progress 10-89%
-                           : 0
-
-                        return (
-                           <MoleculeMiniCard
-                              content={topic.name}
-                              description={topic.description}
-                              footer={`${topic.wordCount} palabras`}
-                              icon={
-                                 isAddingTopic === topic.id ? (
-                                    <Icon icon="settings" iconState="primary" />
-                                 ) : (
-                                    <AtomText fontSize="large">{topic.icon}</AtomText>
-                                 )
-                              }
-                              isLoading={isAddingTopic === topic.id}
-                              key={topic.id}
-                              onClick={() => handleAddVocabularySet(topic.id)}
-                              progressIndicator={
-                                 hasProgress
-                                    ? {
-                                         value: progressValue,
-                                         showIcon: progressValue === 100,
-                                         color: progressValue === 100 ? 'success' : 'warning',
-                                         size: 'sm'
-                                      }
-                                    : undefined
-                              }
-                              size="md"
-                              state={
-                                 hasProgress ? (progressValue === 100 ? 'completed' : 'inProgress') : 'default'
-                              }
-                              variant="detailed"
-                           />
-                        )
-                     })}
-                  </div>
-
-                  <MoleculeAlert
-                     message="💡 Haz clic en cualquier tema para añadir todas sus palabras a tu vocabulario personal y comenzar a practicarlas."
-                     type="info"
-                  />
-               </section> */}
-               <div className="shadow-xl">
-                  <MoleculeTable columns={columns} data={tableData} title="Todas tus palabras guardadas" />
-               </div>
+               <MoleculeTable columns={columns} data={tableData} title="Todas tus palabras guardadas" />
             </>
          )}
       </div>

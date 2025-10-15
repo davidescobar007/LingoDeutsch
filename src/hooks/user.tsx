@@ -5,7 +5,13 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
 
 import { getScoreList } from '@/modules/actions/global.actions'
-import { getLoginMethods, googleLogin, updateUSer, updateUserScore } from '@/modules/actions/users.actions'
+import {
+   getLoginMethods,
+   getUserInfo,
+   googleLogin,
+   updateUSer,
+   updateUserScore
+} from '@/modules/actions/users.actions'
 
 export const useAuth = () => {
    const {
@@ -39,4 +45,8 @@ export const useUpdateUser = () => {
          toast.success(t('translation.saved'))
       }
    })
+}
+
+export const useGetUserInfo = () => {
+   return useQuery({ queryKey: ['getUserInfo'], queryFn: getUserInfo })
 }

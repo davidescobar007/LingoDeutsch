@@ -99,7 +99,7 @@ export const MoleculeVocabularyPreview = ({
             <AtomText fontSize="large" isBold>
                Tu Vocabulario
             </AtomText>
-            <Link href="/vocabulary">
+            <Link href="vocabulary">
                <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
                   Empezar <Icon className="text-primary" icon="move-right" iconSize="small" />
                </AtomText>

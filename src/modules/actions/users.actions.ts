@@ -39,6 +39,7 @@ export const updateUSer = async (user: TUser) => pbUpdateRecord(constants.USERS,
 export const updateUserScore = async ({ user, newScore }: { user: TUser; newScore: number }): Promise<void> => {
    user.score = Math.round(newScore + (user.score ?? 0))
    await pbUpdateRecord(constants.USERS, user.id, user)
+   updateUserState()
 }
 
 export const getLoginMethods = async (): Promise<AuthProviderInfo[]> => {

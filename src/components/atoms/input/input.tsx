@@ -25,7 +25,7 @@ export const AtomInput: FunctionComponent<TAtomInput> = ({
             </label>
          )}
          <input
-            className={`input input-bordered mb-3 ${extraClassName}`}
+            className={`input input-bordered mb-3 w-full ${extraClassName}`}
             id={inputId}
             name={inputId}
             type={type}
