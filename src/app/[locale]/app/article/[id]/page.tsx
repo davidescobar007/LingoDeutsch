@@ -21,7 +21,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
    const { data: article, isFetching: isLoadingArticle } = useArticle(id)
    const { data: translationData, isError, isFetching } = useTranslation({ wordToTranslate, enabled })
    const { mutate: saveVocabulary, isPending } = useSaveVocabulary()
-   const { isMobile } = useScreenSize()
+   const { isMobile, isTablet } = useScreenSize()
    if (isLoadingArticle) {
       return <ArticleLoader />
    }
@@ -44,7 +44,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
             title={article?.title}
             translationData={{ ...translationData, isError, isFetching }}
          />
-         <div className="w-7/24 sticky top-4 hidden md:block">
+         <div className="w-7/24 sticky top-4 hidden lg:block">
             <MoleculeWordSpecification
                articleId={id}
                data={translationData}
@@ -56,7 +56,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
             />
          </div>
 
-         {isMobile && translationData && (
+         {(isMobile || isTablet) && translationData && (
             <Drawer.Root onOpenChange={setIsDrawerOpen} open={isDrawerOpen} shouldScaleBackground>
                <Drawer.Portal>
                   <Drawer.Overlay className="fixed inset-0 bg-black/40" />

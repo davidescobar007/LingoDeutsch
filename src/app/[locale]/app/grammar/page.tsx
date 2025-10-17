@@ -121,7 +121,7 @@ const Grammar = () => {
                aprender y practicar.
             </AtomText>
          </header>
-         <aside className="card-outlined !block w-full md:w-4/12">
+         <aside className="card-outlined !block w-full lg:w-4/12">
             <AtomTitle type="h3">Temas de Gramática</AtomTitle>
             <div className="">
                <MoleculeTimeLine
@@ -132,7 +132,7 @@ const Grammar = () => {
                />
             </div>
          </aside>
-         <section className="card-outlined md:w-15/24 !block w-full" id="grammar-content">
+         <section className="card-outlined lg:w-15/24 !block w-full" id="grammar-content">
             {grammarTopicContent && selectedTopic ? (
                <>
                   <header

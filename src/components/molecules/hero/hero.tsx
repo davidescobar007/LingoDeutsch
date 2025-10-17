@@ -38,7 +38,7 @@ export const MoleculeHero: FunctionComponent<TMoleculeHero> = ({
    const imageURL = `${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${articleId}/${image}`
 
    return (
-      <div className="md:w-16/24 w-full">
+      <div className="lg:w-16/24 w-full">
          <div className="hero-content p-0 text-center">
             <div>
                <div className=" inset-x-0 top-0 z-10 mx-auto w-full md:hidden">

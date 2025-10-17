@@ -39,7 +39,6 @@ const RootLayout = ({
             <html data-theme="mytheme" lang={locale}>
                <body className={`${interFontDisplay.className} text-neutral bg-base-300`}>
                   {children}
-                  <ReactQueryDevtools initialIsOpen={false} />
                   <ToastContainer
                      autoClose={5000}
                      closeOnClick
@@ -49,6 +48,7 @@ const RootLayout = ({
                      rtl={false}
                      transition={Slide}
                   />
+                  <ReactQueryDevtools initialIsOpen={false} />
                </body>
             </html>
          </NextIntlClientProvider>

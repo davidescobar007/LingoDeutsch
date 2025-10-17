@@ -1,19 +1,19 @@
 /* eslint-disable react/forbid-component-props */
 'use client'
 import { FunctionComponent } from 'react'
+import { LogIn } from 'lucide-react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
 import { getUserInfo } from '@/modules/actions/users.actions'
-import { Link, usePathname, useRouter } from '@/navigation'
+import { Link, usePathname } from '@/navigation'
 const selectedStyles = 'rounded-xl border-2'
 
 export const OrganismMenu: FunctionComponent = () => {
    const pathname = usePathname()
    const t = useTranslations()
-   const router = useRouter()
 
    const { data: userFromLoginMethod } = useLogin()
    const userFromLoggedInfo = getUserInfo()
@@ -21,7 +21,7 @@ export const OrganismMenu: FunctionComponent = () => {
    const user = userFromLoggedInfo || userFromLoginMethod
 
    return (
-      <nav className="flex min-h-full flex-col justify-between border-r-2 border-gray-300 p-4">
+      <nav className="flex min-h-full flex-col justify-between border-r-2 border-gray-300 py-4">
          <ul className="menu bg-red-3000 h-full min-h-full">
             <li className="mb-2">
                <Link className="hover:bg-inherit" href="/">
@@ -41,7 +41,7 @@ export const OrganismMenu: FunctionComponent = () => {
             <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/home">
                   <Icon icon="home" iconSize="medium" />
-                  <AtomText className="mb-0 hidden lg:block" fontSize="large" isBold>
+                  <AtomText className="mb-0" fontSize="large" isBold>
                      {t('menu.home')}
                   </AtomText>
                </Link>
@@ -49,7 +49,7 @@ export const OrganismMenu: FunctionComponent = () => {
             <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/grammar">
                   <Icon icon="book" iconSize="medium" />
-                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                  <AtomText fontSize="large" isBold>
                      {t('menu.grammar')}
                   </AtomText>
                </Link>
@@ -57,7 +57,7 @@ export const OrganismMenu: FunctionComponent = () => {
             <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/article">
                   <Icon icon="scroll-text" iconSize="medium" />
-                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                  <AtomText fontSize="large" isBold>
                      Lectura
                   </AtomText>
                </Link>
@@ -65,7 +65,7 @@ export const OrganismMenu: FunctionComponent = () => {
             <li className={`mb-2 ${pathname === `/app/vocabulary` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/vocabulary">
                   <Icon icon="brain" iconSize="medium" />
-                  <AtomText className="hidden lg:block" fontSize="large" isBold>
+                  <AtomText fontSize="large" isBold>
                      Vocabulario
                   </AtomText>
                </Link>
@@ -73,7 +73,7 @@ export const OrganismMenu: FunctionComponent = () => {
          </ul>
 
          <ul className="menu">
-            {user && (
+            {user ? (
                <li className={`${pathname === `/app/profile` && selectedStyles} bg-red-4000`}>
                   <Link className="flex items-center" href="/app/profile">
                      <div className="avatar ml-2">
@@ -86,7 +86,16 @@ export const OrganismMenu: FunctionComponent = () => {
                            />
                         </div>
                      </div>
-                     <AtomTitle extraClassName="hidden lg:block">{t('menu.profile')}</AtomTitle>
+                     <AtomTitle>{t('menu.profile')}</AtomTitle>
+                  </Link>
+               </li>
+            ) : (
+               <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
+                  <Link className="flex items-center" href="/login">
+                     <LogIn />
+                     <AtomText fontSize="large" isBold>
+                        Iniciar sesión
+                     </AtomText>
                   </Link>
                </li>
             )}

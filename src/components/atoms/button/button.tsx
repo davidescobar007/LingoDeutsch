@@ -91,6 +91,7 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
    const linkDefaultClasses = [
       defaultLinkBase,
       linkVariantClasses,
+      sizeClasses[size],
       gradient && 'transform hover:scale-105 active:scale-95',
       extraClassName,
       disabledClasses
