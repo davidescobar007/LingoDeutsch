@@ -136,6 +136,21 @@
    "constants": {
       "needSignUp": "Necesitas iniciar sesión para usar esta característica."
    },
+   "login": {
+      "welcome": "Bienvenido a LingoDeutsch",
+      "subtitle": "Tu camino para dominar el alemán comienza aquí",
+      "signInWithGoogle": "Continuar con Google",
+      "signingIn": "Iniciando sesión...",
+      "checkingAuth": "Verificando autenticación...",
+      "description": "Accede a tu cuenta para continuar aprendiendo alemán de forma interactiva",
+      "features": {
+         "vocabulary": "Amplía tu vocabulario",
+         "grammar": "Domina la gramática",
+         "practice": "Practica a tu ritmo",
+         "track": "Sigue tu progreso"
+      },
+      "footer": "Al continuar, aceptas nuestros términos y condiciones"
+   },
    "menu": {
       "logIn": "Iniciar sesión",
       "loginWithGoogle": "Iniciar con Google",
@@ -146,6 +161,13 @@
       "spanishOption": "Español",
       "germanOption": "Alemán",
       "grammar": "Gramática"
+   },
+   "footer": {
+      "about": "Acerca de",
+      "help": "Ayuda",
+      "privacy": "Privacidad",
+      "terms": "Términos y Condiciones",
+      "contact": "Contacto"
    },
    "home": {
       "tittle": "¡Una forma de entrenar tu vocabulario en alemán mediante la lectura y la repetición!",

@@ -6,12 +6,10 @@ import { useTranslations } from 'next-intl'
 
 import Navbar from '@/components/_common/navbar/navbar'
 import { AtomButton, AtomTitle } from '@/components/atoms'
-import { useLogin } from '@/hooks/user'
 import { Link } from '@/navigation'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
    const t = useTranslations()
-   const { refetch } = useLogin()
 
    return (
       <div className="flex h-screen flex-col">

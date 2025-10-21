@@ -135,6 +135,21 @@
    "constants": {
       "needSignUp": "Du musst dich anmelden, um diese Funktion zu verwenden."
    },
+   "login": {
+      "welcome": "Willkommen bei LingoDeutsch",
+      "subtitle": "Deine Reise zur Beherrschung der deutschen Sprache beginnt hier",
+      "signInWithGoogle": "Mit Google fortfahren",
+      "signingIn": "Anmeldung läuft...",
+      "checkingAuth": "Authentifizierung wird überprüft...",
+      "description": "Melde dich an, um weiter Deutsch auf interaktive Weise zu lernen",
+      "features": {
+         "vocabulary": "Erweitere deinen Wortschatz",
+         "grammar": "Beherrsche die Grammatik",
+         "practice": "Übe in deinem Tempo",
+         "track": "Verfolge deinen Fortschritt"
+      },
+      "footer": "Mit dem Fortfahren akzeptierst du unsere Nutzungsbedingungen"
+   },
    "menu": {
       "logIn": "Einloggen",
       "loginWithGoogle": "Mit Google einloggen",
@@ -145,6 +160,13 @@
       "spanishOption": "Spanisch",
       "germanOption": "Deutsch",
       "grammar": "Grammatik"
+   },
+   "footer": {
+      "about": "Über uns",
+      "help": "Hilfe",
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen",
+      "contact": "Kontakt"
    },
    "home": {
       "tittle": "Ein Weg, deinen Wortschatz im Deutsch zu trainieren, ist durch Lesen und Wiederholung!",

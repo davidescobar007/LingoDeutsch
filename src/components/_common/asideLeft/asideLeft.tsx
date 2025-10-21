@@ -9,7 +9,7 @@ import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { useLogin } from '@/hooks/user'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { Link, usePathname } from '@/navigation'
-const selectedStyles = 'rounded-xl border-2'
+const selectedStyles = 'rounded-xl border-2 border-primary/50 bg-primary/10'
 
 export const OrganismMenu: FunctionComponent = () => {
    const pathname = usePathname()
@@ -38,7 +38,7 @@ export const OrganismMenu: FunctionComponent = () => {
                   </AtomTitle>
                </Link>
             </li>
-            <li className={`mb-2 ${pathname === `/app/learn` && selectedStyles}`}>
+            <li className={`mb-2 ${pathname === `/app/home` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/home">
                   <Icon icon="home" iconSize="medium" />
                   <AtomText className="mb-0" fontSize="large" isBold>
@@ -72,34 +72,53 @@ export const OrganismMenu: FunctionComponent = () => {
             </li>
          </ul>
 
-         <ul className="menu">
-            {user ? (
-               <li className={`${pathname === `/app/profile` && selectedStyles} bg-red-4000`}>
-                  <Link className="flex items-center" href="/app/profile">
-                     <div className="avatar ml-2">
-                        <div className="w-9 rounded-xl">
-                           <Image
-                              alt="avatar"
-                              height={45}
-                              src={user?.avatarUrl || user?.avatar || ''}
-                              width={45}
-                           />
+         <div className="flex flex-col gap-2">
+            <ul className="menu">
+               {user ? (
+                  <li className={`${pathname === `/app/profile` && selectedStyles}`}>
+                     <Link className="flex items-center" href="/app/profile">
+                        <div className="avatar">
+                           <div className="w-9 rounded-xl">
+                              <Image
+                                 alt="avatar"
+                                 height={45}
+                                 src={user?.avatarUrl || user?.avatar || ''}
+                                 width={45}
+                              />
+                           </div>
                         </div>
-                     </div>
-                     <AtomTitle>{t('menu.profile')}</AtomTitle>
-                  </Link>
-               </li>
-            ) : (
-               <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
-                  <Link className="flex items-center" href="/login">
-                     <LogIn />
-                     <AtomText fontSize="large" isBold>
-                        Iniciar sesión
-                     </AtomText>
-                  </Link>
-               </li>
-            )}
-         </ul>
+                        <AtomTitle extraClassName="mt-3">{t('menu.profile')}</AtomTitle>
+                     </Link>
+                  </li>
+               ) : (
+                  <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
+                     <Link className="flex items-end justify-start" href="/login">
+                        <LogIn />
+                        <AtomText fontSize="large" isBold>
+                           Iniciar sesión
+                        </AtomText>
+                     </Link>
+                  </li>
+               )}
+            </ul>
+
+            {/* Footer Links */}
+            <div className="border-t border-gray-300 px-4 pt-3">
+               <ul className="space-y-1">
+                  <li>
+                     <Link className="hover:text-primary text-xs text-gray-600 hover:underline" href="/about">
+                        {t('footer.about')}
+                     </Link>
+                  </li>
+                  <li>
+                     <Link className="hover:text-primary text-xs text-gray-600 hover:underline" href="/terms">
+                        {t('footer.terms')}
+                     </Link>
+                  </li>
+               </ul>
+               <p className="mt-2 text-xs text-gray-500">© 2025 LingoDeutsch</p>
+            </div>
+         </div>
       </nav>
    )
 }
