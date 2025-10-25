@@ -1,7 +1,7 @@
-export { AtomCountdown } from '../molecules/countdown/countdown'
 export { AlertAtom } from './alert/alert'
 export { AtomBadge } from './badge/badge'
 export { AtomButton } from './button/button'
+export { AtomCountdown } from './countdown/countdown'
 export { Icon } from './icon/incon'
 export { AtomInput } from './input/input'
 export {

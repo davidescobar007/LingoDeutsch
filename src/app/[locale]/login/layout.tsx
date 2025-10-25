@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import LayoutContainer from '@/components/_common/layoutContainer/layoutConntainer'
+import { OrganismLayoutContainer as LayoutContainer } from '@/components/organisms'
 
 const LoginLayout = ({ children }: { children: ReactNode }) => {
    return <LayoutContainer>{children}</LayoutContainer>

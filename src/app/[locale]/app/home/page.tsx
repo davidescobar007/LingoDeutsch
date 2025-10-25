@@ -4,13 +4,11 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { MoleculeCard, MoleculeCarousel as MoleculeCarrousel, MoleculeScore } from '@/components/molecules'
 import {
-   MoleculeCard,
-   MoleculeCarrousel,
-   MoleculeGrammarPreview,
-   MoleculeScore,
-   MoleculeVocabularyPreview
-} from '@/components/molecules'
+   OrganismGrammarPreview as MoleculeGrammarPreview,
+   OrganismVocabularyPreview as MoleculeVocabularyPreview
+} from '@/components/organisms'
 import { useArticleList } from '@/hooks/articles'
 import { useGetGrammarByLevel } from '@/hooks/grammar'
 import { useGetVocabularyStats } from '@/hooks/translations'

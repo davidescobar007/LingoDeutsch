@@ -2,8 +2,12 @@
 'use client'
 import { Suspense } from 'react'
 
-import Navbar from '@/components/_common/navbar/navbar'
-import { FooterSection, HeroSection, HowItWorksSection } from '@/components/sections/landing'
+import { OrganismNavbar as Navbar } from '@/components/organisms'
+import {
+   OrganismFooterSection as FooterSection,
+   OrganismHeroSection as HeroSection,
+   OrganismHowItWorksSection as HowItWorksSection
+} from '@/components/organisms'
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
    return (

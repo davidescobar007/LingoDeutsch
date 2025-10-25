@@ -1,4 +1,4 @@
-import LayoutContainer from '@/components/_common/layoutContainer/layoutConntainer'
+import { OrganismLayoutContainer as LayoutContainer } from '@/components/organisms'
 import { CardLoader } from '@/components/atoms'
 
 const Loader = () => (

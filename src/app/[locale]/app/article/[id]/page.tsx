@@ -7,7 +7,11 @@ import { useTranslations } from 'next-intl'
 import { Drawer } from 'vaul'
 
 import { ArticleLoader, AtomBadge, AtomButton, AtomText } from '@/components/atoms'
-import { MoleculeHero, MoleculeModal, MoleculeWordSpecification } from '@/components/molecules'
+import { MoleculeModal } from '@/components/molecules'
+import {
+   OrganismHero as MoleculeHero,
+   OrganismWordSpecification as MoleculeWordSpecification
+} from '@/components/organisms'
 import { useArticle } from '@/hooks/articles'
 import { useSaveVocabulary, useTranslation } from '@/hooks/translations'
 import useScreenSize from '@/hooks/useScreenSize'
