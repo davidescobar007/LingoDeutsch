@@ -13,9 +13,9 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 export const metadata: Metadata = {
-   title: 'LingoDeutsch',
+   title: 'Blabling - Aprende alemán de forma fácil y divertida',
    description: 'Te acompañamos en tu camino para aprender alemán.',
-   icons: 'images/icon-192x192.png'
+   icons: 'images/icon.png'
 }
 
 const interFontDisplay = Inter({
