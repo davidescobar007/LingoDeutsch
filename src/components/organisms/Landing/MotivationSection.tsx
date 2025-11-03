@@ -1,4 +1,5 @@
 'use client'
+import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { useParallax } from '@/customHooks/useParallax'
 
 export const OrganismMotivationSection = () => {
@@ -13,21 +14,25 @@ export const OrganismMotivationSection = () => {
 
          <div className="container relative z-10 mx-auto px-4">
             <div className="mb-12 text-center">
-               <span className="mb-4 inline-block rounded-full bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-700">
+               <AtomBadge color="warning" size="md">
                   🏆 Tu progreso, tu ritmo
-               </span>
-               <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">Motivación que te impulsa</h2>
-               <p className="mx-auto max-w-2xl text-xl text-gray-600">
+               </AtomBadge>
+               <AtomTitle extraClassName="mb-4 mt-4 text-4xl text-gray-900 md:text-5xl" type="h2">
+                  Motivación que te impulsa
+               </AtomTitle>
+               <AtomText className="mx-auto max-w-2xl text-gray-600" fontSize="large">
                   Compite si quieres, o progresa a tu ritmo. Tú decides.
-               </p>
+               </AtomText>
             </div>
 
             <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
                {/* Leaderboard card */}
                <div className="rounded-2xl bg-white p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
                   <div className="mb-6 flex items-center justify-between">
-                     <h3 className="text-lg font-bold text-gray-800">Tabla de Posiciones</h3>
-                     <span className="text-2xl">🏆</span>
+                     <AtomTitle extraClassName="text-gray-800" type="h3">
+                        Tabla de Posiciones
+                     </AtomTitle>
+                     <AtomText className="text-2xl">🏆</AtomText>
                   </div>
 
                   <div className="space-y-3">
@@ -46,81 +51,109 @@ export const OrganismMotivationSection = () => {
                            }`}
                            key={user.rank}
                         >
-                           <span className="w-8 text-xl font-bold">{user.medal}</span>
+                           <AtomText className="w-8 text-xl" isBold>
+                              {user.medal}
+                           </AtomText>
                            <div className="flex-1">
-                              <div className={`font-bold ${user.highlight ? 'text-primary' : 'text-gray-800'}`}>
+                              <AtomText className={user.highlight ? 'text-primary' : 'text-gray-800'} isBold>
                                  {user.name}
-                              </div>
-                              <div className="text-sm text-gray-500">{user.exp.toLocaleString()} EXP</div>
+                              </AtomText>
+                              <AtomText className="text-gray-500" fontSize="small">
+                                 {user.exp.toLocaleString()} EXP
+                              </AtomText>
                            </div>
                            {user.highlight && (
-                              <span className="bg-primary rounded px-2 py-1 text-xs text-white">¡Tú!</span>
+                              <AtomBadge color="primary" size="sm">
+                                 ¡Tú!
+                              </AtomBadge>
                            )}
                         </div>
                      ))}
                   </div>
 
                   <div className="mt-6 text-center">
-                     <p className="mb-2 text-sm text-gray-600">Próximo nivel en</p>
+                     <AtomText className="mb-2 text-gray-600" fontSize="small">
+                        Próximo nivel en
+                     </AtomText>
                      <div className="mb-1 h-3 w-full rounded-full bg-gray-200">
                         <div
                            className="from-primary h-3 rounded-full bg-gradient-to-r to-purple-600"
                            style={{ width: '75%' }}
                         />
                      </div>
-                     <p className="text-primary text-xs font-bold">750 / 1,000 EXP</p>
+                     <AtomText className="text-primary" fontSize="small" isBold>
+                        750 / 1,000 EXP
+                     </AtomText>
                   </div>
                </div>
 
                {/* Achievements card */}
                <div className="rounded-2xl bg-white p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
                   <div className="mb-6 flex items-center justify-between">
-                     <h3 className="text-lg font-bold text-gray-800">Logros Recientes</h3>
-                     <span className="text-2xl">⭐</span>
+                     <AtomTitle extraClassName="text-gray-800" type="h3">
+                        Logros Recientes
+                     </AtomTitle>
+                     <AtomText className="text-2xl">⭐</AtomText>
                   </div>
 
                   <div className="space-y-4">
                      <div className="rounded-xl border-2 border-yellow-200 bg-gradient-to-r from-yellow-50 to-orange-50 p-4">
                         <div className="mb-2 flex items-center gap-3">
-                           <span className="text-3xl">🔥</span>
+                           <AtomText className="text-3xl">🔥</AtomText>
                            <div>
-                              <div className="font-bold text-gray-800">Racha de 7 días</div>
-                              <div className="text-xs text-gray-600">Desbloqueado hace 2 días</div>
+                              <AtomText className="text-gray-800" isBold>
+                                 Racha de 7 días
+                              </AtomText>
+                              <AtomText className="text-gray-600" fontSize="small">
+                                 Desbloqueado hace 2 días
+                              </AtomText>
                            </div>
                         </div>
                      </div>
 
                      <div className="rounded-xl border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 p-4">
                         <div className="mb-2 flex items-center gap-3">
-                           <span className="text-3xl">📚</span>
+                           <AtomText className="text-3xl">📚</AtomText>
                            <div>
-                              <div className="font-bold text-gray-800">Lector ávido</div>
-                              <div className="text-xs text-gray-600">10 artículos completados</div>
+                              <AtomText className="text-gray-800" isBold>
+                                 Lector ávido
+                              </AtomText>
+                              <AtomText className="text-gray-600" fontSize="small">
+                                 10 artículos completados
+                              </AtomText>
                            </div>
                         </div>
                      </div>
 
                      <div className="rounded-xl border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-4">
                         <div className="mb-2 flex items-center gap-3">
-                           <span className="text-3xl">🎯</span>
+                           <AtomText className="text-3xl">🎯</AtomText>
                            <div>
-                              <div className="font-bold text-gray-800">Maestro de vocabulario</div>
-                              <div className="text-xs text-gray-600">100 palabras aprendidas</div>
+                              <AtomText className="text-gray-800" isBold>
+                                 Maestro de vocabulario
+                              </AtomText>
+                              <AtomText className="text-gray-600" fontSize="small">
+                                 100 palabras aprendidas
+                              </AtomText>
                            </div>
                         </div>
                      </div>
                   </div>
 
                   <div className="mt-6 border-t border-gray-200 pt-4">
-                     <p className="text-center text-xs text-gray-500">3 de 15 logros desbloqueados</p>
+                     <AtomText className="text-center text-gray-500" fontSize="small">
+                        3 de 15 logros desbloqueados
+                     </AtomText>
                   </div>
                </div>
 
                {/* Progress card */}
                <div className="rounded-2xl bg-white p-6 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
                   <div className="mb-6 flex items-center justify-between">
-                     <h3 className="text-lg font-bold text-gray-800">Tu Progreso</h3>
-                     <span className="text-2xl">📊</span>
+                     <AtomTitle extraClassName="text-gray-800" type="h3">
+                        Tu Progreso
+                     </AtomTitle>
+                     <AtomText className="text-2xl">📊</AtomText>
                   </div>
 
                   <div className="space-y-4">
@@ -148,8 +181,12 @@ export const OrganismMotivationSection = () => {
                            </svg>
                            <div className="absolute inset-0 flex items-center justify-center">
                               <div className="text-center">
-                                 <div className="text-primary text-3xl font-bold">75%</div>
-                                 <div className="text-xs text-gray-500">Nivel A1</div>
+                                 <AtomText className="text-primary" fontSize="huge" isBold>
+                                    75%
+                                 </AtomText>
+                                 <AtomText className="text-gray-500" fontSize="small">
+                                    Nivel A1
+                                 </AtomText>
                               </div>
                            </div>
                         </div>
@@ -157,34 +194,48 @@ export const OrganismMotivationSection = () => {
 
                      <div className="space-y-3">
                         <div className="flex items-center justify-between">
-                           <span className="text-sm text-gray-600">✓ Gramática</span>
-                           <span className="text-sm font-bold text-green-600">12/16 lecciones</span>
+                           <AtomText className="text-gray-600" fontSize="small">
+                              ✓ Gramática
+                           </AtomText>
+                           <AtomText className="text-green-600" fontSize="small" isBold>
+                              12/16 lecciones
+                           </AtomText>
                         </div>
                         <div className="flex items-center justify-between">
-                           <span className="text-sm text-gray-600">✓ Lectura</span>
-                           <span className="text-sm font-bold text-blue-600">18 artículos</span>
+                           <AtomText className="text-gray-600" fontSize="small">
+                              ✓ Lectura
+                           </AtomText>
+                           <AtomText className="text-blue-600" fontSize="small" isBold>
+                              18 artículos
+                           </AtomText>
                         </div>
                         <div className="flex items-center justify-between">
-                           <span className="text-sm text-gray-600">✓ Vocabulario</span>
-                           <span className="text-sm font-bold text-purple-600">156 palabras</span>
+                           <AtomText className="text-gray-600" fontSize="small">
+                              ✓ Vocabulario
+                           </AtomText>
+                           <AtomText className="text-purple-600" fontSize="small" isBold>
+                              156 palabras
+                           </AtomText>
                         </div>
                      </div>
                   </div>
 
-                  <button className="btn btn-primary btn-block mt-6 rounded-lg">
+                  <AtomButton extraClassName="btn-block mt-6 rounded-lg" size="md">
                      Ver estadísticas detalladas
-                  </button>
+                  </AtomButton>
                </div>
             </div>
 
             {/* Bottom message */}
             <div className="mt-12 text-center">
                <div className="inline-block max-w-2xl rounded-2xl bg-white p-6 shadow-lg">
-                  <p className="text-lg text-gray-700">
-                     <span className="text-primary font-bold">La competencia es opcional.</span> Usa las
-                     estadísticas para medir tu propio crecimiento, o compara tu progreso con otros si te motiva.
-                     Tú decides cómo aprender.
-                  </p>
+                  <AtomText className="text-gray-700" fontSize="large">
+                     <AtomText className="text-primary" isBold type="span">
+                        La competencia es opcional.
+                     </AtomText>{' '}
+                     Usa las estadísticas para medir tu propio crecimiento, o compara tu progreso con otros si te
+                     motiva. Tú decides cómo aprender.
+                  </AtomText>
                </div>
             </div>
          </div>

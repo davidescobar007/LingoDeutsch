@@ -2,14 +2,25 @@
 
 import Image from 'next/image'
 
+import { AtomText } from '@/components/atoms'
+import { Link } from '@/navigation'
+
 export const OrganismFooterSection = () => {
    return (
       <footer className="footer footer-center bg-base-200 text-base-content rounded p-10">
          <nav className="grid grid-flow-col gap-4">
-            <a className="link link-hover">About us</a>
-            <a className="link link-hover">Contact</a>
-            <a className="link link-hover">Terms of use</a>
-            <a className="link link-hover">Privacy policy</a>
+            <Link className="link link-hover" href="/about">
+               About us
+            </Link>
+            <Link className="link link-hover" href="/contact">
+               Contact
+            </Link>
+            <Link className="link link-hover" href="/terms">
+               Terms of use
+            </Link>
+            <Link className="link link-hover" href="/privacy">
+               Privacy policy
+            </Link>
          </nav>
          <nav>
             <aside>
@@ -23,7 +34,7 @@ export const OrganismFooterSection = () => {
             </aside>
          </nav>
          <aside>
-            <p>Copyright © 2025 - All right reserved</p>
+            <AtomText>Copyright © 2025 - All right reserved</AtomText>
          </aside>
       </footer>
    )

@@ -14,8 +14,11 @@ Successfully reorganized the entire `/src/components` folder following **Atomic 
 src/components/
 ├── atoms/           (14 components) - Basic building blocks
 ├── molecules/       (18 components) - Simple combinations
-└── organisms/       (14 components) - Complex sections & layouts
+├── organisms/       (14 components) - Complex sections
+└── templates/       (1 template)    - Page-level layouts
 ```
+
+**Note:** Pages live in `src/app/[locale]/` following Next.js App Router structure.
 
 ---
 
@@ -99,6 +102,36 @@ All from `sections/landing/`:
 
 ---
 
+## 🏗️ Templates (1 template)
+
+Page-level layouts that compose organisms together:
+
+### LandingTemplate
+Assembles the landing page structure:
+- **OrganismNavbar** (with locale support)
+- **OrganismHeroSection** (hero section)
+- **OrganismHowItWorksSection** (features)
+- **OrganismFooterSection** (footer)
+
+**Usage:**
+```tsx
+import { TemplateLanding } from '@/components/templates'
+
+const Home = ({ params: { locale } }) => {
+   return <TemplateLanding locale={locale} />
+}
+```
+
+---
+
+## 📄 Pages
+
+Pages are specific instances in `src/app/[locale]/`:
+- **Landing Page** (`page.tsx`) - Uses `TemplateLanding`
+- **App Pages** - Use organism-level compositions
+
+---
+
 ## 🗑️ Deleted
 
 ### Folders
@@ -136,14 +169,27 @@ All components now follow a consistent prefix pattern:
 ```typescript
 import Navbar from '@/components/_common/navbar/navbar'
 import { MoleculeHero } from '@/components/molecules'
-import { FooterSection } from '@/components/sections/landing'
+import { FooterSection, HeroSection } from '@/components/sections/landing'
+
+// In page.tsx - assembling manually
+<div>
+  <Navbar locale={locale} />
+  <main>
+    <HeroSection />
+    <HowItWorksSection />
+  </main>
+  <FooterSection />
+</div>
 ```
 
 ### After
 ```typescript
-import { OrganismNavbar as Navbar } from '@/components/organisms'
-import { OrganismHero as MoleculeHero } from '@/components/organisms'
-import { OrganismFooterSection as FooterSection } from '@/components/organisms'
+import { OrganismNavbar } from '@/components/organisms'
+import { OrganismHero } from '@/components/organisms'
+import { TemplateLanding } from '@/components/templates'
+
+// In page.tsx - using template
+<TemplateLanding locale={locale} />
 ```
 
 ---
@@ -178,6 +224,19 @@ import { OrganismFooterSection as FooterSection } from '@/components/organisms'
 > - Domain-specific logic
 > - Complete UI sections
 > - May contain business logic
+
+### Templates
+> Page-level layouts
+> - Compose organisms into page structures
+> - Define layout and content placement
+> - Reusable across similar page types
+> - No real data, use props for flexibility
+
+### Pages (in Next.js App Router)
+> Specific instances with real data
+> - Live in `src/app/[locale]/`
+> - Use templates with actual data
+> - Route-specific implementations
 
 ---
 

@@ -2,8 +2,7 @@
 /* eslint-disable react/forbid-component-props */
 
 import { FcGoogle } from 'react-icons/fc'
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
-import { TbLanguage, TbLogout, TbUser } from 'react-icons/tb'
+import { TbLogout, TbUser } from 'react-icons/tb'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { AuthProviderInfo } from 'pocketbase'
@@ -21,69 +20,20 @@ const OrganismNavbar = ({ locale }: { locale: string }) => {
    const user = getUserInfo()
 
    return (
-      <header className="border-b-1 navbar border-neutral bg-base-100 flex h-14 px-4 shadow-md md:px-10 lg:px-20">
-         <div className="flex-1">
-            <div className="w-16 select-none">
+      <header className="border-b-1 navbar border-neutral bg-primary flex h-14 items-center px-4 md:px-10 lg:px-20">
+         <div className="flex flex-1 items-center gap-2">
+            <div className="-mt-2 w-16 select-none">
                <Link href="/">
-                  <Image
-                     alt="heart with german flag colors"
-                     height={50}
-                     priority
-                     src="/images/logo.png"
-                     width={60}
-                  />
+                  <Image alt="blabling logo" height={50} priority src="/images/logo4.svg" width={60} />
                </Link>
             </div>
             <Link href="/">
-               <AtomTitle extraClassName="hidden md:block select-none flex content-center" type="h1">
-                  LingoDeutsch
+               <AtomTitle extraClassName="hidden md:block select-none text-white mt-2" type="h1">
+                  Blabling
                </AtomTitle>
             </Link>
          </div>
-         <div className="flex-none gap-2">
-            <div className="dropdown dropdown-end dropdown-bottom">
-               <label className="btn btn-ghost m-1 " tabIndex={0}>
-                  <span className=" ">
-                     <TbLanguage />
-                  </span>
-                  <span className="">
-                     <MdOutlineKeyboardArrowDown className="text-gray-600" />
-                  </span>
-               </label>
-               <ul
-                  className="menu dropdown-content menu-sm rounded-box bg-base-100 z-[1] mt-3 w-52 p-2 shadow-lg"
-                  tabIndex={0}
-               >
-                  <li>
-                     <div className="my-1 justify-between py-3" onClick={() => router.push('/', { locale: 'de' })}>
-                        {t('menu.germanOption')}
-                        <span className="">
-                           <Image
-                              alt="German flag"
-                              height={25}
-                              priority
-                              src="https://flagsapi.com/DE/flat/64.png"
-                              width={35}
-                           />
-                        </span>
-                     </div>
-                  </li>
-                  <li>
-                     <div className="my-1 justify-between py-3" onClick={() => router.push('/', { locale: 'es' })}>
-                        {t('menu.spanishOption')}
-                        <span className="">
-                           <Image
-                              alt="Spain flag"
-                              height={25}
-                              priority
-                              src="https://flagsapi.com/ES/flat/64.png"
-                              width={35}
-                           />
-                        </span>
-                     </div>
-                  </li>
-               </ul>
-            </div>
+         <div className="flex flex-none items-center gap-2">
             {isUserLoged && user ? (
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>

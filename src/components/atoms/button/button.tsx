@@ -81,7 +81,8 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
       sizeClasses[size],
       gradient && 'transform hover:scale-105 active:scale-95', // Add subtle scale effect for gradients
       extraClassName,
-      disabledClasses
+      disabledClasses,
+      isBlock ? 'btn-block' : ''
    ]
       .filter(Boolean)
       .join(' ')

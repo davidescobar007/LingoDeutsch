@@ -37,7 +37,7 @@ const RootLayout = ({
       <QueryProvider>
          <NextIntlClientProvider messages={messages}>
             <html data-theme="mytheme" lang={locale}>
-               <body className={`${interFontDisplay.className} text-neutral bg-base-300`}>
+               <body className={`${interFontDisplay.className} text-neutral bg-base-200`}>
                   {children}
                   <ToastContainer
                      autoClose={5000}
