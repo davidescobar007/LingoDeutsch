@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { AtomText, Icon } from '@/components/atoms'
+import { Link } from '@/navigation'
 
 type VocabularyStats = {
    totalWords?: number
@@ -110,12 +109,10 @@ export const OrganismVocabularyPreview = ({
             {vocabularyCards.map((card) => (
                <Link className="w-full sm:flex-1" href={getCardLink(card.id)} key={card.id}>
                   <div className={getCardStyles(card)}>
-                     {/* Label */}
                      <AtomText className="mb-2 text-center" fontSize="small" isThin>
                         {card.label}
                      </AtomText>
 
-                     {/* Value with optional icon */}
                      <div className="flex items-center gap-2">
                         {card.icon && <span className="animate-pulse text-2xl">{card.icon}</span>}
                         <span className={`${getCardValueClasses(card)} drop-shadow-sm`}>{card.value}</span>

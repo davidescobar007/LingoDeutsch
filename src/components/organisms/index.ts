@@ -6,6 +6,7 @@ export { default as OrganismNavbar } from './Navbar/navbar'
 export { OrganismSidebar } from './Sidebar/sidebar'
 
 // Feature Components
+export { OrganismArticleCarousel } from './ArticleCarousel/articleCarousel'
 export { OrganismCallToActionCard } from './CallToActionCard/callToActionCard'
 export { OrganismCardsStats } from './CardsStats/cardsStats'
 export { OrganismGrammarLevelCard } from './GrammarLevelCard/grammarLevelCard'
@@ -13,7 +14,9 @@ export { OrganismGrammarPreview } from './GrammarPreview'
 export { OrganismHero } from './Hero/hero'
 export { OrganismLearningHero } from './Hero/learningHero'
 export { OrganismImageCard } from './ImageCard/imageCard'
+export { OrganismScoreSidebar } from './ScoreSidebar/scoreSidebar'
 export { OrganismVocabularyPreview } from './VocabularyPreview/vocabularyPreview'
+export { OrganismWelcomeHero } from './WelcomeHero/welcomeHero'
 export { OrganismWordSpecification } from './WordSpecification/wordSpecification'
 
 // Landing Page Sections

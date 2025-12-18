@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { AtomBadge, AtomText, AtomTitle, Icon } from '@/components/atoms'
-import { Tgrammar, TUserGrammarProgress } from '@/modules/actions/types'
+import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 
 type MoleculeTimeLineProps = {
    activeTopic: string | null
    onSelectTopic: (id: string) => void
-   topics: Tgrammar[]
+   topics: TGrammar[]
    userGrammarProgress?: TUserGrammarProgress[]
 }
 

@@ -1,4 +1,5 @@
 export { TemplateAbout } from './AboutTemplate/aboutTemplate'
+export { TemplateHome } from './HomeTemplate/homeTemplate'
 export { TemplateLanding } from './LandingTemplate/landingTemplate'
 export { TemplatePrivacy } from './PrivacyTemplate'
 export { TemplateTerms } from './TermsTemplate'

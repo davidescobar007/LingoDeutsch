@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { AtomText, Icon } from '@/components/atoms'
+import { Link } from '@/navigation'
 
 type GrammarPreviewProps = {
    popularTopics: {

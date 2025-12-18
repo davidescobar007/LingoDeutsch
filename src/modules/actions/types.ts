@@ -208,7 +208,7 @@ export type TIterableData = {
    }
 }
 
-export type Tgrammar = {
+export type TGrammar = {
    content: string
    difficulty: number
    id: string

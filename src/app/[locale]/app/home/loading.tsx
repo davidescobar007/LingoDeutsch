@@ -1,5 +1,5 @@
-import { OrganismLayoutContainer as LayoutContainer } from '@/components/organisms'
 import { CardLoader } from '@/components/atoms'
+import { OrganismLayoutContainer as LayoutContainer } from '@/components/organisms'
 
 const Loader = () => (
    <LayoutContainer>

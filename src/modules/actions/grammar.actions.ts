@@ -2,9 +2,9 @@ import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from '@/network'
 
 import { constants, queryOperators } from '../global.types'
 
-import { Tgrammar, TQuizQuestion, TUser, TUserGrammarProgress } from './types'
+import { TGrammar, TQuizQuestion, TUser, TUserGrammarProgress } from './types'
 
-export const getGrammarByLevel = async (grammarLevel: string): Promise<Tgrammar[]> => {
+export const getGrammarByLevel = async (grammarLevel: string): Promise<TGrammar[]> => {
    try {
       const fields = 'id,level,topic_name,difficulty'
       const filter = `level ${queryOperators.EQUAL_TO} "${grammarLevel}"`
@@ -13,19 +13,19 @@ export const getGrammarByLevel = async (grammarLevel: string): Promise<Tgrammar[
          filter,
          sort: 'difficulty'
       })
-      return grammarTopics as unknown as Tgrammar[]
+      return grammarTopics as unknown as TGrammar[]
    } catch (error: any) {
       return error
    }
 }
 
-export const getSingleGrammarById = async ({ id }: { id: string }): Promise<Tgrammar> => {
+export const getSingleGrammarById = async ({ id }: { id: string }): Promise<TGrammar> => {
    try {
       const grammarTopics = await pbGetSingleRecordQuery({
          collection: constants.GRAMMAR,
          param: id
       })
-      return grammarTopics as unknown as Tgrammar
+      return grammarTopics as unknown as TGrammar
    } catch (error: any) {
       return error
    }
