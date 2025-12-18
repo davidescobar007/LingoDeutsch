@@ -23,3 +23,12 @@ export {
    OrganismHowItWorksSection,
    OrganismMotivationSection
 } from './Landing'
+
+// About Page Sections
+export { OrganismAboutFeatures, OrganismAboutHero, OrganismAboutMission, OrganismAboutTeam } from './About'
+
+// Privacy Page Sections
+export { OrganismPrivacyContent, OrganismPrivacyHero } from './Privacy'
+
+// Terms Page Sections
+export { OrganismTermsContent, OrganismTermsHero } from './Terms'

@@ -161,12 +161,197 @@
       "germanOption": "Deutsch",
       "grammar": "Grammatik"
    },
+   "about": {
+      "hero": {
+         "title": "Über Blabling",
+         "subtitle": "Wir machen das Deutschlernen für Spanischsprachige zugänglich, effektiv und unterhaltsam"
+      },
+      "mission": {
+         "title": "Unsere Mission",
+         "description": "Wir glauben, dass das Erlernen einer neuen Sprache eine bereichernde und motivierende Erfahrung sein sollte. Deshalb haben wir Blabling geschaffen, eine Plattform, die speziell für Spanischsprachige entwickelt wurde, die Deutsch beherrschen möchten.",
+         "vision": {
+            "title": "Unsere Vision",
+            "description": "Die führende Plattform für Deutschunterricht für Spanischsprachige zu sein und die Art und Weise zu revolutionieren, wie diese schöne Sprache gelernt wird."
+         },
+         "values": {
+            "title": "Unsere Werte",
+            "description": "Innovation, Bildungsqualität, Zugänglichkeit und Engagement für den Erfolg jedes Schülers sind die Säulen, die unsere Arbeit leiten."
+         }
+      },
+      "features": {
+         "title": "Was macht uns anders?",
+         "subtitle": "Wir verbinden Technologie, Pädagogik und Leidenschaft für Sprachen",
+         "interactive": {
+            "title": "Interaktives Lernen",
+            "description": "Interaktive Lesungen mit Sofortübersetzungen, die Ihnen helfen, im Kontext zu lernen."
+         },
+         "personalized": {
+            "title": "Personalisiert",
+            "description": "Ihr persönlicher Wortschatz, der mit Ihnen wächst und sich an Ihr Lerntempo anpasst."
+         },
+         "effective": {
+            "title": "Effektive Methoden",
+            "description": "Techniken der verteilten Wiederholung und aktiven Praxis, die langfristige Behaltung garantieren."
+         },
+         "fun": {
+            "title": "Unterhaltsam",
+            "description": "Gamification, tägliche Streaks und Erfolge, die Ihre Motivation hoch halten."
+         }
+      },
+      "team": {
+         "title": "Tritt unserer Community bei",
+         "description": "Tausende von Studenten lernen bereits Deutsch mit Blabling. Bist du bereit mitzumachen?",
+         "callToAction": "Beginne heute deine Reise",
+         "contact": "Hast du Fragen oder Anregungen? Wir würden gerne von dir hören.",
+         "startButton": "Mit dem Lernen beginnen"
+      }
+   },
    "footer": {
       "about": "Über uns",
       "help": "Hilfe",
       "privacy": "Datenschutz",
       "terms": "Nutzungsbedingungen",
       "contact": "Kontakt"
+   },
+   "privacy": {
+      "hero": {
+         "title": "Datenschutzerklärung",
+         "subtitle": "Erfahren Sie, wie wir Ihre persönlichen Daten schützen"
+      },
+      "lastUpdate": "Letzte Aktualisierung: {date}",
+      "introduction": "Bei Blabling (\"die App\", \"wir\") nehmen wir den Schutz Ihrer persönlichen Daten sehr ernst. Diese Datenschutzerklärung erklärt klar und transparent, welche Daten wir sammeln, wie wir sie verwenden, mit wem wir sie teilen, wie lange wir sie aufbewahren und welche Rechte Sie darüber haben.\n\nDurch die Nutzung von Blabling akzeptieren Sie die in dieser Datenschutzerklärung beschriebenen Praktiken. Wenn Sie mit einem der Bedingungen nicht einverstanden sind, nutzen Sie bitte die App nicht.",
+      "sections": {
+         "dataController": {
+            "title": "1. Verantwortlicher für die Datenverarbeitung",
+            "content": "Der Verantwortliche für die Verarbeitung der über Blabling gesammelten personenbezogenen Daten ist der Inhaber dieser Anwendung.\n\nWenn Sie Fragen zu dieser Datenschutzerklärung oder zur Verarbeitung Ihrer personenbezogenen Daten haben, können Sie uns kontaktieren unter:\n\nE-Mail: privacy@blabling.com"
+         },
+         "dataCollected": {
+            "title": "1. Welche Daten sammeln wir?",
+            "content": "Die Informationen, die wir sammeln, hängen davon ab, wie Sie Blabling nutzen. Im Allgemeinen können wir folgende Datenkategorien sammeln:\n\n2.1. Registrierungs- und Kontodaten\n• Name und/oder Spitzname\n• E-Mail-Adresse\n• Muttersprache und Zielsprache\n• Land oder Region\n• Profilbild (falls hochgeladen)\n• Passwort (verschlüsselt gespeichert)\n\n2.2. Nutzungs- und Aktivitätsdaten\n• Lektionen und Kurse, die Sie absolvieren\n• Antworten auf Übungen, Quizze und Praktiken\n• Fortschritt, Punktzahlen und Lernstatistiken\n• Am häufigsten genutzte Funktionen\n• Fehler, Abstürze und technische Daten\n\n2.3. Geräte- und technische Daten\n• Gerätetyp (Mobilgerät, Tablet usw.)\n• Betriebssystem und Version\n• App-Version\n• Eindeutige Gerätekennungen\n• Ungefähre IP-Adresse\n• Leistungs- und Diagnoseinformationen\n\n2.4. Zahlungs- und Abrechnungsdaten\n• Transaktionsinformationen (Methode, Betrag, Datum, Währung)\n• Abrechnungsdaten bei Bedarf\n• Wir speichern keine vollständigen Kreditkartennummern\n\n2.5. Von Nutzern generierte Inhalte\n• Texte, die Sie in Übungen schreiben\n• Sprachaufnahmen (zur Aussprache)\n• Kommentare, Nachrichten und Feedback\n\n2.6. Kommunikation\n• Ihr Name und E-Mail-Adresse\n• Inhalt von Nachrichten und angehängten Dateien\n• Antworten in Umfragen oder Formularen"
+         },
+         "dataPurposes": {
+            "title": "2. Zu welchen Zwecken verwenden wir Ihre Daten?",
+            "content": "Wir verwenden Ihre personenbezogenen Daten für:\n\n3.1. Bereitstellung des Dienstes\n• Erstellen und Verwalten Ihres Benutzerkontos\n• Ermöglichen des Zugriffs auf Blabling und seine Funktionen\n• Speichern Ihres Fortschritts und Ihrer Statistiken\n• Anzeigen Ihrer Fortschritte und Empfehlungen\n\n3.2. Verbesserung der Erfahrung und Personalisierung\n• Anpassen des Inhalts an Ihr Niveau und Ihren Fortschritt\n• Vorschlagen personalisierter Lektionen\n• Analysieren der Nutzung zur Verbesserung der Funktionen\n• Verwenden von Algorithmen und KI-Modellen zur Personalisierung\n\n3.3. Kommunikation mit Ihnen\n• Senden von E-Mails oder Service-Benachrichtigungen\n• Mit Ihrer Zustimmung, Senden kommerzieller Mitteilungen\n• Beantworten von Anfragen und Support-Anfragen\n\n3.4. Verwaltung von Zahlungen und Abonnements\n• Verarbeiten von Zahlungen und Abonnements\n• Verwalten von Abbuchungen, Verlängerungen und Abrechnung\n• Verhindern von zahlungsbezogenem Betrug\n\n3.5. Sicherheit und Rechtskonformität\n• Erkennen und Verhindern betrügerischer Nutzung\n• Schützen der Sicherheit von Systemen und Nutzern\n• Erfüllen rechtlicher und regulatorischer Verpflichtungen"
+         },
+         "legalBasis": {
+            "title": "3. Was ist die Rechtsgrundlage für die Verarbeitung Ihrer Daten?",
+            "content": "Je nach Art der Daten und des Kontexts verarbeiten wir Ihre Daten auf der Grundlage von:\n\nErfüllung eines Vertrags:\n• Zur Bereitstellung des Blabling-Dienstes\n• Verwaltung Ihres Kontos und Abonnements\n• Zugang zur App\n\nErfüllung rechtlicher Verpflichtungen:\n• Steuer-/Buchhaltungsverpflichtungen\n• Abrechnung und Zahlungen\n• Anforderungen von Behörden\n\nBerechtigtes Interesse:\n• Verbesserung der App und Nutzererfahrung\n• Aufrechterhaltung der Plattformsicherheit\n• Durchführung interner Analysen und Statistiken\n\nIhre Einwilligung:\n• Kommerzielle Mitteilungen und Werbeaktionen\n• Verwendung bestimmter Cookies oder ähnlicher Technologien\n• Spezifische Funktionen (Mikrofon-Zugriff usw.)\n\nSie können Ihre Einwilligung jederzeit widerrufen, ohne dass dies die Rechtmäßigkeit der vorherigen Verarbeitung beeinträchtigt."
+         },
+         "dataSharing": {
+            "title": "4. Mit wem teilen wir Ihre Daten?",
+            "content": "Wir verkaufen Ihre personenbezogenen Daten nicht an Dritte.\nWir können sie jedoch teilen mit:\n\n5.1. Dienstleistern\n• Hosting- und Serverdienste\n• Analyse- und Statistikanbieter\n• E-Mail- und Benachrichtigungsanbieter\n• Zahlungs- und Abrechnungsplattformen\n• Kundensupport-Tools\n\nDiese Anbieter haben nur Zugriff auf notwendige Daten und sind vertraglich zum Schutz verpflichtet.\n\n5.2. Rechtliche Anforderungen und Schutz\nWir können Daten offenlegen, wenn dies erforderlich ist für:\n• Einhaltung von Gesetzen, Vorschriften oder rechtlichen Verfahren\n• Schutz der Sicherheit, Rechte oder des Eigentums von Blabling\n• Erkennen, Verhindern oder Bekämpfen von Betrug\n\n5.3. Unternehmensoperationen\nBei Fusion, Übernahme oder Vermögensverkauf könnten Ihre Daten übertragen werden. Wir werden Sie informieren, wenn dies gesetzlich erforderlich ist."
+         },
+         "internationalTransfers": {
+            "title": "5. Internationale Datenübermittlungen",
+            "content": "Es ist möglich, dass sich einige unserer Dienstleister außerhalb Ihres Wohnsitzlandes und in bestimmten Fällen außerhalb des Europäischen Wirtschaftsraums (EWR) befinden.\n\nIn diesen Fällen ergreifen wir notwendige Maßnahmen, um angemessenen Schutz zu gewährleisten:\n\n• Verwendung von Standardvertragsklauseln der Europäischen Kommission\n• Übertragung von Daten in Länder mit angemessenem Schutzniveau\n• Anwendung zusätzlicher Sicherheitsmaßnahmen bei Bedarf"
+         },
+         "dataRetention": {
+            "title": "5. Wie lange bewahren wir Ihre Daten auf?",
+            "content": "Wir bewahren Ihre Daten nur so lange auf, wie es zur Erfüllung der Zwecke erforderlich ist, für die sie gesammelt wurden.\n\nIm Allgemeinen:\n\nKontodaten:\nSolange Sie ein aktives Konto haben und anschließend für die Dauer rechtlicher Verpflichtungen.\n\nNutzungs- und Fortschrittsdaten:\nSolange Sie die App nutzen und in aggregierter oder anonymisierter Form zur Analyse.\n\nAbrechnungsdaten:\nFür die von Steuer- und Buchhaltungsgesetzen vorgeschriebenen Fristen.\n\nKommunikation und Support:\nFür die zur Bearbeitung von Anfragen und zur Nachverfolgung erforderliche Zeit.\n\nWenn wir Ihre Daten nicht mehr benötigen, werden wir sie sicher löschen oder anonymisieren."
+         },
+         "yourRights": {
+            "title": "6. Welche Rechte haben Sie über Ihre Daten?",
+            "content": "Je nach geltendem Recht können Sie folgende Rechte haben:\n\nZugang: Erfahren, ob wir Ihre Daten verarbeiten und eine Kopie erhalten.\n\nBerichtigung: Korrektur ungenauer oder unvollständiger Daten.\n\nLöschung (Recht auf Vergessenwerden): Löschung beantragen, wenn sie nicht mehr erforderlich sind.\n\nEinschränkung: Einschränkung der Verarbeitung in bestimmten Fällen beantragen.\n\nDatenübertragbarkeit: Ihre Daten in strukturiertem Format erhalten und an einen anderen Verantwortlichen übermitteln.\n\nWiderspruch: Widerspruch gegen Verarbeitung aufgrund berechtigten Interesses.\n\nWiderruf der Einwilligung: Wenn die Verarbeitung auf Ihrer Einwilligung basiert.\n\nUm diese Rechte auszuüben, kontaktieren Sie uns unter:\nE-Mail: privacy@blabling.com\n\nWenn Sie der Meinung sind, dass wir Ihre Daten nicht ordnungsgemäß verarbeitet haben, haben Sie das Recht, bei der Datenschutzbehörde Ihres Landes Beschwerde einzureichen."
+         },
+         "security": {
+            "title": "7. Informationssicherheit",
+            "content": "Wir implementieren angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer Daten vor:\n\n• Unbefugtem Zugriff, Nutzung oder Offenlegung\n• Unsachgemäßer Änderung oder Zerstörung\n• Versehentlichem Verlust\n\nUnter anderem verwenden wir:\n• Verschlüsselte Verbindungen (HTTPS)\n• Passwortverschlüsselung\n• Interne Zugangskontrollen\n• Bewährte Sicherheitspraktiken\n\nKein System ist jedoch zu 100% sicher. Wir können absolute Sicherheit nicht garantieren, bemühen uns aber, sie bestmöglich zu schützen."
+         },
+         "minorsPrivacy": {
+            "title": "8. Datenschutz für Minderjährige",
+            "content": "Blabling richtet sich nicht an Personen unter 18 Jahren, es sei denn, sie nutzen die App unter Aufsicht und mit Zustimmung ihrer Eltern oder Erziehungsberechtigten.\n\nWenn wir feststellen, dass wir Daten eines Minderjährigen ohne erforderliche Zustimmung gesammelt haben, werden wir angemessene Maßnahmen ergreifen, um sie so schnell wie möglich zu löschen.\n\nWenn Sie glauben, dass dies geschehen ist, kontaktieren Sie uns bitte."
+         },
+         "cookies": {
+            "title": "9. Cookies und ähnliche Technologien",
+            "content": "Wenn Sie Blabling über unsere Webseite nutzen, können wir Cookies und ähnliche Technologien verwenden für:\n\n• Speichern Ihrer Präferenzen und Sitzung\n• Analyse der Webnutzung und Verbesserung\n• Personalisierung des Inhalts\n\nDetaillierte Informationen über Cookies, die von uns verwendeten Typen und deren Konfiguration finden Sie in unserer Cookie-Richtlinie oder im entsprechenden Abschnitt dieser Erklärung."
+         },
+         "policyChanges": {
+            "title": "10. Änderungen an dieser Datenschutzerklärung",
+            "content": "Wir können diese Erklärung von Zeit zu Zeit aktualisieren, um Änderungen in der App, der Gesetzgebung oder unserer Datenverarbeitung widerzuspiegeln.\n\nBei wesentlichen Änderungen werden wir Sie über die App, per E-Mail oder auf andere geeignete Weise benachrichtigen. Das Datum der \"Letzten Aktualisierung\" wird entsprechend geändert.\n\nWir empfehlen Ihnen, diese Erklärung regelmäßig zu überprüfen, um informiert zu bleiben, wie wir Ihre Daten schützen."
+         },
+         "contact": {
+            "title": "11. Kontakt",
+            "content": "Wenn Sie Fragen, Kommentare oder Anfragen zu dieser Datenschutzerklärung oder zur Verarbeitung Ihrer Daten haben, können Sie uns kontaktieren unter:\n\nE-Mail: privacy@blabling.com"
+         }
+      }
+   },
+   "terms": {
+      "hero": {
+         "title": "Nutzungsbedingungen",
+         "subtitle": "Erfahren Sie mehr über die Nutzungsbedingungen von Blabling"
+      },
+      "lastUpdate": "Letzte Aktualisierung: {date}",
+      "introduction": "Willkommen bei Blabling (\"die App\").\n\nDiese Nutzungsbedingungen regeln den Zugang und die Nutzung von Blabling durch seine Nutzer. Durch die Erstellung eines Kontos, das Herunterladen oder die Nutzung der App erklärst du, dass du diese Nutzungsbedingungen und unsere Datenschutzerklärung gelesen, verstanden und akzeptiert hast.\n\nWenn du mit einer der hierin enthaltenen Bestimmungen nicht einverstanden bist, verwende bitte die App nicht.",
+      "sections": {
+         "whoWeAre": {
+            "title": "1. Wer sind wir?",
+            "content": "Blabling ist eine Anwendung für spanischsprachige Personen, die die deutsche Sprache durch Lektionen, interaktive Übungen, audiovisuelle Inhalte und andere Funktionen zur Unterstützung des Sprachenlernens erlernen und üben möchten.\n\nIn diesen Bedingungen beziehen sich \"Blabling\", \"wir\" oder \"unser\" auf den Inhaber der App. Mit \"Nutzer\", \"du\" oder \"dein\" meinen wir jede Person, die Blabling herunterlädt, sich registriert oder nutzt."
+         },
+         "acceptance": {
+            "title": "2. Annahme der Bedingungen",
+            "content": "Durch das Erstellen eines Kontos, den Zugriff auf oder die Nutzung von Blabling:\n\n• Akzeptierst du, rechtlich an diese Nutzungsbedingungen gebunden zu sein.\n• Erklärst du, dass du mindestens 18 Jahre alt bist oder, falls du minderjährig bist, dass du die Genehmigung deiner Eltern oder Erziehungsberechtigten hast, die App zu nutzen.\n• Akzeptierst du, alle geltenden Gesetze und Vorschriften in deinem Wohnsitzland einzuhalten.\n\nWir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Wenn wir dies tun, werden wir das Datum der \"Letzten Aktualisierung\" aktualisieren und dich gegebenenfalls über die App oder per E-Mail benachrichtigen. Die fortgesetzte Nutzung von Blabling nach einer Änderung bedeutet die Annahme der neuen Bedingungen."
+         },
+         "registration": {
+            "title": "3. Registrierung und Benutzerkonto",
+            "content": "Um auf bestimmte Funktionen von Blabling zugreifen zu können, kann es erforderlich sein, ein Konto zu erstellen und einige persönliche Daten anzugeben (z.B. Name, E-Mail-Adresse, Muttersprache, Zielsprache usw.).\n\nDu verpflichtest dich:\n\n• Wahre, genaue und aktuelle Informationen bereitzustellen.\n• Die Vertraulichkeit deiner Anmeldedaten (Benutzername und Passwort) zu wahren.\n• Dein Konto nicht mit Dritten zu teilen oder einer anderen Person die Nutzung deines Kontos zu gestatten.\n• Uns unverzüglich zu benachrichtigen, wenn du eine unbefugte Nutzung deines Kontos oder eine Sicherheitsverletzung feststellst.\n\nBlabling kann nach eigenem Ermessen dein Konto sperren oder kündigen, wenn es betrügerische Nutzung, Verstöße gegen diese Bedingungen oder Aktivitäten feststellt, die anderen Nutzern oder der App schaden könnten."
+         },
+         "permittedUse": {
+            "title": "4. Zulässige Nutzung der App",
+            "content": "Blabling wird ausschließlich zum Sprachenlernen und zur persönlichen, nicht kommerziellen Nutzung angeboten.\n\nNicht erlaubt ist:\n\n• Die App in einer Weise zu nutzen, die gegen geltende Gesetze oder Vorschriften verstößt.\n• Die App zu kopieren, zu verteilen, zu modifizieren, zu dekompilieren, Reverse Engineering durchzuführen oder zu versuchen, den Quellcode der App zu erhalten, außer mit ausdrücklicher Genehmigung.\n• Die App zu nutzen, um illegale, diffamierende, beleidigende, gewalttätige, diskriminierende Inhalte zu senden, hochzuladen oder zu teilen oder Inhalte, die die Rechte Dritter verletzen.\n• Spam, Phishing oder betrügerische Aktivitäten durchzuführen.\n• Zu versuchen, unbefugt auf Systeme, Konten oder Daten anderer Nutzer oder von Blabling zuzugreifen.\n• Die App oder Teile ihres Inhalts ohne unsere vorherige schriftliche Zustimmung zu verkaufen, zu vermieten, unterzulizenzieren oder kommerziell zu nutzen.\n\nWir behalten uns das Recht vor, den Zugang zur App für jeden Nutzer einzuschränken, zu sperren oder zu blockieren, der gegen diese Bedingungen verstößt."
+         },
+         "appContent": {
+            "title": "5. Inhalt der App",
+            "content": "Blabling stellt dir zur Verfügung:\n\n• Deutschlektionen für spanischsprachige Personen\n• Interaktive Übungen, Quizze und Praktiken\n• Audiovisuelle Inhalte, Texte, Beispiele und Grammatikerklärungen\n• Funktionen zur Verfolgung des Fortschritts und Gamifizierung (falls zutreffend)\n\nAlle in der App verfügbaren Inhalte (Texte, Grafiken, Illustrationen, Audios, Videos, Schnittstellen, Designs, Logos usw.) sind Eigentum von Blabling oder werden mit den erforderlichen Lizenzen verwendet und sind durch Gesetze zum Schutz des geistigen Eigentums und Urheberrechts geschützt.\n\nDir wird eine begrenzte, persönliche, nicht ausschließliche, nicht übertragbare und widerrufliche Lizenz gewährt, die App und ihre Inhalte ausschließlich für persönliche Lernzwecke zu nutzen."
+         },
+         "userContent": {
+            "title": "6. Vom Nutzer generierte Inhalte",
+            "content": "Soweit Blabling dir erlaubt, Inhalte zu erstellen, hochzuladen oder zu teilen (z.B. Antworten, Texte, Audios, Kommentare, Nachrichten in Foren oder Chats innerhalb der App), akzeptierst du, dass:\n\n• Du allein für die von dir generierten oder geteilten Inhalte verantwortlich bist.\n• Du garantierst, dass diese Inhalte keine Rechte Dritter verletzen (z.B. Urheberrechte, Markenrechte oder Datenschutz).\n• Der Inhalt nicht illegal, beleidigend, diffamierend, diskriminierend, gewalttätig oder unangemessen ist.\n• Du Blabling eine nicht ausschließliche, weltweite, kostenlose, übertragbare und unterlizenzierbare Lizenz gewährst, diese Inhalte innerhalb der App zu nutzen, zu reproduzieren, zu modifizieren, anzupassen, zu übersetzen und anzuzeigen, um den Service bereitzustellen, das Produkt zu verbessern und für interne Statistiken.\n\nWir behalten uns das Recht (aber nicht die Pflicht) vor, Nutzerinhalte zu überprüfen, zu moderieren, zu bearbeiten oder zu löschen, die wir für unangemessen halten oder die gegen diese Bedingungen verstoßen."
+         },
+         "payments": {
+            "title": "7. Pläne, Zahlungen und Abonnements",
+            "content": "Blabling kann eine Kombination aus:\n\n• Kostenloser Version mit eingeschränkten Funktionen\n• Bezahlten Abonnementplänen mit mehr Funktionen, zusätzlichen Inhalten oder spezifischen Vorteilen\n\nanbieten. Wenn du einen Bezahlplan abschließt:\n\n• Akzeptierst du, die entsprechenden Gebühren gemäß den zum Zeitpunkt des Kaufs geltenden Preisen zu zahlen.\n• Die Zahlungen werden über externe und sichere Zahlungsplattformen abgewickelt. Wir speichern nicht direkt die vollständigen Daten deiner Kreditkarte.\n• Viele Pläne funktionieren durch automatische Verlängerung (monatlich oder jährlich). Sofern du nicht vor dem Verlängerungszeitraum kündigst, autorisierst du die Abbuchung des nächsten Abonnementzeitraums.\n• Du kannst dein Abonnement jederzeit über die Kontoeinstellungen oder über die verwendete Zahlungsplattform kündigen. Die Kündigung verhindert zukünftige Abbuchungen, bedeutet aber keine Rückerstattung bereits abgebuchter Zeiträume, sofern nicht gesetzlich vorgeschrieben.\n\nWir empfehlen dir, die spezifischen Informationen über Preise, Abrechnungszeiträume, Werbeaktionen und besondere Bedingungen innerhalb der App oder auf der Website von Blabling zu überprüfen."
+         },
+         "promotions": {
+            "title": "8. Kostenlose Testversionen, Gutscheine und Aktionen",
+            "content": "Falls Blabling kostenlose Testversionen, Gutscheine, Rabatte oder andere spezielle Werbeaktionen anbietet:\n\n• Es gelten zusätzliche Bedingungen, die für jede Aktion angegeben werden.\n• Wir behalten uns das Recht vor, jede Aktion jederzeit zu ändern oder zu stornieren, ohne Entschädigungspflicht, soweit gesetzlich zulässig.\n• Kostenlose Testversionen können sich nach Ablauf des Testzeitraums in bezahlte Abonnements umwandeln, wenn dies angegeben ist und du nicht vor dem Verlängerungsdatum kündigst."
+         },
+         "cancellation": {
+            "title": "9. Kündigungs- und Rückerstattungsrichtlinie",
+            "content": "Sofern nicht anders angegeben oder gesetzlich vorgeschrieben:\n\n• Bereits abgebuchte Abonnements sind nicht erstattungsfähig, auch wenn du die App während des gebuchten Zeitraums nicht nutzt.\n• Bei Kündigung deines Abonnements behältst du den Zugang zu den Bezahlfunktionen bis zum Ende des bezahlten Zeitraums, danach wird dein Konto auf die kostenlose Version beschränkt (falls vorhanden) oder deaktiviert.\n\nNichts hiervon beeinträchtigt die Rechte, die du als Verbraucher gemäß den Gesetzen deines Landes haben könntest."
+         },
+         "privacy": {
+            "title": "10. Datenschutz und Datenschutz",
+            "content": "Die Verarbeitung deiner personenbezogenen Daten wird durch unsere Datenschutzerklärung geregelt, die integraler Bestandteil dieser Bedingungen ist. Darin erklären wir dir:\n\n• Welche Daten wir sammeln\n• Zu welchen Zwecken wir sie verwenden\n• Die rechtliche Grundlage für die Verarbeitung\n• Mit wem wir sie teilen können\n• Deine Rechte auf Zugang, Berichtigung, Löschung und andere\n\nWir empfehlen dir, die Datenschutzerklärung vor der Nutzung der App sorgfältig zu lesen."
+         },
+         "intellectualProperty": {
+            "title": "11. Geistiges und gewerbliches Eigentum",
+            "content": "• Die gesamte Software, das Design, die Logos, die Marken, die Handelsnamen, die Texte, die Bilder, Audios, Videos, Navigationsstrukturen und andere Elemente der App sind Eigentum von Blabling oder seinen Lizenzgebern.\n• Nichts in der App sollte als Gewährung einer Lizenz oder eines Nutzungsrechts für Marken, Handelsnamen oder geschützte Elemente ohne vorherige schriftliche Zustimmung des jeweiligen Inhabers interpretiert werden.\n• Jede unbefugte Nutzung der geschützten Elemente kann einen Verstoß gegen geltendes Recht darstellen und zu entsprechenden rechtlichen Schritten führen."
+         },
+         "liability": {
+            "title": "12. Haftungsbeschränkung",
+            "content": "Im größtmöglichen gesetzlich zulässigen Umfang:\n\n• Blabling stellt die App und ihren Inhalt \"wie besehen\" und \"nach Verfügbarkeit\" bereit, ohne jegliche Garantien, ausdrücklich oder stillschweigend, einschließlich, aber nicht beschränkt auf Garantien der Eignung für einen bestimmten Zweck, zufriedenstellende Qualität oder Fehlerfreiheit.\n• Wir garantieren nicht, dass die App frei von Fehlern, Viren oder Unterbrechungen ist, dass der Inhalt immer vollständig, genau oder aktuell ist, oder dass du ein bestimmtes Lernergebnis erzielst (der Fortschritt hängt von deinem Engagement, deiner Beständigkeit und anderen persönlichen Faktoren ab).\n• In keinem Fall ist Blabling haftbar für Einkommensverluste oder Gewinne, Datenverluste oder indirekte, zufällige, besondere, Folge- oder Strafschäden, die sich aus der Nutzung oder Unmöglichkeit der Nutzung der App ergeben.\n\nWenn eine Gerichtsbarkeit bestimmte Haftungsbeschränkungen nicht zulässt, sind einige der oben genannten möglicherweise nicht auf dich anwendbar; in diesem Fall ist die Haftung von Blabling auf das gesetzlich zulässige Maximum beschränkt."
+         },
+         "suspension": {
+            "title": "13. Aussetzung und Beendigung des Dienstes",
+            "content": "Wir können jederzeit und ohne vorherige Ankündigung deinen Zugang zur App und/oder zu deinem Konto sperren, einschränken oder schließen, wenn:\n\n• Du gegen diese Bedingungen oder geltende Gesetze verstößt.\n• Wir betrügerische, missbräuchliche Aktivitäten feststellen oder Aktivitäten, die die Sicherheit der App oder anderer Nutzer gefährden.\n• Wir beschließen, die Bereitstellung der App ganz oder teilweise einzustellen (z.B. im Falle einer Dienstschließung).\n\nIn solchen Fällen werden wir uns bemühen, dich zu informieren, wenn dies vernünftigerweise möglich ist, ohne dass daraus eine Entschädigungspflicht entsteht, sofern das Gesetz nichts anderes vorsieht."
+         },
+         "thirdPartyLinks": {
+            "title": "14. Links zu Dritten",
+            "content": "Die App kann Links zu Websites, Inhalten oder Diensten Dritter enthalten, die nicht Blabling gehören oder von Blabling kontrolliert werden.\n\n• Wir sind nicht verantwortlich für den Inhalt, die Datenschutzrichtlinien oder die Praktiken von Websites oder Diensten Dritter.\n• Der Zugriff auf sie erfolgt auf eigene Gefahr, und wir empfehlen dir, ihre eigenen Bedingungen und Richtlinien zu überprüfen, bevor du sie nutzt."
+         },
+         "language": {
+            "title": "15. Sprache",
+            "content": "Diese Nutzungsbedingungen können in mehreren Sprachen verfügbar sein. Im Falle von Unstimmigkeiten zwischen der spanischen Version und einer Übersetzung hat die spanische Version Vorrang (sofern die Gesetzgebung deines Landes nichts anderes vorschreibt)."
+         },
+         "jurisdiction": {
+            "title": "16. Anwendbares Recht und Gerichtsstand",
+            "content": "Sofern die Gesetzgebung deines Wohnsitzlandes nichts anderes vorsieht:\n\n• Diese Nutzungsbedingungen werden nach den Gesetzen von {country} geregelt und ausgelegt.\n• Jede Streitigkeit, die sich aus der Auslegung oder Durchführung dieser Bedingungen ergibt, wird den zuständigen Gerichten von {jurisdiction} unterworfen, wobei die Parteien auf jede andere ihnen zustehende Gerichtsbarkeit verzichten."
+         },
+         "contact": {
+            "title": "17. Kontakt",
+            "content": "Wenn du Fragen, Kommentare oder Beschwerden zu diesen Nutzungsbedingungen oder zur Nutzung der App hast, kannst du uns kontaktieren über:\n\nE-Mail: {email}\nKontaktseite: {contactUrl}"
+         }
+      }
    },
    "home": {
       "tittle": "Ein Weg, deinen Wortschatz im Deutsch zu trainieren, ist durch Lesen und Wiederholung!",

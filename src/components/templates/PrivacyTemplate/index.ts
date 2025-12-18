@@ -1,0 +1,1 @@
+export { TemplatePrivacy } from './privacyTemplate'

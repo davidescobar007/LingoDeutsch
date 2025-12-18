@@ -11,7 +11,7 @@ interface TemplateLandingProps {
 
 export const TemplateLanding = ({ locale }: TemplateLandingProps) => {
    return (
-      <div className="flex flex-col">
+      <div className="0 flex flex-col">
          <OrganismNavbar locale={locale} />
 
          <section className="overflow-x-hidden">

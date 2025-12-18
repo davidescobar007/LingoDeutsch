@@ -4,9 +4,8 @@ Utilizarás la siguiente plantilla Markdown, que agrupa la información por cont
 
 <!-- inicio markdown -->
 
+# <!--
 
-<!-- 
-=========================================
 🗺️ TEMPLATE GUÍA RÁPIDA DE CONVERSACIÓN (v3.0)
 Estructura: agrupación por contexto y función. La "pista clave" es opcional.
 =========================================
@@ -17,27 +16,30 @@ Estructura: agrupación por contexto y función. La "pista clave" es opcional.
 ---
 
 ### 👋 **[TÍTULO DE LA CATEGORÍA]**
+
 <!-- Agrupa las frases por su función (ej: Saludos, En el restaurante, Para pedir ayuda). Usa un emoji relevante. -->
 
-- **Frase en Alemán** - Traducción en Español
-  - 💬 *Pista clave o contexto de uso.* <!-- (Opcional) Breve nota SÓLO si la frase tiene un matiz importante (formalidad 🎩/🙂, un uso específico, etc.). -->
+-  **Frase en Alemán** - Traducción en Español
 
-- **Otra Frase en Alemán** - Traducción en Español
-  <!-- Sin pista clave si la frase es autoexplicativa. -->
+   -  💬 _Pista clave o contexto de uso._ <!-- (Opcional) Breve nota SÓLO si la frase tiene un matiz importante (formalidad 🎩/🙂, un uso específico, etc.). -->
 
-- **Otra Frase en Alemán** - Traducción en Español
-  <!-- si se requieren mas ejemplos de frases que sean a considerar -->
+-  **Otra Frase en Alemán** - Traducción en Español
+   <!-- Sin pista clave si la frase es autoexplicativa. -->
+
+-  **Otra Frase en Alemán** - Traducción en Español
+   <!-- si se requieren mas ejemplos de frases que sean a considerar -->
+
 ---
-
 
 ### ❓ **[TÍTULO DE OTRA CATEGORÍA]**
 
-- **Frase en Alemán** - Traducción en Español
-  - 💬 *Pista clave.*
+-  **Frase en Alemán** - Traducción en Español
+   -  💬 _Pista clave._
 
 ---
 
 <!-- fin markdown -->
+
 Instrucciones Clave para la Generación:
 
 Estructura por Contexto: La regla más importante es agrupar las frases por su función o situación de uso. Utiliza encabezados (###) para crear categorías lógicas.

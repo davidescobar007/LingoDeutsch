@@ -1,41 +1,29 @@
 'use client'
 
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
-import { AtomText } from '@/components/atoms'
 import { Link } from '@/navigation'
 
 export const OrganismFooterSection = () => {
+   const t = useTranslations('footer')
+
    return (
-      <footer className="footer footer-center bg-base-200 text-base-content rounded p-10">
-         <nav className="grid grid-flow-col gap-4">
+      <footer className="footer bg-neutral text-neutral-content p-10">
+         <aside>
+            <Image alt="blabling logo" height={50} priority src="/images/logo4.svg" width={60} />
+            <p>Todos los derechos reservados © 2025 Blabling</p>
+         </aside>
+         <nav>
             <Link className="link link-hover" href="/about">
-               About us
+               {t('about')}
             </Link>
-            <Link className="link link-hover" href="/contact">
-               Contact
-            </Link>
-            <Link className="link link-hover" href="/terms">
-               Terms of use
-            </Link>
-            <Link className="link link-hover" href="/privacy">
-               Privacy policy
-            </Link>
+            <a className="link link-hover">{t('contact')}</a>
          </nav>
          <nav>
-            <aside>
-               <Image
-                  alt="heart with german flag colors"
-                  height={50}
-                  priority
-                  src="/images/logo4.svg"
-                  width={60}
-               />
-            </aside>
+            <a className="link link-hover">{t('terms')}</a>
+            <a className="link link-hover">{t('privacy')}</a>
          </nav>
-         <aside>
-            <AtomText>Copyright © 2025 - All right reserved</AtomText>
-         </aside>
       </footer>
    )
 }

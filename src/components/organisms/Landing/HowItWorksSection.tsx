@@ -17,7 +17,7 @@ export const OrganismHowItWorksSection = () => {
    if (!mounted) return null
 
    return (
-      <section className="relative overflow-hidden  py-20 lg:py-10">
+      <section className="relative overflow-hidden py-20">
          <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]" />
          <div className="pointer-events-none absolute right-0 top-1/3 h-96 w-96 rounded-full bg-purple-200/30 blur-3xl" />
          <div className="pointer-events-none absolute bottom-1/3 left-0 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />

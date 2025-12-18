@@ -1,0 +1,1 @@
+export { TemplateTerms } from './termsTemplate'
