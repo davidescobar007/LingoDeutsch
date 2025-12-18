@@ -5,7 +5,7 @@ import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 
 type MoleculeTimeLineProps = {
    activeTopic: string | null
-   onSelectTopic: (id: string) => void
+   onSelectTopic: (_id: string) => void
    topics: TGrammar[]
    userGrammarProgress?: TUserGrammarProgress[]
 }
@@ -14,7 +14,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
    activeTopic,
    onSelectTopic,
    topics,
-   userGrammarProgress
+   userGrammarProgress = undefined
 }) => {
    const isTopicCompleted = (topicId: string): Boolean => {
       if (!userGrammarProgress) return false

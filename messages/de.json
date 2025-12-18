@@ -1,4 +1,116 @@
 {
+   "landing": {
+      "hero": {
+         "badge": "🇩🇪 Deutsch für Spanischsprachige",
+         "title": "Beherrsche Deutsch durch das Lesen dessen, was dich begeistert",
+         "subtitle": "Von A1 bis B2 mit echten Texten, Vokabeln, die du dir merkst, und klarer Grammatik. Alles auf Spanisch.",
+         "ctaPrimary": "Jetzt kostenlos starten",
+         "ctaSecondary": "So funktioniert es",
+         "noCreditCard": "Keine Kreditkarte erforderlich",
+         "trustLine": "Schließe dich Tausenden von Studenten an, die bereits Blabling vertrauen",
+         "animationLabel": "Illustrative Animation zum Deutschlernen"
+      },
+      "benefits": {
+         "translation": "Sofortige Übersetzung für jedes Wort",
+         "spaced": "Wissenschaftlich bewiesene Wiederholung",
+         "grammar": "16 strukturierte Grammatiklektionen"
+      },
+      "howItWorks": {
+         "title": "Wie funktioniert es?",
+         "subtitle": "Lerne Deutsch in 3 einfachen Schritten",
+         "step1": {
+            "badge": "Grundlagen",
+            "title": "Strukturierte Grammatik",
+            "description": "Baue eine solide Basis ohne Verwirrung auf. Klare Erklärungen auf Spanisch mit echten Beispielen, die du sofort anwenden kannst.",
+            "stat1": "16 Lektionen",
+            "stat2": "120+ Übungen"
+         },
+         "step2": {
+            "badge": "Kontext",
+            "title": "Interaktives Lesen",
+            "description": "Lerne Deutsch im Kontext. Jeder Artikel ist auf dein Niveau abgestimmt und behandelt faszinierende Themen: Kultur, Reisen, Gastronomie.",
+            "tryIt": "Klicke auf ein beliebiges Wort, um die Übersetzung zu sehen"
+         },
+         "step3": {
+            "badge": "Behalten",
+            "title": "Wiederholungssystem",
+            "description": "Dein Gehirn vergisst, wir erinnern uns. Das System berechnet genau, wann du jedes Wort wiederholen solltest, für maximale Behaltung.",
+            "stat1": "Gesamt",
+            "stat2": "Heute",
+            "stat3": "Serie"
+         }
+      },
+      "testimonials": {
+         "badge": "💬 Was unsere Studenten sagen",
+         "title": "Echte Erfolgsgeschichten",
+         "subtitle": "Tausende Spanischsprachige lernen bereits Deutsch mit Blabling",
+         "name1": "María García",
+         "role1": "28 Jahre, Madrid - Bereitet sich auf den Umzug nach Berlin vor",
+         "quote1": "In 3 Monaten bin ich von A1 auf A2 gekommen. Die Lektüren machen süchtig und die Wiederholung funktioniert wirklich. Jetzt kann ich deutsche Artikel ohne viel Mühe lesen.",
+         "name2": "Carlos Mendoza",
+         "role2": "35 Jahre, Mexiko - Lernt als Hobby",
+         "quote2": "Ich liebe es, in meinem eigenen Tempo lernen zu können. Nur 15 Minuten am Tag und ich merke schon den Unterschied. Die Sofortübersetzungen sind großartig.",
+         "name3": "Sofía Rodríguez",
+         "role3": "22 Jahre, Argentinien - Universitätsstudentin",
+         "quote3": "Die deutsche Grammatik schien mir immer unmöglich, aber hier wird sie so klar erklärt, dass ich sie endlich verstehe. Das Streak-System hält mich motiviert.",
+         "words": "Wörter",
+         "streak": "Serie",
+         "trustLine": "Schließe dich Tausenden zufriedener Studenten an, die täglich Deutsch lernen"
+      },
+      "faq": {
+         "badge": "❓ Häufig gestellte Fragen",
+         "title": "Hast du Fragen?",
+         "subtitle": "Hier beantworten wir die häufigsten Fragen zu Blabling",
+         "q1": "Ist es wirklich kostenlos?",
+         "a1": "Ja, Blabling ist völlig kostenlos. Du kannst auf alle Grammatiklektionen, Leseartikel und das Wiederholungssystem ohne Kosten zugreifen. In Zukunft könnten wir optionale Premium-Funktionen hinzufügen, aber der Hauptinhalt wird immer kostenlos sein.",
+         "q2": "Brauche ich Vorkenntnisse in Deutsch?",
+         "a2": "Nein, du kannst bei Null anfangen. Unser Inhalt ist von Niveau A1 (absoluter Anfänger) bis B2 (obere Mittelstufe) strukturiert. Jede Lektion baut progressiv auf der vorherigen auf.",
+         "q3": "Wie viel Zeit sollte ich pro Tag investieren?",
+         "a3": "Mit nur 10-15 Minuten pro Tag kannst du bedeutende Fortschritte machen. Das Wiederholungssystem ist darauf ausgelegt, deine Behaltung mit minimalem Aufwand zu maximieren. Am wichtigsten ist die Konstanz, nicht die Zeitmenge.",
+         "q4": "Funktioniert es auf mobilen Geräten?",
+         "a4": "Ja, Blabling ist vollständig für Mobilgeräte, Tablets und Computer optimiert. Du kannst von jedem Gerät mit Internetverbindung aus lernen, jederzeit und überall.",
+         "q5": "Was unterscheidet es von Duolingo oder anderen Apps?",
+         "a5": "Im Gegensatz zu gamifizierten Apps, die isolierte Sätze verwenden, lehrt dich Blabling Deutsch durch echte Inhalte: Artikel über Kultur, Reisen und interessante Themen. Außerdem ist unser Wiederholungssystem wissenschaftlich für langfristige Behaltung erwiesen.",
+         "q6": "Welches Niveau kann ich mit Blabling erreichen?",
+         "a6": "Unser Inhalt deckt A1 bis B2 nach dem Gemeinsamen Europäischen Referenzrahmen (GER) ab. Mit B2 kannst du flüssige Gespräche führen, komplexe Texte verstehen und dich in alltäglichen Situationen in deutschsprachigen Ländern zurechtfinden.",
+         "stillQuestions": "Hast du noch Fragen?",
+         "contactUs": "Kontaktiere uns"
+      },
+      "demo": {
+         "badge": "🎮 Jetzt ausprobieren",
+         "title": "Erlebe die Magie",
+         "subtitle": "Klicke auf ein beliebiges deutsches Wort, um die sofortige Übersetzung zu sehen. So einfach ist das Lernen mit Blabling.",
+         "articleTitle": "Kaffeekultur in Deutschland",
+         "level": "Niveau A1 • 2 min Lesezeit",
+         "demo": "Demo",
+         "instruction": "Klicke auf ein beliebiges Wort, um die Übersetzung zu sehen",
+         "example": "Beispiel",
+         "saveWord": "Wort speichern",
+         "signUpToSave": "Registriere dich, um Wörter in deinem Vokabular zu speichern",
+         "wordsClicked": "{count} von {total} Wörtern erkundet",
+         "cta": "Alle Artikel freischalten",
+         "articlesCount": "50+ Artikel verfügbar von A1 bis B2",
+         "closeTranslation": "Übersetzung schließen",
+         "progressLabel": "Fortschritt der erkundeten Wörter"
+      },
+      "trust": {
+         "secure": "Sicherer Login",
+         "secureDesc": "Authentifizierung mit Google",
+         "cefr": "GER-konform",
+         "cefrDesc": "Niveaus A1 bis B2",
+         "science": "Wissenschaftlich fundiert",
+         "scienceDesc": "Wiederholungssystem",
+         "students": "Globale Community",
+         "studentsDesc": "Tausende Studenten",
+         "statStudents": "aktive Studenten",
+         "statArticles": "Leseartikel",
+         "statWords": "Wörter im Vokabular",
+         "statLessons": "Grammatiklektionen",
+         "gdpr": "DSGVO-konform",
+         "available": "Auf jedem Gerät verfügbar",
+         "noInstall": "Keine Installation erforderlich"
+      }
+   },
    "learn": {
       "welcomeBack": "Willkommen zurück, {name}",
       "startLearningToday": "Fang heute mit dem Lernen an und erreiche deine Ziele!",

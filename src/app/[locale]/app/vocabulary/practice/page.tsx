@@ -50,6 +50,7 @@ const PracticeVocabulary = () => {
          refetchVocabulary()
          refetchVocabularyStats()
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isCompleted])
 
    if (isLoading || isFetching) {

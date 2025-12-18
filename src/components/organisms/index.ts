@@ -21,10 +21,14 @@ export { OrganismWordSpecification } from './WordSpecification/wordSpecification
 
 // Landing Page Sections
 export {
+   OrganismFaqSection,
    OrganismFooterSection,
    OrganismHeroSection,
    OrganismHowItWorksSection,
-   OrganismMotivationSection
+   OrganismInteractiveDemoSection,
+   OrganismMotivationSection,
+   OrganismTestimonialsSection,
+   OrganismTrustSignalsSection
 } from './Landing'
 
 // About Page Sections

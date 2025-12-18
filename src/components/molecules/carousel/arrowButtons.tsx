@@ -48,8 +48,7 @@ export const usePrevNextButtons = (emblaApi: EmblaCarouselType | undefined): Use
 
 type PropType = ComponentPropsWithRef<'button'>
 
-export const PrevButton: React.FC<PropType> = (props) => {
-   const { children, ...restProps } = props
+export const PrevButton: React.FC<PropType> = ({ children, ...restProps } = {}) => {
 
    return (
       <button className="embla__button embla__button--prev" type="button" {...restProps}>
@@ -59,8 +58,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
    )
 }
 
-export const NextButton: React.FC<PropType> = (props) => {
-   const { children, ...restProps } = props
+export const NextButton: React.FC<PropType> = ({ children, ...restProps } = {}) => {
 
    return (
       <button className="embla__button embla__button--next" type="button" {...restProps}>

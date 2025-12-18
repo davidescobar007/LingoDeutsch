@@ -10,7 +10,7 @@ type TMoleculeCard = {
    redirectTo?: string
    timeToRead?: string
    isCompleted?: boolean | null
-   date?: Date
+   _date?: Date
    cardType?: 'withImage' | 'simple'
    buttonText?: string
    footerText?: string
@@ -20,13 +20,13 @@ type TMoleculeCard = {
 const defaultOnClick = () => {}
 
 export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
-   image,
-   title,
+   image = undefined,
+   title = '',
    content = '',
    redirectTo = '',
    timeToRead = '',
    isCompleted = false,
-   date = null,
+   _date = null,
    buttonText = '',
    cardType = 'withImage',
    footerText = '',

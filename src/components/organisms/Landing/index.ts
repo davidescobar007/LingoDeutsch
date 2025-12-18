@@ -1,4 +1,8 @@
+export { OrganismFaqSection } from './FaqSection'
 export { OrganismFooterSection } from './FooterSection'
 export { OrganismHeroSection } from './HeroSection'
 export { OrganismHowItWorksSection } from './HowItWorksSection'
+export { OrganismInteractiveDemoSection } from './InteractiveDemoSection'
 export { OrganismMotivationSection } from './MotivationSection'
+export { OrganismTestimonialsSection } from './TestimonialsSection'
+export { OrganismTrustSignalsSection } from './TrustSignalsSection'

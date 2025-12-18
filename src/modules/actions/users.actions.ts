@@ -17,7 +17,7 @@ import { constants } from '../global.types'
 import { handleErrorModal } from './global.actions'
 import { TUser } from './types'
 
-const { t } = i18next
+const { _t } = i18next
 
 export const getScore = async (userId: string): Promise<number> => {
    try {

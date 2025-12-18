@@ -11,7 +11,7 @@ type TOrganismImageCard = {
 }
 
 export const OrganismImageCard: FunctionComponent<TOrganismImageCard> = ({ image, title, level }) => {
-   const t = useTranslations()
+   const _t = useTranslations()
 
    return (
       <article

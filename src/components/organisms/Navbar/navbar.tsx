@@ -14,7 +14,7 @@ import { Link, useRouter } from '@/navigation'
 
 const OrganismNavbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()
-   const router = useRouter()
+   const _router = useRouter()
    const { authMethods } = useAuth()
 
    const user = getUserInfo()

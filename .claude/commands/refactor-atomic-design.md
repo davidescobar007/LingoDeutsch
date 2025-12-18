@@ -1,6 +1,7 @@
 # Refactorización a Atomic Design
 
 ## Contexto
+
 Necesito refactorizar el feature **[NOMBRE_DEL_FEATURE]** para que siga 100% los principios de atomic design. Actualmente viola la jerarquía correcta.
 
 ## Arquitectura Objetivo
@@ -17,19 +18,22 @@ Page (solo data fetching)
 ## Reglas Críticas
 
 ### 1. Separación de Responsabilidades
-- **Page**: SOLO hooks de data fetching. Cero transformaciones, cero UI
-- **Template**: Transformaciones de datos + layout responsivo + composición de organismos
-- **Organisms**: Secciones auto-contenidas con lógica de presentación
-- **Molecules**: Extraer patrones repetidos (2+ átomos combinados)
-- **Atoms**: Usar los existentes de `@/components/atoms`
+
+-  **Page**: SOLO hooks de data fetching. Cero transformaciones, cero UI
+-  **Template**: Transformaciones de datos + layout responsivo + composición de organismos
+-  **Organisms**: Secciones auto-contenidas con lógica de presentación
+-  **Molecules**: Extraer patrones repetidos (2+ átomos combinados)
+-  **Atoms**: Usar los existentes de `@/components/atoms`
 
 ### 2. Manejo de Transformaciones
-- ❌ NO crear nuevos hooks solo para transformar data
-- ❌ NO crear actions para transformaciones simples de presentación
-- ✅ Templates manejan transformaciones relacionadas con UI/presentación
-- ✅ Si es lógica de negocio compleja, entonces sí usar actions
+
+-  ❌ NO crear nuevos hooks solo para transformar data
+-  ❌ NO crear actions para transformaciones simples de presentación
+-  ✅ Templates manejan transformaciones relacionadas con UI/presentación
+-  ✅ Si es lógica de negocio compleja, entonces sí usar actions
 
 ### 3. Convenciones Obligatorias
+
 ```tsx
 // Naming
 export const MoleculeNombre = () => {}
@@ -47,6 +51,7 @@ export const TemplateNombre = () => {}
 ```
 
 ### 4. Estructura de Directorios
+
 ```
 src/components/
 ├── molecules/
@@ -61,6 +66,7 @@ src/components/
 ```
 
 ### 5. Index Exports (alfabético)
+
 ```tsx
 // molecules/index.ts
 export { MoleculeNombre } from './nombreMolecule/nombreMolecule'

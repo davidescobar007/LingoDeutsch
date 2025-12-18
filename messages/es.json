@@ -1,4 +1,116 @@
 {
+   "landing": {
+      "hero": {
+         "badge": "🇩🇪 Alemán para hispanohablantes",
+         "title": "Domina el alemán leyendo lo que te apasiona",
+         "subtitle": "De A1 a B2 con lecturas reales, vocabulario que recuerdas y gramática clara. Todo en español.",
+         "ctaPrimary": "Comienza gratis ahora",
+         "ctaSecondary": "Ver cómo funciona",
+         "noCreditCard": "No requiere tarjeta de crédito",
+         "trustLine": "Únete a miles de estudiantes que ya confían en Blabling",
+         "animationLabel": "Animación ilustrativa de aprendizaje de alemán"
+      },
+      "benefits": {
+         "translation": "Traducción instantánea en cada palabra",
+         "spaced": "Repetición espaciada científicamente probada",
+         "grammar": "16 lecciones de gramática estructuradas"
+      },
+      "howItWorks": {
+         "title": "¿Cómo funciona?",
+         "subtitle": "Aprende alemán en 3 simples pasos",
+         "step1": {
+            "badge": "Fundamentos",
+            "title": "Gramática Estructurada",
+            "description": "Construye una base sólida sin confusión. Explicaciones claras en español con ejemplos reales que puedes usar hoy mismo.",
+            "stat1": "16 Lecciones",
+            "stat2": "120+ Ejercicios"
+         },
+         "step2": {
+            "badge": "Contexto",
+            "title": "Lectura Interactiva",
+            "description": "Aprende alemán en contexto. Cada artículo está calibrado a tu nivel y cubre temas fascinantes: cultura, viajes, gastronomía.",
+            "tryIt": "Haz clic en cualquier palabra para ver la traducción"
+         },
+         "step3": {
+            "badge": "Retención",
+            "title": "Repetición Espaciada",
+            "description": "Tu cerebro olvida, nosotros lo recordamos. El sistema calcula exactamente cuándo repasar cada palabra para retención máxima.",
+            "stat1": "Total",
+            "stat2": "Hoy",
+            "stat3": "Racha"
+         }
+      },
+      "testimonials": {
+         "badge": "💬 Lo que dicen nuestros estudiantes",
+         "title": "Historias de éxito reales",
+         "subtitle": "Miles de hispanohablantes ya están aprendiendo alemán con Blabling",
+         "name1": "María García",
+         "role1": "28 años, Madrid - Preparándose para mudarse a Berlín",
+         "quote1": "En 3 meses pasé de A1 a A2. Las lecturas son adictivas y la repetición espaciada funciona de verdad. Ahora puedo leer artículos alemanes sin tanto esfuerzo.",
+         "name2": "Carlos Mendoza",
+         "role2": "35 años, México - Aprendiendo por hobby",
+         "quote2": "Me encanta poder aprender a mi ritmo. Solo 15 minutos al día y ya noto la diferencia. Las traducciones instantáneas son geniales.",
+         "name3": "Sofía Rodríguez",
+         "role3": "22 años, Argentina - Estudiante universitaria",
+         "quote3": "La gramática alemana siempre me pareció imposible, pero aquí está explicada de forma tan clara que por fin la entiendo. El sistema de rachas me mantiene motivada.",
+         "words": "palabras",
+         "streak": "racha",
+         "trustLine": "Únete a miles de estudiantes satisfechos aprendiendo alemán cada día"
+      },
+      "faq": {
+         "badge": "❓ Preguntas frecuentes",
+         "title": "¿Tienes dudas?",
+         "subtitle": "Aquí respondemos las preguntas más comunes sobre Blabling",
+         "q1": "¿Es realmente gratis?",
+         "a1": "Sí, Blabling es completamente gratis. Puedes acceder a todas las lecciones de gramática, artículos de lectura y el sistema de repetición espaciada sin costo alguno. En el futuro podríamos añadir funciones premium opcionales, pero el contenido principal siempre será gratuito.",
+         "q2": "¿Necesito conocimientos previos de alemán?",
+         "a2": "No, puedes empezar desde cero. Nuestro contenido está estructurado desde nivel A1 (principiante absoluto) hasta B2 (intermedio-alto). Cada lección está diseñada para construir sobre la anterior de forma progresiva.",
+         "q3": "¿Cuánto tiempo debo dedicar al día?",
+         "a3": "Con solo 10-15 minutos al día puedes hacer un progreso significativo. El sistema de repetición espaciada está diseñado para maximizar tu retención con el mínimo esfuerzo. Lo más importante es la consistencia, no la cantidad de tiempo.",
+         "q4": "¿Funciona en dispositivos móviles?",
+         "a4": "Sí, Blabling está completamente optimizado para móviles, tablets y computadoras. Puedes estudiar desde cualquier dispositivo con conexión a internet, en cualquier momento y lugar.",
+         "q5": "¿En qué se diferencia de Duolingo u otras apps?",
+         "a5": "A diferencia de apps gamificadas que usan frases aisladas, Blabling te enseña alemán a través de contenido real: artículos sobre cultura, viajes y temas interesantes. Además, nuestro sistema de repetición espaciada está científicamente probado para retención a largo plazo.",
+         "q6": "¿Qué nivel puedo alcanzar con Blabling?",
+         "a6": "Nuestro contenido cubre desde A1 hasta B2 según el Marco Común Europeo de Referencia (CEFR). Con B2 podrás mantener conversaciones fluidas, entender textos complejos y desenvolverte en situaciones cotidianas en países germanohablantes.",
+         "stillQuestions": "¿Aún tienes preguntas?",
+         "contactUs": "Contáctanos"
+      },
+      "demo": {
+         "badge": "🎮 Pruébalo ahora",
+         "title": "Experimenta la magia",
+         "subtitle": "Haz clic en cualquier palabra alemana para ver su traducción instantánea. Así de fácil es aprender con Blabling.",
+         "articleTitle": "Kaffeekultur in Deutschland",
+         "level": "Nivel A1 • 2 min lectura",
+         "demo": "Demo",
+         "instruction": "Haz clic en cualquier palabra para ver su traducción",
+         "example": "Ejemplo",
+         "saveWord": "Guardar palabra",
+         "signUpToSave": "Regístrate para guardar palabras en tu vocabulario",
+         "wordsClicked": "{count} de {total} palabras exploradas",
+         "cta": "Desbloquear todos los artículos",
+         "articlesCount": "50+ artículos disponibles desde A1 hasta B2",
+         "closeTranslation": "Cerrar traducción",
+         "progressLabel": "Progreso de palabras exploradas"
+      },
+      "trust": {
+         "secure": "Login Seguro",
+         "secureDesc": "Autenticación con Google",
+         "cefr": "Alineado al CEFR",
+         "cefrDesc": "Niveles A1 a B2",
+         "science": "Base Científica",
+         "scienceDesc": "Repetición espaciada",
+         "students": "Comunidad Global",
+         "studentsDesc": "Miles de estudiantes",
+         "statStudents": "estudiantes activos",
+         "statArticles": "artículos de lectura",
+         "statWords": "palabras en vocabulario",
+         "statLessons": "lecciones de gramática",
+         "gdpr": "Cumplimiento GDPR",
+         "available": "Disponible en cualquier dispositivo",
+         "noInstall": "Sin instalación requerida"
+      }
+   },
    "learn": {
       "welcomeBack": "Bienvenido de nuevo, {name}",
       "startLearningToday": "¡Comienza a aprender hoy y alcanza tus metas!",

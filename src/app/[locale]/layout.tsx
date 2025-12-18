@@ -12,10 +12,35 @@ import './globals.scss'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
+
 export const metadata: Metadata = {
-   title: 'Blabling - Aprende alemán de forma fácil y divertida',
-   description: 'Te acompañamos en tu camino para aprender alemán.',
-   icons: 'images/icon.png'
+   title: {
+      default: 'Blabling - Aprende alemán de forma fácil y divertida',
+      template: '%s | Blabling'
+   },
+   description: 'Domina el alemán leyendo lo que te apasiona. De A1 a B2 con lecturas reales, vocabulario con repetición espaciada y gramática clara.',
+   icons: {
+      icon: '/images/icon.png',
+      apple: '/images/apple-icon.png'
+   },
+   manifest: '/manifest.json',
+   metadataBase: new URL(BASE_URL),
+   openGraph: {
+      type: 'website',
+      siteName: 'Blabling',
+      images: [
+         {
+            url: '/images/og-image.png',
+            width: 1200,
+            height: 630
+         }
+      ]
+   },
+   twitter: {
+      card: 'summary_large_image',
+      creator: '@blabling'
+   }
 }
 
 const interFontDisplay = Inter({

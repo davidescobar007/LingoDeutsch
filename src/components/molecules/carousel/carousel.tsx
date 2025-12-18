@@ -14,7 +14,7 @@ type PropType = {
    children: ReactElement<{ className?: string }>[]
 }
 
-export const EmblaCarousel: React.FC<PropType> = ({ options, children }) => {
+export const EmblaCarousel: React.FC<PropType> = ({ options = undefined, children }) => {
    const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
    const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)

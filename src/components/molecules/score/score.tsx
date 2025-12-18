@@ -12,9 +12,9 @@ type MoleculeScoreProps = {
 }
 
 export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList, user }) => {
-   const t = useTranslations()
+   const _t = useTranslations()
 
-   const scoreMedals: { [key: string]: JSX.Element } = {
+   const _scoreMedals: { [key: string]: JSX.Element } = {
       '1': <Icon className="text-yellow-400" icon="crown" iconSize="medium" />,
       '2': <Icon className="text-slate-400" icon="trophy" iconSize="medium" />,
       '3': <Icon className="text-amber-600" icon="medal" iconSize="medium" />
@@ -25,7 +25,7 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
 
    return (
       <div className="w-full">
-         <AtomTitle type="h3">{t('score.title')}</AtomTitle>
+         <AtomTitle type="h3">Puntuaciones</AtomTitle>
          <AtomText>Compite con otros estudiantes y sube en el ranking</AtomText>
 
          {isTopThree && (
@@ -33,15 +33,15 @@ export const MoleculeScore: FunctionComponent<MoleculeScoreProps> = ({ scoreList
                <Icon className="text-yellow-700" icon="stars" />
                <AtomText className="text-yellow-700" isBold>
                   {userPosition === 1
-                     ? t('score.congratulations')
+                     ? '¡Felicitaciones! Eres el número 1'
                      : `¡Excelente! Estás en el top 3 (puesto #${userPosition})`}
                </AtomText>
             </div>
          )}
          <ul className="space-y-3">
-            {scoreList.map(({ username, score, position }, index) => {
+            {scoreList.map(({ username, score, position }, _index) => {
                const isCurrentUser = user?.username === username
-               const isTop3 = Number(position) <= 3
+               const _isTop3 = Number(position) <= 3
 
                return (
                   <li

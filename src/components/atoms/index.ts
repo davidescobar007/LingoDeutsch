@@ -16,5 +16,6 @@ export {
 export { AtomText } from './paragraph/paragraph'
 export { AtomProgressPercentage } from './progressBar/progressBar'
 export { Select } from './select/select'
+export { AtomSectionSkeleton } from './skeleton/sectionSkeleton'
 export { AtomStat } from './stat/stat'
 export { AtomTitle } from './title/title'
