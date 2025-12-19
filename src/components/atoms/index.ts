@@ -14,6 +14,7 @@ export {
    SpinLoader
 } from './loader/loader'
 export { AtomText } from './paragraph/paragraph'
+export { AtomPill } from './pill/pill'
 export { AtomProgressPercentage } from './progressBar/progressBar'
 export { Select } from './select/select'
 export { AtomSectionSkeleton } from './skeleton/sectionSkeleton'

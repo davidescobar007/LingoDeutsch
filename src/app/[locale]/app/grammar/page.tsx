@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import { BookOpen, ChevronRight } from 'lucide-react'
 import remarkGfm from 'remark-gfm'
 
-import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
+import { AtomBadge, AtomButton, AtomPill, AtomText, AtomTitle } from '@/components/atoms'
 import { MarkdownTable, MoleculeTimeLine } from '@/components/molecules'
 import {
    useGetGrammarByLevel,
@@ -156,17 +156,23 @@ const Grammar = () => {
                const info = LEVEL_INFO[level]
                const isSelected = selectedLevel === level
 
+               let badge: string | null = null
+               if (locked) {
+                  badge = '🔒'
+               } else if (progress.percentage === 100) {
+                  badge = '✅'
+               } else if (progress.percentage > 0) {
+                  badge = `${progress.percentage}%`
+               }
+
                return (
-                  <button
-                     className={`px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-2 ${
-                        isSelected
-                           ? 'bg-primary text-white shadow-md'
-                           : locked
-                             ? 'bg-base-200 text-base-content/40 cursor-not-allowed'
-                             : 'bg-base-100 border border-base-300 text-base-content hover:border-primary/50 hover:bg-base-50'
-                     }`}
+                  <AtomPill
+                     badge={badge}
                      disabled={locked}
+                     emoji={info.emoji}
+                     isSelected={isSelected}
                      key={level}
+                     label={level}
                      onClick={() => {
                         if (!locked) {
                            setSelectedLevel(level)
@@ -174,17 +180,7 @@ const Grammar = () => {
                            setVisibleSections(1)
                         }
                      }}
-                  >
-                     <span className="text-lg">{info.emoji}</span>
-                     <span className="font-semibold">{level}</span>
-                     {locked ? (
-                        <span className="text-sm">🔒</span>
-                     ) : progress.percentage === 100 ? (
-                        <span className="text-sm">✅</span>
-                     ) : progress.percentage > 0 ? (
-                        <span className="text-xs bg-white/20 rounded-full px-2 py-0.5">{progress.percentage}%</span>
-                     ) : null}
-                  </button>
+                  />
                )
             })}
          </div>

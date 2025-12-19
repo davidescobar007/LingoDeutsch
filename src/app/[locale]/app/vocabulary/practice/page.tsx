@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-import { AtomButton, AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { AtomButton, AtomPill, AtomProgressPercentage, AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { MoleculeFlipCard, MoleculeStat } from '@/components/molecules'
 import { useGetVocabularyList, useGetVocabularyStats, useUpdateCard } from '@/hooks/cards'
 import { isWordDue } from '@/modules/actions/actions.utils'
@@ -214,34 +214,30 @@ const PracticeVocabulary = () => {
          ) : (
             /* Study Interface */
             <>
-               <section className="card-outlined mt-4 !block w-full">
-                  <AtomText>Selecciona el nivel de dificultad:</AtomText>
-                  <div className="mt-2 flex gap-5">
-                     {(['easy', 'medium', 'hard'] as const).map((difficulty, index) => {
-                        const radioClasses = ['radio-success', 'radio-warning', 'radio-error']
-                        const labels = ['Fácil', 'Medio', 'Difícil']
-                        return (
-                           <div className="" key={difficulty}>
-                              <label className="label cursor-pointer justify-start space-x-3">
-                                 <input
-                                    checked={level === difficulty}
-                                    className={`radio ${radioClasses[index]}`}
-                                    name="difficulty"
-                                    onChange={() => handleLevelChange(difficulty)}
-                                    type="radio"
-                                 />
-                                 <AtomText type="span">{labels[index]}</AtomText>
-                              </label>
-                           </div>
-                        )
-                     })}
-                  </div>
-               </section>
+               {/* Difficulty Selector Pills */}
+               <div className="mt-4 flex items-center justify-center gap-2">
+                  {(['easy', 'medium', 'hard'] as const).map((difficulty, index) => {
+                     const emojis = ['🟢', '🟡', '🔴']
+                     const labels = ['Fácil', 'Medio', 'Difícil']
+                     const isSelected = level === difficulty
+
+                     return (
+                        <AtomPill
+                           emoji={emojis[index]}
+                           isSelected={isSelected}
+                           key={difficulty}
+                           label={labels[index]}
+                           onClick={() => handleLevelChange(difficulty)}
+                        />
+                     )
+                  })}
+               </div>
                {/* Progress Indicator */}
-               <div className="my-8 flex justify-center">
-                  <AtomText className="text-sm">
+               <div className="mt-6">
+                  <AtomText className="text-base-content/60 text-sm">
                      Tarjeta {currentIndex + 1} de {listOfWords.length}
                   </AtomText>
+                  <AtomProgressPercentage value={Math.round(((currentIndex + 1) / listOfWords.length) * 100)} />
                </div>
                <footer className="w-full">
                   {currentWord && (
