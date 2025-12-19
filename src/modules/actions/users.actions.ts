@@ -1,4 +1,3 @@
-import i18next from 'i18next'
 import { Admin, AuthProviderInfo, RecordAuthResponse } from 'pocketbase'
 
 import {
@@ -16,8 +15,6 @@ import { constants } from '../global.types'
 
 import { handleErrorModal } from './global.actions'
 import { TUser } from './types'
-
-const { _t } = i18next
 
 export const getScore = async (userId: string): Promise<number> => {
    try {

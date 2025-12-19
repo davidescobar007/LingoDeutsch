@@ -31,8 +31,8 @@ export const OrganismArticleList = ({ articles = EMPTY_ARRAY, isLoading = false 
             articles.map(({ created, estimated_read_time, id, imageFile, is_completed, title }) => (
                <div key={id}>
                   <MoleculeCard
+                     _date={created as unknown as Date}
                      buttonText="Leer articulo"
-                     date={created as unknown as Date}
                      image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
                      isCompleted={is_completed}
                      redirectTo={id}

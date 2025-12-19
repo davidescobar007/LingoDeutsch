@@ -1,0 +1,193 @@
+'use client'
+import { useState } from 'react'
+
+import { AtomText, AtomTitle } from '@/components/atoms'
+import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
+import { Link } from '@/navigation'
+
+type OrganismGrammarTopicsListProps = {
+   level: string
+   topics: TGrammar[]
+   userProgress: TUserGrammarProgress[]
+}
+
+type TopicState = 'locked' | 'available' | 'recommended' | 'completed'
+
+export const OrganismGrammarTopicsList = ({
+   level,
+   topics,
+   userProgress
+}: OrganismGrammarTopicsListProps) => {
+   // Determine topic state for each topic
+   const getTopicState = (topic: TGrammar): TopicState => {
+      const userTopicProgress = userProgress?.find((p) => p.grammar_id === topic.id)
+
+      if (userTopicProgress?.isCompleted) {
+         return 'completed'
+      }
+
+      // Get previous topic to determine if current is locked
+      const topicIndex = topics.findIndex((t) => t.id === topic.id)
+      if (topicIndex === 0) {
+         return 'available'
+      }
+
+      const previousTopic = topics[topicIndex - 1]
+      const previousProgress = userProgress?.find((p) => p.grammar_id === previousTopic.id)
+
+      if (!previousProgress?.isCompleted && level !== 'A1') {
+         return 'locked'
+      }
+
+      // First incomplete topic is recommended
+      if (!userTopicProgress?.isCompleted && topicIndex === topics.findIndex((t) => !userProgress?.find((p) => p.grammar_id === t.id && p.isCompleted))) {
+         return 'recommended'
+      }
+
+      return 'available'
+   }
+
+   const getStateStyles = (state: TopicState) => {
+      switch (state) {
+         case 'completed':
+            return 'border-success bg-success/5 hover:border-success/80'
+         case 'locked':
+            return 'border-base-300 bg-base-100/50 opacity-60 cursor-not-allowed'
+         case 'recommended':
+            return 'border-2 border-primary bg-primary/5 hover:border-primary/80'
+         case 'available':
+         default:
+            return 'border-base-300 bg-base-100 hover:border-primary/50'
+      }
+   }
+
+   const getStateIcon = (state: TopicState) => {
+      switch (state) {
+         case 'completed':
+            return '✅'
+         case 'locked':
+            return '🔒'
+         case 'recommended':
+            return '⭐'
+         case 'available':
+         default:
+            return '📚'
+      }
+   }
+
+   // Pagination: show 10 topics per page
+   const TOPICS_PER_PAGE = 10
+   const totalPages = Math.ceil(topics.length / TOPICS_PER_PAGE)
+   const [currentPage, setCurrentPage] = useState(0)
+
+   const paginatedTopics = topics.slice(
+      currentPage * TOPICS_PER_PAGE,
+      (currentPage + 1) * TOPICS_PER_PAGE
+   )
+
+   return (
+      <div className="w-full">
+         {/* Header with topic count */}
+         <div className="mb-6 flex items-center justify-between">
+            <div>
+               <AtomTitle extraClassName="!text-lg" type="h3">
+                  Temas del Nivel {level}
+               </AtomTitle>
+               <AtomText className="mt-1 text-sm" fontSize="small" isThin>
+                  {userProgress?.filter((p) => topics.some((t) => t.id === p.grammar_id && p.isCompleted)).length ||
+                     0}{' '}
+                  de {topics.length} completados
+               </AtomText>
+            </div>
+         </div>
+
+         {/* Topics Grid */}
+         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {paginatedTopics.map((topic, index) => {
+               const state = getTopicState(topic)
+               const isLocked = state === 'locked'
+
+               return (
+                  <Link href={isLocked ? '#' : `/app/grammar?level=${level}&topic=${topic.id}`} key={topic.id}>
+                     <div
+                        className={`rounded-lg border p-4 transition-all duration-300 ${
+                           isLocked
+                              ? getStateStyles(state)
+                              : `${getStateStyles(state)} hover:shadow-lg hover:scale-102`
+                        }`}
+                     >
+                        {/* Icon and State */}
+                        <div className="flex items-start justify-between mb-3">
+                           <span className="text-2xl">{getStateIcon(state)}</span>
+                           <span className="text-xs font-semibold text-base-content/60">
+                              {currentPage * TOPICS_PER_PAGE + index + 1}/{topics.length}
+                           </span>
+                        </div>
+
+                        {/* Topic Name */}
+                        <AtomTitle extraClassName="!text-base !mb-2" type="h4">
+                           {topic.topic_name?.es || 'Sin título'}
+                        </AtomTitle>
+
+                        {/* Level Badge */}
+                        <div className="flex items-center gap-2 mb-3">
+                           <span className="inline-block rounded-full bg-primary/20 px-2 py-1 text-xs font-semibold text-primary">
+                              {topic.level || level}
+                           </span>
+                        </div>
+
+                        {/* State Label */}
+                        <div className="flex items-center justify-between pt-3 border-t border-base-300">
+                           <AtomText className="text-xs" fontSize="small" isThin>
+                              {state === 'completed' && '✅ Completado'}
+                              {state === 'locked' && '🔒 Bloqueado'}
+                              {state === 'recommended' && '⭐ Recomendado'}
+                              {state === 'available' && '📖 Disponible'}
+                           </AtomText>
+                           <span className="text-lg">→</span>
+                        </div>
+                     </div>
+                  </Link>
+               )
+            })}
+         </div>
+
+         {/* Pagination */}
+         {totalPages > 1 && (
+            <div className="mt-8 flex items-center justify-center gap-2">
+               <button
+                  className="rounded-lg border border-base-300 px-4 py-2 disabled:opacity-50 hover:bg-base-200"
+                  disabled={currentPage === 0}
+                  onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
+               >
+                  ← Anterior
+               </button>
+
+               <div className="flex items-center gap-2">
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                     <button
+                        className={`h-10 w-10 rounded-lg font-semibold transition-all ${
+                           i === currentPage
+                              ? 'bg-primary text-white'
+                              : 'border border-base-300 hover:bg-base-200'
+                        }`}
+                        key={i}
+                        onClick={() => setCurrentPage(i)}
+                     >
+                        {i + 1}
+                     </button>
+                  ))}
+               </div>
+
+               <button
+                  className="rounded-lg border border-base-300 px-4 py-2 disabled:opacity-50 hover:bg-base-200"
+                  disabled={currentPage === totalPages - 1}
+                  onClick={() => setCurrentPage(Math.min(totalPages - 1, currentPage + 1))}
+               >
+                  Siguiente →
+               </button>
+            </div>
+         )}
+      </div>
+   )
+}

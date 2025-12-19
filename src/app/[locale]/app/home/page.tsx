@@ -2,7 +2,7 @@
 'use client'
 import { TemplateHome } from '@/components/templates'
 import { useArticleList } from '@/hooks/articles'
-import { useGetGrammarByLevel } from '@/hooks/grammar'
+import { useGetGrammarByLevel, useSavedGrammarTopicByUser } from '@/hooks/grammar'
 import { useGetVocabularyStats } from '@/hooks/translations'
 import { useScore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
@@ -15,15 +15,17 @@ const Learn = () => {
    const { data: vocabularyStats } = useGetVocabularyStats(user)
    const { data: scoreList } = useScore()
    const { data: grammarList } = useGetGrammarByLevel('A1')
+   const { data: userGrammarProgress } = useSavedGrammarTopicByUser(user)
 
    return (
       <TemplateHome
-         userName={user?.name || 'Usuario'}
          articles={articles || []}
-         vocabularyStats={vocabularyStats}
+         grammarList={grammarList || []}
          scoreList={scoreList}
          user={user}
-         grammarList={grammarList || []}
+         userGrammarProgress={userGrammarProgress || []}
+         userName={user?.name || 'Usuario'}
+         vocabularyStats={vocabularyStats}
       />
    )
 }

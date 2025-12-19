@@ -18,8 +18,8 @@ export const OrganismHowItWorksSection = () => {
 
    return (
       <section className="relative overflow-hidden py-20" id="how-it-works">
-         <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.05),transparent_50%)]" />
-         <div className="pointer-events-none absolute right-0 top-1/3 h-96 w-96 rounded-full bg-purple-200/30 blur-3xl" />
+         <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.05),transparent_50%)]" />
+         <div className="pointer-events-none absolute right-0 top-1/3 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />
          <div className="pointer-events-none absolute bottom-1/3 left-0 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />
 
          <div className="container relative z-10 mx-auto px-4">
@@ -47,9 +47,9 @@ export const OrganismHowItWorksSection = () => {
                >
                   <div className="flex flex-col items-center gap-8 lg:flex-row">
                      <div className="flex-1">
-                        <div className="rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 to-white p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+                        <div className="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
                            <div className="mb-6 flex items-center gap-4">
-                              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 text-2xl font-bold text-white shadow-lg">
+                              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-2xl font-bold text-white shadow-lg">
                                  01
                               </div>
                               <div>
@@ -73,7 +73,7 @@ export const OrganismHowItWorksSection = () => {
                                  { label: 'Ejercicios', value: '120+', icon: '✍️' }
                               ].map((stat, idx) => (
                                  <div
-                                    className="rounded-xl border border-purple-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-purple-300 hover:shadow-md"
+                                    className="rounded-xl border border-blue-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-blue-300 hover:shadow-md"
                                     key={idx}
                                  >
                                     <div className="mb-2 text-2xl">{stat.icon}</div>
@@ -89,7 +89,7 @@ export const OrganismHowItWorksSection = () => {
                         </div>
                      </div>
                      <div className="flex-shrink-0">
-                        <div className="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-purple-700 text-6xl shadow-2xl ring-8 ring-purple-100">
+                        <div className="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-6xl shadow-2xl ring-8 ring-blue-100">
                            📚
                         </div>
                      </div>

@@ -40,7 +40,7 @@ export const AtomText: FunctionComponent<TText> = ({
       className,
       isBold && 'font-bold',
       isItalic && 'italic',
-      isThin && 'font-light text-gray-600',
+      isThin && 'font-light text-neutral-500',
       fontSize === 'small' && 'text-sm',
       fontSize === 'medium' && 'text-base',
       fontSize === 'large' && 'text-lg',
@@ -52,12 +52,12 @@ export const AtomText: FunctionComponent<TText> = ({
       color === 'warning' && 'text-warning',
       color === 'error' && 'text-error',
       color === 'info' && 'text-info',
-      color === 'light' && 'text-gray-200',
-      color === 'dark' && 'text-gray-800',
+      color === 'light' && 'text-base-200',
+      color === 'dark' && 'text-base-content',
       color === 'success' && 'text-success',
-      color === 'danger' && 'text-danger',
+      color === 'danger' && 'text-error',
       isPrimary && 'text-primary',
-      'text-gray-600'
+      'text-base-content'
    ]
       .filter(Boolean)
       .join(' ')

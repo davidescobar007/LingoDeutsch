@@ -123,7 +123,7 @@ const config: Config = {
          'lemonade',
          {
             mytheme: {
-               primary: '#805AF2', // Vibrant purple, used for main buttons, highlights, and active elements
+               primary: '#2563EB', // Vibrant blue, used for main buttons, highlights, and active elements
                'primary-content': '#FFFFFF', // White, ensures readability on primary-colored elements
 
                secondary: '#e5defc', // Light pastel purple, for secondary buttons and subtle UI elements

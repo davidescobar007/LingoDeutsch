@@ -70,7 +70,6 @@ export const OrganismInteractiveDemoSection = () => {
                </div>
                <AtomTitle
                   extraClassName="!text-3xl sm:!text-4xl lg:!text-5xl !font-bold !mb-4"
-                  id="demo-title"
                   type="h2"
                >
                   {t('demo.title')}

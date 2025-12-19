@@ -147,7 +147,7 @@ export const OrganismHeroSection = () => {
                            <AtomButton
                               extraClassName="transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                               size="lg"
-                              variant="ACCENT"
+                              variant="PRIMARY"
                            >
                               {t('hero.ctaPrimary')}
                            </AtomButton>
@@ -171,7 +171,7 @@ export const OrganismHeroSection = () => {
                         <AtomButton
                            extraClassName="transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                            size="lg"
-                           variant="ACCENT"
+                           variant="PRIMARY"
                         >
                            {t('hero.ctaPrimary')}
                         </AtomButton>

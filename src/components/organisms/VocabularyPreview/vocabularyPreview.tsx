@@ -61,15 +61,15 @@ export const OrganismVocabularyPreview = ({
 
    const getCardStyles = (card: VocabularyCard) => {
       const baseStyles =
-         'flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border px-6 py-4 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl transform-gpu'
+         'flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border px-6 py-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-102 transform-gpu bg-base-100'
 
       switch (card.id) {
          case 'total':
-            return `${baseStyles} bg-gradient-to-br from-info/10 to-info/20 border-info/30 hover:border-info/50 hover:from-info/15 hover:to-info/25`
+            return `${baseStyles} border-info hover:border-info/80`
          case 'due':
-            return `${baseStyles} bg-gradient-to-br from-warning/10 to-warning/20 border-warning/30 hover:border-warning/50 hover:from-warning/15 hover:to-warning/25`
+            return `${baseStyles} border-warning hover:border-warning/80`
          case 'weak':
-            return `${baseStyles} bg-gradient-to-br from-error/10 to-error/20 border-error/30 hover:border-error/50 hover:from-error/15 hover:to-error/25`
+            return `${baseStyles} border-error hover:border-error/80`
          default:
             return baseStyles
       }

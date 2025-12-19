@@ -55,7 +55,7 @@ export const OrganismArticleContent = ({
                         ))}
                      </div>
                   </header>
-                  <div className="group relative overflow-hidden rounded-2xl shadow-2xl">
+                  <div className="group relative overflow-hidden rounded-lg shadow-lg">
                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                      <Image
@@ -73,7 +73,7 @@ export const OrganismArticleContent = ({
                      Presiona sobre una palabra para obtener su traducción, luego no olvides realizar el quiz al
                      final de la sección.
                   </AlertAtom>
-                  <div className="bg-base-100 rounded-2xl p-6 shadow-xl md:p-4">
+                  <div className="rounded-lg border border-base-300 bg-base-100 p-6 shadow-md md:p-4">
                      <AtomText
                         className="!text-justify leading-10 tracking-normal"
                         fontSize="large"
@@ -85,8 +85,8 @@ export const OrganismArticleContent = ({
                            .map((word, index) => (
                               <span
                                  className={`${
-                                    currentWordIntext === word && 'bg-accent'
-                                 } hover:bg-accent cursor-pointer rounded-lg duration-300 ease-in-out`}
+                                    currentWordIntext === word && 'bg-primary/20'
+                                 } hover:bg-primary/20 cursor-pointer rounded-md duration-300 ease-in-out`}
                                  key={`${word}${index}`}
                                  onClick={() => handleWordClick(word)}
                               >
@@ -95,8 +95,8 @@ export const OrganismArticleContent = ({
                            ))}
                      </AtomText>
                   </div>
-                  <footer className="tooltip tooltip-accent mb-28 mt-7" data-tip={t('learn.earnPoints')}>
-                     <AtomButton gradient href={`/app/quiz/${articleId}`} type="link">
+                  <footer className="mb-28 mt-7">
+                     <AtomButton href={`/app/quiz/${articleId}`} type="link" variant="PRIMARY">
                         {t('learn.startQuiz')} 📝
                      </AtomButton>
                   </footer>

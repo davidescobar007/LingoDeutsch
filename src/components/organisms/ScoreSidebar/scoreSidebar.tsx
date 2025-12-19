@@ -15,7 +15,7 @@ export const OrganismScoreSidebar = ({
    if (!scoreList) return null
 
    return (
-      <div className={`card-outlined h-screen overflow-y-auto ${extraClassName}`}>
+      <div className={`rounded-lg border border-base-300 bg-base-100 p-6 shadow-md h-screen overflow-y-auto ${extraClassName}`}>
          <MoleculeScore scoreList={scoreList} user={user} />
       </div>
    )

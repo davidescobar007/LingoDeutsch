@@ -6,7 +6,7 @@ import { useGetVocabularyList } from '@/hooks/cards'
 
 export const OrganismCardsStats: FunctionComponent = () => {
    const t = useTranslations()
-   const { data: cards } = useGetVocabularyList()
+   const { data: cards } = useGetVocabularyList({})
    return (
       <div className="stats mb-6 w-full shadow">
          <AtomStat

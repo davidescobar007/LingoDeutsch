@@ -20,8 +20,8 @@ export const OrganismArticleCarousel = ({ articles, extraClassName = '' }: Organ
          <MoleculeCarousel options={{ containScroll: false, loop: true, align: 'start' }}>
             {articles?.map(({ id, title, imageFile, created, estimated_read_time }) => (
                <MoleculeCard
+                  _date={created ? new Date(created) : undefined}
                   buttonText="Leer artículo"
-                  date={created ? new Date(created) : undefined}
                   image={`${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${id}/${imageFile}`}
                   key={id}
                   redirectTo={id}

@@ -102,7 +102,7 @@ export const OrganismHero: FunctionComponent<TOrganismHero> = ({
                      </AtomText>
                   </div>
                   <footer className="tooltip tooltip-accent mb-28 mt-7" data-tip={t('learn.earnPoints')}>
-                     <AtomButton gradient href={`/app/quiz/${articleId}`} type="link">
+                     <AtomButton href={`/app/quiz/${articleId}`} type="link" variant="PRIMARY">
                         {t('learn.startQuiz')} 📝
                      </AtomButton>
                   </footer>

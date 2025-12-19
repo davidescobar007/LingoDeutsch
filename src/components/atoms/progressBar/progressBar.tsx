@@ -9,10 +9,8 @@ export const AtomProgressPercentage: FunctionComponent<TAtomProgressPercentage> 
       <section className="col-12 mb-5 text-center">
          <ProgressBar
             animateOnRender
-            // baseBgColor="transparent"
-            bgColor="#58cc02"
+            bgColor="#2563EB"
             completed={value}
-            // labelColor="transparent"
             transitionDuration="0.4s"
          />
       </section>

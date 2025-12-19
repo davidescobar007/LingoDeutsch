@@ -56,6 +56,20 @@ const getShuffledEmojis = (count: number) => {
 export const OrganismGrammarPreview = ({ popularTopics }: GrammarPreviewProps) => {
    const shuffledEmojis = getShuffledEmojis(popularTopics.length)
 
+   const getColorClasses = (colorTheme: string) => {
+      const colorMap: Record<string, string> = {
+         blue: 'border-primary hover:border-primary/80',
+         green: 'border-success hover:border-success/80',
+         purple: 'border-secondary hover:border-secondary/80',
+         orange: 'border-warning hover:border-warning/80',
+         teal: 'border-info hover:border-info/80',
+         red: 'border-error hover:border-error/80',
+         yellow: 'border-warning hover:border-warning/80',
+         indigo: 'border-primary hover:border-primary/80'
+      }
+      return colorMap[colorTheme] || 'border-base-300 hover:border-base-400'
+   }
+
    return (
       <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
          <div className="flex w-full justify-between">
@@ -73,7 +87,7 @@ export const OrganismGrammarPreview = ({ popularTopics }: GrammarPreviewProps) =
             {popularTopics.map((topic, index) => (
                <Link href={`grammar?topic=${topic.id}`} key={index}>
                   <div
-                     className={`flex h-16 transform-gpu cursor-pointer items-center rounded-2xl border bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md border-${topic.colorTheme}-200 hover:border-${topic.colorTheme}-300`}
+                     className={`flex h-16 transform-gpu cursor-pointer items-center rounded-lg border bg-base-100 px-4 py-3 shadow-md transition-all duration-300 hover:scale-102 hover:shadow-lg ${getColorClasses(topic.colorTheme)}`}
                   >
                      {/* Emoji */}
                      <div className="mr-3 flex h-8 w-8 items-center justify-center text-lg">

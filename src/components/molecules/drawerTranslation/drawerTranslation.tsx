@@ -34,8 +34,8 @@ export const MoleculeDrawerTranslation = ({
       <Drawer.Root onOpenChange={onOpenChange} open={isOpen} shouldScaleBackground>
          <Drawer.Portal>
             <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-            <Drawer.Content className="fixed bottom-0 left-0 right-0 mt-24 flex flex-col rounded-t-[10px] bg-zinc-100">
-               <div className="flex-1 rounded-t-[10px] bg-white p-4">
+            <Drawer.Content className="fixed bottom-0 left-0 right-0 mt-24 flex flex-col rounded-t-2xl bg-base-100">
+               <div className="flex-1 rounded-t-2xl bg-base-100 p-6">
                   <div className="mx-auto mb-8 h-1.5 w-12 flex-shrink-0 rounded-full bg-zinc-300" />
                   <div className="mx-auto max-w-md">
                      <div className="flex flex-wrap justify-start text-start">

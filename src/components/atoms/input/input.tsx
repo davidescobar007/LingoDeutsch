@@ -7,6 +7,7 @@ type TAtomInput = {
    labelText?: string
    extraClassName?: string
    dangerouslyResetClassName?: Boolean
+   error?: boolean
    [key: string]: any
 }
 export const AtomInput: FunctionComponent<TAtomInput> = ({
@@ -15,8 +16,12 @@ export const AtomInput: FunctionComponent<TAtomInput> = ({
    inputId = '',
    withLabel = false,
    labelText = '',
+   error = false,
    ...rest
 }) => {
+   const errorClass = error ? 'input-error' : ''
+   const focusClass = 'focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary'
+
    return (
       <>
          {withLabel && (
@@ -25,7 +30,7 @@ export const AtomInput: FunctionComponent<TAtomInput> = ({
             </label>
          )}
          <input
-            className={`input input-bordered mb-3 w-full ${extraClassName}`}
+            className={`input input-bordered mb-3 w-full ${focusClass} ${errorClass} ${extraClassName}`}
             id={inputId}
             name={inputId}
             type={type}
