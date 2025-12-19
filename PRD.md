@@ -12,17 +12,18 @@
 
 ## **1. EXECUTIVE SUMMARY**
 
-**LingoDeutsch** (branded as "Blabling") is a **German language learning platform** designed to help Spanish-speaking users reach intermediate proficiency (A1-B2 CEFR levels) through interactive, gamified, evidence-based learning methods combining vocabulary building, grammar lessons, contextual reading, and spaced repetition.
+**LingoDeutsch** (branded as "Blabling") is a **German language learning platform** designed to help Spanish-speaking users build German proficiency through a grammar-first approach: structured grammar foundation → contextual article reading → spaced repetition vocabulary reinforcement. MVP launches with A1 level only, ensuring pedagogical soundness before expansion.
 
 **Core Value Proposition:**
 
--  Learn German through real content (articles) with instant word translations
--  Personalized spaced repetition that adapts to your learning pace
--  Structured grammar curriculum aligned to international standards
--  Gamification (streaks, leaderboards) maintaining engagement
--  Bilingual interface (Spanish/German) removing language barriers
+-  Learn German grammar systematically first (A1: articles, present tense, cases, plurals)
+-  Understand the German language system before reading articles
+-  Read comprehensible A1 articles (75-80% word recognition) after grammar foundation
+-  Reinforce learning through spaced repetition (simple, focused vocabulary)
+-  Bilingual interface (Spanish/German) with clear progress indicators
+-  Gamification (streaks, achievements) maintaining motivation without pressure
 
-**Business Model:** Freemium (inferred) with premium content access potential
+**Business Model:** Freemium for MVP (all features free). Premium tier (Phase 2+) to be determined.
 
 ---
 
@@ -30,7 +31,7 @@
 
 ### **2.1 Vision**
 
-Become the preferred German learning platform for Spanish-speaking learners by combining pedagogically-sound methods (spaced repetition, CEFR framework) with engaging user experience (gamification, interactive reading).
+Become the preferred German learning platform for serious Spanish-speaking learners seeking **pedagogically-sound, structured education** (grammar-first approach, CEFR framework, transparent progress) rather than casual gamification. Differentiate through grammar-first methodology and clear progression pathways.
 
 ### **2.2 Target Markets**
 
@@ -40,11 +41,14 @@ Become the preferred German learning platform for Spanish-speaking learners by c
 
 ### **2.3 Success Definition**
 
--  Users complete daily learning streaks
--  80%+ of saved vocabulary reaches "mastered" level
--  Articles completed with quiz scores ≥60%
--  Regular weekly engagement (3+ sessions)
--  User retention >50% at 30-day mark
+-  70%+ of signups complete A1 grammar foundation (5 topics, all quizzes ≥60%)
+-  Users progress from grammar → articles within 2-4 weeks
+-  70%+ quiz pass rate on grammar lessons (indicates solid pedagogy)
+-  Users read 2+ A1 articles per week after grammar completion
+-  75%+ comprehension quiz scores on articles (understand content)
+-  65%+ of vocabulary reaches "easy" level through spaced rep
+-  Streak maintenance: 30%+ of active users maintain 7+ day streaks
+-  User retention: 40%+ at 7-day, 25%+ at 30-day mark
 
 ---
 
@@ -78,65 +82,126 @@ Become the preferred German learning platform for Spanish-speaking learners by c
 
 ## **4. CORE FEATURES**
 
-### **4.1 Feature: Interactive Article Reading**
+### **4.1 Feature: Structured Grammar Curriculum (PRIMARY GATE)**
 
-**Description:** Users read curated German articles with inline translation lookup and comprehension quizzes.
+**Description:** Foundational grammar lessons organized by CEFR level (A1 only for MVP). Users learn grammar system first, enabling comprehension of subsequent articles. Grammar completion unlocks article access.
 
 **Key Capabilities:**
 
--  Browse articles filtered by CEFR level (A1, A2, B1, B2)
--  Interactive word selection: click any word to see:
-   -  Spanish translation
-   -  Grammatical info (gender, case, tense)
-   -  Examples in context
-   -  Pronunciation (IPA)
-   -  Frequency ranking
--  Track progress: mark article completed upon quiz ≥60%
--  Save unknown words directly to vocabulary list
--  View article metadata: difficulty, estimated read time, word count
+-  **MVP (A1 Only):** 5 structured topics
+   -  Articles & Gender (der, die, das)
+   -  Present Tense Conjugation (ich, du, er, wir, ihr, sie)
+   -  Nominative & Accusative Cases
+   -  Plurals & Noun Declension
+   -  Basic Sentence Structure
+-  Each topic contains:
+   -  Markdown lesson (15 min) with examples & conjugation tables
+   -  15-20 embedded vocabulary words (integrated, not separate)
+   -  6-8 question quiz (must score ≥60% to complete)
+-  Visual progress indicator per level: "3 of 5 topics complete"
+-  Lock/unlock system: Must complete A1 before accessing A2 (Phase 2)
+-  Topic recommendations: highlight next suggested topic
 
 **Functional Requirements:**
 
--  [ ] Articles paginated, default 12 per page
--  [ ] Sort by date (newest), level, completion status
--  [ ] Search articles by title/content
--  [ ] Quiz modal appears after article selection
--  [ ] Highest score tracking per article
--  [ ] Attempt counter for progress analytics
--  [ ] Saved words auto-tagged with "hard" difficulty
+-  [ ] Display 5 A1 topics (no expansion beyond A1 for MVP)
+-  [ ] Render markdown grammar content with syntax highlighting
+-  [ ] Embed 15-20 vocabulary words within grammar lesson
+-  [ ] Quiz randomized, multi-choice + fill-in-blank format
+-  [ ] Mark topic complete when quiz ≥60% (not optional)
+-  [ ] Track `dateCompleted` for analytics & progression
+-  [ ] Show lock icon on unavailable levels (A2+ locked until A1 complete)
+-  [ ] Progress bar: "3 of 5 topics completed in A1"
+-  [ ] Grammar completion gates article access (unlock articles only after 5/5 topics)
+
+**MVP Grammar Topics:**
+
+| Topic | Vocabulary | Quiz Q | Time |
+|-------|-----------|--------|------|
+| Articles & Gender | 20 words | 8 | 15 min |
+| Present Tense | 20 words | 8 | 20 min |
+| Nominative & Accusative | 15 words | 6 | 15 min |
+| Plurals & Declension | 15 words | 6 | 12 min |
+| Sentence Structure | 10 words | 6 | 12 min |
+| **TOTAL A1** | **80 words** | **34 questions** | **~75 min** |
 
 **Success Metrics:**
 
--  Avg 3+ words saved per article read
--  Quiz completion rate >70% of article reads
--  Avg time on article: 8-12 minutes
+-  70%+ of signups complete A1 grammar (mandatory pathway)
+-  Quiz pass rate: >80% (indicates quality lessons)
+-  Avg time per topic: 15-20 minutes
+-  Users progress to articles within 2-4 weeks
 
 ---
 
-### **4.2 Feature: Spaced Repetition Vocabulary Practice**
+### **4.2 Feature: Interactive Article Reading (UNLOCKED AFTER GRAMMAR)**
 
-**Description:** Personalized flashcard review system using proven spaced repetition intervals to optimize retention.
+**Description:** Users read comprehensible A1 German articles (designed with grammar constraints) with inline translation and comprehension quizzes. Articles reinforce grammar learned.
 
 **Key Capabilities:**
 
--  Flashcard deck with German word front, Spanish translation back
--  Show extended word details: examples, conjugations, synonyms, antonyms
--  Rate difficulty: Easy (7-day interval) | Medium (3-day) | Hard (1-day)
--  Auto-shuffle deck for randomization
--  Track "last seen" date for each word
--  Filter by level (All, Easy, Medium, Hard)
--  Daily recommendation: "You have 12 words due for review"
+-  **MVP (A1 Only):** 10-12 articles, 200-300 words each
+   -  Grammar-constrained: present tense only + nominative/accusative cases
+   -  Tagged with grammar concepts: "Uses: present tense, accusative case"
+   -  Topics: daily life, culture, simple stories
+-  Interactive word selection: click any word to see:
+   -  Spanish translation
+   -  Grammatical info (part of speech, case, tense)
+   -  Example sentence
+   -  IPA pronunciation
+-  Comprehension quiz after article (5-8 questions, ≥60% to complete)
+-  Save unknown words directly to vocabulary practice deck
+-  Track progress: "8 of 12 articles completed"
+-  View article metadata: estimated read time, word count, grammar used
 
 **Functional Requirements:**
 
--  [ ] Only show words due for review (today's date ≥ last_seen + interval)
--  [ ] Never-seen words always due
+-  [ ] Articles locked until A1 grammar 100% complete (gate mechanism)
+-  [ ] Display 10-12 A1 articles (no expansion for MVP)
+-  [ ] Sort by recommended order (based on grammar complexity progression)
+-  [ ] Search/filter by difficulty or grammar tags
+-  [ ] Quiz modal after scroll-to-bottom or explicit button click
+-  [ ] Highest score tracking per article
+-  [ ] Attempt counter for progress analytics
+-  [ ] Saved words auto-tagged with source (article name)
+-  [ ] Mobile: finger-tap selects words accurately (no double-tap conflict)
+-  [ ] Keyboard accessible: tab through words for accessibility
+
+**Success Metrics:**
+
+-  Users read 2+ articles per week (after grammar completion)
+-  Comprehension quiz avg score: 75%+ (understand content)
+-  Words saved: 1-2 per article (they recognize most words)
+-  Avg reading time: 8-12 minutes per article
+
+---
+
+### **4.3 Feature: Spaced Repetition Vocabulary Practice (SUPPORTING)**
+
+**Description:** Personalized flashcard review system reinforcing vocabulary from grammar lessons and articles. Supporting role with focused, contextual word set (~300 words for MVP).
+
+**Key Capabilities:**
+
+-  Flashcard deck: German word (front) + Spanish translation (back)
+-  Show extended word details: example sentence, grammatical info (part of speech, case), IPA pronunciation
+-  Rate difficulty: Easy (7-day interval) | Medium (3-day) | Hard (1-day)
+-  Auto-shuffle deck for randomization
+-  Track "last review" date for each word
+-  Filter by level (All, Easy, Medium, Hard)
+-  Daily recommendation: "X words due for review"
+-  Track word source: grammar lesson or article
+
+**Functional Requirements:**
+
+-  [ ] Only show words due for review (today's date ≥ last_review + interval)
+-  [ ] Never-reviewed words always due
 -  [ ] Prevent cards from appearing until review date
--  [ ] Update `times_seen` counter on each review
--  [ ] Maintain `level_history` array for analytics
+-  [ ] Update `times_reviewed` counter on each review
+-  [ ] Maintain review history for analytics
 -  [ ] Prevent duplicate card display in single session
--  [ ] Support drag-drop for accessibility
--  [ ] Show progress bar: "8 of 15 reviewed today"
+-  [ ] Show progress bar: "8 of 12 reviewed today"
+-  [ ] Mobile: swipe right/left to rate difficulty
+-  [ ] Keyboard accessible: Tab to next card, arrow keys to rate
 
 **Business Logic:**
 
@@ -147,111 +212,77 @@ Review Intervals:
 - Hard:   1 day
 
 Word marked Due if:
-  !lastSeenDate || (now - lastSeenDate) >= interval
+  !lastReviewDate || (now - lastReviewDate) >= interval
 ```
 
 **Success Metrics:**
 
 -  Users spend avg 8-12 min/session on practice
--  65%+ of words reach "easy" level eventually
--  Daily active users doing ≥1 practice session: 40%+
-
----
-
-### **4.3 Feature: Structured Grammar Curriculum**
-
-**Description:** Self-paced grammar lessons organized by CEFR level with embedded quizzes and progress tracking.
-
-**Key Capabilities:**
-
--  Grammar topics grouped by level: A1 → A2 → B1 → B2
--  Topics include: articles, tenses, cases, modal verbs, etc.
--  Each topic contains: explanations, examples, conjugation tables
--  Interactive lesson format (markdown-rendered content)
--  Quiz embedded in each topic (auto-grade, ≥60% = pass)
--  Visual progress indicator per level
--  Lock/unlock system: must complete Level N before accessing N+1
-
-**Functional Requirements:**
-
--  [ ] Display 3-5 topics per CEFR level
--  [ ] Render markdown grammar content with syntax highlighting
--  [ ] Quiz questions randomized, multi-choice format
--  [ ] Mark topic complete when quiz ≥60%
--  [ ] Track `dateCompleted` for analytics
--  [ ] Show lock icon on unavailable levels
--  [ ] Progress bar: "2 of 5 topics completed in A1"
--  [ ] Recommended next topic highlighted
-
-**Grammar Topics (Minimum Scope):**
-| A1 | A2 | B1 | B2 |
-|---|---|---|---|
-| Articles (der, die, das) | Dative case | Perfect tense | Conditional |
-| Present tense | Accusative case | Subordinate clauses | Subjunctive mood |
-| Cases overview | Plural formation | Passive voice | Word order (main/subordinate) |
-| Verb conjugation | Comparatives | Modal verbs (advanced) | Infinitive constructions |
-
-**Success Metrics:**
-
--  Avg time per lesson: 12-18 minutes
--  Quiz completion rate: >85%
--  Users advancing to B1+: >30% of active users
--  Grammar practice correlation with vocabulary growth: +15% mastery
+-  65%+ of words reach "easy" level (retention target)
+-  Daily practice rate: 40%+ of DAU do ≥1 session
+-  Avg words reviewed per session: 10-15
 
 ---
 
 ### **4.4 Feature: Dashboard & Progress Analytics**
 
-**Description:** Unified dashboard showing user's learning progress, daily stats, and motivational elements.
+**Description:** User homepage showing grammar progress, vocabulary stats, streaks, and achievement badges. Motivates continued learning and displays clear progression.
 
 **Key Capabilities:**
 
--  **Stats Cards:**
+-  **Progress Cards (Grammar-Centric):**
 
-   -  Total words saved
-   -  Words mastered (level = easy)
-   -  Weak words (medium + hard count)
-   -  Vocabulary mastery % (mastered / total)
-   -  Daily streak (consecutive days practiced)
-   -  Words practiced today
+   -  A1 Grammar: "4 of 5 topics complete (80%)"
+   -  Vocabulary learned: "120 words (from grammar + articles)"
+   -  Vocabulary mastery %: "65% are 'easy' level"
+   -  Streak counter: "🔥 7 days practicing"
+   -  Words practiced today: "8 reviewed"
 
--  **7-Day Activity Calendar:** Visual grid showing practiced/not-practiced each day
+-  **7-Day Activity Calendar:** Visual grid showing days with practice (≥10 min sessions)
 
--  **Quick Actions:**
+-  **Quick Actions (Prioritized):**
 
-   -  "Continue vocabulary practice"
-   -  "New article to read"
-   -  "Next grammar lesson"
+   -  "Continue A1 Grammar: [Next Topic]" (primary, if not complete)
+   -  "Read next article" (if grammar complete)
+   -  "Practice vocabulary (X due)" (supporting)
 
--  **Recommended Content:**
+-  **Achievement Badges:**
 
-   -  Latest articles (3 most recent)
-   -  Due vocabulary words count
-   -  Grammar progress indicator
+   -  🏆 A1 Grammar Master (complete all 5 topics)
+   -  📖 Article Starter (read first article)
+   -  🔥 Week on Fire (7-day streak)
+   -  💪 100 Words Learned
 
--  **Weekly Leaderboard:** Top 10 users by score (global ranking)
+-  **Recommended Next Steps:**
+
+   -  "Complete grammar: 1 topic remaining" (if in progress)
+   -  "First article waiting: [Recommended Article]" (if grammar complete)
+   -  "Due vocabulary: X words" (ongoing)
 
 **Functional Requirements:**
 
 -  [ ] Real-time stat calculation from PocketBase
--  [ ] 7-day calendar auto-populates from `userVocabularyProgress` records
--  [ ] Streak counter: min 1 word reviewed = day completed
--  [ ] Leaderboard updates daily, cached for performance
--  [ ] "Mastery %" = (easy_words / total_words) \* 100
--  [ ] Show motivational message for 0-streak users
+-  [ ] Grammar progress calculated: topics_completed / 5 (A1 only for MVP)
+-  [ ] Streak counter: ≥10 min practice session = day completed
+-  [ ] 7-day calendar auto-populates from practice session timestamps
+-  [ ] "Mastery %" = (easy_words / total_words) * 100
+-  [ ] Show different CTA based on user state (grammar-first → articles → vocab)
 -  [ ] Animated stat cards on page load
+-  [ ] Mobile: stats stack vertically, badges show in row
+-  [ ] No leaderboard for MVP (Phase 2+)
 
 **Gamification Elements:**
 
--  Streak badges: 🔥 7-day, 🎯 30-day, 🏆 100-day milestones
--  Leaderboard ranking with position number
--  "Don't break the chain" messaging
+-  Achievement badges (4 core badges for MVP)
+-  Streak counter (motivational, not punitive)
+-  Progress bar visibility (grammar % → articles % → mastery %)
+-  Optional "freeze" on streak: can skip 1 day/week without breaking (Phase 2)
 
 **Success Metrics:**
 
 -  Dashboard engagement: >60% daily active users
--  Streak maintenance: avg 6+ days for active users
--  Vocabulary progress correlation with login frequency
+-  Streak maintenance: 30%+ of active users maintain 7+ day streaks
+-  Grammar-to-articles conversion: 60%+ of grammar completers read articles
 
 ---
 
@@ -339,122 +370,161 @@ Word marked Due if:
 
 ```
 1. Visit landing page (/)
-2. See marketing messaging about Blabling
+2. See marketing: "Learn German grammar systematically"
 3. Click "Comienza a aprender" (Get Started)
 4. Redirect to /[locale]/login
 5. Click "Sign in with Google"
 6. Google OAuth flow (consent screen)
 7. Redirect to PocketBase callback
-8. Auto-create user + score record
-9. Redirect to /[locale]/app/home (dashboard)
-10. First-time modal: "Welcome! Here's how to get started"
-11. CTA: "Read your first article"
+8. Auto-create user account
+9. Onboarding modal:
+   - "Welcome to Blabling!"
+   - "You'll learn grammar first, then read articles you understand"
+   - Select practice frequency: "10 min / 20 min / 30+ min daily"
+10. Redirect to /[locale]/app/grammar
+11. First topic highlighted: "Articles & Gender (Start here)"
 ```
 
 **Expected Duration:** 3-5 minutes
-**Success Criteria:** User reaches dashboard and views ≥1 article
+**Success Criteria:** User reaches first grammar lesson and completes ≥1 quiz
 
 ---
 
-### **5.2 User Journey: Learn Through Reading**
-
-```
-1. Navigate to /[locale]/app/article
-2. Browse article list (filtered by level or search)
-3. Click article card
-4. Open article view with German text
-5. Select unknown word → translation tooltip shows
-6. Click "Save word" button
-7. Word added to vocabulary (level=hard)
-8. Continue reading / scroll to bottom
-9. Click "Take quiz" button
-10. Answer 5-10 quiz questions (multiple choice)
-11. Submit quiz → see score
-12. If score ≥60%: "Article completed! ✓"
-13. Redirect to next recommended article
-```
-
-**Expected Duration:** 12-15 minutes
-**Success Criteria:**
-
--  ≥3 words saved
--  Quiz completed with ≥60%
--  Word count for article: 500-1500 words
-
----
-
-### **5.3 User Journey: Daily Spaced Repetition Practice**
-
-```
-1. Dashboard shows "12 words due for review"
-2. Navigate to /[locale]/app/vocabulary/practice
-3. See first card: German word + pronunciation
-4. Click to reveal: Spanish translation + examples
-5. Rate difficulty: Easy | Medium | Hard
-6. Card moves to "reviewed" pile
-7. Next card loads (shuffled, new word)
-8. Repeat steps 4-7 for all due cards
-9. Progress bar shows: "8 of 12 reviewed"
-10. Final card → "Session complete!"
-11. Show stats: "You reviewed 12 words in 8 minutes"
-12. Option: "Continue" or return to dashboard
-```
-
-**Expected Duration:** 8-15 minutes
-**Success Criteria:**
-
--  ≥80% of due words reviewed
--  All ratings saved correctly
--  No duplicate cards in single session
-
----
-
-### **5.4 User Journey: Learn Grammar**
+### **5.2 User Journey: Learn a Grammar Topic**
 
 ```
 1. Navigate to /[locale]/app/grammar
-2. See levels: A1 (completed 4/5) | A2 (locked) | B1 (locked) | B2 (locked)
-3. Click A1 level → expand topics
-4. See topics: articles, present tense, cases, etc.
-5. Click "Present tense" topic
-6. Read markdown lesson with examples
-7. See conjugation table: ich, du, er, wir, ihr, sie
-8. Click "Take quiz" button
-9. Answer 5 grammar questions (fill-in-blank or multiple choice)
-10. Submit quiz
-11. If ≥60%: "Topic complete!" → mark as done
-12. If <60%: "Try again" → retry quiz
-13. Level progress updates: "5 of 5 complete!"
-14. A2 level unlocks
+2. See A1 level: "3 of 5 topics complete"
+3. Next incomplete topic highlighted: "Nominative & Accusative Cases"
+4. Click topic → Open lesson view
+5. Read markdown lesson (15 min):
+   - Explanation with examples
+   - Conjugation/declension tables
+   - Embedded vocabulary (10-15 words shown inline)
+   - Practice examples: "Die Frau sieht den Mann"
+6. At bottom: "Take quiz" button
+7. Quiz modal: 6-8 questions
+   - Q1: "Which case is the subject?" (multiple choice)
+   - Q2: "Conjugate: Der ___ (man) sieht..." (fill-in-blank)
+   - Q3-8: Grammar + vocabulary mix
+8. Submit quiz
+9. If score ≥60%: "Topic complete! 🎉"
+   - Progress updates: "4 of 5 topics"
+   - Achievement unlock: "Case Master"
+   - Next topic highlighted
+10. If <60%: "Try again" → retry quiz immediately
 ```
 
 **Expected Duration:** 15-20 minutes per topic
 **Success Criteria:**
 
 -  Quiz ≥60% to mark complete
--  Lesson content fully readable
+-  Lesson markdown renders correctly
+-  Vocabulary embedded and visible
 -  Progress persists across sessions
+-  All 5 topics completable → unlocks articles
 
 ---
 
-### **5.5 User Journey: Check Progress & Motivation**
+### **5.3 User Journey: Read Articles (After Grammar Complete)**
+
+```
+1. After A1 grammar 100% complete, articles unlock
+2. Dashboard CTA: "Read your first article!"
+3. Navigate to /[locale]/app/articles
+4. See A1 articles: "10-12 available"
+5. Recommended article card shown: "Ein Tag in Berlin"
+6. Click article → Open reader view
+7. Read German text (300 words, present tense + accusative)
+8. Click unknown word → tooltip shows:
+   - Spanish translation
+   - Part of speech & case
+   - Example: "Ich sehe den Mann"
+   - IPA: [pronunciation]
+9. Optional: "Save word" button adds to vocabulary deck
+10. Scroll to bottom → comprehension quiz modal
+11. Answer 5-8 questions about article content
+12. Submit quiz
+13. If ≥60%: "Article completed! ✓"
+    - Progress: "1 of 12 articles"
+    - Stat update: "120 words learned"
+    - Recommendation: "Read next article?"
+14. If <60%: "Try again" → retake quiz
+```
+
+**Expected Duration:** 10-15 minutes per article
+**Success Criteria:**
+
+-  Articles only accessible after grammar 100% complete
+-  User understands 75%+ of content (quiz avg 75%+)
+-  Words saved: 1-2 per article (recognize most words)
+-  Mobile: word selection works with finger tap
+
+---
+
+### **5.4 User Journey: Daily Vocabulary Practice**
+
+```
+1. Dashboard shows: "8 words due for review"
+2. Navigate to /[locale]/app/vocabulary/practice
+3. See first flashcard: German word (large) + IPA pronunciation
+4. Click card to reveal: Spanish translation + example sentence + grammar info
+5. Rate difficulty:
+   - Easy (7-day interval) → I know this well
+   - Medium (3-day interval) → I recognize it
+   - Hard (1-day interval) → I need more practice
+6. Card marked as reviewed, next card loads (shuffled)
+7. Repeat for all due words
+8. Progress bar: "6 of 8 reviewed"
+9. Final card → "Session complete! 🎉"
+10. Show stats:
+    - "You reviewed 8 words in 7 minutes"
+    - "Total mastery: 65% (easy level)"
+    - "New words this week: 3"
+11. Option: "Continue practice" or "Return to dashboard"
+```
+
+**Expected Duration:** 8-12 minutes per session
+**Success Criteria:**
+
+-  Only due words shown (no cards before review date)
+-  Difficulty ratings update intervals correctly
+-  No duplicate cards in one session
+-  Progress persists across sessions
+-  Mobile: swipe left/right to rate difficulty (optional)
+
+---
+
+### **5.5 User Journey: Check Progress & Stay Motivated**
 
 ```
 1. Visit /[locale]/app/home (dashboard)
-2. See stats cards:
-   - "423 words saved"
-   - "284 mastered"
-   - "67% vocabulary mastery"
-   - "🔥 7-day streak"
-3. View 7-day calendar: show which days practiced
-4. See leaderboard: "You're #14 this week"
-5. Get recommendation: "Read 'Kaffeekultur' article next"
-6. See quick links: "Continue practice | New article | Grammar"
-7. Feel motivated to continue learning
+2. See grammar progress card: "A1: 4 of 5 topics complete (80%)"
+3. See vocabulary stats:
+   - "120 words learned"
+   - "65% are 'easy' level (mastered)"
+4. See streak counter: "🔥 7 days"
+5. View 7-day activity calendar: days with practice marked
+6. See achievement badges earned:
+   - 🏆 A1 Grammar Master (complete all 5)
+   - 📖 Article Starter (read 1st article)
+   - 🔥 Week on Fire (7-day streak)
+7. See quick actions (prioritized):
+   - "Continue A1 Grammar: [Nominative & Accusative]" (if not complete)
+   - OR "Read next article" (if grammar complete)
+   - "Practice vocabulary (5 due today)"
+8. See recommendation: "You're doing great! Next up: Read 'Berlin' article"
+9. Optional: Share progress or check learning tips
 ```
 
 **Expected Duration:** 2-3 minutes
-**Success Criteria:** Dashboard loads in <2 sec, accurate stat calculations
+**Success Criteria:**
+
+-  Dashboard loads <2 sec
+-  Grammar progress visible + primary stat
+-  CTAs are contextual (grammar first → articles → vocabulary)
+-  Achievements show progress toward goals
+-  Mobile: stats stack vertically with no overflow
 
 ---
 
@@ -474,42 +544,49 @@ Word marked Due if:
 | Concurrent Users  | 1000+ simultaneous                                |
 | Data Backup       | Daily, 30-day retention                           |
 
-### **6.2 Data Requirements**
+### **6.2 Data Requirements (MVP - A1 Only)**
 
-**Vocabulary Collection (PocketBase)**
+**Vocabulary Collection**
 
--  Minimum 2000+ German words
--  Each word includes: conjugations, examples (2-3), cases, frequency rank, CEFR level
--  Prioritize: A1-B1 frequency range
--  Update frequency: quarterly (add new words)
-
-**Articles Collection**
-
--  Minimum 50 articles across all levels:
-   -  A1: 15 articles
-   -  A2: 15 articles
-   -  B1: 12 articles
-   -  B2: 8 articles
--  Each article: 500-1500 words
--  Include metadata: difficulty, read time estimate, quiz (5 questions min)
--  Curate topics: culture, news, daily life, technology
+-  **MVP:** ~300 total German words (80 embedded in grammar + 200-300 from articles)
+-  Each word includes: Spanish translation, example sentence, grammatical info (POS, case), IPA pronunciation
+-  Prioritize: A1 frequency words (most common 500-1000 German words)
+-  Source: Grammar-embedded words + article saves
+-  **Phase 2:** Expand to 1000+ words (A1-A2)
 
 **Grammar Topics Collection**
 
--  16+ grammar topics (4 per level)
--  Content: markdown-formatted explanations + examples
--  Each topic: 800-1200 words
--  Include conjugation tables, charts, real-world examples
+-  **MVP:** 5 A1 topics only
+   -  Articles & Gender
+   -  Present Tense Conjugation
+   -  Nominative & Accusative Cases
+   -  Plurals & Noun Declension
+   -  Basic Sentence Structure
+-  Each topic: markdown lesson (500-800 words) + 15-20 embedded vocabulary
+-  Include: conjugation tables, declension charts, 5-8 practice examples
+-  **Phase 2:** Add A2 grammar (5 topics)
+
+**Articles Collection**
+
+-  **MVP:** 10-12 A1 articles only
+   -  Grammar constraint: present tense + nominative/accusative only
+   -  Length: 200-300 words per article
+   -  Topics: daily life, basic conversations, simple descriptions
+   -  Include metadata: estimated read time, grammar tags, difficulty
+   -  Include comprehension quiz (5-8 questions min)
+-  **Phase 2:** Add A2 articles (10-12, with dative case + past tense)
 
 **Quiz Questions**
 
--  200+ questions across all articles & grammar
--  Multiple-choice format with 4 options
+-  **MVP:** ~94 total questions
+   -  Grammar quizzes: 34 questions (6-8 per topic × 5 topics)
+   -  Article quizzes: 60 questions (5-8 per article × 12 articles)
+-  Multiple-choice + fill-in-blank format
 -  Question types:
-   -  Vocabulary (word selection)
-   -  Grammar (fill-in-blank, verb conjugation)
-   -  Comprehension (true/false about article)
--  Random selection: 5-10 questions per quiz
+   -  Grammar (conjugation, declension, cases)
+   -  Vocabulary (embedded word recall)
+   -  Comprehension (article content understanding)
+-  Random presentation to prevent memorization
 
 ---
 
@@ -636,26 +713,28 @@ Word marked Due if:
 
 ## **8. SUCCESS METRICS & KPIs**
 
+### **Learning Outcomes (Primary Metrics - Grammar-First)**
+
+| Metric                              | Target                           | Frequency |
+| ----------------------------------- | -------------------------------- | --------- |
+| A1 Grammar Completion Rate          | 70%+ of signups complete all 5   | Monthly   |
+| Grammar Quiz Pass Rate (≥60%)       | 80%+ (well-designed lessons)     | Daily     |
+| Time to First Article               | 2-4 weeks from signup            | Monthly   |
+| Grammar-to-Articles Conversion      | 60%+ of grammar completers       | Monthly   |
+| Article Comprehension (quiz avg)    | 75%+ score (understand content)  | Daily     |
+| Vocabulary Mastery Rate             | 65%+ of learned words "easy"     | Monthly   |
+| Articles Read/User/Week (avg)       | 2+ per user (after grammar)      | Weekly    |
+
 ### **Engagement Metrics**
 
-| Metric                            | Target  | Frequency |
-| --------------------------------- | ------- | --------- |
-| Daily Active Users (DAU)          | 500+    | Daily     |
-| Weekly Active Users (WAU)         | 1500+   | Weekly    |
-| Monthly Active Users (MAU)        | 3000+   | Monthly   |
-| Avg Session Duration              | 15+ min | Daily     |
-| Sessions per User/Week            | 4+      | Weekly    |
-| Vocabulary practice sessions/week | 3+      | Weekly    |
-
-### **Learning Outcomes**
-
-| Metric                       | Target                           | Frequency |
-| ---------------------------- | -------------------------------- | --------- |
-| Vocabulary mastery rate      | 65%+ of saved words reach "easy" | Monthly   |
-| Article completion rate      | >70% of opened articles          | Daily     |
-| Quiz pass rate (≥60%)        | 75%+                             | Daily     |
-| Grammar topic completion     | 30%+ users reach B1              | Quarterly |
-| Streak maintenance (7+ days) | 40%+ of DAU                      | Weekly    |
+| Metric                              | Target  | Frequency |
+| ----------------------------------- | ------- | --------- |
+| Daily Active Users (DAU)            | 300+    | Daily     |
+| Weekly Active Users (WAU)           | 800+    | Weekly    |
+| Monthly Active Users (MAU)          | 2000+   | Monthly   |
+| Avg Session Duration                | 15-20 min (grammar focused) | Daily |
+| Sessions per User/Week              | 4+      | Weekly    |
+| Streak Maintenance (7+ days)        | 30%+ of DAU                      | Weekly    |
 
 ### **Retention Metrics**
 
@@ -666,39 +745,36 @@ Word marked Due if:
 | 30-day retention | 25%+      | Monthly   |
 | Churn rate       | <5%/month | Monthly   |
 
-### **Content Metrics**
+### **Business Metrics (MVP Phase)**
 
-| Metric                       | Target             | Frequency |
-| ---------------------------- | ------------------ | --------- |
-| Words saved per article read | 3+                 | Daily     |
-| Article read time (avg)      | 10-15 min          | Daily     |
-| New articles read/user/week  | 1.5+               | Weekly    |
-| Grammar topics started (avg) | 1+ per active user | Monthly   |
-
-### **Business Metrics**
-
-| Metric                   | Target       | Note                         |
-| ------------------------ | ------------ | ---------------------------- |
-| Acquisition cost (CAC)   | <€2 per user | Social/organic focus         |
-| Lifetime value (LTV)     | >€20         | Based on freemium conversion |
-| Conversion to premium    | 8-12%        | [TBD if premium tier exists] |
-| NPS (Net Promoter Score) | 50+          | Quarterly survey             |
+| Metric                              | Target       | Note                         |
+| ----------------------------------- | ------------ | ---------------------------- |
+| Acquisition cost (CAC)              | <€1 per user | Organic/word-of-mouth focus  |
+| Signup → A1 Completion Conversion   | 70%          | Key funnel metric            |
+| Signup → First Article Conversion   | 60%          | Grammar-to-articles success  |
+| User engagement: session frequency  | 4+ sessions/week | Indicates habit formation |
+| Premium conversion (Phase 2+)       | 8-12%        | TBD - depends on premium tier |
+| NPS (Net Promoter Score)            | 50+          | Quarterly survey             |
 
 ---
 
-## **9. OUT OF SCOPE (Phase 1)**
+## **9. OUT OF SCOPE (MVP Phase)**
 
-The following features are NOT part of the current MVP but could be future enhancements:
+The following features are NOT part of the current MVP (A1 only):
 
+-  [ ] A2, B1, B2 grammar & articles (Phase 2+)
+-  [ ] Leaderboards/social ranking (Phase 2+)
 -  [ ] Mobile native app (iOS/Android)
 -  [ ] Offline mode / PWA
--  [ ] Social features (friend connections, group study)
--  [ ] Audio recording for pronunciation practice
+-  [ ] Streak "freeze" feature (mercy days)
+-  [ ] Audio recording for pronunciation
 -  [ ] AI-powered conversational partner
 -  [ ] Writing practice with auto-correction
 -  [ ] Podcast/video content
--  [ ] Premium subscription tier
+-  [ ] Premium subscription tier (Phase 2+)
 -  [ ] Certification exams
+-  [ ] User profiles / avatar upload
+-  [ ] Advanced spaced repetition (SM-2 algorithm)
 -  [ ] Instructor/teacher dashboard
 
 ---
@@ -753,38 +829,50 @@ The following features are NOT part of the current MVP but could be future enhan
 
 ## **11. RELEASE PLAN & ROADMAP**
 
-### **Phase 1: MVP (Current)**
+### **Phase 1: MVP - A1 Foundation (Current)**
 
-✅ Core learning loop (articles → vocabulary → grammar)
-✅ Spaced repetition engine
-✅ User authentication
-✅ Dashboard with basic stats
-✅ Gamification (streaks, leaderboard)
+**Grammar-First Architecture:**
+✅ A1 Grammar Curriculum (5 topics, ~80 embedded words)
+✅ A1 Articles (10-12, grammar-constrained, 200-300 words)
+✅ Spaced Repetition Vocabulary (supporting, ~300 focused words)
+✅ User Authentication (Google OAuth)
+✅ Dashboard & Progress Tracking (grammar-centric)
+✅ Achievement Badges (4 core badges)
 ✅ Internationalization (es/de)
 
-**Target:** Q4 2025 (public beta)
+**MVP Success Criteria:**
+- 70%+ of signups complete A1 grammar
+- 60%+ of grammar completers read articles
+- 75%+ article comprehension (quiz avg)
+- 40%+ 7-day retention rate
 
-### **Phase 2: Growth (Q1 2026)**
+**Target:** Q1 2026 (public beta)
 
--  [ ] Expand vocabulary database (5000+ words)
--  [ ] Add 30+ more articles
+### **Phase 2: A2 Expansion (Q2 2026)**
+
+-  [ ] A2 Grammar (5 topics, ~100 words, adds dative case + past tense)
+-  [ ] A2 Articles (10-12, dative + past tense)
+-  [ ] Leaderboards (weekly ranking by streak + grammar level)
+-  [ ] User profiles (avatar upload, language preference)
+-  [ ] Advanced spaced repetition (SM-2 algorithm)
+-  [ ] Performance optimization & caching
+
+### **Phase 3: B1 Content & Premium (Q3 2026)**
+
+-  [ ] B1 Grammar (5 topics, complex structures)
+-  [ ] B1 Articles (10-12, subordinate clauses, modal verbs)
+-  [ ] Premium tier (unlimited content, ad-free, offline articles)
+-  [ ] Mobile app optimization / responsive improvements
 -  [ ] User engagement campaigns
--  [ ] Performance optimization
--  [ ] Advanced analytics dashboard
 
-### **Phase 3: Premium (Q2 2026)**
+### **Phase 4: Scale & Adjacent Features (Q4 2026+)**
 
--  [ ] Premium tier with ad removal
--  [ ] Offline article downloads
--  [ ] Dedicated tutoring (live sessions)
--  [ ] Progress reports/certification
-
-### **Phase 4: Scale (Q3+ 2026)**
-
--  [ ] Mobile apps (iOS/Android)
--  [ ] Additional languages
--  [ ] AI tutoring features
--  [ ] Corporate training packages
+-  [ ] B2 Grammar & Articles
+-  [ ] Mobile native apps (iOS/Android)
+-  [ ] AI tutoring (pronunciation feedback, writing correction)
+-  [ ] Certification exams (CEFR-aligned)
+-  [ ] Teacher/school dashboard
+-  [ ] Additional language pairs (English→German, French→German)
 
 ---
 
@@ -792,21 +880,23 @@ The following features are NOT part of the current MVP but could be future enhan
 
 ### **Assumptions**
 
-1. PocketBase remains stable and accessible
-2. Google OAuth availability unchanged
-3. Users have stable internet connection
-4. Majority of users access via desktop/tablet
-5. Spanish speakers are primary audience
-6. Users commit to daily/weekly practice for best results
-7. External APIs (LinguaTools, Reverso) remain available
+1. Grammar-first approach improves retention vs. articles-first (hypothesis to validate)
+2. PocketBase remains stable and accessible (self-hosted)
+3. Google OAuth availability unchanged
+4. Users have stable internet connection (web-first)
+5. Spanish speakers are primary audience (validated by target market)
+6. Users prefer structured learning over chaotic vocabulary lists
+7. A1 content (5 topics + 10-12 articles) sufficient for MVP validation
+8. Spaced repetition algorithm (7d/3d/1d) drives adequate retention
 
 ### **Constraints**
 
--  **Technical:** PocketBase self-hosted (scaling considerations)
--  **Content:** Limited to 2000+ words initially (expansion needed)
--  **Time:** MVP launched on develop branch (not yet production)
--  **Budget:** No premium revenue stream (freemium model only)
+-  **Technical:** PocketBase self-hosted (scaling to 10k MAU before optimization needed)
+-  **Content:** MVP limited to A1 only (~5 topics, 10-12 articles, 300 words). A2+ requires Phase 2.
+-  **Time:** Target Q1 2026 launch (aggressive, content-heavy)
+-  **Budget:** No premium revenue (freemium MVP only). Premium Phase 2+.
 -  **Locales:** Spanish/German only (no expansion yet)
+-  **Pedagogy:** Grammar-first unproven at scale; may need A/B testing in Phase 2
 
 ---
 
@@ -816,19 +906,22 @@ The following features are NOT part of the current MVP but could be future enhan
 
 | Dependency              | Risk Level | Mitigation                               |
 | ----------------------- | ---------- | ---------------------------------------- |
-| PocketBase availability | Medium     | Monitor uptime, have backup plan         |
-| Google OAuth            | Medium     | Implement fallback auth method           |
-| LinguaTools API         | High       | Cache responses, maintain local DB       |
-| Vercel/Hosting          | Medium     | Multiple CDN options, self-hosted backup |
+| PocketBase availability | Medium     | Monitor uptime, plan scaling before 10k MAU |
+| Google OAuth            | Medium     | Have email/password fallback plan         |
+| Vercel/Hosting          | Medium     | Monitor performance, CDN caching strategy |
 
-### **Internal Risks**
+### **Internal Risks (Grammar-First Specific)**
 
-| Risk                     | Impact | Probability | Mitigation                      |
-| ------------------------ | ------ | ----------- | ------------------------------- |
-| Vocabulary quality       | High   | Low         | Peer review, native speaker QA  |
-| User churn after 30 days | High   | Medium      | Improve onboarding, engagement  |
-| Performance on mobile    | Medium | Medium      | Optimize images, lazy loading   |
-| Data privacy issues      | High   | Low         | GDPR compliance, regular audits |
+| Risk                                  | Impact | Probability | Mitigation                      |
+| ------------------------------------- | ------ | ----------- | ------------------------------- |
+| Grammar content quality too high      | High   | Medium      | User testing, iterate on difficulty |
+| Users skip grammar to read articles   | High   | Medium      | Hard gate: articles locked until grammar 100% |
+| Grammar quizzes too hard (>20% fail)  | High   | Medium      | A/B test quiz design, get feedback |
+| Content creation slower than expected | High   | Medium      | Pre-create all A1 content before launch |
+| User churn if grammar boring          | High   | Medium      | Gamification (badges, progress %), motivational messaging |
+| Spaced rep algorithm too simplistic   | Medium | Low         | Upgrade to SM-2 in Phase 2 if needed |
+| Performance on mobile (complex tables)| Medium | Medium      | Optimize grammar tables, responsive design |
+| PocketBase scaling issues             | High   | Low         | Monitor, have upgrade plan before 10k MAU |
 
 ---
 

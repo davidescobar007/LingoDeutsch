@@ -166,7 +166,10 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
          {/* eslint-disable-next-line react/no-danger */}
          <script dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} type="application/ld+json" />
          {/* eslint-disable-next-line react/no-danger */}
-         <script dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} type="application/ld+json" />
+         <script
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+            type="application/ld+json"
+         />
          {/* eslint-disable-next-line react/no-danger */}
          <script dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} type="application/ld+json" />
          <TemplateLanding locale={locale} />

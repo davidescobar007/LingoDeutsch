@@ -19,7 +19,8 @@ export const metadata: Metadata = {
       default: 'Blabling - Aprende alemán de forma fácil y divertida',
       template: '%s | Blabling'
    },
-   description: 'Domina el alemán leyendo lo que te apasiona. De A1 a B2 con lecturas reales, vocabulario con repetición espaciada y gramática clara.',
+   description:
+      'Domina el alemán leyendo lo que te apasiona. De A1 a B2 con lecturas reales, vocabulario con repetición espaciada y gramática clara.',
    icons: {
       icon: '/images/icon.png',
       apple: '/images/apple-icon.png'

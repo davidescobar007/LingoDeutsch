@@ -47,10 +47,19 @@ export const OrganismInteractiveDemoSection = () => {
    }
 
    return (
-      <section aria-labelledby="demo-title" className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-20">
+      <section
+         aria-labelledby="demo-title"
+         className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-20"
+      >
          {/* Background decorations - purely decorative */}
-         <div aria-hidden="true" className="pointer-events-none absolute left-1/4 top-0 h-64 w-64 rounded-full bg-purple-100/40 blur-3xl" />
-         <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-blue-100/40 blur-3xl" />
+         <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/4 top-0 h-64 w-64 rounded-full bg-purple-100/40 blur-3xl"
+         />
+         <div
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-blue-100/40 blur-3xl"
+         />
 
          <div className="container relative z-10 mx-auto px-4">
             <div className="mb-12 text-center">
@@ -59,7 +68,11 @@ export const OrganismInteractiveDemoSection = () => {
                      {t('demo.badge')}
                   </AtomBadge>
                </div>
-               <AtomTitle extraClassName="!text-3xl sm:!text-4xl lg:!text-5xl !font-bold !mb-4" id="demo-title" type="h2">
+               <AtomTitle
+                  extraClassName="!text-3xl sm:!text-4xl lg:!text-5xl !font-bold !mb-4"
+                  id="demo-title"
+                  type="h2"
+               >
                   {t('demo.title')}
                </AtomTitle>
                <AtomText className="mx-auto max-w-2xl !text-lg text-gray-600" fontSize="large">
@@ -112,8 +125,8 @@ export const OrganismInteractiveDemoSection = () => {
                                     isSelected
                                        ? 'bg-primary scale-105 text-white shadow-lg'
                                        : isClicked
-                                         ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                                         : 'hover:bg-yellow-100 hover:text-yellow-900'
+                                       ? 'bg-green-100 text-green-800 hover:bg-green-200'
+                                       : 'hover:bg-yellow-100 hover:text-yellow-900'
                                  }`}
                                  key={index}
                                  onClick={() => handleWordClick(word)}
@@ -173,7 +186,13 @@ export const OrganismInteractiveDemoSection = () => {
                               onClick={closeTooltip}
                               type="button"
                            >
-                              <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg
+                                 aria-hidden="true"
+                                 className="h-5 w-5"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 viewBox="0 0 24 24"
+                              >
                                  <path
                                     d="M6 18L18 6M6 6l12 12"
                                     strokeLinecap="round"
@@ -186,11 +205,7 @@ export const OrganismInteractiveDemoSection = () => {
 
                         {/* Save button preview */}
                         <div className="mt-4 flex items-center gap-3 border-t border-purple-100 pt-4">
-                           <AtomButton
-                              extraClassName="opacity-50 cursor-not-allowed"
-                              size="sm"
-                              variant="PRIMARY"
-                           >
+                           <AtomButton extraClassName="opacity-50 cursor-not-allowed" size="sm" variant="PRIMARY">
                               💾 {t('demo.saveWord')}
                            </AtomButton>
                            <AtomText className="text-gray-500" fontSize="small">
@@ -203,9 +218,14 @@ export const OrganismInteractiveDemoSection = () => {
                   {/* Progress indicator */}
                   <div className="mb-6 flex items-center justify-between rounded-xl bg-gray-50 p-4">
                      <div className="flex items-center gap-2">
-                        <span aria-hidden="true" className="text-lg">🎯</span>
+                        <span aria-hidden="true" className="text-lg">
+                           🎯
+                        </span>
                         <AtomText className="text-gray-600" fontSize="small">
-                           {t('demo.wordsClicked', { count: clickedWords.size, total: demoText.filter((w) => w.type !== '').length })}
+                           {t('demo.wordsClicked', {
+                              count: clickedWords.size,
+                              total: demoText.filter((w) => w.type !== '').length
+                           })}
                         </AtomText>
                      </div>
                      <div

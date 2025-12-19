@@ -7,6 +7,9 @@ export { OrganismSidebar } from './Sidebar/sidebar'
 
 // Feature Components
 export { OrganismArticleCarousel } from './ArticleCarousel/articleCarousel'
+export { OrganismArticleContent } from './ArticleContent/articleContent'
+export { OrganismArticleHeader } from './ArticleHeader/articleHeader'
+export { OrganismArticleList } from './ArticleList/articleList'
 export { OrganismCallToActionCard } from './CallToActionCard/callToActionCard'
 export { OrganismCardsStats } from './CardsStats/cardsStats'
 export { OrganismGrammarLevelCard } from './GrammarLevelCard/grammarLevelCard'

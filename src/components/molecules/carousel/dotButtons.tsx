@@ -46,7 +46,6 @@ export const useDotButton = (emblaApi: EmblaCarouselType | undefined): UseDotBut
 type PropType = ComponentPropsWithRef<'button'>
 
 export const DotButton: React.FC<PropType> = ({ children, ...restProps } = {}) => {
-
    return (
       <button type="button" {...restProps}>
          {children}

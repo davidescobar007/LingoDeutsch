@@ -1,4 +1,6 @@
 export { TemplateAbout } from './AboutTemplate/aboutTemplate'
+export { TemplateArticleList } from './ArticleListTemplate/articleListTemplate'
+export { TemplateArticleReader } from './ArticleReaderTemplate/articleReaderTemplate'
 export { TemplateHome } from './HomeTemplate/homeTemplate'
 export { TemplateLanding } from './LandingTemplate/landingTemplate'
 export { TemplatePrivacy } from './PrivacyTemplate'
