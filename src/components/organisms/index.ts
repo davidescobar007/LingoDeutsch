@@ -11,9 +11,6 @@ export { OrganismArticleCarousel } from './ArticleCarousel/articleCarousel'
 export { OrganismArticleContent } from './ArticleContent/articleContent'
 export { OrganismArticleHeader } from './ArticleHeader/articleHeader'
 export { OrganismArticleList } from './ArticleList/articleList'
-export { OrganismCallToActionCard } from './CallToActionCard/callToActionCard'
-export { OrganismCardsStats } from './CardsStats/cardsStats'
-export { OrganismGrammarLevelCard } from './GrammarLevelCard/grammarLevelCard'
 export { OrganismGrammarPreview } from './GrammarPreview'
 export { OrganismGrammarProgressCard } from './GrammarProgressCard/grammarProgressCard'
 export { OrganismGrammarTopicsList } from './GrammarTopicsList/grammarTopicsList'
@@ -28,16 +25,12 @@ export { OrganismWelcomeHero } from './WelcomeHero/welcomeHero'
 export { OrganismWordSpecification } from './WordSpecification/wordSpecification'
 
 // Landing Page Sections
-export {
-   OrganismFaqSection,
-   OrganismFooterSection,
-   OrganismHeroSection,
-   OrganismHowItWorksSection,
-   OrganismInteractiveDemoSection,
-   OrganismMotivationSection,
-   OrganismTestimonialsSection,
-   OrganismTrustSignalsSection
-} from './Landing'
+export { OrganismFeatureShowcase } from './FeatureShowcase/featureShowcase'
+export { OrganismFinalCTA } from './FinalCTA/finalCTA'
+export { OrganismHeroSection } from './HeroSection/heroSection'
+export { OrganismFooterSection } from './Landing'
+export { OrganismStatsSection } from './StatsSection/statsSection'
+export { OrganismTestimonialsSection } from './TestimonialsSection/testimonialsSection'
 
 // About Page Sections
 export { OrganismAboutFeatures, OrganismAboutHero, OrganismAboutMission, OrganismAboutTeam } from './About'

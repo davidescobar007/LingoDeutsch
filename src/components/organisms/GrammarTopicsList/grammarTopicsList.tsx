@@ -13,11 +13,7 @@ type OrganismGrammarTopicsListProps = {
 
 type TopicState = 'locked' | 'available' | 'recommended' | 'completed'
 
-export const OrganismGrammarTopicsList = ({
-   level,
-   topics,
-   userProgress
-}: OrganismGrammarTopicsListProps) => {
+export const OrganismGrammarTopicsList = ({ level, topics, userProgress }: OrganismGrammarTopicsListProps) => {
    // Determine topic state for each topic
    const getTopicState = (topic: TGrammar): TopicState => {
       const userTopicProgress = userProgress?.find((p) => p.grammar_id === topic.id)
@@ -40,7 +36,10 @@ export const OrganismGrammarTopicsList = ({
       }
 
       // First incomplete topic is recommended
-      if (!userTopicProgress?.isCompleted && topicIndex === topics.findIndex((t) => !userProgress?.find((p) => p.grammar_id === t.id && p.isCompleted))) {
+      if (
+         !userTopicProgress?.isCompleted &&
+         topicIndex === topics.findIndex((t) => !userProgress?.find((p) => p.grammar_id === t.id && p.isCompleted))
+      ) {
          return 'recommended'
       }
 
@@ -80,10 +79,7 @@ export const OrganismGrammarTopicsList = ({
    const totalPages = Math.ceil(topics.length / TOPICS_PER_PAGE)
    const [currentPage, setCurrentPage] = useState(0)
 
-   const paginatedTopics = topics.slice(
-      currentPage * TOPICS_PER_PAGE,
-      (currentPage + 1) * TOPICS_PER_PAGE
-   )
+   const paginatedTopics = topics.slice(currentPage * TOPICS_PER_PAGE, (currentPage + 1) * TOPICS_PER_PAGE)
 
    return (
       <div className="w-full">
@@ -94,8 +90,8 @@ export const OrganismGrammarTopicsList = ({
                   Temas del Nivel {level}
                </AtomTitle>
                <AtomText className="mt-1 text-sm" fontSize="small" isThin>
-                  {userProgress?.filter((p) => topics.some((t) => t.id === p.grammar_id && p.isCompleted)).length ||
-                     0}{' '}
+                  {userProgress?.filter((p) => topics.some((t) => t.id === p.grammar_id && p.isCompleted))
+                     .length || 0}{' '}
                   de {topics.length} completados
                </AtomText>
             </div>
@@ -113,13 +109,13 @@ export const OrganismGrammarTopicsList = ({
                         className={`rounded-lg border p-4 transition-all duration-300 ${
                            isLocked
                               ? getStateStyles(state)
-                              : `${getStateStyles(state)} hover:shadow-lg hover:scale-102`
+                              : `${getStateStyles(state)} hover:scale-102 hover:shadow-lg`
                         }`}
                      >
                         {/* Icon and State */}
-                        <div className="flex items-start justify-between mb-3">
+                        <div className="mb-3 flex items-start justify-between">
                            <span className="text-2xl">{getStateIcon(state)}</span>
-                           <span className="text-xs font-semibold text-base-content/60">
+                           <span className="text-base-content/60 text-xs font-semibold">
                               {currentPage * TOPICS_PER_PAGE + index + 1}/{topics.length}
                            </span>
                         </div>
@@ -130,14 +126,14 @@ export const OrganismGrammarTopicsList = ({
                         </AtomTitle>
 
                         {/* Level Badge */}
-                        <div className="flex items-center gap-2 mb-3">
-                           <span className="inline-block rounded-full bg-primary/20 px-2 py-1 text-xs font-semibold text-primary">
+                        <div className="mb-3 flex items-center gap-2">
+                           <span className="bg-primary/20 text-primary inline-block rounded-full px-2 py-1 text-xs font-semibold">
                               {topic.level || level}
                            </span>
                         </div>
 
                         {/* State Label */}
-                        <div className="flex items-center justify-between pt-3 border-t border-base-300">
+                        <div className="border-base-300 flex items-center justify-between border-t pt-3">
                            <AtomText className="text-xs" fontSize="small" isThin>
                               {state === 'completed' && '✅ Completado'}
                               {state === 'locked' && '🔒 Bloqueado'}
@@ -156,7 +152,7 @@ export const OrganismGrammarTopicsList = ({
          {totalPages > 1 && (
             <div className="mt-8 flex items-center justify-center gap-2">
                <button
-                  className="rounded-lg border border-base-300 px-4 py-2 disabled:opacity-50 hover:bg-base-200"
+                  className="border-base-300 hover:bg-base-200 rounded-lg border px-4 py-2 disabled:opacity-50"
                   disabled={currentPage === 0}
                   onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
                >
@@ -167,9 +163,7 @@ export const OrganismGrammarTopicsList = ({
                   {Array.from({ length: totalPages }).map((_, i) => (
                      <button
                         className={`h-10 w-10 rounded-lg font-semibold transition-all ${
-                           i === currentPage
-                              ? 'bg-primary text-white'
-                              : 'border border-base-300 hover:bg-base-200'
+                           i === currentPage ? 'bg-primary text-white' : 'border-base-300 hover:bg-base-200 border'
                         }`}
                         key={i}
                         onClick={() => setCurrentPage(i)}
@@ -180,7 +174,7 @@ export const OrganismGrammarTopicsList = ({
                </div>
 
                <button
-                  className="rounded-lg border border-base-300 px-4 py-2 disabled:opacity-50 hover:bg-base-200"
+                  className="border-base-300 hover:bg-base-200 rounded-lg border px-4 py-2 disabled:opacity-50"
                   disabled={currentPage === totalPages - 1}
                   onClick={() => setCurrentPage(Math.min(totalPages - 1, currentPage + 1))}
                >

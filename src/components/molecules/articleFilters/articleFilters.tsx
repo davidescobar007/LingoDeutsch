@@ -27,7 +27,7 @@ export const MoleculeArticleFilters = ({
    stateOptions
 }: MoleculeArticleFiltersProps) => {
    return (
-      <div className="card my-6 w-full bg-base-100 shadow-md border border-base-300 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-102">
+      <div className="card bg-base-100 border-base-300 hover:scale-102 my-6 w-full rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg">
          <div className="card-body p-6">
             <div className="mb-4">
                <h3 className="text-primary mb-1 text-lg font-semibold">🔍 Personaliza tu búsqueda</h3>

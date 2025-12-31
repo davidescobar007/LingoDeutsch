@@ -7,12 +7,7 @@ type TAtomProgressPercentage = {
 export const AtomProgressPercentage: FunctionComponent<TAtomProgressPercentage> = ({ value }) => {
    return (
       <section className="col-12 mb-5 text-center">
-         <ProgressBar
-            animateOnRender
-            bgColor="#2563EB"
-            completed={value}
-            transitionDuration="0.4s"
-         />
+         <ProgressBar animateOnRender bgColor="#2563EB" completed={value} transitionDuration="0.4s" />
       </section>
    )
 }

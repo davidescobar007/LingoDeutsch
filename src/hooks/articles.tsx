@@ -59,7 +59,7 @@ export const useGetArticlesListByUserAndState = ({
       queryKey: ['userArticlesList', userId, level, state, sortCriteria],
       queryFn: () => {
          if (!userId) return getArticlesList({ level, sortCriteria })
-         ////////////
+
          return getArticlesListByUser({ userId, sortCriteria, level, isCompleted: state === 'learned' }).then(
             (articlesListByUser) => {
                if (state === 'learned') {

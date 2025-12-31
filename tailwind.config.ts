@@ -123,34 +123,34 @@ const config: Config = {
          'lemonade',
          {
             mytheme: {
-               primary: '#2563EB', // Vibrant blue, used for main buttons, highlights, and active elements
-               'primary-content': '#FFFFFF', // White, ensures readability on primary-colored elements
+               primary: '#2563EB', // Busuu Blue - Vibrant and trustworthy
+               'primary-content': '#FFFFFF',
 
-               secondary: '#e5defc', // Light pastel purple, for secondary buttons and subtle UI elements
-               'secondary-content': '#4D2C91', // Darker purple, maintaining good contrast on secondary elements
+               secondary: '#dbeafe', // Light Blue - For backgrounds/cards
+               'secondary-content': '#1e40af', // Dark Blue text
 
-               accent: '#FFC107', // Amber/Gold, used for accents like hover effects, interactive elements
-               'accent-content': '#5A3B00', // Dark gold/brown, ensuring visibility on accent elements
+               accent: '#FFC800', // Gold/Yellow - For gamification elements
+               'accent-content': '#422a00',
 
-               neutral: '#444444', // Medium gray, ideal for main text and general content
-               'neutral-content': '#FAFAFA', // Off-white, providing contrast for text on darker neutral backgrounds
+               neutral: '#1f2937', // Dark cool gray
+               'neutral-content': '#FFFFFF',
 
-               'base-100': '#FAFAFA', // Off-white/light gray, main background color
-               'base-200': '#F9FAFB', // Slightly darker gray, for subtle section differentiation
-               'base-300': '#f4f6f7', // Light gray, for UI elements like dividers, borders
-               'base-content': '#222222', // Dark gray, used for general text ensuring readability
+               'base-100': '#FFFFFF',
+               'base-200': '#F9FAFB', // Very light cool gray
+               'base-300': '#E5E7EB', // Border gray
 
-               info: '#3B82F6', // Blue for German content and informational messages
-               'info-content': '#1E40AF', // Dark blue for text on info elements
+               info: '#2563EB',
+               success: '#22c55e', // Vibrant Green
+               warning: '#FFC800',
+               error: '#ef4444',
 
-               success: '#00e200', // Green for Spanish content, success states, and easy difficulty
-               'success-content': '#065F46', // Dark green for text on success elements
-
-               warning: '#F59E0B', // Orange for warnings, medium difficulty, and review states
-               'warning-content': '#92400E', // Dark orange for text on warning elements
-
-               error: '#EF4444', // Red for error states and hard difficulty
-               'error-content': '#7F1D1D' // Dark red for text on error elements
+               '--rounded-box': '1.5rem', // Highly rounded cards
+               '--rounded-btn': '1.2rem', // Pill buttons
+               '--rounded-badge': '2rem',
+               '--animation-btn': '0.2s', // Snappy button press
+               '--btn-focus-scale': '0.95',
+               '--border-btn': '0px', // We will handle borders manually for 3D effect usually, or leave standard
+               '--tab-border': '1px'
             }
          }
       ],

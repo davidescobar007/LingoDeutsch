@@ -87,7 +87,9 @@ export const OrganismGrammarPreview = ({ popularTopics }: GrammarPreviewProps) =
             {popularTopics.map((topic, index) => (
                <Link href={`grammar?topic=${topic.id}`} key={index}>
                   <div
-                     className={`flex h-16 transform-gpu cursor-pointer items-center rounded-lg border bg-base-100 px-4 py-3 shadow-md transition-all duration-300 hover:scale-102 hover:shadow-lg ${getColorClasses(topic.colorTheme)}`}
+                     className={`bg-base-100 hover:scale-102 flex h-16 transform-gpu cursor-pointer items-center rounded-lg border px-4 py-3 shadow-md transition-all duration-300 hover:shadow-lg ${getColorClasses(
+                        topic.colorTheme
+                     )}`}
                   >
                      {/* Emoji */}
                      <div className="mr-3 flex h-8 w-8 items-center justify-center text-lg">

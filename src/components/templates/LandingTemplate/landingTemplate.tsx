@@ -1,52 +1,14 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-
-import { AtomSectionSkeleton } from '@/components/atoms'
 import {
+   OrganismFeatureShowcase,
+   OrganismFinalCTA,
+   OrganismFooterSection,
    OrganismHeroSection,
-   OrganismHowItWorksSection,
-   OrganismInteractiveDemoSection,
-   OrganismNavbar
+   OrganismNavbar,
+   OrganismStatsSection,
+   OrganismTestimonialsSection
 } from '@/components/organisms'
-
-// Lazy load below-the-fold sections for better initial page load performance
-const OrganismTestimonialsSection = dynamic(
-   () =>
-      import('@/components/organisms/Landing/TestimonialsSection').then((mod) => mod.OrganismTestimonialsSection),
-   {
-      loading: () => <AtomSectionSkeleton />
-   }
-)
-
-const OrganismMotivationSection = dynamic(
-   () => import('@/components/organisms/Landing/MotivationSection').then((mod) => mod.OrganismMotivationSection),
-   {
-      loading: () => <AtomSectionSkeleton />
-   }
-)
-
-const OrganismFaqSection = dynamic(
-   () => import('@/components/organisms/Landing/FaqSection').then((mod) => mod.OrganismFaqSection),
-   {
-      loading: () => <AtomSectionSkeleton />
-   }
-)
-
-const OrganismTrustSignalsSection = dynamic(
-   () =>
-      import('@/components/organisms/Landing/TrustSignalsSection').then((mod) => mod.OrganismTrustSignalsSection),
-   {
-      loading: () => <AtomSectionSkeleton height="h-64" />
-   }
-)
-
-const OrganismFooterSection = dynamic(
-   () => import('@/components/organisms/Landing/FooterSection').then((mod) => mod.OrganismFooterSection),
-   {
-      loading: () => <AtomSectionSkeleton height="h-48" />
-   }
-)
 
 interface TemplateLandingProps {
    locale: string
@@ -54,20 +16,24 @@ interface TemplateLandingProps {
 
 export const TemplateLanding = ({ locale }: TemplateLandingProps) => {
    return (
-      <div className="flex flex-col">
+      <div className="flex min-h-screen flex-col">
          <OrganismNavbar locale={locale} />
 
-         <main className="overflow-x-hidden">
-            {/* Above-the-fold sections - loaded immediately */}
-            <OrganismHeroSection />
-            <OrganismHowItWorksSection />
-            <OrganismInteractiveDemoSection />
+         <main className="bg-white">
+            <div className="container mx-auto px-4 py-12 md:px-12 lg:py-24">
+               <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
+                  {/* Left Column - Sticky Hero */}
+                  <OrganismHeroSection />
 
-            {/* Below-the-fold sections - lazy loaded */}
-            <OrganismTestimonialsSection />
-            <OrganismMotivationSection />
-            <OrganismFaqSection />
-            <OrganismTrustSignalsSection />
+                  {/* Right Column - All Content */}
+                  <div className="w-full space-y-32 lg:w-1/2">
+                     <OrganismFeatureShowcase />
+                     <OrganismStatsSection />
+                     <OrganismTestimonialsSection />
+                     <OrganismFinalCTA />
+                  </div>
+               </div>
+            </div>
          </main>
 
          <OrganismFooterSection />

@@ -1,13 +1,14 @@
 {
    "landing": {
       "hero": {
-         "badge": "🇩🇪 Alemán para hispanohablantes",
-         "title": "Domina el alemán leyendo lo que te apasiona",
-         "subtitle": "De A1 a B2 con lecturas reales, vocabulario que recuerdas y gramática clara. Todo en español.",
+         "badge": "🇩🇪 Alemán para hispanohablantes - El Camino Correcto",
+         "title": "Domina la gramática primero, luego el vocabulario, finalmente la lectura",
+         "titleHighlight": "alemán",
+         "subtitle": "De A1 a B2 con una metodología comprobada. Primero entiendes las reglas, luego practicas palabras en contexto real, y finalmente lees artículos completos. Todo en español.",
          "ctaPrimary": "Comienza gratis ahora",
          "ctaSecondary": "Ver cómo funciona",
          "noCreditCard": "No requiere tarjeta de crédito",
-         "trustLine": "Únete a miles de estudiantes que ya confían en Blabling",
+         "trustLine": "Miles de hispanohablantes están dominando el alemán con nuestro método",
          "animationLabel": "Animación ilustrativa de aprendizaje de alemán"
       },
       "benefits": {
@@ -17,27 +18,27 @@
       },
       "howItWorks": {
          "title": "¿Cómo funciona?",
-         "subtitle": "Aprende alemán en 3 simples pasos",
+         "subtitle": "Domina alemán paso a paso: Gramática → Vocabulario → Lectura",
          "step1": {
             "badge": "Fundamentos",
             "title": "Gramática Estructurada",
-            "description": "Construye una base sólida sin confusión. Explicaciones claras en español con ejemplos reales que puedes usar hoy mismo.",
+            "description": "Construye una base sólida sin confusión. Desde A1 hasta B2, cada lección se apoya en la anterior. Explicaciones claras en español con ejemplos reales que puedes usar hoy mismo.",
             "stat1": "16 Lecciones",
             "stat2": "120+ Ejercicios"
          },
          "step2": {
-            "badge": "Contexto",
-            "title": "Lectura Interactiva",
-            "description": "Aprende alemán en contexto. Cada artículo está calibrado a tu nivel y cubre temas fascinantes: cultura, viajes, gastronomía.",
-            "tryIt": "Haz clic en cualquier palabra para ver la traducción"
+            "badge": "Práctica Activa",
+            "title": "Vocabulario + Repetición Espaciada",
+            "description": "Aprende palabras en contexto real de los artículos. Nuestro algoritmo inteligente sabe exactamente cuándo repasar cada palabra para maximizar tu retención.",
+            "tryIt": "Palabras personalizadas que crecen contigo"
          },
          "step3": {
-            "badge": "Retención",
-            "title": "Repetición Espaciada",
-            "description": "Tu cerebro olvida, nosotros lo recordamos. El sistema calcula exactamente cuándo repasar cada palabra para retención máxima.",
-            "stat1": "Total",
-            "stat2": "Hoy",
-            "stat3": "Racha"
+            "badge": "Aplicación Real",
+            "title": "Lectura Interactiva",
+            "description": "Aplica toda tu gramática y vocabulario en artículos reales calibrados a tu nivel. Cada artículo cubre temas fascinantes: cultura, viajes, gastronomía.",
+            "stat1": "50+ Artículos",
+            "stat2": "Todos los niveles",
+            "stat3": "Temas variados"
          }
       },
       "testimonials": {

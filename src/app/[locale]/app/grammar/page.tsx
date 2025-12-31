@@ -57,9 +57,9 @@ const Grammar = () => {
    const getLevelProgress = (level: GrammarLevel) => {
       // Simulate progress for display (actual data loaded on demand)
       if (level === 'A1' && grammarList.length > 0) {
-         const completedCount = userGrammarProgress?.filter((p) =>
-            grammarList.some((g) => g.id === p.grammar_id && p.isCompleted)
-         ).length || 0
+         const completedCount =
+            userGrammarProgress?.filter((p) => grammarList.some((g) => g.id === p.grammar_id && p.isCompleted))
+               .length || 0
          const total = grammarList.length
          const percentage = total > 0 ? Math.round((completedCount / total) * 100) : 0
          return { completed: completedCount, total, percentage }
@@ -149,7 +149,7 @@ const Grammar = () => {
          </div>
 
          {/* Level Selector - Minimalist Horizontal Pills */}
-         <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
+         <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2">
             {LEVELS.map((level) => {
                const progress = getLevelProgress(level)
                const locked = isLevelLocked(level)
@@ -186,13 +186,13 @@ const Grammar = () => {
          </div>
 
          {/* Divider */}
-         <div className="my-12 border-t border-base-300" />
+         <div className="border-base-300 my-12 border-t" />
 
          {/* Topics List + Lesson View */}
-         <div className="flex w-full flex-wrap justify-between gap-6">
+         <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
             {/* Sidebar - Topics List */}
-            <aside className="w-full lg:w-4/12 rounded-lg border border-base-300 bg-base-100 shadow-md p-6">
-               <div className="flex items-center gap-2 mb-4">
+            <aside className="border-base-300 bg-base-100 self-start rounded-lg border p-6 shadow-md lg:sticky lg:top-20 lg:col-span-4">
+               <div className="mb-4 flex items-center gap-2">
                   <span className="text-2xl">{LEVEL_INFO[selectedLevel].emoji}</span>
                   <div>
                      <AtomTitle extraClassName="!text-base !mb-0" type="h3">
@@ -212,9 +212,9 @@ const Grammar = () => {
                         userGrammarProgress={userGrammarProgress}
                      />
                   ) : (
-                     <div className="text-center py-8">
+                     <div className="py-8 text-center">
                         <div className="inline-block">
-                           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary" />
+                           <div className="border-primary h-6 w-6 animate-spin rounded-full border-b-2" />
                         </div>
                         <AtomText className="mt-3" isThin>
                            Cargando temas...
@@ -225,10 +225,13 @@ const Grammar = () => {
             </aside>
 
             {/* Main Content - Lesson or Empty State */}
-            <section className="w-full lg:w-15/24 rounded-lg border border-base-300 bg-base-100 shadow-md p-6" id="grammar-content">
+            <section
+               className="border-base-300 bg-base-100 rounded-lg border p-6 shadow-md lg:col-span-8"
+               id="grammar-content"
+            >
                {grammarTopicContent && selectedTopic ? (
                   <>
-                     <header className="mb-6 flex items-center justify-between rounded-lg border-b border-base-300 pb-4">
+                     <header className="border-base-300 mb-6 flex items-center justify-between rounded-lg border-b pb-4">
                         <AtomTitle extraClassName="mt-0" type="h3">
                            {grammarTopicContent?.topic_name?.es}
                         </AtomTitle>
@@ -241,20 +244,21 @@ const Grammar = () => {
 
                      {visibleSections < getTotalSections(grammarTopicContent.content) && (
                         <div className="mt-4 flex justify-center">
-                           <AtomButton
-                              onClick={() => setVisibleSections((prev) => prev + 1)}
-                              variant="OUTLINE"
-                           >
+                           <AtomButton onClick={() => setVisibleSections((prev) => prev + 1)} variant="OUTLINE">
                               Ver más
                            </AtomButton>
                         </div>
                      )}
 
                      {visibleSections >= getTotalSections(grammarTopicContent.content) && (
-                        <footer className="mt-6 border-t border-base-300 pt-6">
+                        <footer className="border-base-300 mt-6 border-t pt-6">
                            <div className="flex flex-col gap-4">
                               <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                                 <AtomButton href={`/app/quiz/${selectedTopic}?type=grammar`} type="link" variant="PRIMARY">
+                                 <AtomButton
+                                    href={`/app/quiz/${selectedTopic}?type=grammar`}
+                                    type="link"
+                                    variant="PRIMARY"
+                                 >
                                     <span className="flex items-center justify-center gap-2">🎯 Empezar Quiz</span>
                                  </AtomButton>
                                  <AtomButton onClick={() => handleNextTopic()} variant="OUTLINE">
@@ -267,7 +271,7 @@ const Grammar = () => {
                                     <AtomText fontSize="small" isThin type="paragraph">
                                        ¿Ya dominas este tema?{' '}
                                        <span
-                                          className="cursor-pointer text-primary hover:underline"
+                                          className="text-primary cursor-pointer hover:underline"
                                           onClick={() => {
                                              saveGrammarProgress({ user, grammar_id: selectedTopic, score: 100 })
                                              handleNextTopic()
@@ -284,12 +288,12 @@ const Grammar = () => {
                   </>
                ) : (
                   <div className="flex w-full flex-col items-center justify-center gap-4 py-16">
-                     <div className="rounded-full bg-primary/10 p-6">
+                     <div className="bg-primary/10 rounded-full p-6">
                         <BookOpen className="text-primary" size={60} />
                      </div>
                      <div className="text-center">
                         <AtomTitle type="h3">Elige un tema</AtomTitle>
-                        <AtomText className="mt-1 text-base-content/60">
+                        <AtomText className="text-base-content/60 mt-1">
                            Selecciona un tema de la lista lateral para comenzar a aprender
                         </AtomText>
                      </div>

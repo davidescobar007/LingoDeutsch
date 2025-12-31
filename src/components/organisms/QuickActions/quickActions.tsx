@@ -44,9 +44,7 @@ const DEFAULT_ACTIONS: QuickAction[] = [
    }
 ]
 
-export const OrganismQuickActions = ({
-   actions = DEFAULT_ACTIONS
-}: OrganismQuickActionsProps) => {
+export const OrganismQuickActions = ({ actions = DEFAULT_ACTIONS }: OrganismQuickActionsProps) => {
    return (
       <div className="w-full">
          <AtomTitle extraClassName="!text-lg mb-4" type="h3">
@@ -56,7 +54,7 @@ export const OrganismQuickActions = ({
          <div className="flex flex-col gap-3">
             {actions.map((action) => (
                <Link href={action.href} key={action.id}>
-                  <div className="rounded-lg border border-base-300 bg-base-100 p-4 shadow-md transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:scale-102">
+                  <div className="border-base-300 bg-base-100 hover:border-primary/50 hover:scale-102 rounded-lg border p-4 shadow-md transition-all duration-300 hover:shadow-lg">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                            <span className="text-3xl">{action.emoji}</span>
@@ -71,7 +69,7 @@ export const OrganismQuickActions = ({
                         </div>
                         <div className="flex items-center gap-3">
                            {action.badgeCount !== undefined && (
-                              <span className="rounded-full bg-primary/20 px-3 py-1 text-sm font-bold text-primary">
+                              <span className="bg-primary/20 text-primary rounded-full px-3 py-1 text-sm font-bold">
                                  {action.badgeCount}
                               </span>
                            )}

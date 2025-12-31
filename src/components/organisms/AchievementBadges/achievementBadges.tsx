@@ -46,7 +46,7 @@ export const OrganismAchievementBadges = ({
    achievements = DEFAULT_ACHIEVEMENTS
 }: OrganismAchievementBadgesProps) => {
    return (
-      <div className="rounded-lg border border-base-300 bg-base-100 p-6 shadow-md">
+      <div className="border-base-300 bg-base-100 rounded-lg border p-6 shadow-md">
          <AtomTitle extraClassName="!text-lg mb-4" type="h3">
             🎖️ Logros
          </AtomTitle>
@@ -56,8 +56,8 @@ export const OrganismAchievementBadges = ({
                <div
                   className={`flex flex-col items-center justify-center gap-2 rounded-lg p-4 text-center transition-all duration-300 ${
                      achievement.unlocked
-                        ? 'bg-primary/10 border border-primary/30 hover:shadow-md hover:scale-105'
-                        : 'bg-base-200 border border-base-300 opacity-50'
+                        ? 'bg-primary/10 border-primary/30 border hover:scale-105 hover:shadow-md'
+                        : 'bg-base-200 border-base-300 border opacity-50'
                   }`}
                   key={achievement.id}
                >
@@ -66,7 +66,7 @@ export const OrganismAchievementBadges = ({
                      {achievement.label}
                   </AtomText>
                   {achievement.unlocked && achievement.unlockedDate && (
-                     <AtomText className="text-xs text-primary" fontSize="small" isThin>
+                     <AtomText className="text-primary text-xs" fontSize="small" isThin>
                         {new Date(achievement.unlockedDate).toLocaleDateString('es-ES', {
                            month: 'short',
                            day: 'numeric'

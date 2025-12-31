@@ -10,7 +10,14 @@ import {
    OrganismVocabularyPreview,
    OrganismWelcomeHero
 } from '@/components/organisms'
-import { TArticle, TGrammar, TScore, TUser, TUserGrammarProgress, TVocabularyStatsUI } from '@/modules/actions/types'
+import {
+   TArticle,
+   TGrammar,
+   TScore,
+   TUser,
+   TUserGrammarProgress,
+   TVocabularyStatsUI
+} from '@/modules/actions/types'
 
 type TemplateHomeProps = {
    articles: TArticle[]
@@ -130,10 +137,7 @@ export const TemplateHome = ({
                   nextTopicLabel={nextTopic?.topic_name?.es || 'Próximo tema'}
                   totalTopics={totalGrammarTopics}
                />
-               <OrganismStreakCard
-                  activityDays={activityDays}
-                  currentStreak={currentStreak}
-               />
+               <OrganismStreakCard activityDays={activityDays} currentStreak={currentStreak} />
             </div>
 
             {/* Achievement Badges */}

@@ -20,7 +20,7 @@ const OrganismNavbar = ({ locale }: { locale: string }) => {
    const user = getUserInfo()
 
    return (
-      <header className="border-b-1 navbar border-neutral bg-primary flex h-14 items-center px-4 md:px-10 lg:px-20">
+      <header className="border-b-1 navbar border-neutral bg-primary sticky top-0 z-50 flex h-14 items-center px-4 md:px-10 lg:px-20">
          <div className="flex flex-1 items-center gap-2">
             <div className="-mt-2 w-16 select-none">
                <Link href="/">

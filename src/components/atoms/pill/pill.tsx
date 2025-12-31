@@ -19,11 +19,11 @@ export const AtomPill: FunctionComponent<TAtomPill> = ({
 }) => {
    return (
       <button
-         className={`px-4 py-2 rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-2 border-2 ${
+         className={`flex items-center gap-2 whitespace-nowrap rounded-full border-2 px-4 py-2 transition-all duration-300 ${
             isSelected
                ? 'border-primary bg-primary text-white'
                : 'border-base-400 bg-base-100 text-base-content hover:border-primary'
-         } ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+         } ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
          disabled={disabled}
          onClick={onClick}
       >

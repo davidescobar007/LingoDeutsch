@@ -47,17 +47,26 @@ export const AtomButton: FunctionComponent<TAtomButton> = ({
       lg: 'btn-lg'
    }
 
-   const baseClasses = 'btn rounded-lg font-semibold transition-all duration-300 ease-in-out'
-   const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : ''
-
+   const baseClasses = 'btn'
    const buttonVariantClasses = variantClasses[typeOf]
 
-   const combinedClasses = [baseClasses, buttonVariantClasses, sizeClasses[size], extraClassName, disabledClasses, isBlock ? 'btn-block' : '']
+   const combinedClasses = [
+      baseClasses,
+      buttonVariantClasses,
+      sizeClasses[size],
+      extraClassName,
+      isBlock ? 'btn-block' : ''
+   ]
       .filter(Boolean)
       .join(' ')
 
-   const defaultLinkBase = `btn rounded-lg shadow-md target:bg-transparent${isBlock ? ' btn-block' : ''}`
-   const linkDefaultClasses = [defaultLinkBase, buttonVariantClasses, sizeClasses[size], extraClassName, disabledClasses]
+   const linkDefaultClasses = [
+      baseClasses,
+      buttonVariantClasses,
+      sizeClasses[size],
+      extraClassName,
+      isBlock ? 'btn-block' : ''
+   ]
       .filter(Boolean)
       .join(' ')
 

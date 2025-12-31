@@ -73,7 +73,7 @@ export const OrganismArticleContent = ({
                      Presiona sobre una palabra para obtener su traducción, luego no olvides realizar el quiz al
                      final de la sección.
                   </AlertAtom>
-                  <div className="rounded-lg border border-base-300 bg-base-100 p-6 shadow-md md:p-4">
+                  <div className="border-base-300 bg-base-100 rounded-lg border p-6 shadow-md md:p-4">
                      <AtomText
                         className="!text-justify leading-10 tracking-normal"
                         fontSize="large"

@@ -116,14 +116,14 @@ Become the preferred German learning platform for serious Spanish-speaking learn
 
 **MVP Grammar Topics:**
 
-| Topic | Vocabulary | Quiz Q | Time |
-|-------|-----------|--------|------|
-| Articles & Gender | 20 words | 8 | 15 min |
-| Present Tense | 20 words | 8 | 20 min |
-| Nominative & Accusative | 15 words | 6 | 15 min |
-| Plurals & Declension | 15 words | 6 | 12 min |
-| Sentence Structure | 10 words | 6 | 12 min |
-| **TOTAL A1** | **80 words** | **34 questions** | **~75 min** |
+| Topic                   | Vocabulary   | Quiz Q           | Time        |
+| ----------------------- | ------------ | ---------------- | ----------- |
+| Articles & Gender       | 20 words     | 8                | 15 min      |
+| Present Tense           | 20 words     | 8                | 20 min      |
+| Nominative & Accusative | 15 words     | 6                | 15 min      |
+| Plurals & Declension    | 15 words     | 6                | 12 min      |
+| Sentence Structure      | 10 words     | 6                | 12 min      |
+| **TOTAL A1**            | **80 words** | **34 questions** | **~75 min** |
 
 **Success Metrics:**
 
@@ -265,7 +265,7 @@ Word marked Due if:
 -  [ ] Grammar progress calculated: topics_completed / 5 (A1 only for MVP)
 -  [ ] Streak counter: ≥10 min practice session = day completed
 -  [ ] 7-day calendar auto-populates from practice session timestamps
--  [ ] "Mastery %" = (easy_words / total_words) * 100
+-  [ ] "Mastery %" = (easy_words / total_words) \* 100
 -  [ ] Show different CTA based on user state (grammar-first → articles → vocab)
 -  [ ] Animated stat cards on page load
 -  [ ] Mobile: stats stack vertically, badges show in row
@@ -715,26 +715,26 @@ Word marked Due if:
 
 ### **Learning Outcomes (Primary Metrics - Grammar-First)**
 
-| Metric                              | Target                           | Frequency |
-| ----------------------------------- | -------------------------------- | --------- |
-| A1 Grammar Completion Rate          | 70%+ of signups complete all 5   | Monthly   |
-| Grammar Quiz Pass Rate (≥60%)       | 80%+ (well-designed lessons)     | Daily     |
-| Time to First Article               | 2-4 weeks from signup            | Monthly   |
-| Grammar-to-Articles Conversion      | 60%+ of grammar completers       | Monthly   |
-| Article Comprehension (quiz avg)    | 75%+ score (understand content)  | Daily     |
-| Vocabulary Mastery Rate             | 65%+ of learned words "easy"     | Monthly   |
-| Articles Read/User/Week (avg)       | 2+ per user (after grammar)      | Weekly    |
+| Metric                           | Target                          | Frequency |
+| -------------------------------- | ------------------------------- | --------- |
+| A1 Grammar Completion Rate       | 70%+ of signups complete all 5  | Monthly   |
+| Grammar Quiz Pass Rate (≥60%)    | 80%+ (well-designed lessons)    | Daily     |
+| Time to First Article            | 2-4 weeks from signup           | Monthly   |
+| Grammar-to-Articles Conversion   | 60%+ of grammar completers      | Monthly   |
+| Article Comprehension (quiz avg) | 75%+ score (understand content) | Daily     |
+| Vocabulary Mastery Rate          | 65%+ of learned words "easy"    | Monthly   |
+| Articles Read/User/Week (avg)    | 2+ per user (after grammar)     | Weekly    |
 
 ### **Engagement Metrics**
 
-| Metric                              | Target  | Frequency |
-| ----------------------------------- | ------- | --------- |
-| Daily Active Users (DAU)            | 300+    | Daily     |
-| Weekly Active Users (WAU)           | 800+    | Weekly    |
-| Monthly Active Users (MAU)          | 2000+   | Monthly   |
-| Avg Session Duration                | 15-20 min (grammar focused) | Daily |
-| Sessions per User/Week              | 4+      | Weekly    |
-| Streak Maintenance (7+ days)        | 30%+ of DAU                      | Weekly    |
+| Metric                       | Target                      | Frequency |
+| ---------------------------- | --------------------------- | --------- |
+| Daily Active Users (DAU)     | 300+                        | Daily     |
+| Weekly Active Users (WAU)    | 800+                        | Weekly    |
+| Monthly Active Users (MAU)   | 2000+                       | Monthly   |
+| Avg Session Duration         | 15-20 min (grammar focused) | Daily     |
+| Sessions per User/Week       | 4+                          | Weekly    |
+| Streak Maintenance (7+ days) | 30%+ of DAU                 | Weekly    |
 
 ### **Retention Metrics**
 
@@ -747,14 +747,14 @@ Word marked Due if:
 
 ### **Business Metrics (MVP Phase)**
 
-| Metric                              | Target       | Note                         |
-| ----------------------------------- | ------------ | ---------------------------- |
-| Acquisition cost (CAC)              | <€1 per user | Organic/word-of-mouth focus  |
-| Signup → A1 Completion Conversion   | 70%          | Key funnel metric            |
-| Signup → First Article Conversion   | 60%          | Grammar-to-articles success  |
-| User engagement: session frequency  | 4+ sessions/week | Indicates habit formation |
-| Premium conversion (Phase 2+)       | 8-12%        | TBD - depends on premium tier |
-| NPS (Net Promoter Score)            | 50+          | Quarterly survey             |
+| Metric                             | Target           | Note                          |
+| ---------------------------------- | ---------------- | ----------------------------- |
+| Acquisition cost (CAC)             | <€1 per user     | Organic/word-of-mouth focus   |
+| Signup → A1 Completion Conversion  | 70%              | Key funnel metric             |
+| Signup → First Article Conversion  | 60%              | Grammar-to-articles success   |
+| User engagement: session frequency | 4+ sessions/week | Indicates habit formation     |
+| Premium conversion (Phase 2+)      | 8-12%            | TBD - depends on premium tier |
+| NPS (Net Promoter Score)           | 50+              | Quarterly survey              |
 
 ---
 
@@ -841,10 +841,11 @@ The following features are NOT part of the current MVP (A1 only):
 ✅ Internationalization (es/de)
 
 **MVP Success Criteria:**
-- 70%+ of signups complete A1 grammar
-- 60%+ of grammar completers read articles
-- 75%+ article comprehension (quiz avg)
-- 40%+ 7-day retention rate
+
+-  70%+ of signups complete A1 grammar
+-  60%+ of grammar completers read articles
+-  75%+ article comprehension (quiz avg)
+-  40%+ 7-day retention rate
 
 **Target:** Q1 2026 (public beta)
 
@@ -904,24 +905,24 @@ The following features are NOT part of the current MVP (A1 only):
 
 ### **External Dependencies**
 
-| Dependency              | Risk Level | Mitigation                               |
-| ----------------------- | ---------- | ---------------------------------------- |
+| Dependency              | Risk Level | Mitigation                                  |
+| ----------------------- | ---------- | ------------------------------------------- |
 | PocketBase availability | Medium     | Monitor uptime, plan scaling before 10k MAU |
-| Google OAuth            | Medium     | Have email/password fallback plan         |
-| Vercel/Hosting          | Medium     | Monitor performance, CDN caching strategy |
+| Google OAuth            | Medium     | Have email/password fallback plan           |
+| Vercel/Hosting          | Medium     | Monitor performance, CDN caching strategy   |
 
 ### **Internal Risks (Grammar-First Specific)**
 
-| Risk                                  | Impact | Probability | Mitigation                      |
-| ------------------------------------- | ------ | ----------- | ------------------------------- |
-| Grammar content quality too high      | High   | Medium      | User testing, iterate on difficulty |
-| Users skip grammar to read articles   | High   | Medium      | Hard gate: articles locked until grammar 100% |
-| Grammar quizzes too hard (>20% fail)  | High   | Medium      | A/B test quiz design, get feedback |
-| Content creation slower than expected | High   | Medium      | Pre-create all A1 content before launch |
-| User churn if grammar boring          | High   | Medium      | Gamification (badges, progress %), motivational messaging |
-| Spaced rep algorithm too simplistic   | Medium | Low         | Upgrade to SM-2 in Phase 2 if needed |
-| Performance on mobile (complex tables)| Medium | Medium      | Optimize grammar tables, responsive design |
-| PocketBase scaling issues             | High   | Low         | Monitor, have upgrade plan before 10k MAU |
+| Risk                                   | Impact | Probability | Mitigation                                                |
+| -------------------------------------- | ------ | ----------- | --------------------------------------------------------- |
+| Grammar content quality too high       | High   | Medium      | User testing, iterate on difficulty                       |
+| Users skip grammar to read articles    | High   | Medium      | Hard gate: articles locked until grammar 100%             |
+| Grammar quizzes too hard (>20% fail)   | High   | Medium      | A/B test quiz design, get feedback                        |
+| Content creation slower than expected  | High   | Medium      | Pre-create all A1 content before launch                   |
+| User churn if grammar boring           | High   | Medium      | Gamification (badges, progress %), motivational messaging |
+| Spaced rep algorithm too simplistic    | Medium | Low         | Upgrade to SM-2 in Phase 2 if needed                      |
+| Performance on mobile (complex tables) | Medium | Medium      | Optimize grammar tables, responsive design                |
+| PocketBase scaling issues              | High   | Low         | Monitor, have upgrade plan before 10k MAU                 |
 
 ---
 

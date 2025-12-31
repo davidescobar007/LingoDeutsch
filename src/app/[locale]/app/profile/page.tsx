@@ -59,17 +59,12 @@ const Page = () => {
          {/* Profile Card */}
          <div className="mx-auto max-w-2xl">
             {/* Avatar & User Info */}
-            <div className="mb-8 rounded-lg border border-base-300 bg-base-100 p-6">
+            <div className="border-base-300 bg-base-100 mb-8 rounded-lg border p-6">
                <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
                   {/* Avatar */}
                   <div className="flex-shrink-0">
                      <div className="ring-primary ring-offset-base-100 h-24 w-24 overflow-hidden rounded-full ring-4 ring-offset-2">
-                        <Image
-                           alt="Profile picture"
-                           height={96}
-                           src={user?.avatarUrl || ''}
-                           width={96}
-                        />
+                        <Image alt="Profile picture" height={96} src={user?.avatarUrl || ''} width={96} />
                      </div>
                   </div>
 
@@ -78,14 +73,12 @@ const Page = () => {
                      <AtomTitle extraClassName="!mb-1" type="h3">
                         {userCopy?.name}
                      </AtomTitle>
-                     <AtomText className="text-base-content/60 mb-4">
-                        @{userCopy?.username}
-                     </AtomText>
+                     <AtomText className="text-base-content/60 mb-4">@{userCopy?.username}</AtomText>
 
                      {/* Stats Pills */}
                      <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
-                        <div className="rounded-full bg-primary/10 px-3 py-1">
-                           <AtomText className="text-sm font-semibold text-primary">
+                        <div className="bg-primary/10 rounded-full px-3 py-1">
+                           <AtomText className="text-primary text-sm font-semibold">
                               ✨ {user.score} puntos
                            </AtomText>
                         </div>
@@ -95,7 +88,7 @@ const Page = () => {
             </div>
 
             {/* Edit Form */}
-            <div className="rounded-lg border border-base-300 bg-base-100 p-6">
+            <div className="border-base-300 bg-base-100 rounded-lg border p-6">
                <AtomTitle extraClassName="!mb-4" type="h4">
                   Editar Perfil
                </AtomTitle>
@@ -149,12 +142,7 @@ const Page = () => {
                      >
                         {isPending ? <span className="loading loading-spinner loading-sm" /> : 'Cancelar'}
                      </AtomButton>
-                     <AtomButton
-                        disabled={isPending}
-                        extraClassName="flex-1"
-                        type="submit"
-                        variant="PRIMARY"
-                     >
+                     <AtomButton disabled={isPending} extraClassName="flex-1" type="submit" variant="PRIMARY">
                         {isPending ? (
                            <span className="loading loading-spinner loading-sm" />
                         ) : (
