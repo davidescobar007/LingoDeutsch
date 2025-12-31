@@ -12,11 +12,11 @@ export const OrganismHeroSection = () => {
                </span>
             </div>
 
-            <h1 className="from-primary mb-6 bg-gradient-to-r via-blue-700 to-purple-600 bg-clip-text text-6xl font-black leading-tight text-transparent md:text-7xl lg:text-8xl">
+            <h1 className="from-primary mb-6 bg-gradient-to-r via-blue-700 to-purple-600 bg-clip-text text-5xl font-black leading-tight text-transparent md:text-6xl lg:text-7xl">
                Alemán de Forma Fácil y Rápida
             </h1>
 
-            <p className="mb-8 max-w-xl text-xl leading-relaxed text-gray-600 lg:text-2xl">
+            <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-600 lg:text-xl">
                La plataforma más completa para dominar el alemán. Gramática, vocabulario y lectura inmersiva en un
                solo lugar.
             </p>

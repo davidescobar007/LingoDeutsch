@@ -23,10 +23,10 @@ export const MoleculeFeatureCard = ({
             className={`card-3d overflow-hidden rounded-3xl border border-gray-100 bg-gradient-to-br ${gradient} to-white p-12 transition-all hover:shadow-2xl`}
          >
             <div className={`${iconBg} mb-6 inline-block rounded-2xl p-4`}>
-               <div className="text-6xl">{icon}</div>
+               <div className="text-5xl">{icon}</div>
             </div>
-            <h3 className="mb-4 text-4xl font-black text-gray-900">{title}</h3>
-            <p className="mb-6 text-lg leading-relaxed text-gray-600">{description}</p>
+            <h3 className="mb-4 text-3xl font-black text-gray-900">{title}</h3>
+            <p className="mb-6 text-base leading-relaxed text-gray-600">{description}</p>
             {content}
          </div>
       </div>
