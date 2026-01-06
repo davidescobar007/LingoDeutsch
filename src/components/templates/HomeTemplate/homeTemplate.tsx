@@ -84,7 +84,7 @@ export const TemplateHome = ({
             id: 'read-article',
             title: 'Leer Artículo',
             emoji: '📖',
-            description: `${firstArticle.level || 'A1'} • ${firstArticle.estimated_reading_time || 8} minutos`,
+            description: `${firstArticle.level || 'A1'} • ${firstArticle.estimated_read_time || 8} minutos`,
             href: `/app/article/${firstArticle.id}`,
             variant: grammarComplete ? 'PRIMARY' : 'SECONDARY'
          })

@@ -8,6 +8,7 @@ type VocabularyStats = {
    streak?: number
    weakWords?: number
    dueForReview?: number
+   percentageDominated?: number
 }
 
 type VocabularyPreviewProps = {

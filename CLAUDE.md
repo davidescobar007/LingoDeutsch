@@ -30,7 +30,7 @@ npm run build           # Build for production
 npm start               # Start production server
 
 # Git & Commits
-npm run commit          # Use commitizen for conventional commits
+# Commits are automatically created via Claude Code with proper formatting
 ```
 
 ## Architecture Overview

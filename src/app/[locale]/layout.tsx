@@ -9,8 +9,6 @@ import QueryProvider from '@/hooks/queryProvider'
 
 import 'react-toastify/dist/ReactToastify.css'
 import './globals.scss'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
 

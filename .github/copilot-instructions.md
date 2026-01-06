@@ -187,7 +187,6 @@ npm run dev          # Start dev server (localhost:3000)
 npm run lint         # Check for errors
 npm run lint:fix     # Auto-fix linting issues
 npm run prettier     # Format all files
-npm run commit       # Commitizen (conventional commits)
 npm run build        # Production build
 ```
 
