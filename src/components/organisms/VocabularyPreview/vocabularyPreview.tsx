@@ -31,8 +31,10 @@ export const OrganismVocabularyPreview = ({
    const totalWords = vocabularyStats?.totalWords || 0
    const dueForReview = vocabularyStats?.dueForReview || 0
    const weakWords = vocabularyStats?.weakWords || 0
+   const masteryPercentage = Math.round(vocabularyStats?.percentageDominated || 0)
+   const wordsToday = vocabularyStats?.wordsLearnedToday || 0
 
-   // Define the 3 actionable vocabulary cards with theme-aligned colors
+   // Define the 5 actionable vocabulary cards with theme-aligned colors
    const vocabularyCards: VocabularyCard[] = [
       {
          id: 'total',
@@ -56,6 +58,22 @@ export const OrganismVocabularyPreview = ({
          colorLight: 'text-error',
          colorDark: 'dark:text-error',
          icon: '🎯'
+      },
+      {
+         id: 'mastery',
+         label: 'Dominio (Easy)',
+         value: masteryPercentage,
+         colorLight: 'text-success',
+         colorDark: 'dark:text-success',
+         icon: '🎓'
+      },
+      {
+         id: 'today',
+         label: 'Practicadas hoy',
+         value: wordsToday,
+         colorLight: 'text-primary',
+         colorDark: 'dark:text-primary',
+         icon: '✅'
       }
    ]
 
@@ -70,6 +88,10 @@ export const OrganismVocabularyPreview = ({
             return `${baseStyles} border-warning hover:border-warning/80`
          case 'weak':
             return `${baseStyles} border-error hover:border-error/80`
+         case 'mastery':
+            return `${baseStyles} border-success hover:border-success/80`
+         case 'today':
+            return `${baseStyles} border-primary hover:border-primary/80`
          default:
             return baseStyles
       }
@@ -83,6 +105,10 @@ export const OrganismVocabularyPreview = ({
             return 'vocabulary?filter=due'
          case 'weak':
             return 'vocabulary?filter=weak'
+         case 'mastery':
+            return 'vocabulary?filter=easy'
+         case 'today':
+            return 'vocabulary'
          default:
             return 'vocabulary'
       }
@@ -105,9 +131,9 @@ export const OrganismVocabularyPreview = ({
             </Link>
          </div>
 
-         <div className="flex w-full flex-wrap gap-4 sm:flex-nowrap">
+         <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
             {vocabularyCards.map((card) => (
-               <Link className="w-full sm:flex-1" href={getCardLink(card.id)} key={card.id}>
+               <Link href={getCardLink(card.id)} key={card.id}>
                   <div className={getCardStyles(card)}>
                      <AtomText className="mb-2 text-center" fontSize="small" isThin>
                         {card.label}
@@ -115,7 +141,9 @@ export const OrganismVocabularyPreview = ({
 
                      <div className="flex items-center gap-2">
                         {card.icon && <span className="animate-pulse text-2xl">{card.icon}</span>}
-                        <span className={`${getCardValueClasses(card)} drop-shadow-sm`}>{card.value}</span>
+                        <span className={`${getCardValueClasses(card)} drop-shadow-sm`}>
+                           {card.id === 'mastery' ? `${card.value}%` : card.value}
+                        </span>
                      </div>
                   </div>
                </Link>
