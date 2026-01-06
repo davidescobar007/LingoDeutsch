@@ -30,18 +30,6 @@ export const OrganismFooterSection = () => {
                </Link>
             </nav>
 
-            <div className="mb-8 flex justify-center gap-6">
-               {/* Social Placeholders */}
-               {[1, 2, 3].map((i) => (
-                  <div
-                     className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-100 text-gray-400 transition-colors hover:bg-blue-100 hover:text-blue-500"
-                     key={i}
-                  >
-                     •
-                  </div>
-               ))}
-            </div>
-
             <p className="text-neutral/40 text-sm">
                © 2025 Blabling. Todos los derechos reservados.
                <br />

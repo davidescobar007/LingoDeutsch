@@ -28,9 +28,6 @@ export const OrganismHeroSection = () => {
                      <span>→</span>
                   </span>
                </AtomButton>
-               <AtomButton size="lg" variant="OUTLINE">
-                  Ver Demo
-               </AtomButton>
             </div>
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
