@@ -12,7 +12,7 @@ export const MoleculeModal: FunctionComponent<TMoleculeModal> = ({ title = 'Ooop
    const t = useTranslations()
    return (
       <dialog className="modal" id="my_modal_1">
-         <div className="modal-box bg-base-100 max-w-2xl rounded-lg shadow-lg">
+         <div className="modal-box container-card max-w-2xl shadow-lg">
             <AtomTitle extraClassName="mb-4" type="h3">
                {title}
             </AtomTitle>

@@ -18,7 +18,7 @@ export const OrganismGrammarProgressCard = ({
    const percentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0
 
    return (
-      <div className="border-base-300 bg-base-100 rounded-lg border p-6 shadow-md">
+      <div className="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-md">
          <div className="mb-4 flex items-center justify-between">
             <AtomTitle extraClassName="!text-lg" type="h3">
                📘 Progreso A1

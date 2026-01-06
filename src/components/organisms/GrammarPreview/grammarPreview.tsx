@@ -56,18 +56,8 @@ const getShuffledEmojis = (count: number) => {
 export const OrganismGrammarPreview = ({ popularTopics }: GrammarPreviewProps) => {
    const shuffledEmojis = getShuffledEmojis(popularTopics.length)
 
-   const getColorClasses = (colorTheme: string) => {
-      const colorMap: Record<string, string> = {
-         blue: 'border-primary hover:border-primary/80',
-         green: 'border-success hover:border-success/80',
-         purple: 'border-secondary hover:border-secondary/80',
-         orange: 'border-warning hover:border-warning/80',
-         teal: 'border-info hover:border-info/80',
-         red: 'border-error hover:border-error/80',
-         yellow: 'border-warning hover:border-warning/80',
-         indigo: 'border-primary hover:border-primary/80'
-      }
-      return colorMap[colorTheme] || 'border-base-300 hover:border-base-400'
+   const getColorClasses = (_colorTheme: string) => {
+      return ''
    }
 
    return (

@@ -110,6 +110,9 @@ const config: Config = {
          },
          spacing: {
             34: '8.5rem'
+         },
+         scale: {
+            '102': '1.02'
          }
       }
    },
@@ -144,13 +147,13 @@ const config: Config = {
                warning: '#FFC800',
                error: '#ef4444',
 
-               '--rounded-box': '1.5rem', // Highly rounded cards
-               '--rounded-btn': '1.2rem', // Pill buttons
-               '--rounded-badge': '2rem',
-               '--animation-btn': '0.2s', // Snappy button press
-               '--btn-focus-scale': '0.95',
-               '--border-btn': '0px', // We will handle borders manually for 3D effect usually, or leave standard
-               '--tab-border': '1px'
+               // '--rounded-box': '1.5rem', // Highly rounded cards
+               '--rounded-btn': '11px' // Slightly rounded buttons
+               // '--rounded-badge': '2rem',
+               // '--animation-btn': '0.2s', // Snappy button press
+               // '--btn-focus-scale': '0.95',
+               // '--border-btn': '0px', // We will handle borders manually for 3D effect usually, or leave standard
+               // '--tab-border': '1px'
             }
          }
       ],

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AtomBadge, AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 
 type MoleculeTimeLineProps = {
@@ -68,9 +68,6 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                         >
                            {topic.topic_name?.es}
                         </AtomTitle>
-                        <AtomBadge color="secondary">
-                           <AtomText fontSize="small">{topic.level}</AtomText>
-                        </AtomBadge>
                      </div>
                      <div>
                         <AtomText className="" fontSize="small" isThin>

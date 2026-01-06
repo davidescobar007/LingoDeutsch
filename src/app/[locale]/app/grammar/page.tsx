@@ -191,7 +191,7 @@ const Grammar = () => {
          {/* Topics List + Lesson View */}
          <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
             {/* Sidebar - Topics List */}
-            <aside className="border-base-300 bg-base-100 self-start rounded-lg border p-6 shadow-md lg:sticky lg:top-20 lg:col-span-4">
+            <aside className="container-card self-start border p-6 lg:sticky lg:top-20 lg:col-span-4">
                <div className="mb-4 flex items-center gap-2">
                   <span className="text-2xl">{LEVEL_INFO[selectedLevel].emoji}</span>
                   <div>
@@ -225,10 +225,7 @@ const Grammar = () => {
             </aside>
 
             {/* Main Content - Lesson or Empty State */}
-            <section
-               className="border-base-300 bg-base-100 rounded-lg border p-6 shadow-md lg:col-span-8"
-               id="grammar-content"
-            >
+            <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
                {grammarTopicContent && selectedTopic ? (
                   <>
                      <header className="border-base-300 mb-6 flex items-center justify-between rounded-lg border-b pb-4">

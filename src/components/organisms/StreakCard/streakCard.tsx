@@ -17,7 +17,7 @@ export const OrganismStreakCard = ({
    // Use provided days or default to all false
    const days = activityDays
    return (
-      <div className="border-base-300 bg-base-100 rounded-lg border p-6 shadow-md">
+      <div className="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-md">
          <div className="mb-6 flex items-center justify-between">
             <AtomTitle extraClassName="!text-lg" type="h3">
                🔥 Racha de Aprendizaje

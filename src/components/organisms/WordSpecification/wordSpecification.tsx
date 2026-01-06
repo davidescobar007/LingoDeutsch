@@ -43,7 +43,7 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
 
    return (
       <div className="sticky top-4">
-         <section className="bg-base-100 relative overflow-hidden rounded-3xl border  border-white/20  p-6 shadow-xl backdrop-blur-sm transition-all duration-500 ">
+         <section className="container-card relative overflow-hidden  p-6 backdrop-blur-sm transition-all duration-500 ">
             <div className="relative z-10">
                {isLoading ? (
                   <div className="flex flex-col items-center space-y-4 py-8">
@@ -83,11 +83,9 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
                      </div>
 
                      {/* Translation */}
-                     <div className="rounded-2xl border border-white/30 bg-white/50 p-4">
-                        <AtomText isBlock isThin>
-                           {data?.spanish_translation}
-                        </AtomText>
-                     </div>
+                     <AtomText isBlock isThin>
+                        {data?.spanish_translation}
+                     </AtomText>
 
                      {/* Example Section */}
                      {data.examples && data.examples.length > 0 && (

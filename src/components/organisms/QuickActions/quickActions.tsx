@@ -54,7 +54,7 @@ export const OrganismQuickActions = ({ actions = DEFAULT_ACTIONS }: OrganismQuic
          <div className="flex flex-col gap-3">
             {actions.map((action) => (
                <Link href={action.href} key={action.id}>
-                  <div className="border-base-300 bg-base-100 hover:border-primary/50 hover:scale-102 rounded-lg border p-4 shadow-md transition-all duration-300 hover:shadow-lg">
+                  <div className="border-base-300 bg-base-100 hover:border-primary/50 hover:scale-102 rounded-2xl border p-4 shadow-md transition-all duration-300 hover:shadow-lg">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                            <span className="text-3xl">{action.emoji}</span>

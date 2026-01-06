@@ -34,7 +34,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                      width={57}
                   />
                   <AtomTitle extraClassName="hidden lg:block" type="h1">
-                     LingoDeutsch
+                     Blabling
                   </AtomTitle>
                </Link>
             </li>

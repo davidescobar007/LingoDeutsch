@@ -18,7 +18,7 @@ export const MoleculeSimpleCard: FunctionComponent<MoleculeScoreProps> = ({
    className = ''
 }) => {
    return (
-      <div className={`card bg-base-100 mx-10 w-96 min-w-72 shadow-xl ${className}`}>
+      <div className={`container-card mx-10 w-96 min-w-72 ${className}`}>
          <div className="card-body">
             <h2 className="card-title">{title}</h2>
             <p>{textContent}</p>

@@ -80,19 +80,19 @@ export const OrganismVocabularyPreview = ({
 
    const getCardStyles = (card: VocabularyCard) => {
       const baseStyles =
-         'flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-lg border px-6 py-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-102 transform-gpu bg-base-100'
+         'flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border px-6 py-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-102 transform-gpu bg-base-100'
 
       switch (card.id) {
          case 'total':
-            return `${baseStyles} border-info hover:border-info/80`
+            return `${baseStyles} border-base-300 hover:border-base-300`
          case 'due':
-            return `${baseStyles} border-warning hover:border-warning/80`
+            return `${baseStyles} border-base-300 hover:border-base-300`
          case 'weak':
-            return `${baseStyles} border-error hover:border-error/80`
+            return `${baseStyles} border-base-300 hover:border-base-300`
          case 'mastery':
-            return `${baseStyles} border-success hover:border-success/80`
+            return `${baseStyles} border-base-300 hover:border-base-300`
          case 'today':
-            return `${baseStyles} border-primary hover:border-primary/80`
+            return `${baseStyles} border-base-300 hover:border-base-300`
          default:
             return baseStyles
       }

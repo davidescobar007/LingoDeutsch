@@ -179,3 +179,16 @@ body {
 .animate-pulse-slow {
    animation: pulse-slow 2s ease-in-out infinite;
 }
+
+/* Standard container styles */
+@layer components {
+   /* Container base - static */
+   .container-card {
+      @apply bg-base-100 border-base-300 rounded-2xl border shadow-md;
+   }
+
+   /* Container interactive - with hover effects */
+   .container-card-interactive {
+      @apply bg-base-100 border-base-300 hover:scale-102 rounded-2xl border shadow-md transition-all duration-300 hover:shadow-lg;
+   }
+}

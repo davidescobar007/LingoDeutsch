@@ -49,14 +49,14 @@ export const OrganismGrammarTopicsList = ({ level, topics, userProgress }: Organ
    const getStateStyles = (state: TopicState) => {
       switch (state) {
          case 'completed':
-            return 'border-success bg-success/5 hover:border-success/80'
+            return 'opacity-60 cursor-not-allowed'
          case 'locked':
-            return 'border-base-300 bg-base-100/50 opacity-60 cursor-not-allowed'
+            return 'opacity-60 cursor-not-allowed'
          case 'recommended':
-            return 'border-2 border-primary bg-primary/5 hover:border-primary/80'
+            return ''
          case 'available':
          default:
-            return 'border-base-300 bg-base-100 hover:border-primary/50'
+            return ''
       }
    }
 
@@ -106,10 +106,8 @@ export const OrganismGrammarTopicsList = ({ level, topics, userProgress }: Organ
                return (
                   <Link href={isLocked ? '#' : `/app/grammar?level=${level}&topic=${topic.id}`} key={topic.id}>
                      <div
-                        className={`rounded-lg border p-4 transition-all duration-300 ${
-                           isLocked
-                              ? getStateStyles(state)
-                              : `${getStateStyles(state)} hover:scale-102 hover:shadow-lg`
+                        className={`container-card-interactive ${getStateStyles(state)} ${
+                           isLocked ? '' : 'hover:scale-102'
                         }`}
                      >
                         {/* Icon and State */}

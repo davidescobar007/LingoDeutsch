@@ -34,7 +34,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
 }) => {
    if (cardType === 'simple') {
       return (
-         <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 border-base-300 hover:scale-102 w-full rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg">
+         <div className="card bg-base-100 xl:w-7/24 lg:w-11/24 border-base-300 hover:scale-102 w-full rounded-2xl border shadow-md transition-all duration-300 hover:shadow-lg">
             <div className="card-body">
                <AtomTitle type="h5">{title}</AtomTitle>
                <AtomText>{content}</AtomText>
@@ -54,7 +54,7 @@ export const MoleculeCard: FunctionComponent<TMoleculeCard> = ({
    }
 
    return (
-      <div className="card bg-base-100 border-base-300 hover:scale-102 my-6 h-96 min-w-64 max-w-64 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg">
+      <div className="card bg-base-100 border-base-300 hover:scale-102 my-6 h-96 min-w-64 max-w-64 rounded-2xl border shadow-md transition-all duration-300 hover:shadow-lg">
          {image && title && (
             <figure className="h-52">
                <Image
