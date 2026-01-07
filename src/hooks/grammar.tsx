@@ -50,6 +50,9 @@ export const useSaveGrammarProgress = () => {
          queryClient.invalidateQueries({
             queryKey: ['savedGrammarTopicByUser']
          })
+         queryClient.invalidateQueries({
+            queryKey: ['grammarByIdAndUser', userGrammarInfo.grammar_id, userGrammarInfo.user]
+         })
       },
       onError: () => {
          toast.error('Error al guardar la lección')

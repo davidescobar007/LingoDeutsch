@@ -32,6 +32,9 @@ export const useSaveArticleUser = () => {
          saveArticleUser({ userArticle, score }),
       onSuccess: (data, variables) => {
          queryClient.invalidateQueries({ queryKey: ['article', variables.userArticle.article_id] })
+         queryClient.invalidateQueries({
+            queryKey: ['userArticles', variables.userArticle.user_id, variables.userArticle.article_id]
+         })
       }
    })
 }

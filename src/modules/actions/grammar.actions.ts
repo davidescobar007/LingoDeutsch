@@ -1,4 +1,4 @@
-import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery } from '@/network'
+import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery, pbUpdateRecord } from '@/network'
 
 import { constants, queryOperators } from '../global.types'
 
@@ -59,17 +59,25 @@ export const getSingleGrammarTopicByUser = async ({
    grammar_id: string
 }): Promise<TUserGrammarProgress> => {
    const savedGrammarTopic = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
-      filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`
+      filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`,
+      sort: '-updated'
    })
    return savedGrammarTopic[0] as unknown as TUserGrammarProgress
 }
 
 export const saveGrammarUserProgress = async (user: TUser, grammar_id: string, score: number) => {
-   const createdRecord = pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, {
+   const existingRecords = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
+      filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`,
+      sort: '-updated'
+   })
+   const recordData = {
       user_id: user.id,
       grammar_id,
       isCompleted: score >= 60,
       dateCompleted: new Date().toISOString()
-   })
-   return createdRecord
+   }
+   if (existingRecords && existingRecords.length > 0) {
+      pbUpdateRecord(constants.USER_GRAMMAR_PROGRESS, existingRecords[0].id, recordData)
+   }
+   pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, recordData)
 }
