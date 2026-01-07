@@ -9,7 +9,7 @@ import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
-import { calculateFutureDate, calculateScore } from '@/utils/quiz.utils'
+import { calculateScore, shouldShowWaitingRoom } from '@/utils/quiz.utils'
 
 import { QuizResult } from './QuizResult'
 import WaitingRoom from './watingRoom'
@@ -103,18 +103,15 @@ const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
    if (!questions.length) return <div>No se encontró ningún quiz.</div>
    if (!question?.options || !question?.correctAnswers) return <div>Error: Datos del quiz incorrectos.</div>
 
-   // Check waiting room for article quizzes
-   if (isArticleQuiz && userArticle?.updated) {
-      const { isFuture, futureDate } = calculateFutureDate(new Date(userArticle.updated), 1.25)
-      if (isFuture) return <WaitingRoom futureDate={futureDate} id={id} quizType="article" />
+   // Check waiting room (unificado)
+   const userProgressData = quizType === 'article' ? userArticle || null : userGrammarProgress || null
+   const waitingRoomParams = shouldShowWaitingRoom(quizType, userProgressData, showResult)
+
+   if (waitingRoomParams.shouldShowWaiting) {
+      return <WaitingRoom futureDate={waitingRoomParams.futureDate!} id={id} quizType={quizType} />
    }
 
-   // Check waiting room for grammar quizzes
-   if (quizType === 'grammar' && userGrammarProgress?.updated) {
-      const { isFuture, futureDate } = calculateFutureDate(new Date(userGrammarProgress.updated), 1.25)
-      if (isFuture) return <WaitingRoom futureDate={futureDate} id={id} quizType="grammar" />
-   }
-
+   // Show result
    if (showResult)
       return (
          <QuizResult

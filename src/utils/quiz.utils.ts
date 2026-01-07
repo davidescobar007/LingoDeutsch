@@ -13,3 +13,14 @@ export function calculateFutureDate(pastDate: Date, hoursToAdd: number): { futur
    const isFuture = isAfter(futureDate, now)
    return { futureDate, isFuture }
 }
+
+export function shouldShowWaitingRoom(
+   quizType: 'article' | 'grammar',
+   userProgress: { updated?: string } | null,
+   showResult: boolean
+): { futureDate?: Date; shouldShowWaiting: boolean } {
+   if (showResult) return { shouldShowWaiting: false }
+   if (!userProgress?.updated) return { shouldShowWaiting: false }
+   const { isFuture, futureDate } = calculateFutureDate(new Date(userProgress.updated), 1.25)
+   return { futureDate, shouldShowWaiting: isFuture }
+}
