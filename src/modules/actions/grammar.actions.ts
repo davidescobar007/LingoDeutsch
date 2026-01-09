@@ -66,18 +66,23 @@ export const getSingleGrammarTopicByUser = async ({
 }
 
 export const saveGrammarUserProgress = async (user: TUser, grammar_id: string, score: number) => {
-   const existingRecords = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
-      filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`,
-      sort: '-updated'
-   })
-   const recordData = {
-      user_id: user.id,
-      grammar_id,
-      isCompleted: score >= 60,
-      dateCompleted: new Date().toISOString()
+   console.debug()
+   try {
+      const existingRecords = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
+         filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`,
+         sort: '-updated'
+      })
+      const recordData = {
+         user_id: user.id,
+         grammar_id,
+         isCompleted: score >= 60,
+         dateCompleted: new Date().toISOString()
+      }
+      if (existingRecords && existingRecords.length > 0) {
+         pbUpdateRecord(constants.USER_GRAMMAR_PROGRESS, existingRecords[0].id, recordData)
+      }
+      pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, recordData)
+   } catch (error) {
+      return error
    }
-   if (existingRecords && existingRecords.length > 0) {
-      pbUpdateRecord(constants.USER_GRAMMAR_PROGRESS, existingRecords[0].id, recordData)
-   }
-   pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, recordData)
 }
