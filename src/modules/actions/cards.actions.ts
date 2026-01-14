@@ -41,8 +41,9 @@ export const getVocabularyList = async ({
 
       return fallbackCards as unknown as TVocabularyCard[]
    } catch (error: any) {
+      console.error('Error fetching vocabulary list:', error)
       handleErrorModal(error)
-      return error
+      return []
    }
 }
 
@@ -62,9 +63,20 @@ export const updateVocabulary = async (card: TVocabularyCard) => {
    await pbUpdateRecord(constants.USER_VOCAB_PROGRESS, card.id, card)
 }
 
-export const getVocabularyStats = async (user: TUser): Promise<TVocabularyStatsUI> => {
+export const getVocabularyStats = async (user: TUser | null | undefined): Promise<TVocabularyStatsUI> => {
    try {
-      if (!user?.id) throw new Error('need signup')
+      if (!user?.id) {
+         // Return default values for guests
+         return {
+            totalWords: 0,
+            learnedWords: 0,
+            percentageDominated: 0,
+            last7DayStreak: [],
+            wordsLearnedToday: 0,
+            weakWords: 0,
+            dueForReview: 0
+         }
+      }
 
       const cards: TVocabularyCard[] = await getVocabularyList({ user })
 
@@ -89,7 +101,16 @@ export const getVocabularyStats = async (user: TUser): Promise<TVocabularyStatsU
          dueForReview
       }
    } catch (error) {
-      console.log(error)
-      throw new Error(error as any)
+      console.error('Error fetching vocabulary stats:', error)
+      // Return default values on error
+      return {
+         totalWords: 0,
+         learnedWords: 0,
+         percentageDominated: 0,
+         last7DayStreak: [],
+         wordsLearnedToday: 0,
+         weakWords: 0,
+         dueForReview: 0
+      }
    }
 }

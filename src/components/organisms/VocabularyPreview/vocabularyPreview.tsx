@@ -1,4 +1,8 @@
+'use client'
+import { useTranslations } from 'next-intl'
+
 import { AtomText, Icon } from '@/components/atoms'
+import { MoleculeLockedOverlay } from '@/components/molecules'
 import { Link } from '@/navigation'
 
 type VocabularyStats = {
@@ -13,143 +17,65 @@ type VocabularyStats = {
 
 type VocabularyPreviewProps = {
    vocabularyStats?: VocabularyStats
-}
-
-type VocabularyCard = {
-   id: string
-   label: string
-   value: number
-   colorLight: string
-   colorDark: string
-   icon?: string
+   isGuest?: boolean
 }
 
 const defaultVocabularyStats: VocabularyStats = {}
 
+// Sample data for guests to show what the feature looks like
+const SAMPLE_STATS = {
+   totalWords: 127,
+   dueForReview: 8,
+   weakWords: 12,
+   percentageDominated: 45
+}
+
 export const OrganismVocabularyPreview = ({
-   vocabularyStats = defaultVocabularyStats
+   vocabularyStats = defaultVocabularyStats,
+   isGuest = false
 }: VocabularyPreviewProps) => {
-   const totalWords = vocabularyStats?.totalWords || 0
-   const dueForReview = vocabularyStats?.dueForReview || 0
-   const weakWords = vocabularyStats?.weakWords || 0
-   const masteryPercentage = Math.round(vocabularyStats?.percentageDominated || 0)
-   const wordsToday = vocabularyStats?.wordsLearnedToday || 0
+   const t = useTranslations('locked.vocabularyPreview')
 
-   // Define the 5 actionable vocabulary cards with theme-aligned colors
-   const vocabularyCards: VocabularyCard[] = [
-      {
-         id: 'total',
-         label: 'Total palabras',
-         value: totalWords,
-         colorLight: 'text-info',
-         colorDark: 'dark:text-info'
-      },
-      {
-         id: 'due',
-         label: 'Pendientes de revisar',
-         value: dueForReview,
-         colorLight: 'text-warning',
-         colorDark: 'dark:text-warning',
-         icon: '⏰'
-      },
-      {
-         id: 'weak',
-         label: 'Palabras difíciles',
-         value: weakWords,
-         colorLight: 'text-error',
-         colorDark: 'dark:text-error',
-         icon: '🎯'
-      },
-      {
-         id: 'mastery',
-         label: 'Dominio (Easy)',
-         value: masteryPercentage,
-         colorLight: 'text-success',
-         colorDark: 'dark:text-success',
-         icon: '🎓'
-      },
-      {
-         id: 'today',
-         label: 'Practicadas hoy',
-         value: wordsToday,
-         colorLight: 'text-primary',
-         colorDark: 'dark:text-primary',
-         icon: '✅'
-      }
-   ]
+   // Use sample data for guests
+   const stats = isGuest ? SAMPLE_STATS : vocabularyStats
+   const totalWords = stats?.totalWords || 0
+   const dueForReview = stats?.dueForReview || 0
+   const masteryPercentage = Math.round(stats?.percentageDominated || 0)
 
-   const getCardStyles = (card: VocabularyCard) => {
-      const baseStyles =
-         'flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border px-6 py-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-102 transform-gpu bg-base-100'
-
-      switch (card.id) {
-         case 'total':
-            return `${baseStyles} border-base-300 hover:border-base-300`
-         case 'due':
-            return `${baseStyles} border-base-300 hover:border-base-300`
-         case 'weak':
-            return `${baseStyles} border-base-300 hover:border-base-300`
-         case 'mastery':
-            return `${baseStyles} border-base-300 hover:border-base-300`
-         case 'today':
-            return `${baseStyles} border-base-300 hover:border-base-300`
-         default:
-            return baseStyles
-      }
-   }
-
-   const getCardLink = (cardId: string) => {
-      switch (cardId) {
-         case 'total':
-            return 'vocabulary'
-         case 'due':
-            return 'vocabulary?filter=due'
-         case 'weak':
-            return 'vocabulary?filter=weak'
-         case 'mastery':
-            return 'vocabulary?filter=easy'
-         case 'today':
-            return 'vocabulary'
-         default:
-            return 'vocabulary'
-      }
-   }
-
-   const getCardValueClasses = (card: VocabularyCard) => {
-      return `text-3xl font-bold ${card.colorLight} ${card.colorDark}`
-   }
-
-   return (
-      <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
-         <div className="flex w-full justify-between">
-            <AtomText fontSize="large" isBold>
-               Tu Vocabulario
+   const cardContent = (
+      <div className="container-card flex w-full flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
+         {/* Left: Title & Stats */}
+         <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+               <span className="text-2xl">🎯</span>
+               <AtomText fontSize="large" isBold>
+                  Tu Vocabulario
+               </AtomText>
+            </div>
+            <AtomText className="text-base-content/70" fontSize="medium">
+               {totalWords} palabras · {dueForReview} pendientes · {masteryPercentage}% dominado
             </AtomText>
-            <Link href="vocabulary">
-               <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
-                  Empezar <Icon className="text-primary" icon="move-right" iconSize="small" />
+         </div>
+
+         {/* Right: CTA */}
+         {!isGuest && dueForReview > 0 && (
+            <Link href="/app/vocabulary/practice">
+               <AtomText className="flex items-center gap-2 whitespace-nowrap" isBold isPrimary>
+                  Practicar <Icon className="text-primary" icon="move-right" iconSize="small" />
                </AtomText>
             </Link>
-         </div>
-
-         <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {vocabularyCards.map((card) => (
-               <Link href={getCardLink(card.id)} key={card.id}>
-                  <div className={getCardStyles(card)}>
-                     <AtomText className="mb-2 text-center" fontSize="small" isThin>
-                        {card.label}
-                     </AtomText>
-
-                     <div className="flex items-center gap-2">
-                        {card.icon && <span className="animate-pulse text-2xl">{card.icon}</span>}
-                        <span className={`${getCardValueClasses(card)} drop-shadow-sm`}>
-                           {card.id === 'mastery' ? `${card.value}%` : card.value}
-                        </span>
-                     </div>
-                  </div>
-               </Link>
-            ))}
-         </div>
+         )}
       </div>
+   )
+
+   return (
+      <MoleculeLockedOverlay
+         ctaHref="/login"
+         description={t('description')}
+         showOverlay={isGuest}
+         title={t('title')}
+      >
+         {cardContent}
+      </MoleculeLockedOverlay>
    )
 }

@@ -491,5 +491,42 @@
       "new": "Neu veröffentlicht",
       "readTime": "3 Minuten",
       "readNow": "Jetzt lesen"
+   },
+   "locked": {
+      "defaultTitle": "Exklusiver Inhalt für Mitglieder",
+      "defaultDescription": "Registriere dich kostenlos, um diese Funktion freizuschalten",
+      "defaultCta": "Kostenlos registrieren",
+      "grammarProgress": {
+         "title": "Dein Grammatikfortschritt",
+         "description": "Verfolge deinen Fortschritt in den Grammatiklektionen von A1 bis B2"
+      },
+      "streakCard": {
+         "title": "Lernserie",
+         "description": "Bleibe motiviert mit täglichen Lernserien"
+      },
+      "vocabularyPreview": {
+         "title": "Dein persönlicher Wortschatz",
+         "description": "Speichere Wörter, übe mit räumlicher Wiederholung und meistere Deutsch"
+      },
+      "vocabulary": {
+         "title": "Übe mit räumlicher Wiederholung",
+         "description": "Erstelle dein Konto, um auf das Vokabelsystem zuzugreifen und Wörter effektiv zu merken"
+      },
+      "quickActions": {
+         "lockedBadge": "Zugang mit Konto"
+      },
+      "welcomeHero": {
+         "guestTitle": "Willkommen bei LingoDeutsch!",
+         "guestSubtitle": "Lerne Deutsch mit strukturierter Grammatik, Vokabeln mit räumlicher Wiederholung und interaktiven Artikeln",
+         "guestCta": "Kostenlos starten"
+      },
+      "recommendedNextSteps": {
+         "guestTitle": "Beginne deine Lernreise",
+         "guestMessage": "Registriere dich kostenlos für alle Funktionen: strukturierte Grammatik, personalisierter Wortschatz und Fortschrittsverfolgung.",
+         "guestCta": "Kostenloses Konto erstellen"
+      },
+      "scoreSidebar": {
+         "guestMessage": "Registriere dich, um in der Rangliste zu erscheinen und mit anderen Schülern zu konkurrieren"
+      }
    }
 }

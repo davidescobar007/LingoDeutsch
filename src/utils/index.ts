@@ -49,7 +49,6 @@ export function areObjectsDistinct(obj1: any, obj2: any): boolean {
       if (obj1[key] !== obj2[key]) {
          // TODO: uncomment following line when checking for differences between two objects
          // TODO: when committing, this must be always commented
-         console.log(`Difference in ${key}: ${obj1[key]} !== ${obj2[key]}`)
          return true
       }
    }
@@ -268,6 +267,5 @@ export function parseHtmlToTIterableData(html: string): TIterableData[] {
       }
    })
 
-   console.log(tIterableDataArray)
    return tIterableDataArray
 }

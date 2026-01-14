@@ -19,6 +19,7 @@ export { OrganismGrammarTopicsList } from './GrammarTopicsList/grammarTopicsList
 export { OrganismHero } from './Hero/hero'
 export { OrganismLearningHero } from './Hero/learningHero'
 export { OrganismImageCard } from './ImageCard/imageCard'
+export { OrganismNextStepPriority } from './NextStepPriority/nextStepPriority'
 export { OrganismQuickActions } from './QuickActions/quickActions'
 export { OrganismQuizHeader } from './QuizHeader/quizHeader'
 export { OrganismQuizQuestion } from './QuizQuestion/quizQuestion'

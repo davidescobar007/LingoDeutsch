@@ -24,15 +24,15 @@ export const useGetSingleGrammarTopic = (id: string) => {
    })
 }
 
-export const useGetSingleGrammarTopicByUser = ({ id, user }: { id: string; user: TUser }) => {
+export const useGetSingleGrammarTopicByUser = ({ id, user }: { id: string; user: TUser | null | undefined }) => {
    return useQuery({
       queryKey: ['grammarByIdAndUser', id, user],
-      queryFn: () => getSingleGrammarTopicByUser({ grammar_id: id, user }),
+      queryFn: () => getSingleGrammarTopicByUser({ grammar_id: id, user: user as TUser }),
       enabled: Boolean(user)
    })
 }
 
-export const useSavedGrammarTopicByUser = (user: TUser) => {
+export const useSavedGrammarTopicByUser = (user: TUser | null | undefined) => {
    return useQuery({
       queryKey: ['savedGrammarTopicByUser', user],
       queryFn: () => getSavedGrammarTopicByUser(user),

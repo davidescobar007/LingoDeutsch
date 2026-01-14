@@ -20,19 +20,25 @@ export interface UserStreakMetrics {
    isLoading: boolean
 }
 
-export const useUserStreak = (user: TUser): UserStreakMetrics => {
-   // Fetch data from all sources
+const DEFAULT_ACTIVITY_DAYS: boolean[] = [false, false, false, false, false, false, false]
+
+export const useUserStreak = (user: TUser | null | undefined): UserStreakMetrics => {
+   const isGuest = !user || !user.id
+
+   // Fetch data from all sources (handle null user with optional chaining)
    const { data: grammarProgress, isLoading: grammarLoading } = useSavedGrammarTopicByUser(user)
    const { data: articleProgress, isLoading: articlesLoading } = useGetArticlesListByUserAndState({
-      userId: user.id,
+      userId: user?.id || '',
       state: 'learned'
    })
    const { data: vocabularyStats, isLoading: vocabularyLoading } = useGetVocabularyStats()
 
-   const isLoading = grammarLoading || articlesLoading || vocabularyLoading
+   const isLoading = !isGuest && (grammarLoading || articlesLoading || vocabularyLoading)
 
    // Consolidate all activity dates
    const allActivityDates = useMemo(() => {
+      if (isGuest) return []
+
       const dates: Date[] = []
 
       // Grammar activities
@@ -57,13 +63,13 @@ export const useUserStreak = (user: TUser): UserStreakMetrics => {
       })
 
       return dates
-   }, [grammarProgress, articleProgress, vocabularyStats])
+   }, [isGuest, grammarProgress, articleProgress, vocabularyStats])
 
    // Calculate streak
    const currentStreak = useMemo(() => {
-      if (allActivityDates.length === 0) return 0
+      if (isGuest || allActivityDates.length === 0) return 0
 
-      const sortedDates = allActivityDates.sort((a, b) => b.getTime() - a.getTime())
+      const sortedDates = [...allActivityDates].sort((a, b) => b.getTime() - a.getTime())
 
       let streak = 1
       const today = new Date()
@@ -86,10 +92,12 @@ export const useUserStreak = (user: TUser): UserStreakMetrics => {
       }
 
       return streak - 1
-   }, [allActivityDates])
+   }, [isGuest, allActivityDates])
 
    // Generate activity days for past 7 days
    const activityDays = useMemo(() => {
+      if (isGuest) return DEFAULT_ACTIVITY_DAYS
+
       const days: boolean[] = []
       for (let i = 6; i >= 0; i--) {
          const date = new Date()
@@ -105,10 +113,12 @@ export const useUserStreak = (user: TUser): UserStreakMetrics => {
          days.push(Boolean(hasActivity))
       }
       return days
-   }, [allActivityDates])
+   }, [isGuest, allActivityDates])
 
    // Calculate activities by type
    const activitiesByType = useMemo(() => {
+      if (isGuest) return { grammar: 0, articles: 0, vocabulary: 0 }
+
       const grammarCount = grammarProgress?.filter((p) => p.isCompleted).length || 0
       const articleCount = articleProgress?.filter((p) => p.is_completed).length || 0
       const vocabularyCount = vocabularyStats?.last7DayStreak?.filter((d) => d.completed).length || 0
@@ -118,7 +128,7 @@ export const useUserStreak = (user: TUser): UserStreakMetrics => {
          articles: articleCount,
          vocabulary: vocabularyCount
       }
-   }, [grammarProgress, articleProgress, vocabularyStats])
+   }, [isGuest, grammarProgress, articleProgress, vocabularyStats])
 
    const totalActivities = activitiesByType.grammar + activitiesByType.articles + activitiesByType.vocabulary
 

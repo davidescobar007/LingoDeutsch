@@ -499,5 +499,42 @@
       "readNow": "Leer Ahora"
    },
    "close": "cerrar",
-   "back": "atrás"
+   "back": "atrás",
+   "locked": {
+      "defaultTitle": "Contenido exclusivo para miembros",
+      "defaultDescription": "Regístrate gratis para desbloquear esta función",
+      "defaultCta": "Registrarse gratis",
+      "grammarProgress": {
+         "title": "Progreso de gramática",
+         "description": "Registra tu avance de cada leccion de gramática"
+      },
+      "streakCard": {
+         "title": "Racha de aprendizaje",
+         "description": "Mantén tu motivación con rachas diarias de estudio"
+      },
+      "vocabularyPreview": {
+         "title": "Tu vocabulario personal",
+         "description": "Guarda palabras, practica con repetición espaciada y domina el alemán"
+      },
+      "vocabulary": {
+         "title": "Practica con repetición espaciada",
+         "description": "Crea tu cuenta para acceder al sistema de vocabulario y memorizar palabras de forma efectiva"
+      },
+      "quickActions": {
+         "lockedBadge": "Acceso con cuenta"
+      },
+      "welcomeHero": {
+         "guestTitle": "¡Bienvenido a LingoDeutsch!",
+         "guestSubtitle": "Aprende alemán con gramática estructurada, vocabulario con repetición espaciada y artículos interactivos",
+         "guestCta": "Comenzar gratis"
+      },
+      "recommendedNextSteps": {
+         "guestTitle": "Comienza tu viaje de aprendizaje",
+         "guestMessage": "Regístrate gratis para acceder a todas las funciones: gramática estructurada, vocabulario personalizado y seguimiento de progreso.",
+         "guestCta": "Crear cuenta gratis"
+      },
+      "scoreSidebar": {
+         "guestMessage": "Regístrate para aparecer en el ranking y competir con otros estudiantes"
+      }
+   }
 }

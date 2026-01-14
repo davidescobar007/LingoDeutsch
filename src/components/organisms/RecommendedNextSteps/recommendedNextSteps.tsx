@@ -1,4 +1,6 @@
 'use client'
+import { useTranslations } from 'next-intl'
+
 import { AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 
 type RecommendationType = 'grammar' | 'article' | 'vocabulary' | 'general'
@@ -13,13 +15,17 @@ type Recommendation = {
 
 type OrganismRecommendedNextStepsProps = {
    recommendation: Recommendation
+   isGuest?: boolean
    extraClassName?: string
 }
 
 export const OrganismRecommendedNextSteps = ({
    recommendation,
+   isGuest = false,
    extraClassName = ''
 }: OrganismRecommendedNextStepsProps) => {
+   const t = useTranslations('locked.recommendedNextSteps')
+
    const getGradientClasses = (type: RecommendationType): string => {
       switch (type) {
          case 'grammar':
@@ -35,6 +41,36 @@ export const OrganismRecommendedNextSteps = ({
       }
    }
 
+   // Guest view: Show registration CTA
+   if (isGuest) {
+      return (
+         <div className={`w-full ${extraClassName}`}>
+            <AtomTitle extraClassName="!text-lg mb-4" type="h3">
+               💡 Próximos Pasos
+            </AtomTitle>
+
+            <div className="container-card bg-primary/5 border-primary/20 p-6 transition-all duration-300 hover:shadow-lg">
+               <div className="mb-4 flex items-center gap-3">
+                  <span className="text-3xl">✨</span>
+                  <AtomText className="block" fontSize="large" isBold>
+                     {t('guestTitle')}
+                  </AtomText>
+               </div>
+
+               <div className="mb-6">
+                  <AtomText className="block leading-relaxed" fontSize="medium">
+                     {t('guestMessage')}
+                  </AtomText>
+               </div>
+
+               <AtomButton href="/login" size="md" type="link" variant="PRIMARY">
+                  {t('guestCta')} →
+               </AtomButton>
+            </div>
+         </div>
+      )
+   }
+
    return (
       <div className={`w-full ${extraClassName}`}>
          <AtomTitle extraClassName="!text-lg mb-4" type="h3">
@@ -42,7 +78,7 @@ export const OrganismRecommendedNextSteps = ({
          </AtomTitle>
 
          <div
-            className={`border-base-300 rounded-2xl border p-6 shadow-md transition-all duration-300 hover:shadow-lg ${getGradientClasses(
+            className={`container-card p-6 transition-all duration-300 hover:shadow-lg ${getGradientClasses(
                recommendation.type
             )}`}
          >

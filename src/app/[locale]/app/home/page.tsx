@@ -1,20 +1,17 @@
-/* eslint-disable react/jsx-sort-props */
 'use client'
 import { TemplateHome } from '@/components/templates'
 import { useArticleList } from '@/hooks/articles'
-import { useGetVocabularyStats } from '@/hooks/translations'
+import { useGetVocabularyStats } from '@/hooks/cards'
 import { useGrammarProgress } from '@/hooks/useGrammarProgress'
-import { useScore } from '@/hooks/user'
 import { useUserStreak } from '@/hooks/useUserStreak'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 
 const Learn = () => {
-   const user = getUserInfo() as TUser
+   const user = getUserInfo() as TUser | null
 
    const { data: articles } = useArticleList()
-   const { data: vocabularyStats } = useGetVocabularyStats(user)
-   const { data: scoreList } = useScore()
+   const { data: vocabularyStats } = useGetVocabularyStats()
    const grammarProgress = useGrammarProgress(user, 'A1')
    const streakMetrics = useUserStreak(user)
 
@@ -23,8 +20,7 @@ const Learn = () => {
          articles={articles || []}
          grammarProgress={grammarProgress}
          streakMetrics={streakMetrics}
-         scoreList={scoreList}
-         user={user}
+         user={user || undefined}
          userName={user?.name || 'Usuario'}
          vocabularyStats={vocabularyStats}
       />

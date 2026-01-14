@@ -31,7 +31,8 @@ const getArticlesList = async ({
       const data = await pbGetList('articles', options)
       return data as unknown as TArticle[]
    } catch (error: any) {
-      return error
+      console.error('Error fetching articles:', error)
+      return []
    }
 }
 
@@ -129,7 +130,8 @@ const getArticlesListByUser = async ({
       }))
       return transformedData as unknown as TArticle[]
    } catch (error: any) {
-      return error
+      console.error('Error fetching articles by user:', error)
+      return []
    }
 }
 

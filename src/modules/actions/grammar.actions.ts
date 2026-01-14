@@ -15,7 +15,8 @@ export const getGrammarByLevel = async (grammarLevel: string): Promise<TGrammar[
       })
       return grammarTopics as unknown as TGrammar[]
    } catch (error: any) {
-      return error
+      console.error('Error fetching grammar by level:', error)
+      return []
    }
 }
 
@@ -44,7 +45,12 @@ export const getGrammarQuiz = async ({ grammarId }: { grammarId: string }): Prom
    }
 }
 
-export const getSavedGrammarTopicByUser = async (user: TUser): Promise<TUserGrammarProgress[]> => {
+export const getSavedGrammarTopicByUser = async (
+   user: TUser | null | undefined
+): Promise<TUserGrammarProgress[]> => {
+   if (!user || !user.id) {
+      return []
+   }
    const savedGrammarTopics = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
       filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}"`
    })
@@ -55,9 +61,12 @@ export const getSingleGrammarTopicByUser = async ({
    user,
    grammar_id
 }: {
-   user: TUser
+   user: TUser | null | undefined
    grammar_id: string
 }): Promise<TUserGrammarProgress> => {
+   if (!user || !user.id) {
+      throw new Error('User is required')
+   }
    const savedGrammarTopic = await pbGetList(constants.USER_GRAMMAR_PROGRESS, {
       filter: `user_id ${queryOperators.EQUAL_TO} "${user.id}" && grammar_id ${queryOperators.EQUAL_TO} "${grammar_id}"`,
       sort: '-updated'

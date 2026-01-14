@@ -37,7 +37,6 @@ const PracticeVocabulary = () => {
 
    // Reset state when level filter changes
    useEffect(() => {
-      console.log('object')
       setCurrentIndex(0)
       setRankings({})
       setIsCompleted(false)
@@ -46,7 +45,6 @@ const PracticeVocabulary = () => {
 
    useEffect(() => {
       if (isCompleted) {
-         console.log('Practice session completed successfully!')
          refetchVocabulary()
          refetchVocabularyStats()
       }

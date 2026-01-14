@@ -43,9 +43,10 @@ export const useSaveVocabulary = () => {
    })
 }
 
-export const useGetVocabularyStats = (user: TUser) => {
+export const useGetVocabularyStats = (user: TUser | null | undefined) => {
    return useQuery({
-      queryKey: ['userVocabularyStats', user],
-      queryFn: () => getVocabularyStats(user)
+      queryKey: ['userVocabularyStats', user?.id],
+      queryFn: () => getVocabularyStats(user),
+      enabled: Boolean(user?.id)
    })
 }
