@@ -12,7 +12,11 @@ export const OrganismArticleCarousel = ({ articles, extraClassName = '' }: Organ
    const safeArticles = Array.isArray(articles) ? articles : []
 
    // Filter by level A1 (MVP focus - PRD §4.2)
-   const filteredArticles = safeArticles.filter((article) => article.level === 'A1' || !article.level)
+   // Note: article.level is an array like ['A1', 'A2'], not a string
+   const filteredArticles = safeArticles.filter((article) => {
+      if (!article.level) return true
+      return Array.isArray(article.level) ? article.level.includes('A1') : article.level === 'A1'
+   })
 
    // Take first 6 articles to avoid overwhelming carousel
    const displayArticles = filteredArticles.slice(0, 6)
