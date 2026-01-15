@@ -29,7 +29,8 @@ export const useUserStreak = (user: TUser | null | undefined): UserStreakMetrics
    const { data: grammarProgress, isLoading: grammarLoading } = useSavedGrammarTopicByUser(user)
    const { data: articleProgress, isLoading: articlesLoading } = useGetArticlesListByUserAndState({
       userId: user?.id || '',
-      state: 'learned'
+      state: 'learned',
+      enabled: !isGuest
    })
    const { data: vocabularyStats, isLoading: vocabularyLoading } = useGetVocabularyStats()
 

@@ -51,15 +51,18 @@ export const useGetArticlesListByUserAndState = ({
    userId,
    level,
    state,
-   sortCriteria
+   sortCriteria,
+   enabled = true
 }: {
    userId: string
    level?: string
    state?: string
    sortCriteria?: string
+   enabled?: boolean
 }) => {
    return useQuery({
       queryKey: ['userArticlesList', userId, level, state, sortCriteria],
+      enabled,
       queryFn: () => {
          if (!userId) return getArticlesList({ level, sortCriteria })
 
