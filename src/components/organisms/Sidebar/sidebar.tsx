@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
-import { useLogin } from '@/hooks/user'
 import { getUserInfo } from '@/modules/actions/users.actions'
 import { Link, usePathname } from '@/navigation'
 const selectedStyles = 'rounded-xl border-2 border-primary/50 bg-primary/10'
@@ -15,10 +14,7 @@ export const OrganismSidebar: FunctionComponent = () => {
    const pathname = usePathname()
    const t = useTranslations()
 
-   const { data: userFromLoginMethod } = useLogin()
-   const userFromLoggedInfo = getUserInfo()
-
-   const user = userFromLoggedInfo || userFromLoginMethod
+   const user = getUserInfo()
 
    return (
       <nav className="flex min-h-full flex-col justify-between border-r-2 border-gray-300 py-4">

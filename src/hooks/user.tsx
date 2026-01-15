@@ -22,8 +22,13 @@ export const useAuth = () => {
    return { authMethods, error, isLoading }
 }
 
-export const useLogin = () => {
-   return useQuery({ queryKey: ['googleAuth'], queryFn: googleLogin })
+export const useLogin = (enabled = false) => {
+   return useQuery({
+      queryKey: ['googleAuth'],
+      queryFn: googleLogin,
+      enabled,
+      retry: false
+   })
 }
 
 export const useScore = () => {

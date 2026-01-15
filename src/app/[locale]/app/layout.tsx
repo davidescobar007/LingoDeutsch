@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 import { OrganismDrawer as Drawer } from '@/components/organisms'
 import { OrganismFooter as Footer } from '@/components/organisms'
@@ -8,18 +8,25 @@ import { useLogin } from '@/hooks/user'
 import { useRouter } from '@/navigation'
 
 const Layout = ({ children }: { readonly children: ReactNode }) => {
-   const { refetch } = useLogin()
+   const [hasOAuthParams, setHasOAuthParams] = useState(false)
    const router = useRouter()
 
    useEffect(() => {
       const params = new URL(window.location.href).searchParams
-      if (params.get('state')) {
+      const hasState = !!params.get('state')
+      setHasOAuthParams(hasState)
+   }, [])
+
+   const { refetch } = useLogin(hasOAuthParams)
+
+   useEffect(() => {
+      if (hasOAuthParams) {
          refetch().finally(() => {
             router.push('/app/home')
          })
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
+   }, [hasOAuthParams])
 
    return (
       <Drawer sideBar={<OrganismMenu />}>
