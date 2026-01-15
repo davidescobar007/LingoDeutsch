@@ -25,7 +25,7 @@ export const OrganismWelcomeHero = ({
             <AtomText className="mb-4 block" type="span">
                {t('guestSubtitle')}
             </AtomText>
-            <AtomButton href="/login" size="lg" type="link" variant="PRIMARY">
+            <AtomButton href="/login" type="link" variant="PRIMARY">
                {t('guestCta')} →
             </AtomButton>
          </div>

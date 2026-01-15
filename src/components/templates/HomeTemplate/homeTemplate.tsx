@@ -5,7 +5,6 @@ import {
    OrganismGrammarProgressCard,
    OrganismNextStepPriority,
    OrganismStreakCard,
-   OrganismVocabularyPreview,
    OrganismWelcomeHero
 } from '@/components/organisms'
 import type { GrammarProgressMetrics } from '@/hooks/useGrammarProgress'
@@ -134,9 +133,6 @@ export const TemplateHome = ({
             <OrganismNextStepPriority actions={quickActions} isGuest={isGuest} vocabularyStats={vocabularyStats} />
          </div>
 
-         <div className="mb-8">
-            <OrganismVocabularyPreview />
-         </div>
          <MoleculeSectionDivider />
 
          {/* 5. Articles Carousel */}
