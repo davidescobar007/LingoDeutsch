@@ -34,7 +34,7 @@ const OrganismNavbar = ({ locale }: { locale: string }) => {
             </Link>
          </div>
          <div className="flex flex-none items-center gap-2">
-            {isUserLoged && user ? (
+            {isUserLoged() && user ? (
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">

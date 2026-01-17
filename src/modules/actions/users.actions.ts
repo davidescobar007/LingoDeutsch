@@ -95,11 +95,9 @@ export const googleLogin = async (): Promise<TUser> => {
    }
 }
 
-export const isUserLoged =
-   pb.authStore.isValid &&
-   pb.authStore.model?.id !== undefined &&
-   pb.authStore.model?.id !== null &&
-   pb.authStore.token
+export const isUserLoged = (): boolean => {
+   return !!(pb.authStore.isValid && pb.authStore.model?.id && pb.authStore.token)
+}
 
 export const getUserInfo = (): TUser | null | Admin => pb.authStore.model
 

@@ -56,7 +56,7 @@ const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise<TQu
 }
 
 const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUser; score: number }) => {
-   if (isUserLoged && !userArticle.id) {
+   if (isUserLoged() && !userArticle.id) {
       pbCreateRecord(constants.USER_ARTICLE_PROGRESS, {
          article_id: userArticle.article_id,
          user_id: userArticle.user_id,

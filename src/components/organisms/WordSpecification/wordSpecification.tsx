@@ -32,7 +32,7 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
    const [isSaved, setIsSaved] = useState(false)
 
    const handleSaveTranslation = () => {
-      if (!isUserLoged) {
+      if (!isUserLoged()) {
          openModal()
          return
       }
