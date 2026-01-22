@@ -1,4 +1,5 @@
 'use client'
+import { SpinLoader } from '@/components/atoms'
 import { AtomText } from '@/components/atoms'
 import { MoleculeAlert, MoleculeCard } from '@/components/molecules'
 import { TArticle } from '@/modules/actions/types'
@@ -13,7 +14,7 @@ const EMPTY_ARRAY: TArticle[] = []
 
 export const OrganismArticleList = ({ articles = EMPTY_ARRAY, isLoading = false }: OrganismArticleListProps) => {
    if (isLoading) {
-      return <AtomText isBlock>Buscando...</AtomText>
+      return <SpinLoader />
    }
 
    const hasArticles = articles && articles.length > 0

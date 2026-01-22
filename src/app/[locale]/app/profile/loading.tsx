@@ -1,11 +1,5 @@
-import { ProfileLoader } from '@/components/atoms'
+'use client'
+import { SpinLoader } from '@/components/atoms'
 
-const Loading = () => {
-   return (
-      <section className="flex w-full justify-center p-5 lg:px-20">
-         <ProfileLoader />
-      </section>
-   )
-}
-
+const Loading = () => <SpinLoader centered />
 export default Loading

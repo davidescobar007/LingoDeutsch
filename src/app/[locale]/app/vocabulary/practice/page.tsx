@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
+import { SpinLoader } from '@/components/atoms'
 import { AtomButton, AtomPill, AtomProgressPercentage, AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { MoleculeFlipCard, MoleculeStat } from '@/components/molecules'
 import { useGetVocabularyList, useGetVocabularyStats, useUpdateCard } from '@/hooks/cards'
@@ -52,7 +53,7 @@ const PracticeVocabulary = () => {
    }, [isCompleted])
 
    if (isLoading || isFetching) {
-      return <div className="flex h-screen items-center justify-center">Loading...</div>
+      return <SpinLoader />
    }
 
    if (!listOfWords || listOfWords.length === 0) {

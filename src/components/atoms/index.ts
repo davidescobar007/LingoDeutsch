@@ -5,6 +5,7 @@ export { AtomCountdown } from './countdown/countdown'
 export { Icon } from './icon/incon'
 export { AtomInput } from './input/input'
 export {
+   type SpinLoaderProps,
    ArticleLoader,
    CardLoader,
    Loader,

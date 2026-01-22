@@ -1,5 +1,5 @@
 'use client'
 import { SpinLoader } from '@/components/atoms'
 
-const Loader = () => <SpinLoader />
-export default Loader
+const Loading = () => <SpinLoader />
+export default Loading

@@ -1,5 +1,5 @@
 'use client'
-import { ArticleLoader } from '@/components/atoms'
+import { SpinLoader } from '@/components/atoms'
 
-const Loading = () => <ArticleLoader />
+const Loading = () => <SpinLoader centered />
 export default Loading

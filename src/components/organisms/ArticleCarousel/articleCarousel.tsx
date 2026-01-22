@@ -23,12 +23,7 @@ export const OrganismArticleCarousel = ({ articles, extraClassName = '' }: Organ
 
    return (
       <div className={extraClassName}>
-         <MoleculeSectionHeader
-            extraClassName="-mb-2 pt-10"
-            linkHref="article"
-            linkText="Ver todos"
-            title="📖 Artículos Recomendados"
-         />
+         <MoleculeSectionHeader linkHref="article" linkText="Ver todos" title="📖 Artículos Recomendados" />
          <MoleculeCarousel options={{ containScroll: false, loop: false, align: 'start' }}>
             {displayArticles.map(({ id, title, imageFile, created, estimated_read_time, level }) => (
                <MoleculeCard

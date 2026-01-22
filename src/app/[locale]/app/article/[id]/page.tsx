@@ -3,7 +3,7 @@
 
 import { useState } from 'react'
 
-import { ArticleLoader } from '@/components/atoms'
+import { SpinLoader } from '@/components/atoms'
 import { TemplateArticleReader } from '@/components/templates'
 import { useArticle } from '@/hooks/articles'
 import { useSaveVocabulary, useTranslation } from '@/hooks/translations'
@@ -17,7 +17,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
    const { isPending, mutate: saveVocabulary } = useSaveVocabulary()
 
    if (isLoadingArticle) {
-      return <ArticleLoader />
+      return <SpinLoader centered />
    }
 
    return (

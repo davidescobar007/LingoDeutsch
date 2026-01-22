@@ -1,11 +1,5 @@
-import { PracticeLoader } from '@/components/atoms'
+'use client'
+import { SpinLoader } from '@/components/atoms'
 
-const Loading = () => {
-   return (
-      <section className="flex w-full justify-center">
-         <PracticeLoader />
-      </section>
-   )
-}
-
+const Loading = () => <SpinLoader centered />
 export default Loading

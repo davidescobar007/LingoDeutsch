@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useLocale } from 'next-intl'
 
+import { SpinLoader } from '@/components/atoms'
 import { isAnswerCorrect, TemplateQuiz, TemplateQuizResult } from '@/components/templates'
 import { useGetArticleByUser, useSaveArticleUser } from '@/hooks/articles'
 import { useGetGrammarByLevel, useGetSingleGrammarTopicByUser, useSaveGrammarProgress } from '@/hooks/grammar'
@@ -85,7 +86,7 @@ const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
       if (current >= questions.length - 1) setShowResult(true)
    }
 
-   if (isLoading) return <div>Cargando...</div>
+   if (isLoading) return <SpinLoader />
    if (!questions.length) return <div>No se encontró ningún quiz.</div>
    if (!question?.options || !question?.correctAnswers) return <div>Error: Datos del quiz incorrectos.</div>
 

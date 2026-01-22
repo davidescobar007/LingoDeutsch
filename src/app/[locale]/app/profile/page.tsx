@@ -4,8 +4,8 @@ import { LogOut } from 'lucide-react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
+import { SpinLoader } from '@/components/atoms'
 import { AtomButton, AtomInput, AtomText, AtomTitle } from '@/components/atoms'
-import { ProfileLoader } from '@/components/atoms'
 import { useUpdateUser } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo, logOut } from '@/modules/actions/users.actions'
@@ -41,11 +41,7 @@ const Page = () => {
    const hasChanges = areObjectsDistinct(userInfo, userCopy)
 
    if (!user) {
-      return (
-         <section className="flex w-full justify-center p-5 lg:px-20">
-            <ProfileLoader />
-         </section>
-      )
+      return <SpinLoader />
    }
 
    return (
@@ -140,14 +136,10 @@ const Page = () => {
                         type="reset"
                         variant="OUTLINE"
                      >
-                        {isPending ? <span className="loading loading-spinner loading-sm" /> : 'Cancelar'}
+                        {isPending ? <SpinLoader centered={false} size="sm" /> : 'Cancelar'}
                      </AtomButton>
                      <AtomButton disabled={isPending} extraClassName="flex-1" type="submit" variant="PRIMARY">
-                        {isPending ? (
-                           <span className="loading loading-spinner loading-sm" />
-                        ) : (
-                           t('profile.saveButton')
-                        )}
+                        {isPending ? <SpinLoader centered={false} size="sm" /> : t('profile.saveButton')}
                      </AtomButton>
                   </div>
                </form>

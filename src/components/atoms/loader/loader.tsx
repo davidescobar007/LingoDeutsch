@@ -3,6 +3,14 @@
 
 import React from 'react'
 
+export type SpinLoaderProps = {
+   centered?: boolean
+   color?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
+   fullScreen?: boolean
+   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+   variant?: 'spinner' | 'dots' | 'ring' | 'bars' | 'ball' | 'infinity'
+}
+
 export const Loader = (): React.JSX.Element => {
    return (
       <div className="gap-3">
@@ -117,6 +125,20 @@ export const ProfileLoader = (): React.JSX.Element => {
    )
 }
 
-export const SpinLoader = (): React.JSX.Element => {
-   return <span className="loading loading-spinner loading-xs" />
+export const SpinLoader = ({
+   centered = true,
+   color = undefined,
+   fullScreen = true,
+   size = 'lg',
+   variant = 'spinner'
+}: SpinLoaderProps): React.JSX.Element => {
+   const spinner = (
+      <span className={`loading loading-${variant} loading-${size} ${color ? `text-${color}` : ''}`} />
+   )
+
+   if (centered) {
+      return <div className={`flex ${fullScreen ? 'h-svh' : 'h-full'} items-center justify-center`}>{spinner}</div>
+   }
+
+   return spinner
 }

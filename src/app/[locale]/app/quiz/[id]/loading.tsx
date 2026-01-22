@@ -1,7 +1,5 @@
 'use client'
+import { SpinLoader } from '@/components/atoms'
 
-const Loading = () => {
-   return <span className="loader" />
-}
-
+const Loading = () => <SpinLoader centered />
 export default Loading

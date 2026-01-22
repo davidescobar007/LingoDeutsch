@@ -1,6 +1,5 @@
 'use client'
-import { CardLoader } from '@/components/atoms'
-import { OrganismLayoutContainer as LayoutContainer } from '@/components/organisms'
+import { SpinLoader } from '@/components/atoms'
 import { TemplateHome } from '@/components/templates'
 import { useArticleList } from '@/hooks/articles'
 import { useGetVocabularyStats } from '@/hooks/cards'
@@ -22,13 +21,7 @@ const Learn = () => {
       articlesLoading || vocabLoading || grammarProgress.isLoading || streakMetrics.isLoading || hasOAuthParams
 
    if (isLoading) {
-      return (
-         <LayoutContainer>
-            {Array.from({ length: 3 }).map((_i, index) => (
-               <CardLoader key={index} />
-            ))}
-         </LayoutContainer>
-      )
+      return <SpinLoader />
    }
 
    return (

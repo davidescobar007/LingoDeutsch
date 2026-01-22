@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+import { SpinLoader } from '@/components/atoms'
 import { TemplateGrammar } from '@/components/templates'
 import {
    useGetGrammarByLevel,
@@ -103,7 +104,7 @@ const Grammar = () => {
    }
 
    if (!isInitialized) {
-      return null
+      return <SpinLoader />
    }
 
    return (
