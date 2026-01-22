@@ -1,10 +1,10 @@
 'use client'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 import { OrganismDrawer as Drawer } from '@/components/organisms'
 import { OrganismFooter as Footer } from '@/components/organisms'
 import { OrganismSidebar as OrganismMenu } from '@/components/organisms'
-import { useLogin } from '@/hooks/user'
+import { useLogin, useOAuthParams } from '@/hooks/user'
 import { isUserLoged } from '@/modules/actions/users.actions'
 import { usePathname, useRouter } from '@/navigation'
 
@@ -12,14 +12,8 @@ const PROTECTED_ROUTES = ['/app/vocabulary', '/app/profile', '/app/quiz']
 
 const Layout = ({ children }: { readonly children: ReactNode }) => {
    const pathname = usePathname()
-   const [hasOAuthParams, setHasOAuthParams] = useState(false)
+   const hasOAuthParams = useOAuthParams()
    const router = useRouter()
-
-   useEffect(() => {
-      const params = new URL(window.location.href).searchParams
-      const hasState = !!params.get('state')
-      setHasOAuthParams(hasState)
-   }, [])
 
    const { refetch } = useLogin(hasOAuthParams)
 

@@ -1,7 +1,9 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { getScoreList } from '@/modules/actions/global.actions'
@@ -12,6 +14,7 @@ import {
    updateUSer,
    updateUserScore
 } from '@/modules/actions/users.actions'
+import { usePathname } from '@/navigation'
 
 export const useAuth = () => {
    const {
@@ -54,4 +57,16 @@ export const useUpdateUser = () => {
 
 export const useGetUserInfo = () => {
    return useQuery({ queryKey: ['getUserInfo'], queryFn: getUserInfo })
+}
+
+export const useOAuthParams = (): boolean => {
+   const pathname = usePathname()
+   const searchParams = useSearchParams()
+   const [hasOAuthParams, setHasOAuthParams] = useState(false)
+
+   useEffect(() => {
+      setHasOAuthParams(!!searchParams.get('state'))
+   }, [pathname, searchParams]) // ← Se re-ejecuta al cambiar ruta o query params
+
+   return hasOAuthParams
 }
