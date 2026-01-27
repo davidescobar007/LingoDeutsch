@@ -48,8 +48,8 @@ export const OrganismVocabularyPreview = ({
          <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
                <span className="text-2xl">🎯</span>
-               <AtomText fontSize="large" isBold>
-                  Tu Vocabulario
+               <AtomText fontSize="medium" isBold>
+                  ****Tu Vocabulario****
                </AtomText>
             </div>
             <AtomText className="text-base-content/70" fontSize="medium">

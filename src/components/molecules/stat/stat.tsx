@@ -43,8 +43,8 @@ export const MoleculeStat: FunctionComponent<MoleculeStatProps> = ({
                <AtomText className="stat-title" type="paragraph">
                   {item.title}
                </AtomText>
-               <AtomText className="stat-value text-primary" fontSize="huge" isBold type="paragraph">
-                  {item.value}
+               <AtomText className="stat-value text-primary" fontSize="medium" isBold type="paragraph">
+                  ****{item.value}****
                </AtomText>
                {item.description && (
                   <AtomText className="stat-desc" fontSize="small" isThin type="paragraph">

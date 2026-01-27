@@ -20,8 +20,8 @@ const WaitingRoom = ({ futureDate, id, quizType = 'article' }: WaitingRoomProps)
             type="info"
          />
          <AtomCountdown targetDate={futureDate} />
-         <AtomText fontSize="large" isBlock type="span">
-            Mientras tanto, puedes:
+         <AtomText fontSize="medium" isBlock type="span">
+            ****Mientras tanto, puedes:****
          </AtomText>
          <div className=" flex flex-wrap items-center justify-center gap-4">
             {isArticleQuiz ? (

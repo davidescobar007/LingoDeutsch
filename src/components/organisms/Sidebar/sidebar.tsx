@@ -37,32 +37,32 @@ export const OrganismSidebar: FunctionComponent = () => {
             <li className={`mb-2 ${pathname === `/app/home` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/home">
                   <Icon icon="home" iconSize="medium" />
-                  <AtomText className="mb-0" fontSize="large" isBold>
-                     {t('menu.home')}
+                  <AtomText className="mb-0" fontSize="medium" isBold>
+                     ****{t('menu.home')}****
                   </AtomText>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/grammar` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/grammar">
                   <Icon icon="book" iconSize="medium" />
-                  <AtomText fontSize="large" isBold>
-                     {t('menu.grammar')}
+                  <AtomText fontSize="medium" isBold>
+                     ****{t('menu.grammar')}****
                   </AtomText>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/article">
                   <Icon icon="scroll-text" iconSize="medium" />
-                  <AtomText fontSize="large" isBold>
-                     Lectura
+                  <AtomText fontSize="medium" isBold>
+                     ****Lectura****
                   </AtomText>
                </Link>
             </li>
             <li className={`mb-2 ${pathname === `/app/vocabulary` && selectedStyles}`}>
                <Link className="flex items-center" href="/app/vocabulary">
                   <Icon icon="brain" iconSize="medium" />
-                  <AtomText fontSize="large" isBold>
-                     Vocabulario
+                  <AtomText fontSize="medium" isBold>
+                     ****Vocabulario****
                   </AtomText>
                </Link>
             </li>
@@ -90,8 +90,8 @@ export const OrganismSidebar: FunctionComponent = () => {
                   <li className={`mb-2 ${pathname === `/app/article` && selectedStyles}`}>
                      <Link className="flex items-end justify-start" href="/login">
                         <LogIn />
-                        <AtomText fontSize="large" isBold>
-                           Iniciar sesión
+                        <AtomText fontSize="medium" isBold>
+                           ****Iniciar sesión****
                         </AtomText>
                      </Link>
                   </li>

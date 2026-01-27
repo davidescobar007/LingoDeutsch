@@ -252,12 +252,14 @@ const PracticeVocabulary = () => {
 
                         {/* Rating Section */}
                         <div className="flex flex-col items-center space-y-4">
-                           <AtomText className="text-lg font-semibold">
-                              ¿Qué tan difícil fue esta palabra?
+                           <AtomText className="text-lg font-semibold" fontSize="medium">
+                              ****¿Qué tan difícil fue esta palabra?****
                            </AtomText>
 
                            {updateError && (
-                              <div className="rounded bg-red-50 p-2 text-sm text-red-500">{updateError}</div>
+                              <AtomText className="rounded bg-red-50 p-2 text-sm text-red-500" fontSize="small">
+                                 {updateError}
+                              </AtomText>
                            )}
 
                            <div className="flex gap-4">

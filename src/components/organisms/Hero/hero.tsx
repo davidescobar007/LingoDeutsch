@@ -79,7 +79,7 @@ export const OrganismHero: FunctionComponent<TOrganismHero> = ({
                   <div className="bg-base-100 rounded-2xl p-6 shadow-xl md:p-4">
                      <AtomText
                         className="!text-justify leading-10 tracking-normal"
-                        fontSize="large"
+                        fontSize="medium"
                         type="paragraph"
                      >
                         {text_content

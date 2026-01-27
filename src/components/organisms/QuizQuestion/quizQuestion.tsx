@@ -38,8 +38,8 @@ export const OrganismQuizQuestion = ({ onSelect, question, selected }: OrganismQ
    return (
       <div className="flex flex-col gap-5">
          <div>
-            <AtomText fontSize="huge" isBold>
-               {questionText}
+            <AtomText fontSize="medium" isBold>
+               ****{questionText}****
             </AtomText>
             <br />
             {typeof question.question !== 'string' && (

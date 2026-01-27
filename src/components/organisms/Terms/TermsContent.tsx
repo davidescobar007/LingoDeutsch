@@ -112,8 +112,8 @@ export const OrganismTermsContent = () => {
                {/* Introduction */}
                <div className="mb-8">
                   <p className="text-base-content/80 mb-4">{t('lastUpdate', variables)}</p>
-                  <AtomText className="mb-6" fontSize="large">
-                     {t('introduction')}
+                  <AtomText className="mb-6" fontSize="medium">
+                     ****{t('introduction')}****
                   </AtomText>
                </div>
 

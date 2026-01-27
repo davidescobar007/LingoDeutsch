@@ -40,8 +40,8 @@ export const MoleculeDrawerTranslation = ({
                   <div className="mx-auto max-w-md">
                      <div className="flex flex-wrap justify-start text-start">
                         <div className="flex w-full justify-between">
-                           <AtomText fontSize="large" isBlock isBold>
-                              {translationData.german_translation}
+                           <AtomText fontSize="medium" isBlock isBold>
+                              ****{translationData.german_translation}****
                            </AtomText>
                            <div className="flex justify-end">
                               <AtomBadge color="accent">{translationData.type_of_word}</AtomBadge>

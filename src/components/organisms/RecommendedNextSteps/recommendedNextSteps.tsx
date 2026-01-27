@@ -52,8 +52,8 @@ export const OrganismRecommendedNextSteps = ({
             <div className="container-card bg-primary/5 border-primary/20 p-6 transition-all duration-300 hover:shadow-lg">
                <div className="mb-4 flex items-center gap-3">
                   <span className="text-3xl">✨</span>
-                  <AtomText className="block" fontSize="large" isBold>
-                     {t('guestTitle')}
+                  <AtomText className="block" fontSize="medium" isBold>
+                     ****{t('guestTitle')}****
                   </AtomText>
                </div>
 
@@ -83,8 +83,8 @@ export const OrganismRecommendedNextSteps = ({
             )}`}
          >
             <div className="mb-4">
-               <AtomText className="block" fontSize="large" isBold>
-                  {recommendation.title}
+               <AtomText className="block" fontSize="medium" isBold>
+                  ****{recommendation.title}****
                </AtomText>
             </div>
 

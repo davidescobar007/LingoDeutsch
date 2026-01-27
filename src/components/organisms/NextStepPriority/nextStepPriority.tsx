@@ -121,8 +121,8 @@ export const OrganismNextStepPriority = ({
                         <div className="flex items-center gap-4">
                            <span className="text-4xl">{primaryAction.emoji}</span>
                            <div>
-                              <AtomText className="block font-bold" fontSize="large">
-                                 {primaryAction.title}
+                              <AtomText className="block font-bold" fontSize="medium">
+                                 ****{primaryAction.title}****
                               </AtomText>
                               <AtomText className="mt-1" fontSize="medium" isThin>
                                  {primaryAction.description}
@@ -136,8 +136,8 @@ export const OrganismNextStepPriority = ({
                               </span>
                            )}
 
-                           <AtomText color="primary" fontSize="huge" isBold>
-                              →
+                           <AtomText color="primary" fontSize="medium" isBold>
+                              ****→****
                            </AtomText>
                         </div>
                      </div>

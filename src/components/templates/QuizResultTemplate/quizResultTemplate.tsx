@@ -59,8 +59,8 @@ export const TemplateQuizResult = ({
                         <CheckCircle2 className="text-green-600" size={32} />
                      </div>
                      <div>
-                        <AtomText color="success" fontSize="large" isBold>
-                           ¡Felicitaciones! Quiz Aprobado
+                        <AtomText color="success" fontSize="medium" isBold>
+                           ****¡Felicitaciones! Quiz Aprobado****
                         </AtomText>
                         <br />
                         <AtomText fontSize="medium">Has superado el umbral mínimo del 60%</AtomText>
@@ -72,8 +72,8 @@ export const TemplateQuizResult = ({
                         <XCircle className="text-red-600" size={32} />
                      </div>
                      <div>
-                        <AtomText color="error" fontSize="large" isBold>
-                           Quiz No Aprobado
+                        <AtomText color="error" fontSize="medium" isBold>
+                           ****Quiz No Aprobado****
                         </AtomText>
                         <br />
                         <AtomText fontSize="medium">Necesitas al menos 60% para aprobar</AtomText>

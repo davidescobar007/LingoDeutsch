@@ -162,10 +162,10 @@ export const MoleculeMiniCard: FunctionComponent<MoleculeMiniCardProps> = ({
                ) : (
                   <AtomText
                      className="transition-transform duration-200 group-hover:scale-110"
-                     fontSize="huge"
+                     fontSize="medium"
                      type="span"
                   >
-                     {icon}
+                     ****{icon}****
                   </AtomText>
                )}
             </div>

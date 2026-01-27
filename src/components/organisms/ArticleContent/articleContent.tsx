@@ -76,7 +76,7 @@ export const OrganismArticleContent = ({
                   <div className="container-card p-6 md:p-4">
                      <AtomText
                         className="!text-justify leading-10 tracking-normal"
-                        fontSize="large"
+                        fontSize="medium"
                         type="paragraph"
                      >
                         {text_content

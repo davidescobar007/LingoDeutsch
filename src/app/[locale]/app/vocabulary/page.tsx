@@ -91,23 +91,39 @@ const Vocabulary = () => {
                         {/* Stats Bar */}
                         <div className="mb-6 flex items-center justify-around rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 p-4">
                            <div className="text-center">
-                              <div className="text-primary text-2xl font-bold">{data?.length || 0}</div>
-                              <span className="text-xs text-gray-500">Total</span>
+                              <AtomText className="text-primary text-2xl font-bold" fontSize="medium">
+                                 ****{data?.length || 0}****
+                              </AtomText>
+                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                                 Total
+                              </AtomText>
                            </div>
                            <div className="h-10 w-px bg-gray-300" />
                            <div className="text-center">
-                              <div className="text-success text-2xl font-bold">{easyWords?.length || 0}</div>
-                              <span className="text-xs text-gray-500">Fáciles</span>
+                              <AtomText className="text-success text-2xl font-bold" fontSize="medium">
+                                 ****{easyWords?.length || 0}****
+                              </AtomText>
+                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                                 Fáciles
+                              </AtomText>
                            </div>
                            <div className="h-10 w-px bg-gray-300" />
                            <div className="text-center">
-                              <div className="text-warning text-2xl font-bold">{mediumWords?.length || 0}</div>
-                              <span className="text-xs text-gray-500">Medias</span>
+                              <AtomText className="text-warning text-2xl font-bold" fontSize="medium">
+                                 ****{mediumWords?.length || 0}****
+                              </AtomText>
+                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                                 Medias
+                              </AtomText>
                            </div>
                            <div className="h-10 w-px bg-gray-300" />
                            <div className="text-center">
-                              <div className="text-error text-2xl font-bold">{hardWords?.length || 0}</div>
-                              <span className="text-xs text-gray-500">Difíciles</span>
+                              <AtomText className="text-error text-2xl font-bold" fontSize="medium">
+                                 ****{hardWords?.length || 0}****
+                              </AtomText>
+                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                                 Difíciles
+                              </AtomText>
                            </div>
                         </div>
 
@@ -122,9 +138,9 @@ const Vocabulary = () => {
                                     <AtomTitle extraClassName="text-white" type="h4">
                                        Repetición Espaciada Inteligente
                                     </AtomTitle>
-                                    <p className="text-xs">
+                                    <AtomText className="text-xs" fontSize="small">
                                        {totalDueCount} palabra{totalDueCount === 1 ? '' : 's'} para repasar.
-                                    </p>
+                                    </AtomText>
                                  </div>
                                  <AtomButton
                                     href="vocabulary/practice?level=intelligent"
@@ -154,9 +170,9 @@ const Vocabulary = () => {
                                        <AtomTitle extraClassName="!mb-0" type="h4">
                                           Nivel Básico
                                        </AtomTitle>
-                                       <p className="text-xs text-gray-500">
+                                       <AtomText className="text-xs text-gray-500" fontSize="small">
                                           {easyWords?.length || 0} palabras • {easyWordsDue} pendientes
-                                       </p>
+                                       </AtomText>
                                     </div>
                                     {easyWords?.length ? (
                                        <a
@@ -178,7 +194,9 @@ const Vocabulary = () => {
                                           </svg>
                                        </a>
                                     ) : (
-                                       <span className="text-xs text-gray-400">Vacío</span>
+                                       <AtomText className="text-xs text-gray-400" fontSize="small">
+                                          Vacío
+                                       </AtomText>
                                     )}
                                  </div>
                               </div>
@@ -193,9 +211,9 @@ const Vocabulary = () => {
                                        <AtomTitle extraClassName="!mb-0" type="h4">
                                           Nivel Intermedio
                                        </AtomTitle>
-                                       <p className="text-xs text-gray-500">
+                                       <AtomText className="text-xs text-gray-500" fontSize="small">
                                           {mediumWords?.length || 0} palabras • {mediumWordsDue} pendientes
-                                       </p>
+                                       </AtomText>
                                     </div>
                                     {mediumWords?.length ? (
                                        <a
@@ -217,7 +235,9 @@ const Vocabulary = () => {
                                           </svg>
                                        </a>
                                     ) : (
-                                       <span className="text-xs text-gray-400">Vacío</span>
+                                       <AtomText className="text-xs text-gray-400" fontSize="small">
+                                          Vacío
+                                       </AtomText>
                                     )}
                                  </div>
                               </div>
@@ -232,9 +252,9 @@ const Vocabulary = () => {
                                        <AtomTitle extraClassName="!mb-0" type="h4">
                                           Nivel Avanzado
                                        </AtomTitle>
-                                       <p className="text-xs text-gray-500">
+                                       <AtomText className="text-xs text-gray-500" fontSize="small">
                                           {hardWords?.length || 0} palabras • {hardWordsDue} pendientes
-                                       </p>
+                                       </AtomText>
                                     </div>
                                     {hardWords?.length ? (
                                        <a
@@ -256,7 +276,9 @@ const Vocabulary = () => {
                                           </svg>
                                        </a>
                                     ) : (
-                                       <span className="text-xs text-gray-400">Vacío</span>
+                                       <AtomText className="text-xs text-gray-400" fontSize="small">
+                                          Vacío
+                                       </AtomText>
                                     )}
                                  </div>
                               </div>
@@ -268,7 +290,7 @@ const Vocabulary = () => {
                                  <div className="flex items-center gap-3">
                                     <span className="text-2xl">🔥</span>
                                     <div>
-                                       <AtomText>Racha de los últimos 7 días</AtomText>
+                                       <AtomText fontSize="medium">Racha de los últimos 7 días</AtomText>
                                        <div className="mt-1 flex gap-1">
                                           {vocabularyStats?.last7DayStreak.map((item, i) => (
                                              <div className="text-xs" key={i}>

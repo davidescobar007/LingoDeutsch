@@ -63,8 +63,8 @@ export const OrganismGrammarPreview = ({ popularTopics }: GrammarPreviewProps) =
    return (
       <div className="flex w-full flex-wrap justify-between gap-4 pt-10">
          <div className="flex w-full justify-between">
-            <AtomText fontSize="large" isBold>
-               Gramatica Alemana
+            <AtomText fontSize="medium" isBold>
+               ****Gramatica Alemana****
             </AtomText>
             <Link href="grammar">
                <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
