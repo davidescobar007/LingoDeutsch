@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Slide, ToastContainer } from 'react-toastify'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 
 import QueryProvider from '@/hooks/queryProvider'
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
    }
 }
 
-const interFontDisplay = Inter({
-   weight: '500',
+const plusJakartaSans = Plus_Jakarta_Sans({
+   weight: ['400', '500', '600', '700'],
    subsets: ['latin'],
    display: 'auto',
    style: 'normal'
@@ -61,7 +61,7 @@ const RootLayout = ({
       <QueryProvider>
          <NextIntlClientProvider messages={messages}>
             <html data-theme="mytheme" lang={locale}>
-               <body className={`${interFontDisplay.className} text-neutral bg-base-200`}>
+               <body className={`${plusJakartaSans.className} text-neutral bg-base-200`}>
                   {children}
                   <ToastContainer
                      autoClose={5000}
