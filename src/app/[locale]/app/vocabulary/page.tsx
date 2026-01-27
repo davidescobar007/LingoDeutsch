@@ -91,37 +91,37 @@ const Vocabulary = () => {
                         {/* Stats Bar */}
                         <div className="mb-6 flex items-center justify-around rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 p-4">
                            <div className="text-center">
-                              <AtomText className="text-primary text-2xl font-bold" fontSize="medium">
+                              <AtomText color="primary" fontSize="medium" isBold>
                                  ****{data?.length || 0}****
                               </AtomText>
-                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                              <AtomText className="text-gray-500" fontSize="small">
                                  Total
                               </AtomText>
                            </div>
                            <div className="h-10 w-px bg-gray-300" />
                            <div className="text-center">
-                              <AtomText className="text-success text-2xl font-bold" fontSize="medium">
+                              <AtomText color="success" fontSize="medium" isBold>
                                  ****{easyWords?.length || 0}****
                               </AtomText>
-                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                              <AtomText className="text-gray-500" fontSize="small">
                                  Fáciles
                               </AtomText>
                            </div>
                            <div className="h-10 w-px bg-gray-300" />
                            <div className="text-center">
-                              <AtomText className="text-warning text-2xl font-bold" fontSize="medium">
+                              <AtomText color="warning" fontSize="medium" isBold>
                                  ****{mediumWords?.length || 0}****
                               </AtomText>
-                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                              <AtomText className="text-gray-500" fontSize="small">
                                  Medias
                               </AtomText>
                            </div>
                            <div className="h-10 w-px bg-gray-300" />
                            <div className="text-center">
-                              <AtomText className="text-error text-2xl font-bold" fontSize="medium">
+                              <AtomText color="error" fontSize="medium" isBold>
                                  ****{hardWords?.length || 0}****
                               </AtomText>
-                              <AtomText className="text-xs text-gray-500" fontSize="small">
+                              <AtomText className="text-gray-500" fontSize="small">
                                  Difíciles
                               </AtomText>
                            </div>
@@ -170,7 +170,7 @@ const Vocabulary = () => {
                                        <AtomTitle extraClassName="!mb-0" type="h4">
                                           Nivel Básico
                                        </AtomTitle>
-                                       <AtomText className="text-xs text-gray-500" fontSize="small">
+                                       <AtomText className="text-gray-500" fontSize="small">
                                           {easyWords?.length || 0} palabras • {easyWordsDue} pendientes
                                        </AtomText>
                                     </div>
@@ -194,7 +194,7 @@ const Vocabulary = () => {
                                           </svg>
                                        </a>
                                     ) : (
-                                       <AtomText className="text-xs text-gray-400" fontSize="small">
+                                       <AtomText className="text-gray-400" fontSize="small">
                                           Vacío
                                        </AtomText>
                                     )}
@@ -211,7 +211,7 @@ const Vocabulary = () => {
                                        <AtomTitle extraClassName="!mb-0" type="h4">
                                           Nivel Intermedio
                                        </AtomTitle>
-                                       <AtomText className="text-xs text-gray-500" fontSize="small">
+                                       <AtomText className="text-gray-500" fontSize="small">
                                           {mediumWords?.length || 0} palabras • {mediumWordsDue} pendientes
                                        </AtomText>
                                     </div>
@@ -235,7 +235,7 @@ const Vocabulary = () => {
                                           </svg>
                                        </a>
                                     ) : (
-                                       <AtomText className="text-xs text-gray-400" fontSize="small">
+                                       <AtomText className="text-gray-400" fontSize="small">
                                           Vacío
                                        </AtomText>
                                     )}
@@ -252,7 +252,7 @@ const Vocabulary = () => {
                                        <AtomTitle extraClassName="!mb-0" type="h4">
                                           Nivel Avanzado
                                        </AtomTitle>
-                                       <AtomText className="text-xs text-gray-500" fontSize="small">
+                                       <AtomText className="text-gray-500" fontSize="small">
                                           {hardWords?.length || 0} palabras • {hardWordsDue} pendientes
                                        </AtomText>
                                     </div>
@@ -276,7 +276,7 @@ const Vocabulary = () => {
                                           </svg>
                                        </a>
                                     ) : (
-                                       <AtomText className="text-xs text-gray-400" fontSize="small">
+                                       <AtomText className="text-gray-400" fontSize="small">
                                           Vacío
                                        </AtomText>
                                     )}

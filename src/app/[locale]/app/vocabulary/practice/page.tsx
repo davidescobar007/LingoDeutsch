@@ -233,7 +233,7 @@ const PracticeVocabulary = () => {
                </div>
                {/* Progress Indicator */}
                <div className="mt-6">
-                  <AtomText className="text-base-content/60 text-sm">
+                  <AtomText className="text-base-content/60" fontSize="small">
                      Tarjeta {currentIndex + 1} de {listOfWords.length}
                   </AtomText>
                   <AtomProgressPercentage value={Math.round(((currentIndex + 1) / listOfWords.length) * 100)} />
@@ -252,14 +252,16 @@ const PracticeVocabulary = () => {
 
                         {/* Rating Section */}
                         <div className="flex flex-col items-center space-y-4">
-                           <AtomText className="text-lg font-semibold" fontSize="medium">
+                           <AtomText fontSize="medium" isBold>
                               ****¿Qué tan difícil fue esta palabra?****
                            </AtomText>
 
                            {updateError && (
-                              <AtomText className="rounded bg-red-50 p-2 text-sm text-red-500" fontSize="small">
-                                 {updateError}
-                              </AtomText>
+                              <div className="rounded bg-red-50 p-2">
+                                 <AtomText className="text-red-500" fontSize="small">
+                                    {updateError}
+                                 </AtomText>
+                              </div>
                            )}
 
                            <div className="flex gap-4">
