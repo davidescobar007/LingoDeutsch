@@ -1,7 +1,6 @@
 'use client'
-import { FormProvider, SubmitHandler, UseFormReturn } from 'react-hook-form'
 
-import { AtomButton, Select } from '@/components/atoms'
+import { AtomPill } from '@/components/atoms'
 
 type TFilterFormData = {
    level?: string
@@ -9,83 +8,100 @@ type TFilterFormData = {
    state?: string
 }
 
+type LevelOption = {
+   emoji?: string
+   label: string
+   value: string
+}
+
 type MoleculeArticleFiltersProps = {
-   isLoading?: boolean
-   levelOptions: Array<{ label: string; value: string }>
-   methods: UseFormReturn<TFilterFormData>
-   onSubmit: SubmitHandler<TFilterFormData>
+   levelOptions: LevelOption[]
+   onFilterChange: (_filters: TFilterFormData) => void
+   selectedFilters: TFilterFormData
    sortCriteriaOptions: Array<{ label: string; value: string }>
    stateOptions: Array<{ label: string; value: string }>
 }
 
 export const MoleculeArticleFilters = ({
-   isLoading = false,
    levelOptions,
-   methods,
-   onSubmit,
+   onFilterChange,
+   selectedFilters,
    sortCriteriaOptions,
    stateOptions
 }: MoleculeArticleFiltersProps) => {
+   const handleLevelClick = (level: string) => {
+      onFilterChange({
+         ...selectedFilters,
+         level: selectedFilters.level === level ? undefined : level
+      })
+   }
+
+   const handleStateClick = (state: string) => {
+      const isSameFilter = selectedFilters.state === state
+
+      if (isSameFilter) {
+         onFilterChange({
+            ...selectedFilters,
+            state: undefined
+         })
+      } else {
+         onFilterChange({
+            ...selectedFilters,
+            state
+         })
+      }
+   }
+
+   const handleSortClick = (sortCriteria: string) => {
+      onFilterChange({
+         ...selectedFilters,
+         sortCriteria: selectedFilters.sortCriteria === sortCriteria ? undefined : sortCriteria
+      })
+   }
+
    return (
-      <div className="container-card-interactive my-6 w-full">
-         <div className="card-body p-6">
-            <div className="mb-4">
-               <h3 className="text-primary mb-1 text-lg font-semibold">🔍 Personaliza tu búsqueda</h3>
+      <div className="space-y-4">
+         <div className="group relative">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2">
+               {levelOptions.map((option) => (
+                  <AtomPill
+                     emoji={option.emoji}
+                     isSelected={selectedFilters.level === option.value}
+                     key={option.value}
+                     label={option.label}
+                     onClick={() => handleLevelClick(option.value)}
+                  />
+               ))}
             </div>
-
-            <FormProvider {...methods}>
-               <form className="space-y-4" onSubmit={methods.handleSubmit(onSubmit)}>
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                     <div className="form-control">
-                        <label className="label">
-                           <span className="label-text font-medium">📚 Nivel de alemán</span>
-                        </label>
-                        <Select id="level" label="" options={levelOptions} />
-                        <label className="label">
-                           <span className="label-text-alt text-xs">Elige tu nivel actual</span>
-                        </label>
-                     </div>
-
-                     <div className="form-control">
-                        <label className="label">
-                           <span className="label-text font-medium">⭐ Estado del artículo</span>
-                        </label>
-                        <Select id="state" label="" options={stateOptions} />
-                        <label className="label">
-                           <span className="label-text-alt text-xs">Filtra por progreso</span>
-                        </label>
-                     </div>
-
-                     <div className="form-control">
-                        <label className="label">
-                           <span className="label-text font-medium">🗂️ Ordenar por</span>
-                        </label>
-                        <Select id="sortCriteria" label="" options={sortCriteriaOptions} />
-                        <label className="label">
-                           <span className="label-text-alt text-xs">Organiza los resultados</span>
-                        </label>
-                     </div>
-                  </div>
-
-                  <div className="divider my-2" />
-                  <div className="flex flex-col items-center gap-3 sm:flex-row">
-                     <AtomButton disabled={isLoading} type="submit" variant="PRIMARY">
-                        {isLoading ? (
-                           <>
-                              <span className="loading loading-spinner loading-sm" />
-                              Buscando...
-                           </>
-                        ) : (
-                           <>
-                              🔍 Buscar artículos
-                              <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                           </>
-                        )}
-                     </AtomButton>
-                  </div>
-               </form>
-            </FormProvider>
+            <div className="from-base-100 pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l to-transparent opacity-0 transition-opacity group-hover:opacity-100 md:opacity-0" />
          </div>
+
+         <div className="group relative">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2">
+               {stateOptions.map((option) => (
+                  <AtomPill
+                     isSelected={selectedFilters.state === option.value}
+                     key={option.value}
+                     label={option.label}
+                     onClick={() => handleStateClick(option.value)}
+                  />
+               ))}
+            </div>
+            <div className="from-base-100 pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l to-transparent opacity-0 transition-opacity group-hover:opacity-100 md:opacity-0" />
+         </div>
+
+         {/*
+          <div className="flex items-center gap-2 overflow-x-auto pb-2">
+             {sortCriteriaOptions.map((option) => (
+                <AtomPill
+                   isSelected={selectedFilters.sortCriteria === option.value}
+                   key={option.value}
+                   label={option.label}
+                   onClick={() => handleSortClick(option.value)}
+                />
+             ))}
+          </div>
+          */}
       </div>
    )
 }

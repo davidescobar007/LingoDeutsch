@@ -7,7 +7,7 @@ import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
 
 const Article = () => {
-   const user = getUserInfo() as TUser
+   const user = getUserInfo() as TUser | null
 
    const [level, setLevel] = useState<string | undefined>(undefined)
    const [sortCriteria, setSortCriteria] = useState<string | undefined>(undefined)
@@ -21,7 +21,7 @@ const Article = () => {
       level,
       sortCriteria,
       state,
-      userId: user.id
+      userId: user?.id || undefined
    })
 
    useEffect(() => {
@@ -35,7 +35,12 @@ const Article = () => {
    }
 
    return (
-      <TemplateArticleList articles={articlesList} isLoading={isLoading} onFiltersChange={handleFiltersChange} />
+      <TemplateArticleList
+         articles={articlesList}
+         isLoading={isLoading}
+         isLoggedIn={!!user?.id}
+         onFiltersChange={handleFiltersChange}
+      />
    )
 }
 

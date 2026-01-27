@@ -54,7 +54,7 @@ export const useGetArticlesListByUserAndState = ({
    sortCriteria,
    enabled = true
 }: {
-   userId: string
+   userId?: string | undefined
    level?: string
    state?: string
    sortCriteria?: string

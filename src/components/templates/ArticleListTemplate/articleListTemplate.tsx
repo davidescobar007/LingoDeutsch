@@ -1,6 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 import { MoleculeArticleFilters } from '@/components/molecules/articleFilters/articleFilters'
 import { OrganismArticleHeader, OrganismArticleList } from '@/components/organisms'
@@ -16,23 +15,18 @@ type TemplateArticleListProps = {
    articles?: TArticle[]
    isLoading?: boolean
    onFiltersChange: (_filters: { level?: string; sortCriteria?: string; state?: string }) => void
+   isLoggedIn?: boolean
 }
 
 const EMPTY_ARRAY: TArticle[] = []
 
 const LEVEL_OPTIONS = [
-   { label: 'A1 - Principiante', value: 'A1' },
-   { label: 'A2 - Elemental', value: 'A2' },
-   { label: 'B1 - Intermedio', value: 'B1' },
-   { label: 'B2 - Intermedio avanzado', value: 'B2' },
-   { label: 'C1 - Avanzado', value: 'C1' },
-   { label: 'C2 - Proficiente', value: 'C2' }
-]
-
-const STATE_OPTIONS = [
-   { label: '⚪️ Todos', value: 'all' },
-   { label: '🟢 Aprendido ', value: 'learned' },
-   { label: '🟡 Creado para mi', value: 'bookmarked' }
+   { emoji: '🌱', label: 'A1', value: 'A1' },
+   { emoji: '🌿', label: 'A2', value: 'A2' },
+   { emoji: '🌳', label: 'B1', value: 'B1' },
+   { emoji: '🏔️', label: 'B2', value: 'B2' },
+   { emoji: '⭐', label: 'C1', value: 'C1' },
+   { emoji: '🏆', label: 'C2', value: 'C2' }
 ]
 
 const SORT_CRITERIA_OPTIONS = [
@@ -43,23 +37,21 @@ const SORT_CRITERIA_OPTIONS = [
 export const TemplateArticleList = ({
    articles = EMPTY_ARRAY,
    isLoading = false,
-   onFiltersChange
+   onFiltersChange,
+   isLoggedIn = false
 }: TemplateArticleListProps) => {
-   const methods = useForm<TFilterFormData>()
-   const [localFilters, setLocalFilters] = useState<TFilterFormData>({})
+   const STATE_OPTIONS = isLoggedIn
+      ? [
+           { label: 'Todos', value: 'all' },
+           { label: 'Leídos', value: 'learned' }
+        ]
+      : [{ label: 'Todos', value: 'all' }]
 
-   useEffect(() => {
-      if (localFilters.level || localFilters.state || localFilters.sortCriteria) {
-         onFiltersChange(localFilters)
-      }
-   }, [localFilters, onFiltersChange])
+   const [selectedFilters, setSelectedFilters] = useState<TFilterFormData>({ state: 'all' })
 
-   const handleSubmitForm: SubmitHandler<TFilterFormData> = (data) => {
-      setLocalFilters({
-         level: data.level,
-         sortCriteria: data.sortCriteria,
-         state: data.state
-      })
+   const handleFilterChange = (filters: TFilterFormData) => {
+      setSelectedFilters(filters)
+      onFiltersChange(filters)
    }
 
    return (
@@ -67,10 +59,9 @@ export const TemplateArticleList = ({
          <OrganismArticleHeader />
 
          <MoleculeArticleFilters
-            isLoading={isLoading}
             levelOptions={LEVEL_OPTIONS}
-            methods={methods}
-            onSubmit={handleSubmitForm}
+            onFilterChange={handleFilterChange}
+            selectedFilters={selectedFilters}
             sortCriteriaOptions={SORT_CRITERIA_OPTIONS}
             stateOptions={STATE_OPTIONS}
          />
