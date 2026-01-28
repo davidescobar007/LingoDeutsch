@@ -50,7 +50,7 @@ export const AtomText: FunctionComponent<TText> = ({
       color === 'warning' && 'text-warning',
       color === 'error' && 'text-error',
       color === 'info' && 'text-info',
-      color === 'light' && 'text-base-200',
+      color === 'light' && '!text-base-200',
       color === 'dark' && 'text-base-content',
       color === 'success' && 'text-success',
       color === 'danger' && 'text-error',

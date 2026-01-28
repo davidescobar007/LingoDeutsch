@@ -32,29 +32,22 @@ export const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({
                   </div>
 
                   {/* Flip Hint */}
-                  <div className="text-info-content absolute right-4 top-4 text-sm opacity-70 hover:opacity-100">
+                  <AtomText className="absolute right-4 top-4" color="info" fontSize="small">
                      👆 Toca para voltear
-                  </div>
+                  </AtomText>
 
                   {/* German Text */}
                   <div className="flex flex-col items-center justify-center space-y-3">
-                     <div className="text-info-content text-3xl font-bold">
+                     <div className="text-info text-3xl font-bold">
                         <AtomTitle type="h2">{germanText}</AtomTitle>
                      </div>
                      {germanExample && (
                         <div className="text-center">
-                           <AtomText className="text-info-content text-sm italic">
+                           <AtomText color="info" fontSize="small" isItalic>
                               &ldquo;{germanExample}&rdquo;
                            </AtomText>
                         </div>
                      )}
-                  </div>
-
-                  {/* Bottom Hint */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                     <AtomText className="text-info-content text-sm opacity-80">
-                        Ver traducción en español
-                     </AtomText>
                   </div>
                </div>
             </div>
@@ -68,9 +61,9 @@ export const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({
                   </div>
 
                   {/* Flip Hint */}
-                  <div className="text-success-content absolute right-4 top-4 text-sm opacity-70 transition-opacity hover:opacity-100">
+                  <AtomText className="absolute right-4 top-4" fontSize="small">
                      👆 Toca para voltear
-                  </div>
+                  </AtomText>
 
                   {/* Spanish Text */}
                   <div className="flex flex-col items-center justify-center space-y-3">
@@ -79,7 +72,7 @@ export const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({
                      </div>
                      {spanishExample && (
                         <div className="text-center">
-                           <AtomText className="text-success-content text-sm italic">
+                           <AtomText fontSize="small" isItalic>
                               &ldquo;{spanishExample}&rdquo;
                            </AtomText>
                         </div>
@@ -88,7 +81,7 @@ export const MoleculeFlipCard: FunctionComponent<TMoleculeFlipCard> = ({
 
                   {/* Bottom Hint */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                     <AtomText className="text-success-content text-sm opacity-80">Ver palabra en alemán</AtomText>
+                     <AtomText fontSize="small">Ver palabra en alemán</AtomText>
                   </div>
                </div>
             </div>
