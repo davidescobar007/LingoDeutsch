@@ -41,7 +41,7 @@ export const MoleculeDrawerTranslation = ({
                      <div className="flex flex-wrap justify-start text-start">
                         <div className="flex w-full justify-between">
                            <AtomText fontSize="medium" isBlock isBold>
-                              ****{translationData.german_translation}****
+                              {translationData.german_translation}
                            </AtomText>
                            <div className="flex justify-end">
                               <AtomBadge color="accent">{translationData.type_of_word}</AtomBadge>

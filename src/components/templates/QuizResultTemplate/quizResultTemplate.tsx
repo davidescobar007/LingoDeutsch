@@ -60,7 +60,7 @@ export const TemplateQuizResult = ({
                      </div>
                      <div>
                         <AtomText color="success" fontSize="medium" isBold>
-                           ****¡Felicitaciones! Quiz Aprobado****
+                           ¡Felicitaciones! Quiz Aprobado
                         </AtomText>
                         <br />
                         <AtomText fontSize="medium">Has superado el umbral mínimo del 60%</AtomText>
@@ -73,7 +73,7 @@ export const TemplateQuizResult = ({
                      </div>
                      <div>
                         <AtomText color="error" fontSize="medium" isBold>
-                           ****Quiz No Aprobado****
+                           Quiz No Aprobado
                         </AtomText>
                         <br />
                         <AtomText fontSize="medium">Necesitas al menos 60% para aprobar</AtomText>

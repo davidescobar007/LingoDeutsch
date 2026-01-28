@@ -2,7 +2,7 @@
 
 import { CheckCircle2, XCircle } from 'lucide-react'
 
-import { AtomButton, AtomText } from '@/components/atoms'
+import { AtomText } from '@/components/atoms'
 
 type QuizQuestionType = {
    correctAnswers: string[]
@@ -56,31 +56,27 @@ export const OrganismQuizQuestion = ({ onSelect, question, selected }: OrganismQ
                const isCorrect = optionKey ? question.correctAnswers.includes(optionKey) && !!selected : false
                const isIncorrect = isSelected && optionKey ? !question.correctAnswers.includes(optionKey) : false
 
-               const buttonVariant = isSelected ? (isCorrect ? 'SUCCESS' : 'ERROR') : 'GHOST'
-               const buttonClass = `flex items-center justify-between rounded-xl border-2 p-4 text-lg font-medium shadow transition-all duration-500
-                   ${
-                      isSelected
-                         ? isCorrect
-                            ? 'border-green-500 bg-green-50 text-green-800 scale-[1.01]'
-                            : 'border-red-400 bg-red-50 text-red-800 scale-[1.01]'
-                         : 'hover:border-primary hover:bg-primary/10 border-gray-200 bg-white hover:scale-[1.03]'
-                   }`
+               const buttonClass = `flex items-center justify-between rounded-xl border-2 p-4 text-lg font-medium shadow transition-all duration-500 focus:ring-primary focus:outline-none focus:ring-2
+                  ${
+                     isSelected
+                        ? isCorrect
+                           ? 'border-green-500 bg-green-50 text-green-800'
+                           : 'border-red-400 bg-red-50 text-red-800'
+                        : 'hover:border-primary hover:bg-primary/10 border-gray-200 bg-white hover:scale-[1.03]'
+                  }
+                  ${isSelected ? 'scale-[1.01]' : ''}`
 
                return (
-                  <AtomButton
+                  <button
+                     className={buttonClass}
                      disabled={!!selected}
-                     extraClassName={buttonClass}
-                     isBlock
                      key={option}
                      onClick={() => onSelect(option)}
-                     size="lg"
-                     type="button"
-                     variant={buttonVariant}
                   >
                      {option}
                      {isSelected && isCorrect && <CheckCircle2 className="ml-2 text-green-500" size={22} />}
                      {isIncorrect && <XCircle className="ml-2 text-red-500" size={22} />}
-                  </AtomButton>
+                  </button>
                )
             })}
          </div>

@@ -50,7 +50,7 @@ export const OrganismStreakCard = ({
          <div className="mb-2 flex items-center justify-between">
             <AtomTitle type="h3">🔥 Racha de Aprendizaje</AtomTitle>
             <AtomText className="text-orange-500" fontSize="medium" isBold>
-               ****{displayStreak}****
+               {displayStreak} días
             </AtomText>
          </div>
 

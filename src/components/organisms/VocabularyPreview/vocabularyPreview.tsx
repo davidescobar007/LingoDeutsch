@@ -49,7 +49,7 @@ export const OrganismVocabularyPreview = ({
             <div className="flex items-center gap-2">
                <span className="text-2xl">🎯</span>
                <AtomText fontSize="medium" isBold>
-                  ****Tu Vocabulario****
+                  Tu Vocabulario
                </AtomText>
             </div>
             <AtomText className="text-base-content/70" fontSize="medium">

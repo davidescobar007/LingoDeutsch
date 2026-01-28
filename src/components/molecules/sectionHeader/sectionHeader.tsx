@@ -1,5 +1,5 @@
 'use client'
-import { AtomText, Icon } from '@/components/atoms'
+import { AtomText, AtomTitle, Icon } from '@/components/atoms'
 import { Link } from '@/navigation'
 
 type MoleculeSectionHeaderProps = {
@@ -17,9 +17,9 @@ export const MoleculeSectionHeader = ({
 }: MoleculeSectionHeaderProps) => {
    return (
       <div className={`flex w-full justify-between ${extraClassName}`}>
-         <AtomText fontSize="medium" isBold>
-            ****{title}****
-         </AtomText>
+         <AtomTitle extraClassName="!text-lg mb-4" type="h3">
+            {title}
+         </AtomTitle>
          <Link href={linkHref}>
             <AtomText className="flex items-center justify-center gap-1" isBold isPrimary>
                {linkText} <Icon className="text-primary" icon="move-right" iconSize="small" />

@@ -13,6 +13,7 @@ const selectedStyles = 'rounded-xl border-2 border-primary/50 bg-primary/10'
 export const OrganismSidebar: FunctionComponent = () => {
    const pathname = usePathname()
    const t = useTranslations()
+   const currentYear = new Date().getFullYear()
 
    const user = getUserInfo()
 
@@ -38,7 +39,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                <Link className="flex items-center" href="/app/home">
                   <Icon icon="home" iconSize="medium" />
                   <AtomText className="mb-0" fontSize="medium" isBold>
-                     ****{t('menu.home')}****
+                     {t('menu.home')}
                   </AtomText>
                </Link>
             </li>
@@ -46,7 +47,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                <Link className="flex items-center" href="/app/grammar">
                   <Icon icon="book" iconSize="medium" />
                   <AtomText fontSize="medium" isBold>
-                     ****{t('menu.grammar')}****
+                     {t('menu.grammar')}
                   </AtomText>
                </Link>
             </li>
@@ -54,7 +55,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                <Link className="flex items-center" href="/app/article">
                   <Icon icon="scroll-text" iconSize="medium" />
                   <AtomText fontSize="medium" isBold>
-                     ****Lectura****
+                     Lectura
                   </AtomText>
                </Link>
             </li>
@@ -62,7 +63,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                <Link className="flex items-center" href="/app/vocabulary">
                   <Icon icon="brain" iconSize="medium" />
                   <AtomText fontSize="medium" isBold>
-                     ****Vocabulario****
+                     Vocabulario
                   </AtomText>
                </Link>
             </li>
@@ -83,7 +84,9 @@ export const OrganismSidebar: FunctionComponent = () => {
                               />
                            </div>
                         </div>
-                        <AtomTitle extraClassName="mt-3">{t('menu.profile')}</AtomTitle>
+                        <AtomTitle extraClassName="mt-3" type="h3">
+                           {t('menu.profile')}
+                        </AtomTitle>
                      </Link>
                   </li>
                ) : (
@@ -91,7 +94,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                      <Link className="flex items-end justify-start" href="/login">
                         <LogIn />
                         <AtomText fontSize="medium" isBold>
-                           ****Iniciar sesión****
+                           Iniciar sesión
                         </AtomText>
                      </Link>
                   </li>
@@ -112,7 +115,7 @@ export const OrganismSidebar: FunctionComponent = () => {
                      </Link>
                   </li>
                </ul>
-               <p className="mt-2 text-xs text-gray-500">© 2025 LingoDeutsch</p>
+               <p className="mt-2 text-xs text-gray-500">© {currentYear} LingoDeutsch</p>
             </div>
          </div>
       </nav>

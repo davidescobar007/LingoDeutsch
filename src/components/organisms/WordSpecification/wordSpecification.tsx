@@ -74,7 +74,7 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
                      <div className="flex items-start justify-between">
                         <div className="flex-1">
                            <AtomText color="primary" fontSize="medium" isBold>
-                              ****{data.german_translation}****
+                              {data.german_translation}
                            </AtomText>
                         </div>
                         <div className="flex items-center space-x-2 pt-2">

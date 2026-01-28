@@ -7,6 +7,7 @@ import { Link } from '@/navigation'
 
 export const OrganismFooterSection = () => {
    const t = useTranslations('footer')
+   const currentYear = new Date().getFullYear()
 
    return (
       <footer className="border-t border-gray-100 bg-white py-12">
@@ -31,7 +32,7 @@ export const OrganismFooterSection = () => {
             </nav>
 
             <p className="text-neutral/40 text-sm">
-               © 2025 Blabling. Todos los derechos reservados.
+               © {currentYear} Blabling. Todos los derechos reservados.
                <br />
                <span className="mt-2 block text-xs">Hecho con ❤️ para estudiantes de alemán.</span>
             </p>

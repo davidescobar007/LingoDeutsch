@@ -78,7 +78,7 @@ export const OrganismQuizResultSummary = ({
                   </Suspense>
 
                   <AtomText color={performanceData.color} fontSize="medium" isBold>
-                     ****{performanceData.level}****
+                     {performanceData.level}
                   </AtomText>
                   <AtomText fontSize="medium">{performanceData.message}</AtomText>
                </div>

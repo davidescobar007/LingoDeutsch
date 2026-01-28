@@ -165,7 +165,7 @@ export const MoleculeMiniCard: FunctionComponent<MoleculeMiniCardProps> = ({
                      fontSize="medium"
                      type="span"
                   >
-                     ****{icon}****
+                     {icon}
                   </AtomText>
                )}
             </div>

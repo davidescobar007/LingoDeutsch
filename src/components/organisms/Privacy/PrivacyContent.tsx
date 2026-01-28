@@ -5,12 +5,31 @@ import { useTranslations } from 'next-intl'
 import { AtomText } from '@/components/atoms'
 import { MoleculeCollapse } from '@/components/molecules'
 
+const getFormattedDate = () => {
+   const date = new Date()
+   const months = [
+      'enero',
+      'febrero',
+      'marzo',
+      'abril',
+      'mayo',
+      'junio',
+      'julio',
+      'agosto',
+      'septiembre',
+      'octubre',
+      'noviembre',
+      'diciembre'
+   ]
+   return `${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`
+}
+
 export const OrganismPrivacyContent = () => {
    const t = useTranslations('privacy')
 
    // Variables for interpolation
    const variables = {
-      date: '17 de diciembre de 2025',
+      date: getFormattedDate(),
       email: 'privacy@blabling.com'
    }
 
@@ -80,7 +99,7 @@ export const OrganismPrivacyContent = () => {
                <div className="mb-8">
                   <p className="text-base-content/80 mb-4">{t('lastUpdate', variables)}</p>
                   <AtomText className="mb-6" fontSize="medium">
-                     ****{t('introduction')}****
+                     {t('introduction')}
                   </AtomText>
                </div>
 
