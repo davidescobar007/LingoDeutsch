@@ -266,6 +266,7 @@
    },
    "menu": {
       "logIn": "Iniciar sesión",
+      "footerLogIn": "Acceder",
       "loginWithGoogle": "Iniciar con Google",
       "logOut": "Salir",
       "profile": "Perfil",
@@ -273,7 +274,9 @@
       "practice": "Practicar",
       "spanishOption": "Español",
       "germanOption": "Alemán",
-      "grammar": "Gramática"
+      "grammar": "Gramática",
+      "reading": "Lectura",
+      "vocabulary": "Vocabulario"
    },
    "about": {
       "hero": {

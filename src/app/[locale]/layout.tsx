@@ -72,7 +72,7 @@ const RootLayout = ({
                      rtl={false}
                      transition={Slide}
                   />
-                  <ReactQueryDevtools initialIsOpen={false} />
+                  <ReactQueryDevtools initialIsOpen={false} buttonPosition='relative' />
                </body>
             </html>
          </NextIntlClientProvider>

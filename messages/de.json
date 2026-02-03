@@ -264,6 +264,7 @@
    },
    "menu": {
       "logIn": "Einloggen",
+      "footerLogIn": "Login",
       "loginWithGoogle": "Mit Google einloggen",
       "logOut": "Ausloggen",
       "profile": "Profil",
@@ -271,7 +272,9 @@
       "practice": "Üben",
       "spanishOption": "Spanisch",
       "germanOption": "Deutsch",
-      "grammar": "Grammatik"
+      "grammar": "Grammatik",
+      "reading": "Lesen",
+      "vocabulary": "Wortschatz"
    },
    "about": {
       "hero": {
