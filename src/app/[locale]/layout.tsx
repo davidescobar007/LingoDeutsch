@@ -3,7 +3,8 @@ import { Slide, ToastContainer } from 'react-toastify'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
-import { NextIntlClientProvider, useMessages } from 'next-intl'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
 
 import QueryProvider from '@/hooks/queryProvider'
 
@@ -49,14 +50,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
    style: 'normal'
 })
 
-const RootLayout = ({
+const RootLayout = async ({
    children,
-   params: { locale }
+   params
 }: {
    readonly children: ReactNode
-   params: { locale: string }
+   params: Promise<{ locale: string }>
 }) => {
-   const messages = useMessages()
+   const { locale } = await params
+   const messages = await getMessages()
    return (
       <QueryProvider>
          <NextIntlClientProvider messages={messages}>
@@ -72,7 +74,7 @@ const RootLayout = ({
                      rtl={false}
                      transition={Slide}
                   />
-                  <ReactQueryDevtools initialIsOpen={false} buttonPosition='relative' />
+                  <ReactQueryDevtools buttonPosition="relative" initialIsOpen={false} />
                </body>
             </html>
          </NextIntlClientProvider>

@@ -4,7 +4,8 @@ import { TemplateLanding } from '@/components/templates'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
 
-export const generateMetadata = ({ params: { locale } }: { params: { locale: string } }): Metadata => {
+export const generateMetadata = async ({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> => {
+   const { locale } = await params
    const isSpanish = locale === 'es'
 
    const title = isSpanish
@@ -99,7 +100,8 @@ export const generateMetadata = ({ params: { locale } }: { params: { locale: str
    }
 }
 
-const Home = ({ params: { locale } }: { params: { locale: string } }) => {
+const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
+   const { locale } = await params
    const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',

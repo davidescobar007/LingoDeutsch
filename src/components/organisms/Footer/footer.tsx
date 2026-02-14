@@ -15,8 +15,9 @@ const OrganismFooter = () => {
             <Link className="transition-transform duration-150 active:scale-95" href="/app/grammar">
                <BookIcon className={pathname === '/app/grammar' ? 'text-primary' : 'text-gray-400'} size={20} />
                <span
-                  className={`btm-nav-label text-xs ${pathname === '/app/grammar' ? 'active text-primary font-bold' : 'text-gray-500'
-                     }`}
+                  className={`btm-nav-label text-xs ${
+                     pathname === '/app/grammar' ? 'active text-primary font-bold' : 'text-gray-500'
+                  }`}
                >
                   {t('grammar')}
                </span>
@@ -27,8 +28,9 @@ const OrganismFooter = () => {
                   size={20}
                />
                <span
-                  className={`btm-nav-label text-xs ${pathname === '/app/article' ? 'active text-primary font-bold' : 'text-gray-500'
-                     }`}
+                  className={`btm-nav-label text-xs ${
+                     pathname === '/app/article' ? 'active text-primary font-bold' : 'text-gray-500'
+                  }`}
                >
                   {t('reading')}
                </span>
@@ -36,8 +38,9 @@ const OrganismFooter = () => {
             <Link className="transition-transform duration-150 active:scale-95" href="/app/home">
                <HomeIcon className={pathname === '/app/home' ? 'text-primary' : 'text-gray-400'} size={20} />
                <span
-                  className={`btm-nav-label text-xs ${pathname === '/app/home' ? 'active text-primary font-bold' : 'text-gray-500'
-                     }`}
+                  className={`btm-nav-label text-xs ${
+                     pathname === '/app/home' ? 'active text-primary font-bold' : 'text-gray-500'
+                  }`}
                >
                   {t('home')}
                </span>
@@ -48,8 +51,9 @@ const OrganismFooter = () => {
                   size={20}
                />
                <span
-                  className={`btm-nav-label text-xs ${pathname === '/app/vocabulary' ? 'active text-primary font-bold' : 'text-gray-500'
-                     }`}
+                  className={`btm-nav-label text-xs ${
+                     pathname === '/app/vocabulary' ? 'active text-primary font-bold' : 'text-gray-500'
+                  }`}
                >
                   {t('vocabulary')}
                </span>
@@ -58,8 +62,9 @@ const OrganismFooter = () => {
                <Link className="transition-transform duration-150 active:scale-95" href="/app/profile">
                   <UserIcon className={pathname === '/app/profile' ? 'text-primary' : 'text-gray-400'} size={20} />
                   <span
-                     className={`btm-nav-label text-xs ${pathname === '/app/profile' ? 'active text-primary font-bold' : 'text-gray-500'
-                        }`}
+                     className={`btm-nav-label text-xs ${
+                        pathname === '/app/profile' ? 'active text-primary font-bold' : 'text-gray-500'
+                     }`}
                   >
                      {t('profile')}
                   </span>
