@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-async-client-component */
 'use client'
 
-import { useState } from 'react'
+import { use, useState } from 'react'
+import { notFound } from 'next/navigation'
 
 import { SpinLoader } from '@/components/atoms'
 import { TemplateArticleReader } from '@/components/templates'
 import { useArticle } from '@/hooks/articles'
 import { useSaveVocabulary, useTranslation } from '@/hooks/translations'
 
-const Page = ({ params: { id } }: { params: { id: string } }) => {
+const Page = ({ params }: { params: Promise<{ id: string }> }) => {
+   const { id } = use(params)
    const [wordToTranslate, setWordToTranslate] = useState<string>('')
    const [enabled, setEnabled] = useState<boolean>(false)
 
@@ -18,6 +20,10 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
 
    if (isLoadingArticle) {
       return <SpinLoader centered />
+   }
+
+   if (!article) {
+      notFound()
    }
 
    return (

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import { useEffect } from 'react'
+import { use, useEffect } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { BookOpen } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -11,8 +11,8 @@ import { AuthProviderInfo } from 'pocketbase'
 import { AtomText, AtomTitle } from '@/components/atoms'
 import { useAuth, useGetUserInfo } from '@/hooks/user'
 
-const Login = ({ params }: { params: { locale: string } }) => {
-   const { locale } = params
+const Login = ({ params }: { params: Promise<{ locale: string }> }) => {
+   const { locale } = use(params)
    const router = useRouter()
    const t = useTranslations()
    const { authMethods } = useAuth()

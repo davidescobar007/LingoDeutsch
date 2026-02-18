@@ -1,8 +1,12 @@
 'use client'
 
+import { use } from 'react'
+
 import { TemplateAbout } from '@/components/templates'
 
-const AboutPage = ({ params: { locale } }: { params: { locale: string } }) => {
+const AboutPage = ({ params }: { params: Promise<{ locale: string }> }) => {
+   const { locale } = use(params)
+
    return <TemplateAbout locale={locale} />
 }
 

@@ -20,7 +20,8 @@ export const useArticleList = ({ level, sortCriteria }: { level?: string; sortCr
 export const useArticle = (articleId: string) => {
    return useQuery({
       queryKey: ['article', articleId],
-      queryFn: () => getSingleArticle({ articleId })
+      queryFn: () => getSingleArticle({ articleId }),
+      enabled: !!articleId
    })
 }
 

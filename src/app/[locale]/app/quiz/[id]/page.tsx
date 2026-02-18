@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useLocale } from 'next-intl'
 
 import { SpinLoader } from '@/components/atoms'
@@ -27,11 +27,12 @@ type QuizQuestion = {
 }
 
 type QuizPageProps = {
-   params: { id: string }
+   params: Promise<{ id: string }>
    searchParams: { type?: 'article' | 'grammar' }
 }
 
-const QuizPage = ({ params: { id }, searchParams }: QuizPageProps) => {
+const QuizPage = ({ params, searchParams }: QuizPageProps) => {
+   const { id } = use(params)
    const locale = useLocale() as 'de' | 'es'
    const user = getUserInfo() as TUser
    const quizType = searchParams?.type || 'article'
