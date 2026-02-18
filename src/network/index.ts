@@ -132,7 +132,8 @@ export const pbGetSingleRecordWithComplexfilter = async ({
  *   const newUser = await pbCreateRecord('users', { email: 'test@mail.com', password: '1234' });
  */
 export const pbCreateRecord = async (collection: string, data: any) => {
-   await pb.collection(collection).create(data, { $autoCancel: false })
+   const recordResult = await pb.collection(collection).create(data, { $autoCancel: false })
+   return recordResult
 }
 
 /**

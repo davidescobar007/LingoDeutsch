@@ -89,9 +89,10 @@ export const searchTranslationFromSources = async (wordToTranslate: string): Pro
               }
             : undefined
       }
-      const newTranslationSaved = pbCreateRecord(constants.VOCABULARY, newWordToBeSaved)
+      const newTranslationSaved = await pbCreateRecord(constants.VOCABULARY, newWordToBeSaved)
       return newTranslationSaved as unknown as Ttranslation
    } catch (error) {
+      console.log(error)
       throw error
    }
 }

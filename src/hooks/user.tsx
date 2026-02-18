@@ -47,7 +47,7 @@ export const useUpdateUser = () => {
    return useMutation({
       mutationFn: updateUSer,
       onError: (err) => {
-         toast.info(t(err.message))
+         toast.info(t(err.message as any))
       },
       onSuccess: () => {
          toast.success(t('translation.saved'))

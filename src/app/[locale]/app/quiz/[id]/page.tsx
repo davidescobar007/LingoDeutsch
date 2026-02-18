@@ -37,7 +37,6 @@ const QuizPage = ({ params, searchParams }: QuizPageProps) => {
    const locale = useLocale() as 'de' | 'es'
    const user = getUserInfo() as TUser
    const quizType = type || 'article'
-   console.log(quizType)
    const isArticleQuiz = quizType === 'article'
 
    const { data: quizzData, isLoading } = useGetQuiz({ id, type: quizType })

@@ -35,7 +35,11 @@ export const useSaveVocabulary = () => {
    return useMutation({
       mutationFn: saveVocabularyToStudy,
       onError: (err) => {
-         toast.info(t(err.message))
+         const errorMessage =
+            err.message === 'translation.alreadySaved' || err.message === 'translation.error'
+               ? t(err.message as any)
+               : t('translation.error')
+         toast.error(errorMessage)
       },
       onSuccess: () => {
          toast.success(t('translation.saved'))
