@@ -28,14 +28,16 @@ type QuizQuestion = {
 
 type QuizPageProps = {
    params: Promise<{ id: string }>
-   searchParams: { type?: 'article' | 'grammar' }
+   searchParams: Promise<{ type?: 'article' | 'grammar' }>
 }
 
 const QuizPage = ({ params, searchParams }: QuizPageProps) => {
    const { id } = use(params)
+   const { type } = use(searchParams)
    const locale = useLocale() as 'de' | 'es'
    const user = getUserInfo() as TUser
-   const quizType = searchParams?.type || 'article'
+   const quizType = type || 'article'
+   console.log(quizType)
    const isArticleQuiz = quizType === 'article'
 
    const { data: quizzData, isLoading } = useGetQuiz({ id, type: quizType })
