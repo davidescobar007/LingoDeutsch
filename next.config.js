@@ -8,6 +8,10 @@ const nextConfig = {
    sassOptions: {
       includePaths: [path.join(__dirname, 'styles')]
    },
+   webpack: (config) => {
+      config.resolve.alias['@public'] = path.join(__dirname, 'public')
+      return config
+   },
    images: {
       remotePatterns: [
          {

@@ -2,7 +2,7 @@
 import { useMemo } from 'react'
 import Lottie from 'lottie-react'
 
-import brainAnimation from '@/../../public/animated/brain.json'
+import brainAnimation from '@public/animated/brain.json'
 import { AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeAlert, MoleculeTable } from '@/components/molecules'
 import { useGetVocabularyList, useGetVocabularyStats } from '@/hooks/cards'
