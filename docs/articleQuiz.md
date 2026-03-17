@@ -25,22 +25,95 @@
 **Target schema to produce:**
 
 ```javascript
-;[
+ 
+ [
    {
-      id: 'q1',
-      type: 'single|multiple|true_or_false|autocomplete',
-      question: {
-         de: 'string',
-         es: 'string'
+      "id": "q1",
+      "type": "single",
+      "question": {
+         "de": "In welcher Stadt findet das Oktoberfest statt?",
+         "es": "¿En qué ciudad se celebra el Oktoberfest?"
       },
-      options: {
-         o1: 'string',
-         o2: 'string',
-         o3: 'string'
+      "options": {
+         "o1": "Berlin",
+         "o2": "München",
+         "o3": "Hamburg",
+         "o4": "Frankfurt"
       },
-      correctAnswers: ['o1']
+      "correctAnswers": [
+         "o2"
+      ]
+   },
+   {
+      "id": "q2",
+      "type": "true_or_false",
+      "question": {
+         "de": "Das Oktoberfest dauert drei Wochen.",
+         "es": "El Oktoberfest dura tres semanas."
+      },
+      "options": {
+         "o1": "Wahr",
+         "o2": "Falsch"
+      },
+      "correctAnswers": [
+         "o2"
+      ]
+   },
+   {
+      "id": "q3",
+      "type": "multiple",
+      "question": {
+         "de": "Was kann man auf dem Oktoberfest essen?",
+         "es": "¿Qué se puede comer en el Oktoberfest?"
+      },
+      "options": {
+         "o1": "Bratwurst",
+         "o2": "Brezeln",
+         "o3": "Hendl",
+         "o4": "Sushi"
+      },
+      "correctAnswers": [
+         "o1",
+         "o2",
+         "o3"
+      ]
+   },
+   {
+      "id": "q4",
+      "type": "autocomplete",
+      "question": {
+         "de": "Das Oktoberfest wird auch ___ genannt.",
+         "es": "Completa: El Oktoberfest también se llama..."
+      },
+      "options": {
+         "o1": "Wiesn",
+         "o2": "Fest",
+         "o3": "Feier"
+      },
+      "correctAnswers": [
+         "o1"
+      ]
+   },
+   {
+      "id": "q5",
+      "type": "single",
+      "question": {
+         "de": "Wann beginnt das Oktoberfest normalerweise?",
+         "es": "¿Cuándo comienza normalmente el Oktoberfest?"
+      },
+      "options": {
+         "o1": "Im Oktober",
+         "o2": "Mitte September",
+         "o3": "Ende August",
+         "o4": "Anfang November"
+      },
+      "correctAnswers": [
+         "o2"
+      ]
    }
 ]
+ 
+
 ```
 
 **Authoring requirements:**
@@ -103,6 +176,7 @@
    -  For `multiple`: `correctAnswers` length ≥ `multipleMinCorrect` and all ids exist in `options`.
    -  For `true_or_false`: `options` must be `{"o1":"Wahr","o2":"Falsch"}` and `correctAnswers` either `["o1"]` or `["o2"]`.
    -  Options count: respect `minOptions`/`maxOptions` for `single`; for `multiple` allow one extra if needed to include plausible distractors.
+   -  **JSON string validation**: All string values must be properly escaped. Do not use unescaped double quotes (`"`) inside double-quoted string values, as this will break the JSON structure. Use single quotes (`'`) for string values in the output to avoid conflicts with the double-quoted keys.
 
 8. **Balance and coverage**
 
@@ -119,78 +193,90 @@
    **Example output** (based on a B1 article about _Oktoberfest_; `allowedTypes` `["single","multiple","true_or_false","autocomplete"]`; `numQuestions` 5; `minOptions` 3; `maxOptions` 4; `multipleMinCorrect` 2; `requireSpanishQuestion=true`):
 
 ```javascript
-;[
+[
    {
-      id: 'q1',
-      type: 'single',
-      question: {
-         de: 'In welcher Stadt findet das Oktoberfest statt?',
-         es: '¿En qué ciudad se celebra el Oktoberfest?'
+      "id":"q1",
+      "type":"single",
+      "question":{
+         "de":"In welcher Stadt findet das Oktoberfest statt?",
+         "es":"¿En qué ciudad se celebra el Oktoberfest?"
       },
-      options: {
-         o1: 'Berlin',
-         o2: 'München',
-         o3: 'Hamburg',
-         o4: 'Frankfurt'
+      "options":{
+         "o1":"Berlin",
+         "o2":"München",
+         "o3":"Hamburg",
+         "o4":"Frankfurt"
       },
-      correctAnswers: ['o2']
+      "correctAnswers":[
+         "o2"
+      ]
    },
    {
-      id: 'q2',
-      type: 'true_or_false',
-      question: {
-         de: 'Das Oktoberfest dauert drei Wochen.',
-         es: 'El Oktoberfest dura tres semanas.'
+      "id":"q2",
+      "type":"true_or_false",
+      "question":{
+         "de":"Das Oktoberfest dauert drei Wochen.",
+         "es":"El Oktoberfest dura tres semanas."
       },
-      options: {
-         o1: 'Wahr',
-         o2: 'Falsch'
+      "options":{
+         "o1":"Wahr",
+         "o2":"Falsch"
       },
-      correctAnswers: ['o2']
+      "correctAnswers":[
+         "o2"
+      ]
    },
    {
-      id: 'q3',
-      type: 'multiple',
-      question: {
-         de: 'Was kann man auf dem Oktoberfest essen?',
-         es: '¿Qué se puede comer en el Oktoberfest?'
+      "id":"q3",
+      "type":"multiple",
+      "question":{
+         "de":"Was kann man auf dem Oktoberfest essen?",
+         "es":"¿Qué se puede comer en el Oktoberfest?"
       },
-      options: {
-         o1: 'Bratwurst',
-         o2: 'Brezeln',
-         o3: 'Hendl',
-         o4: 'Sushi'
+      "options":{
+         "o1":"Bratwurst",
+         "o2":"Brezeln",
+         "o3":"Hendl",
+         "o4":"Sushi"
       },
-      correctAnswers: ['o1', 'o2', 'o3']
+      "correctAnswers":[
+         "o1",
+         "o2",
+         "o3"
+      ]
    },
    {
-      id: 'q4',
-      type: 'autocomplete',
-      question: {
-         de: 'Das Oktoberfest wird auch ___ genannt.',
-         es: 'Completa: El Oktoberfest también se llama...'
+      "id":"q4",
+      "type":"autocomplete",
+      "question":{
+         "de":"Das Oktoberfest wird auch ___ genannt.",
+         "es":"Completa: El Oktoberfest también se llama..."
       },
-      options: {
-         o1: 'Wiesn',
-         o2: 'Fest',
-         o3: 'Feier'
+      "options":{
+         "o1":"Wiesn",
+         "o2":"Fest",
+         "o3":"Feier"
       },
-      correctAnswers: ['o1']
+      "correctAnswers":[
+         "o1"
+      ]
    },
    {
-      id: 'q5',
-      type: 'single',
-      question: {
-         de: 'Wann beginnt das Oktoberfest normalerweise?',
-         es: '¿Cuándo comienza normalmente el Oktoberfest?'
+      "id":"q5",
+      "type":"single",
+      "question":{
+         "de":"Wann beginnt das Oktoberfest normalerweise?",
+         "es":"¿Cuándo comienza normalmente el Oktoberfest?"
       },
-      options: {
-         o1: 'Im Oktober',
-         o2: 'Mitte September',
-         o3: 'Ende August',
-         o4: 'Anfang November'
+      "options":{
+         "o1":"Im Oktober",
+         "o2":"Mitte September",
+         "o3":"Ende August",
+         "o4":"Anfang November"
       },
-      correctAnswers: ['o2']
+      "correctAnswers":[
+         "o2"
+      ]
    }
 ]
 ```

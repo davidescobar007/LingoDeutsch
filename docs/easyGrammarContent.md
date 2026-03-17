@@ -11,10 +11,6 @@ Estructura: agrupación por contexto y función. La "pista clave" es opcional.
 =========================================
 -->
 
-# [TEMA]
-
----
-
 ### 👋 **[TÍTULO DE LA CATEGORÍA]**
 
 <!-- Agrupa las frases por su función (ej: Saludos, En el restaurante, Para pedir ayuda). Usa un emoji relevante. -->

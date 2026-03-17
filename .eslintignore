@@ -3,3 +3,4 @@ postcss.config.js
 tailwind.config.ts
 node_modules
 next
+docs

@@ -33,6 +33,11 @@ const nextConfig = {
             protocol: 'http',
             hostname: '104.248.61.4',
             port: '801'
+         },
+         {
+            protocol: 'https',
+            hostname: 'blabling-pocketbase-qa.duckdns.org',
+            port: ''
          }
       ]
    }
