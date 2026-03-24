@@ -1,25 +1,23 @@
 # LingoDeutsch - Agent Coding Guidelines
 
-## Quick Reference Commands
+## Commands
 
 ```bash
 # Development
 npm run dev              # Start dev server (localhost:3000)
-npm run build           # Production build
-npm start               # Start production server
+npm run build            # Production build
+npm start                # Start production server
 
 # Code Quality
-npm run lint            # Check ESLint errors
-npm run lint:fix        # Auto-fix linting issues
-npm run prettier        # Format all files (115 char width, 3-space tabs, single quotes)
+npm run lint             # Check ESLint errors
+npm run lint:fix         # Auto-fix linting issues
+npm run prettier         # Format files (115 char width, 3-space tabs, single quotes)
 
 # Testing
-# No test framework currently configured - add test setup if needed
+# No test framework configured - add if needed
 ```
 
-## Architecture: Strict Atomic Design
-
-Component hierarchy: **Atoms → Molecules → Organisms → Templates → Pages**
+## Architecture: Atomic Design
 
 ```
 src/components/
@@ -29,66 +27,38 @@ src/components/
 └── templates/      # Page layouts (TemplateLanding)
 ```
 
-**Naming Convention:**
+**Naming:** `export const AtomButton = () => {}` - prefix with Atom/Molecule/Organism/Template
+**Exports:** Always export via `index.ts` in alphabetical order
 
-```tsx
-export const AtomButton = () => {} // atoms/
-export const MoleculeCard = () => {} // molecules/
-export const OrganismNavbar = () => {} // organisms/
-export const TemplateLanding = () => {} // templates/
-```
-
-**Always export via index.ts (alphabetical order):**
-
-```typescript
-export { AtomAlert } from './alert/alert'
-export { AtomButton } from './button/button'
-```
-
-## Code Style Guidelines
+## Code Style
 
 ### Functions & Components
 
--  **Arrow functions only** (no function declarations)
--  **Self-closing tags** (`<Component />`)
--  **Unused params** prefixed with underscore (`_event`, `_props`)
+-  Arrow functions only (no function declarations)
+-  Self-closing tags (`<Component />`)
+-  Unused params prefixed with underscore (`_event`, `_props`)
 
 ```tsx
-// ✅ Correct
+// Correct
 export const MyComponent = () => {
-   const handleClick = (_event: MouseEvent) => {
-      console.log('clicked')
-   }
-   return <div>Content</div>
+   const handleClick = (_event: MouseEvent) => {}
+   return <AtomButton onClick={handleClick} />
 }
-
-// ❌ Wrong
-export default function MyComponent() {}
-const handleClick = (event) => {}
 ```
 
 ### Import Order (enforced by eslint-plugin-simple-import-sort)
 
 1. React & external packages
-2. Internal packages starting with `@/` or `components/`
+2. Internal packages (`@/`, `components/`)
 3. Side effect imports
 4. Parent imports (`..`)
 5. Relative imports (same folder)
 6. Style imports (`.css`)
 
-```tsx
-import { useState } from 'react'
-import { useTranslations } from 'next-intl'
-import { AtomButton } from '@/components/atoms'
-import { helper } from './utils'
-import './styles.css'
-```
-
-### Formatting (Prettier config)
+### Formatting(Prettier)
 
 -  Single quotes, no semicolons
--  3-space indentation
--  115 character line width
+-  3-space indentation, 115 char line width
 -  No trailing commas
 -  Tailwind classes sorted via `prettier-plugin-tailwindcss`
 
@@ -96,68 +66,52 @@ import './styles.css'
 
 ### Pragmatic Atom Usage
 
-✅ **Always use Atoms when they fit:**
-
--  `<AtomButton>` instead of `<button>` (complete variants)
--  `<AtomInput>` instead of `<input>` (validation/styling)
--  `<AtomText>` / `<AtomTitle>` for text when sufficient
-
-✅ **Use native HTML when Atoms are limited:**
-
--  `<h1>`, `<h2>`, `<h3>`, `<p>` when requiring `!important` or complex wrappers
--  Never force Atoms with `!important` hacks
+-  **Use Atoms:** `<AtomButton>`, `<AtomInput>` (complete variants)
+-  **Use native HTML:** `<h1>`, `<h2>`, `<p>` when Atom would need `!important`
 
 ```tsx
-// ✅ CORRECT
-<h1 className="mb-6 text-5xl font-bold text-white">Hero Title</h1>
+// Correct
+<h1 className="mb-6 text-5xl font-bold">Title</h1>
 <AtomButton variant="PRIMARY">Action</AtomButton>
-
-// ❌ WRONG
-<AtomTitle extraClassName="!text-5xl !font-bold !text-white">Title</AtomTitle>
-<button className="btn btn-primary">Click</button>
+// Wrong - don't force Atoms with !important
+<AtomTitle extraClassName="!text-5xl !font-bold">Title</AtomTitle>
 ```
 
-### `className` vs `extraClassName`
+### className vs extraClassName
 
 -  **`extraClassName`** (AtomButton, AtomTitle, AtomInput): ONLY for spacing/layout (margin, padding)
 -  **`className`** (AtomText, AtomBadge, Icon): Can include minor adjustments
 
 ```tsx
-// ✅ Correct
 <AtomButton variant="PRIMARY" size="lg" extraClassName="mt-4">
 <AtomText fontSize="huge" isBold className="mb-6">
-
-// ❌ Wrong - overriding base styles
-<AtomButton extraClassName="bg-red-500 text-white px-8">
 ```
 
 ### Component Composition (Preferred)
 
 ```tsx
-// ✅ GOOD - Flexible composition
+// Good - Flexible composition
 <MoleculeCard>
    <AtomTitle type="h3">Title</AtomTitle>
    <AtomText>Description</AtomText>
-   <AtomButton variant="PRIMARY">Action</AtomButton>
 </MoleculeCard>
-
-// ❌ AVOID - Rigid props
-<MoleculeCard title="Title" description="Desc" buttonText="Action" />
+// Avoid - Rigid props
+<MoleculeCard title="Title" description="Desc" />
 ```
 
-## TypeScript & Types
+## TypeScript
 
--  **Strict mode enabled** (`"strict": true` in tsconfig.json)
--  **Path alias:** `@/*` maps to `./src/*`
--  **Shared types:** `src/modules/actions/types.ts`
--  **Never use `any`** - use proper types or `unknown`
+-  Strict mode enabled
+-  Path alias: `@/*` maps to `./src/*`
+-  Shared types: `src/modules/actions/types.ts`
+-  Never use `any` - use proper types or `unknown`
 
 ## Internationalization (i18n)
 
 -  **Locales:** `es` (default), `de`
 -  **Translation files:** `messages/es.json`, `messages/de.json`
 -  **Navigation:** Use `import { Link } from '@/navigation'` (NOT `next/link`)
--  **Components with i18n:** Require `'use client'` directive + `useTranslations()`
+-  **Client components:** Require `'use client'` + `useTranslations()`
 
 ```tsx
 'use client'
@@ -171,18 +125,16 @@ export const OrganismHero = () => {
 
 ## Data Flow (React Query + PocketBase)
 
-Pattern: **Actions → React Query Hooks → Components**
+Pattern: **Actions → Hooks → Components**
 
 ```tsx
-// 1. Action (src/modules/actions/)
-export const searchTranslationFromSources = async (word: string): Promise<Ttranslation> => {
+// Action (src/modules/actions/)
+export const searchTranslationFromSources = async (word: string) => {
    await delay()
-   const dbResult = await getWordsTranslationFromDB({ field: 'german_translation', operator: '=', param: word })
-   if (dbResult) return dbResult
-   // ...
+   const dbResult = await pbGetSingleRecordQuery({ collection, field, param: word })
+   return dbResult
 }
-
-// 2. Hook (src/hooks/)
+// Hook (src/hooks/)
 export const useTranslation = ({ wordToTranslate }) => {
    return useQuery({
       queryKey: ['translation', wordToTranslate],
@@ -191,45 +143,55 @@ export const useTranslation = ({ wordToTranslate }) => {
    })
 }
 
-// 3. Component
+// Component
 const { data, isLoading } = useTranslation({ wordToTranslate: 'Haus' })
 ```
 
-**PocketBase Helpers:** `pbGetList()`, `pbCreateRecord()`, `pbGetSingleRecordQuery()`
+**PocketBase Helpers:** `pbGetList()`, `pbCreateRecord()`, `pbGetSingleRecordQuery()`, `pbUpdateRecord()`
 
-## Critical ESLint Rules
+## Error Handling
 
--  `react/self-closing-comp`: Enforce self-closing tags
--  `react/function-component-definition`: Enforce arrow functions
--  `unused-imports/no-unused-vars`: Warn on unused vars (ignore `_` prefix)
--  `simple-import-sort/imports`: Enforce import order
+-  Try-catch blocks with typed errors in actions
+-  Use `handleErrorModal()` from `global.actions.ts` for UI errors
+-  Throw meaningful error messages for i18n: `throw new Error('translation.error')`
 
-## Common Pitfalls (Don't)
+```tsx
+try {
+   const result = await pbGetSingleRecordQuery({ collection, field, param })
+   return result
+} catch (error) {
+   handleErrorModal(error as any)
+   throw error
+}
+```
 
-1. Use `next/link` → Use `import { Link } from '@/navigation'` for i18n
-2. Access `pb.authStore` directly → Use `isUserLoged()` helper
-3. Forget `'use client'` → Required for `useTranslations()`, `useQuery()`, client hooks
-4. Create new atoms → Check `src/components/atoms/index.ts` first
-5. Use `!important` → Prefer native HTML or improve the atom component
-6. Import without exports → All component levels must export via index files
+## Common Pitfalls
+
+1. Using `next/link` → Use `import { Link } from '@/navigation'`
+2. Accessing `pb.authStore` directly → Use `isUserLoged()` helper
+3. Forgetting `'use client'` → Required for hooks (`useTranslations`, `useQuery`)
+4. Creating new atoms → Check `src/components/atoms/index.ts` first
+5. Using `!important` → Prefer native HTML or improve the atom
 
 ## Pre-Commit Checklist
 
 -  [ ] Components follow Atomic Design hierarchy
--  [ ] `extraClassName` only used for spacing/layout
+-  [ ] `extraClassName` only for spacing/layout
 -  [ ] Arrow functions, ordered imports, self-closing tags
--  [ ] No unused variables (or prefix with `_`)
--  [ ] Translations added to `messages/es.json` and `messages/de.json`
+-  [ ] No unused variables (prefix with `_`)
+-  [ ] Translations in both `messages/es.json` and `messages/de.json`
 -  [ ] `npm run lint` passes
 -  [ ] `npm run prettier` applied
 
-## Key Files Reference
+## Key Files
 
 | File/Dir                          | Purpose                                |
 | --------------------------------- | -------------------------------------- |
 | `.eslintrc.json`                  | ESLint rules with simple-import-sort   |
 | `.prettierrc`                     | 3-space, 115 char width, single quotes |
-| `tsconfig.json`                   | Strict TypeScript, @/ path alias       |
-| `src/network/setup.ts`            | PocketBase instance configuration      |
 | `src/components/atoms/index.ts`   | Check existing atoms before creating   |
-| `.github/copilot-instructions.md` | Full AI coding guidelines (249 lines)  |
+| `src/modules/actions/types.ts`    | Shared TypeScript types                |
+| `src/network/setup.ts`            | PocketBase instance                    |
+| `src/navigation.ts`               | i18n-aware navigation (use this)       |
+| `messages/*.json`                 | Translation files                      |
+| `.github/copilot-instructions.md` | Extended AI guidelines                 |
