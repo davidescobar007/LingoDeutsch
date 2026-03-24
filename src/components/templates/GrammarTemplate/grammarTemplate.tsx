@@ -7,33 +7,7 @@ import {
    OrganismGrammarSidebar
 } from '@/components/organisms'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
-
-type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2'
-
-const LEVELS: GrammarLevel[] = ['A1', 'A2', 'B1', 'B2']
-
-const LEVEL_INFO: Record<GrammarLevel, { description: string; emoji: string; label: string }> = {
-   A1: {
-      description: 'Fundamentos básicos',
-      emoji: '🌱',
-      label: 'Principiante'
-   },
-   A2: {
-      description: 'Consolidar conocimientos',
-      emoji: '🌿',
-      label: 'Elemental'
-   },
-   B1: {
-      description: 'Expresión más compleja',
-      emoji: '🌳',
-      label: 'Intermedio'
-   },
-   B2: {
-      description: 'Dominio más profundo',
-      emoji: '🏔️',
-      label: 'Intermedio Avanzado'
-   }
-}
+import { GRAMMAR_LEVEL_INFO, GRAMMAR_LEVELS, GrammarLevel } from '@/modules/global.types'
 
 type TemplateGrammarProps = {
    grammarList: TGrammar[]
@@ -68,7 +42,7 @@ export const TemplateGrammar = ({
       return { completed: 0, percentage: 0, total: 0 }
    }
 
-   const allLevelProgress = LEVELS.reduce((acc, level) => {
+   const allLevelProgress = GRAMMAR_LEVELS.reduce((acc, level) => {
       acc[level] = getLevelProgress(level)
       return acc
    }, {} as Record<GrammarLevel, { completed: number; percentage: number; total: number }>)
@@ -106,8 +80,8 @@ export const TemplateGrammar = ({
          </div>
 
          <OrganismGrammarLevelSelector
-            levelInfo={LEVEL_INFO}
-            levels={LEVELS}
+            levelInfo={GRAMMAR_LEVEL_INFO}
+            levels={GRAMMAR_LEVELS}
             onLevelSelect={handleLevelSelect}
             progress={allLevelProgress}
             selectedLevel={selectedLevel}
@@ -118,7 +92,7 @@ export const TemplateGrammar = ({
          <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
             <OrganismGrammarSidebar
                grammarList={grammarList}
-               levelInfo={LEVEL_INFO[selectedLevel]}
+               levelInfo={GRAMMAR_LEVEL_INFO[selectedLevel]}
                onSelectTopic={handleSelectTopic}
                selectedLevel={selectedLevel}
                selectedTopic={selectedTopic}

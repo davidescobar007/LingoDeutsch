@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 
 import { TUser } from '@/modules/actions/types'
+import { GrammarLevel } from '@/modules/global.types'
 
 import { useGetGrammarByLevel, useSavedGrammarTopicByUser } from './grammar'
 
@@ -24,7 +25,7 @@ export interface GrammarProgressMetrics {
  */
 export const useGrammarProgress = (
    user: TUser | null | undefined,
-   level: 'A1' | 'A2' | 'B1' | 'B2' = 'A1'
+   level: GrammarLevel = 'A1.1'
 ): GrammarProgressMetrics => {
    const isGuest = !user || !user.id
    const { data: grammarList, isLoading } = useGetGrammarByLevel(level)

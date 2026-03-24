@@ -11,6 +11,7 @@ import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
+import { GrammarLevel } from '@/modules/global.types'
 import { calculateScore, shouldShowWaitingRoom } from '@/utils/quiz.utils'
 
 import WaitingRoom from './watingRoom'
@@ -41,7 +42,7 @@ const QuizPage = ({ params, searchParams }: QuizPageProps) => {
 
    const { data: quizzData, isLoading } = useGetQuiz({ id, type: quizType })
    const { data: userArticle } = useGetArticleByUser(user.id, id)
-   const { data: grammarTopics } = useGetGrammarByLevel('A1')
+   const { data: grammarTopics } = useGetGrammarByLevel('A1.1')
    const { data: userGrammarProgress } = useGetSingleGrammarTopicByUser({ id, user })
    const { mutate: updateUserScore } = useUpdateUserscore()
    const { mutate: saveArticleUser } = useSaveArticleUser()

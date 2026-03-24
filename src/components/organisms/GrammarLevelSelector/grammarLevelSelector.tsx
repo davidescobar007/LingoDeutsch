@@ -1,6 +1,5 @@
 import { AtomPill } from '@/components/atoms'
-
-type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2'
+import { GrammarLevel } from '@/modules/global.types'
 
 type LevelProgress = {
    completed: number
@@ -13,6 +12,8 @@ type LevelInfo = {
    emoji: string
    label: string
 }
+
+export type GrammarLevelInfo = LevelInfo
 
 type OrganismGrammarLevelSelectorProps = {
    levelInfo: Record<GrammarLevel, LevelInfo>

@@ -37,12 +37,58 @@ export const queryOperators = {
    IN: 'in',
    NOT_IN: 'not-in'
 }
-export const grammarLevels: { icon: string; label: string }[] = [
-   { icon: '🫘', label: 'A1' },
-   { icon: '🌱', label: 'A2' },
-   { icon: '🌿', label: 'B1' },
-   { icon: '🌲', label: 'B2' }
-]
+export type GrammarLevel = 'A1.1' | 'A1.2' | 'A2.1' | 'A2.2' | 'B1.1' | 'B1.2' | 'B2.1' | 'B2.2'
+
+export const GRAMMAR_LEVELS: GrammarLevel[] = ['A1.1', 'A1.2', 'A2.1', 'A2.2', 'B1.1', 'B1.2', 'B2.1', 'B2.2']
+
+export type GrammarLevelInfo = {
+   description: string
+   emoji: string
+   label: string
+}
+
+export const GRAMMAR_LEVEL_INFO: Record<GrammarLevel, GrammarLevelInfo> = {
+   'A1.1': {
+      description: 'Fundamentos básicos',
+      emoji: '🌱',
+      label: 'Principiante'
+   },
+   'A1.2': {
+      description: 'Consolidar conocimientos iniciales',
+      emoji: '🌿',
+      label: 'Principiante +'
+   },
+   'A2.1': {
+      description: 'Expresión elemental',
+      emoji: '🌳',
+      label: 'Elemental'
+   },
+   'A2.2': {
+      description: 'Expresión elemental avanzada',
+      emoji: '🏞️',
+      label: 'Elemental +'
+   },
+   'B1.1': {
+      description: 'Expresión intermedia',
+      emoji: '⛰️',
+      label: 'Intermedio'
+   },
+   'B1.2': {
+      description: 'Expresión intermedia avanzada',
+      emoji: '🏔️',
+      label: 'Intermedio +'
+   },
+   'B2.1': {
+      description: 'Expresión compleja',
+      emoji: '🗻',
+      label: 'Intermedio Avanzado'
+   },
+   'B2.2': {
+      description: 'Dominio profundo',
+      emoji: '🌍',
+      label: 'Intermedio Avanzado +'
+   }
+}
 
 export const urls = {
    linguatools: 'https://petapro-translate-v1.p.rapidapi.com/?'

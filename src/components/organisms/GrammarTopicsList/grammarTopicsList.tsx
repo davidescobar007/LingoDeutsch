@@ -31,7 +31,7 @@ export const OrganismGrammarTopicsList = ({ level, topics, userProgress }: Organ
       const previousTopic = topics[topicIndex - 1]
       const previousProgress = userProgress?.find((p) => p.grammar_id === previousTopic.id)
 
-      if (!previousProgress?.isCompleted && level !== 'A1') {
+      if (!previousProgress?.isCompleted && level !== 'A1.1') {
          return 'locked'
       }
 

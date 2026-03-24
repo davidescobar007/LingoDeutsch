@@ -14,7 +14,7 @@ const Learn = () => {
    const hasOAuthParams = useOAuthParams()
    const { data: articles, isLoading: articlesLoading } = useArticleList()
    const { data: vocabularyStats, isLoading: vocabLoading } = useGetVocabularyStats()
-   const grammarProgress = useGrammarProgress(user, 'A1')
+   const grammarProgress = useGrammarProgress(user, 'A1.1')
    const streakMetrics = useUserStreak(user)
 
    const isLoading =

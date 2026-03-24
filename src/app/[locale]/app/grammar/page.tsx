@@ -13,17 +13,14 @@ import {
 } from '@/hooks/grammar'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
+import { GRAMMAR_LEVELS, GrammarLevel } from '@/modules/global.types'
 import { useRouter } from '@/navigation'
-
-type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2'
-
-const LEVELS: GrammarLevel[] = ['A1', 'A2', 'B1', 'B2']
 
 const Grammar = () => {
    const router = useRouter()
    const searchParams = useSearchParams()
 
-   const [selectedLevel, setSelectedLevel] = useState<GrammarLevel>('A1')
+   const [selectedLevel, setSelectedLevel] = useState<GrammarLevel>('A1.1')
    const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
    const [isInitialized, setIsInitialized] = useState(false)
 
@@ -39,7 +36,7 @@ const Grammar = () => {
       const levelParam = searchParams.get('level') as GrammarLevel
 
       // Validate level parameter
-      if (levelParam && LEVELS.includes(levelParam)) {
+      if (levelParam && GRAMMAR_LEVELS.includes(levelParam)) {
          setSelectedLevel(levelParam)
       }
 
@@ -73,7 +70,7 @@ const Grammar = () => {
          const levelParam = searchParams.get('level') as GrammarLevel
 
          // Validate level
-         if (levelParam && LEVELS.includes(levelParam)) {
+         if (levelParam && GRAMMAR_LEVELS.includes(levelParam)) {
             setSelectedLevel(levelParam)
          }
 

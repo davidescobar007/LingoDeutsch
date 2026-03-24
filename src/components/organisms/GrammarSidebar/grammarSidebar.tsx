@@ -1,8 +1,7 @@
 import { AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeTimeLine } from '@/components/molecules'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
-
-type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2'
+import { GrammarLevel } from '@/modules/global.types'
 
 type LevelInfo = {
    description: string
