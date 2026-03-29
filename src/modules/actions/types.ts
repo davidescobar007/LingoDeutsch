@@ -208,6 +208,18 @@ export type TIterableData = {
    }
 }
 
+export type TLearningUnit = {
+   id: string
+   title: string
+   difficulty: number
+   level: string
+   learning_goal: string
+   created: string
+   updated: string
+   collectionId: string
+   collectionName: string
+}
+
 export type TGrammar = {
    content: string
    difficulty: number
@@ -222,7 +234,10 @@ export type TGrammar = {
    updated: string
    collectionId: string
    collectionName: string
-   expand: {}
+   learning_unit_id?: string
+   expand: {
+      learning_unit_id?: TLearningUnit
+   }
    isCompleted: boolean
    quiz: {
       id: string

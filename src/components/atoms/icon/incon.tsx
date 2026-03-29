@@ -11,6 +11,7 @@ import {
    BrainCog,
    Check,
    CheckCircle,
+   ChevronDown,
    Circle,
    CircleChevronLeft,
    CircleChevronRight,
@@ -82,6 +83,7 @@ type IconType = {
       | 'zap'
       | 'scroll-text'
       | 'move-right'
+      | 'chevron-down'
    iconSize?: 'small' | 'medium' | 'large'
    iconState?: 'warning' | 'error' | 'success' | 'info' | 'primary' | 'neutral' | 'white'
    className?: string
@@ -167,7 +169,8 @@ export const Icon: FunctionComponent<IconType> = ({
       zap: <Zap className={combinedClassName} fill={fill} size={size} />,
       'book-open-text': <BookOpenText className={combinedClassName} fill={fill} size={size} />,
       'scroll-text': <ScrollText className={combinedClassName} fill={fill} size={size} />,
-      'move-right': <MoveRight className={combinedClassName} fill={fill} size={size} />
+      'move-right': <MoveRight className={combinedClassName} fill={fill} size={size} />,
+      'chevron-down': <ChevronDown className={combinedClassName} fill={fill} size={size} />
    }
    return <div onClick={disabled ? defaultOnClick : onClick}>{iconType[icon] || null}</div>
 }
