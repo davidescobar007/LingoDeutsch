@@ -11,7 +11,6 @@ import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
 import { getUserInfo } from '@/modules/actions/users.actions'
-import { GrammarLevel } from '@/modules/global.types'
 import { calculateScore, shouldShowWaitingRoom } from '@/utils/quiz.utils'
 
 import WaitingRoom from './watingRoom'
