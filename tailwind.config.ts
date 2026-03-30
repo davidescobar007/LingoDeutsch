@@ -14,12 +14,17 @@ const config: Config = {
          },
          animation: {
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            shimmer: 'shimmer 3s linear infinite'
+            shimmer: 'shimmer 3s linear infinite',
+            'fade-in': 'fadeIn 0.4s ease-out forwards'
          },
          keyframes: {
             shimmer: {
                '0%': { transform: 'translateX(0)' },
                '100%': { transform: 'translateX(400%)' }
+            },
+            fadeIn: {
+               '0%': { opacity: '0', transform: 'translateY(10px)' },
+               '100%': { opacity: '1', transform: 'translateY(0)' }
             }
          },
          borderWidth: {

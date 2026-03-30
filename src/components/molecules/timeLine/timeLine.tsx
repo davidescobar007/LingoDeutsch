@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { AtomText, AtomTitle } from '@/components/atoms'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 
 type MoleculeTimeLineProps = {
@@ -8,6 +8,36 @@ type MoleculeTimeLineProps = {
    onSelectTopic: (_id: string) => void
    topics: TGrammar[]
    userGrammarProgress?: TUserGrammarProgress[]
+}
+
+const getCategoryColor = (category?: string): string => {
+   switch (category) {
+      case 'grammar':
+         return 'bg-blue-500'
+      case 'vocabulary':
+         return 'bg-green-500'
+      case 'context':
+         return 'bg-amber-500'
+      case 'communications':
+         return 'bg-purple-500'
+      default:
+         return 'bg-primary'
+   }
+}
+
+const getCategoryTextColor = (category?: string): string => {
+   switch (category) {
+      case 'grammar':
+         return 'text-blue-600'
+      case 'vocabulary':
+         return 'text-green-600'
+      case 'context':
+         return 'text-amber-600'
+      case 'communications':
+         return 'text-purple-600'
+      default:
+         return 'text-primary'
+   }
 }
 
 export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
@@ -23,57 +53,58 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
    }
 
    return (
-      <div className="relative flex">
-         <div className="absolute left-4 top-8 z-0 h-[calc(100%-55px)] w-1 bg-gray-200" />
-         <div className="relative flex-1 space-y-4">
+      <div className="relative">
+         <div className="relative space-y-3">
             {topics?.map((topic) => (
                <div
-                  className="flex cursor-pointer items-start py-2 transition-all hover:font-semibold"
+                  className="group flex cursor-pointer items-stretch transition-all"
                   key={topic.id}
                   onClick={() => onSelectTopic(topic.id)}
                >
+                  {/* Barra lateral de color según categoría */}
                   <div
-                     className={`relative z-10 mr-3 mt-4 flex h-9 w-9 items-center justify-center rounded-full border-2 ${
-                        isTopicCompleted(topic.id)
-                           ? activeTopic === topic.id
-                              ? 'bg-green-500 text-white'
-                              : 'border-green-500 bg-green-100 text-green-700'
-                           : activeTopic === topic.id
-                           ? 'border-primary bg-primary text-white'
-                           : 'hover:border-primary/50 bg-secondary '
+                     className={`w-1.5 rounded-l ${getCategoryColor(topic.category)} ${
+                        activeTopic === topic.id ? 'opacity-100' : 'opacity-70'
+                     } group-hover:opacity-100`}
+                  />
+                  {/* Contenido del tema */}
+                  <div
+                     className={`flex-1 rounded-r-md border border-l-0 p-3 transition-all ${
+                        activeTopic === topic.id
+                           ? 'border-base-300 bg-base-200'
+                           : 'border-base-200 bg-base-100 hover:bg-base-200'
                      }`}
                   >
-                     {isTopicCompleted(topic.id) ? (
-                        <Icon
-                           className={`text-green-600 ${activeTopic === topic.id ? 'text-white' : ''}`}
-                           icon="check"
-                           iconSize="medium"
-                        />
-                     ) : (
-                        <Icon
-                           className={`text-primary ${activeTopic === topic.id ? 'text-white' : ''}`}
-                           icon="book-open-check"
-                           iconSize="medium"
-                           iconState="primary"
-                        />
-                     )}
-                  </div>
-                  <div className="flex-1 rounded-md p-2 hover:bg-slate-100">
-                     <div className="flex items-center justify-between">
+                     <div className="flex items-start justify-between gap-2">
                         <AtomTitle
-                           extraClassName={`!mb-0 hover:font-semibold ${
-                              activeTopic === topic.id ? 'text-primary' : ''
+                           extraClassName={`!mb-0.5 !text-sm hover:font-semibold ${
+                              activeTopic === topic.id ? getCategoryTextColor(topic.category) : ''
                            }`}
                            type="h5"
                         >
                            {topic.topic_name?.es}
                         </AtomTitle>
+
+                        {/* Checkmark para temas completados */}
+                        {isTopicCompleted(topic.id) && (
+                           <svg
+                              className="h-4 w-4 flex-shrink-0 text-green-500"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                           >
+                              <path
+                                 d="M5 13l4 4L19 7"
+                                 strokeLinecap="round"
+                                 strokeLinejoin="round"
+                                 strokeWidth={2}
+                              />
+                           </svg>
+                        )}
                      </div>
-                     <div>
-                        <AtomText className="" fontSize="small" isThin>
-                           {isTopicCompleted(topic.id) ? 'Completado' : 'Lista para aprender'}
-                        </AtomText>
-                     </div>
+                     <AtomText className="" fontSize="small" isThin>
+                        {isTopicCompleted(topic.id) ? 'Completado' : 'Lista para aprender'}
+                     </AtomText>
                   </div>
                </div>
             ))}

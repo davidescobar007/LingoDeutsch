@@ -1,7 +1,6 @@
 ---
 description: Ask questions about code, git commands, or general knowledge
 mode: primary
-model: zai-coding-plan/glm-4.7
 temperature: 0.5
 maxSteps: 5
 color: '#0968da'

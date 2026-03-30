@@ -7,7 +7,7 @@ import { TGrammar, TQuizQuestion, TUser, TUserGrammarProgress } from './types'
 export const getGrammarByLevel = async (grammarLevel: string): Promise<TGrammar[]> => {
    try {
       const fields =
-         'id,level,topic_name,difficulty,learning_unit_id,expand.learning_unit_id.id,expand.learning_unit_id.title'
+         'id,level,topic_name,difficulty,category,learning_unit_id,expand.learning_unit_id.id,expand.learning_unit_id.title,expand.learning_unit_id.difficulty,expand.learning_unit_id.learning_goal'
       const filter = `level ${queryOperators.EQUAL_TO} "${grammarLevel}"`
       const grammarTopics = await pbGetList(constants.GRAMMAR, {
          fields,

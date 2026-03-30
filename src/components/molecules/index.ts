@@ -9,6 +9,7 @@ export { MoleculeDrawerTranslation } from './drawerTranslation/drawerTranslation
 export { MoleculeFeatureCard } from './featureCard/featureCard'
 export { MoleculeFlipCard } from './flipCard/flipCard'
 export { MoleculeInputCheckGroup } from './inputCheckGroup/inputCheckGroup'
+export { MoleculeLearningUnitCard } from './learningUnitCard/learningUnitCard'
 export { MoleculeListItem } from './listItem/listItem'
 export { MoleculeLockedOverlay } from './lockedOverlay/lockedOverlay'
 export { MarkdownTable } from './markdownTable/markdownTable'

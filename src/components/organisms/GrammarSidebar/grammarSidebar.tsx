@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react'
 
-import { AtomText, AtomTitle, Icon } from '@/components/atoms'
+import { AtomText, AtomTitle } from '@/components/atoms'
+import { MoleculeLearningUnitCard } from '@/components/molecules'
 import { MoleculeTimeLine } from '@/components/molecules'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 import { GrammarLevel } from '@/modules/global.types'
@@ -25,6 +25,7 @@ type GroupedByLearningUnit = {
    [key: string]: {
       id: string | null
       title: string
+      learningGoal: string
       topics: TGrammar[]
    }
 }
@@ -37,16 +38,16 @@ export const OrganismGrammarSidebar = ({
    selectedTopic,
    userGrammarProgress
 }: OrganismGrammarSidebarProps) => {
-   const [expandedUnits, setExpandedUnits] = useState<Set<string>>(new Set())
-
    const groupedByUnit = grammarList.reduce<GroupedByLearningUnit>((acc, topic) => {
       const unitId = topic.learning_unit_id || 'uncategorized'
       const unitTitle = topic.expand?.learning_unit_id?.title || 'Sin categoría'
+      const unitLearningGoal = topic.expand?.learning_unit_id?.learning_goal || ''
 
       if (!acc[unitId]) {
          acc[unitId] = {
             id: unitId,
             title: unitTitle,
+            learningGoal: unitLearningGoal,
             topics: []
          }
       }
@@ -60,85 +61,70 @@ export const OrganismGrammarSidebar = ({
       return 0
    })
 
-   const toggleUnit = (unitId: string) => {
-      setExpandedUnits((prev) => {
-         const newSet = new Set(prev)
-         if (newSet.has(unitId)) {
-            newSet.delete(unitId)
-         } else {
-            newSet.add(unitId)
-         }
-         return newSet
-      })
-   }
-
    const getCompletedTopicsCount = (topics: TGrammar[]): number => {
       return userGrammarProgress?.filter((p) => topics.some((t) => t.id === p.grammar_id && p.isCompleted)).length
    }
 
+   const selectedTopicUnitId = selectedTopic
+      ? grammarList.find((topic) => topic.id === selectedTopic)?.learning_unit_id || null
+      : null
+
+   const accordionName = `grammar-units-${selectedLevel}`
+
    return (
       <aside className="container-card self-start border p-6 lg:sticky lg:top-20 lg:col-span-4">
-         <div className="mb-4 flex items-center gap-2">
-            <span className="text-2xl">{levelInfo.emoji}</span>
-            <div>
-               <AtomTitle extraClassName="!text-base !mb-0" type="h3">
-                  Temas - {selectedLevel}
-               </AtomTitle>
-               <AtomText className="text-xs" fontSize="small" isThin>
-                  {levelInfo.label}
-               </AtomText>
-            </div>
-         </div>
-         <div className="mt-4">
-            {sortedUnits.length > 0 ? (
-               <div className="space-y-2">
-                  {sortedUnits.map((unit) => {
-                     const isExpanded = expandedUnits.has(unit.id || 'uncategorized')
-                     const completedCount = getCompletedTopicsCount(unit.topics)
-                     const totalCount = unit.topics.length
-
-                     return (
-                        <div className="border-base-300 rounded-lg border" key={unit.id || 'uncategorized'}>
-                           <button
-                              className="hover:bg-base-200 flex w-full items-center justify-between p-3 text-left"
-                              onClick={() => toggleUnit(unit.id || 'uncategorized')}
-                              type="button"
-                           >
-                              <div className="flex flex-col">
-                                 <AtomTitle extraClassName="!mb-0 !text-sm" type="h4">
-                                    {unit.title}
-                                 </AtomTitle>
-                                 <AtomText className="text-xs" fontSize="small" isThin>
-                                    {completedCount}/{totalCount} completados
-                                 </AtomText>
-                              </div>
-                              <Icon
-                                 className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                                 icon="chevron-down"
-                                 iconSize="small"
-                              />
-                           </button>
-                           {isExpanded && (
-                              <div className="border-base-300 border-t p-2">
-                                 <MoleculeTimeLine
-                                    activeTopic={selectedTopic}
-                                    onSelectTopic={onSelectTopic}
-                                    topics={unit.topics}
-                                    userGrammarProgress={userGrammarProgress}
-                                 />
-                              </div>
-                           )}
-                        </div>
-                     )
-                  })}
+         <div className="mb-6 space-y-2">
+            <div className="flex items-center gap-3">
+               <div className="from-primary/10 to-primary/5 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br shadow-sm">
+                  <span className="text-2xl">{levelInfo.emoji}</span>
                </div>
+               <div className="flex-1">
+                  <AtomTitle extraClassName="!text-lg !mb-1 font-semibold" type="h3">
+                     Temas - {selectedLevel}
+                  </AtomTitle>
+                  <AtomText className="text-sm" fontSize="small" isThin>
+                     {levelInfo.label}
+                  </AtomText>
+               </div>
+            </div>
+
+            <div className="via-base-300 h-px w-full bg-gradient-to-r from-transparent to-transparent" />
+         </div>
+
+         <div className="join join-vertical w-full">
+            {sortedUnits.length > 0 ? (
+               sortedUnits.map((unit, _index) => {
+                  const completedCount = getCompletedTopicsCount(unit.topics)
+
+                  return (
+                     <MoleculeLearningUnitCard
+                        accordionName={accordionName}
+                        completedCount={completedCount}
+                        isOpen={unit.id === selectedTopicUnitId}
+                        key={unit.id || 'uncategorized'}
+                        learningGoal={unit.learningGoal}
+                        title={unit.title}
+                        totalCount={unit.topics.length}
+                     >
+                        <MoleculeTimeLine
+                           activeTopic={selectedTopic}
+                           onSelectTopic={onSelectTopic}
+                           topics={unit.topics}
+                           userGrammarProgress={userGrammarProgress}
+                        />
+                     </MoleculeLearningUnitCard>
+                  )
+               })
             ) : (
-               <div className="py-8 text-center">
-                  <div className="inline-block">
-                     <div className="border-primary h-6 w-6 animate-spin rounded-full border-b-2" />
+               <div className="flex flex-col items-center justify-center py-12">
+                  <div className="relative">
+                     <div className="border-base-300 border-t-primary h-12 w-12 animate-spin rounded-full border-4" />
+                     <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="bg-base-100 h-6 w-6 rounded-full" />
+                     </div>
                   </div>
-                  <AtomText className="mt-3" isThin>
-                     Cargando temas...
+                  <AtomText className="mt-4 text-center" fontSize="small" isThin>
+                     Cargando unidades de aprendizaje...
                   </AtomText>
                </div>
             )}

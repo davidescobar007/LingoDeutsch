@@ -221,6 +221,7 @@ export type TLearningUnit = {
 }
 
 export type TGrammar = {
+   category?: 'grammar' | 'vocabulary' | 'context' | 'communications'
    content: string
    difficulty: number
    id: string

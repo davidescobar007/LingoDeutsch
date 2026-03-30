@@ -20,16 +20,19 @@ import {
    Crown,
    Flame,
    Gauge,
+   Globe,
    GraduationCap,
    Heart,
    Home,
    Info,
    Library,
    Medal,
+   MessageCircle,
    MoveDown,
    MoveRight,
    MoveUp,
    PartyPopper,
+   Pencil,
    Scale,
    ScrollText,
    Settings,
@@ -84,6 +87,9 @@ type IconType = {
       | 'scroll-text'
       | 'move-right'
       | 'chevron-down'
+      | 'pencil'
+      | 'globe'
+      | 'message-circle'
    iconSize?: 'small' | 'medium' | 'large'
    iconState?: 'warning' | 'error' | 'success' | 'info' | 'primary' | 'neutral' | 'white'
    className?: string
@@ -170,7 +176,10 @@ export const Icon: FunctionComponent<IconType> = ({
       'book-open-text': <BookOpenText className={combinedClassName} fill={fill} size={size} />,
       'scroll-text': <ScrollText className={combinedClassName} fill={fill} size={size} />,
       'move-right': <MoveRight className={combinedClassName} fill={fill} size={size} />,
-      'chevron-down': <ChevronDown className={combinedClassName} fill={fill} size={size} />
+      'chevron-down': <ChevronDown className={combinedClassName} fill={fill} size={size} />,
+      pencil: <Pencil className={combinedClassName} fill={fill} size={size} />,
+      globe: <Globe className={combinedClassName} fill={fill} size={size} />,
+      'message-circle': <MessageCircle className={combinedClassName} fill={fill} size={size} />
    }
    return <div onClick={disabled ? defaultOnClick : onClick}>{iconType[icon] || null}</div>
 }
