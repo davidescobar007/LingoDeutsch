@@ -15,10 +15,10 @@ export {
    QuizzLoader,
    SpinLoader
 } from './loader/loader'
+export { AtomMiniProgressBar } from './miniProgressBar/miniProgressBar'
 export { AtomText } from './paragraph/paragraph'
 export { AtomPill } from './pill/pill'
 export { AtomProgressPercentage } from './progressBar/progressBar'
-export { AtomMiniProgressBar } from './miniProgressBar/miniProgressBar'
 export { Select } from './select/select'
 export { AtomSectionSkeleton } from './skeleton/sectionSkeleton'
 export { AtomStat } from './stat/stat'

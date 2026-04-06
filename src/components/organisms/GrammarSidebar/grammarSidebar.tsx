@@ -72,7 +72,7 @@ export const OrganismGrammarSidebar = ({
    const accordionName = `grammar-units-${selectedLevel}`
 
    return (
-      <aside className="container-card self-start border p-6 lg:sticky lg:top-20 lg:col-span-4">
+      <aside className="self-start !border-none  lg:sticky lg:top-20 lg:col-span-4">
          <div className="mb-6 space-y-2">
             <div className="flex items-center gap-3">
                <div className="from-primary/10 to-primary/5 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br shadow-sm">
