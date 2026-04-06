@@ -221,11 +221,12 @@ export type TLearningUnit = {
 }
 
 export type TGrammar = {
-   category?: 'grammar' | 'vocabulary' | 'context' | 'communications'
    content: string
    difficulty: number
+   grammar_core?: string
+   vocabulary_core?: string
+   context_core?: string
    id: string
-   iterableData: TIterableData[]
    level: string
    topic_name?: {
       de: string
@@ -239,8 +240,7 @@ export type TGrammar = {
    expand: {
       learning_unit_id?: TLearningUnit
    }
-   isCompleted: boolean
-   quiz: {
+   quizz?: {
       id: string
       type: string
       question: {

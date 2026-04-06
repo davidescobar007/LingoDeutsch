@@ -10,34 +10,12 @@ type MoleculeTimeLineProps = {
    userGrammarProgress?: TUserGrammarProgress[]
 }
 
-const getCategoryColor = (category?: string): string => {
-   switch (category) {
-      case 'grammar':
-         return 'bg-blue-500'
-      case 'vocabulary':
-         return 'bg-green-500'
-      case 'context':
-         return 'bg-amber-500'
-      case 'communications':
-         return 'bg-purple-500'
-      default:
-         return 'bg-primary'
-   }
+const getCategoryColor = (_category?: string): string => {
+   return 'bg-primary'
 }
 
-const getCategoryTextColor = (category?: string): string => {
-   switch (category) {
-      case 'grammar':
-         return 'text-blue-600'
-      case 'vocabulary':
-         return 'text-green-600'
-      case 'context':
-         return 'text-amber-600'
-      case 'communications':
-         return 'text-purple-600'
-      default:
-         return 'text-primary'
-   }
+const getCategoryTextColor = (_category?: string): string => {
+   return 'text-primary'
 }
 
 export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
@@ -63,7 +41,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                >
                   {/* Barra lateral de color según categoría */}
                   <div
-                     className={`w-1.5 rounded-l ${getCategoryColor(topic.category)} ${
+                     className={`w-1.5 rounded-l ${getCategoryColor()} ${
                         activeTopic === topic.id ? 'opacity-100' : 'opacity-70'
                      } group-hover:opacity-100`}
                   />
@@ -78,7 +56,7 @@ export const MoleculeTimeLine: React.FC<MoleculeTimeLineProps> = ({
                      <div className="flex items-start justify-between gap-2">
                         <AtomTitle
                            extraClassName={`!mb-0.5 !text-sm hover:font-semibold ${
-                              activeTopic === topic.id ? getCategoryTextColor(topic.category) : ''
+                              activeTopic === topic.id ? getCategoryTextColor() : ''
                            }`}
                            type="h5"
                         >
