@@ -32,9 +32,11 @@ export const TemplateGrammar = ({
 }: TemplateGrammarProps) => {
    const getLevelProgress = (level: GrammarLevel) => {
       if (level === selectedLevel && grammarList.length > 0) {
-         const completedCount =
-            userGrammarProgress?.filter((p) => grammarList.some((g) => g.id === p.grammar_id && p.isCompleted))
-               .length || 0
+         // Use Set to count unique grammar_ids only (avoid counting duplicates)
+         const completedGrammarIds = new Set(
+            userGrammarProgress?.filter((p) => p.isCompleted).map((p) => p.grammar_id)
+         )
+         const completedCount = grammarList.filter((g) => completedGrammarIds.has(g.id)).length
          const total = grammarList.length
          const percentage = total > 0 ? Math.round((completedCount / total) * 100) : 0
          return { completed: completedCount, percentage, total }

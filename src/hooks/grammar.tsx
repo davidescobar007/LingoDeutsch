@@ -47,7 +47,10 @@ export const useSaveGrammarProgress = () => {
       mutationFn: ({ user, grammar_id, score }: { user: TUser; grammar_id: string; score: number }) =>
          saveGrammarUserProgress(user, grammar_id, score),
       onSuccess: (_, userGrammarInfo) => {
-         if (userGrammarInfo.score >= 60) toast.success('¡Lección guardada con éxito!')
+         if (userGrammarInfo.score >= 60) {
+            toast.success('¡Lección guardada con éxito!')
+         }
+
          queryClient.invalidateQueries({
             queryKey: ['savedGrammarTopicByUser']
          })

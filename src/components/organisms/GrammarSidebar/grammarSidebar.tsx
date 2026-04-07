@@ -62,7 +62,12 @@ export const OrganismGrammarSidebar = ({
    })
 
    const getCompletedTopicsCount = (topics: TGrammar[]): number => {
-      return userGrammarProgress?.filter((p) => topics.some((t) => t.id === p.grammar_id && p.isCompleted)).length
+      // Use Set to count unique grammar_ids only (avoid counting duplicates)
+      const completedGrammarIds = new Set(
+         userGrammarProgress?.filter((p) => p.isCompleted).map((p) => p.grammar_id) || []
+      )
+
+      return topics.filter((t) => completedGrammarIds.has(t.id)).length
    }
 
    const selectedTopicUnitId = selectedTopic
