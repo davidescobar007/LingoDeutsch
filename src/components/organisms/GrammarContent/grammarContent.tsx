@@ -1,13 +1,37 @@
 /* eslint-disable react/no-unstable-nested-components */
 'use client'
 
+import React from 'react'
+import type { Components } from 'react-markdown'
 import ReactMarkdown from 'react-markdown'
 import { BookOpen, ChevronRight } from 'lucide-react'
+import remarkDirective from 'remark-directive'
+import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkGfm from 'remark-gfm'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
-import { MarkdownTable } from '@/components/molecules'
+import { MarkdownTable, MoleculeAlert } from '@/components/molecules'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
+
+type CustomComponents = Components & {
+   'alert-error'?: React.FC<{ children?: React.ReactNode }>
+   'alert-info'?: React.FC<{ children?: React.ReactNode }>
+   'alert-success'?: React.FC<{ children?: React.ReactNode }>
+   'alert-warning'?: React.FC<{ children?: React.ReactNode }>
+}
+
+const extractTextFromChildren = (children: React.ReactNode): string => {
+   if (typeof children === 'string') {
+      return children
+   }
+   if (Array.isArray(children)) {
+      return children.map(extractTextFromChildren).join('')
+   }
+   if (React.isValidElement(children) && children.props.children) {
+      return extractTextFromChildren(children.props.children)
+   }
+   return ''
+}
 
 type OrganismGrammarContentProps = {
    grammarTopicContent?: TGrammar
@@ -29,13 +53,27 @@ export const OrganismGrammarContent = ({
    }
 
    const renderContentSections = (sections: string[]) => {
+      const components: CustomComponents = {
+         'alert-error': (_props) => (
+            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="error" />
+         ),
+         'alert-info': (_props) => (
+            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="info" />
+         ),
+         'alert-success': (_props) => (
+            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="success" />
+         ),
+         'alert-warning': (_props) => (
+            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="warning" />
+         ),
+         table: ({ children }) => <MarkdownTable>{children}</MarkdownTable>
+      }
+
       return sections.map((section, index) => (
          <div className="markdown-section" key={index}>
             <ReactMarkdown
-               components={{
-                  table: ({ children }) => <MarkdownTable>{children}</MarkdownTable>
-               }}
-               remarkPlugins={[remarkGfm]}
+               components={components}
+               remarkPlugins={[remarkDirective, remarkDirectiveRehype, remarkGfm]}
             >
                {section}
             </ReactMarkdown>

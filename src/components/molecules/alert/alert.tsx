@@ -28,11 +28,11 @@ export const MoleculeAlert: FunctionComponent<AlertProps> = ({
       }[type] || 'border-info'
 
    return (
-      <div className={`alert border shadow-md ${borderClass}`} role="alert">
+      <div className={`alert shadow-sm ${borderClass} my-2 p-2`} role="alert">
          <Icon icon={type === 'success' ? 'check' : type} iconState={type} />
          <div>
             {title && <AtomTitle type="h5">{title}</AtomTitle>}
-            <AtomText fontSize={title ? 'small' : 'medium'} isThin>
+            <AtomText fontSize="small" isThin>
                {message}
             </AtomText>
          </div>
