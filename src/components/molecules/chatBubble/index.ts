@@ -1,0 +1,1 @@
+export { MoleculeChatBubble } from './chatBubble'

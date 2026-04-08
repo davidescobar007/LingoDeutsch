@@ -2,7 +2,6 @@
 'use client'
 
 import React from 'react'
-import type { Components } from 'react-markdown'
 import ReactMarkdown from 'react-markdown'
 import { BookOpen, ChevronRight } from 'lucide-react'
 import remarkDirective from 'remark-directive'
@@ -10,15 +9,8 @@ import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkGfm from 'remark-gfm'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
-import { MarkdownTable, MoleculeAlert } from '@/components/molecules'
+import { MarkdownTable, MoleculeAlert, MoleculeChatBubble, MoleculeReveal } from '@/components/molecules'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
-
-type CustomComponents = Components & {
-   'alert-error'?: React.FC<{ children?: React.ReactNode }>
-   'alert-info'?: React.FC<{ children?: React.ReactNode }>
-   'alert-success'?: React.FC<{ children?: React.ReactNode }>
-   'alert-warning'?: React.FC<{ children?: React.ReactNode }>
-}
 
 const extractTextFromChildren = (children: React.ReactNode): string => {
    if (typeof children === 'string') {
@@ -53,26 +45,42 @@ export const OrganismGrammarContent = ({
    }
 
    const renderContentSections = (sections: string[]) => {
-      const components: CustomComponents = {
-         'alert-error': (_props) => (
-            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="error" />
-         ),
-         'alert-info': (_props) => (
-            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="info" />
-         ),
-         'alert-success': (_props) => (
-            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="success" />
-         ),
-         'alert-warning': (_props) => (
-            <MoleculeAlert message={extractTextFromChildren(_props.children)} type="warning" />
-         ),
-         table: ({ children }) => <MarkdownTable>{children}</MarkdownTable>
-      }
-
       return sections.map((section, index) => (
          <div className="markdown-section" key={index}>
             <ReactMarkdown
-               components={components}
+               components={
+                  {
+                     'alert-error': (_props: { children?: React.ReactNode }) => (
+                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="error" />
+                     ),
+                     'alert-info': (_props: { children?: React.ReactNode }) => (
+                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="info" />
+                     ),
+                     'alert-success': (_props: { children?: React.ReactNode }) => (
+                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="success" />
+                     ),
+                     'alert-warning': (_props: { children?: React.ReactNode }) => (
+                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="warning" />
+                     ),
+                     'chat-bubble': (_props: {
+                        align?: string
+                        avatar?: string
+                        children?: React.ReactNode
+                        name?: string
+                     }) => (
+                        <MoleculeChatBubble
+                           align={(_props.align as 'left' | 'right') || 'left'}
+                           avatar={_props.avatar}
+                           message={extractTextFromChildren(_props.children)}
+                           name={_props.name || ''}
+                        />
+                     ),
+                     reveal: (_props: { children?: React.ReactNode; title?: string }) => (
+                        <MoleculeReveal title={_props.title || 'Ver más'}>{_props.children}</MoleculeReveal>
+                     ),
+                     table: (_props) => <MarkdownTable>{_props.children}</MarkdownTable>
+                  } as any
+               }
                remarkPlugins={[remarkDirective, remarkDirectiveRehype, remarkGfm]}
             >
                {section}
