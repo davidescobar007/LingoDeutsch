@@ -35,10 +35,12 @@ const Layout = ({ children }: { readonly children: ReactNode }) => {
    }
 
    return (
-      <Drawer sideBar={<OrganismMenu />}>
-         {children}
-         <Footer />
-      </Drawer>
+      <div className="flex justify-center">
+         <Drawer sideBar={<OrganismMenu />}>
+            {children}
+            <Footer />
+         </Drawer>
+      </div>
    )
 }
 

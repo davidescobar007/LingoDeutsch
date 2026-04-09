@@ -8,7 +8,7 @@ interface MarkdownTableProps {
 export const MarkdownTable = ({ children }: MarkdownTableProps) => {
    return (
       <div className="markdown-table-wrapper my-6 overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
-         <table className="table-zebra table w-full">{children}</table>
+         <table className="table-zebra table w-full !text-base">{children}</table>
       </div>
    )
 }

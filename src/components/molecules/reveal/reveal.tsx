@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
 
+import { AtomText } from '@/components/atoms'
+
 type TMoleculeReveal = {
    children: ReactNode
    title: string
@@ -10,10 +12,14 @@ export const MoleculeReveal = ({ children, title }: TMoleculeReveal) => {
       <div className="collapse-arrow border-base-300 collapse my-2 border">
          <input type="checkbox" />
          <div className="collapse-title font-medium">
-            <span className="text-primary text-sm font-semibold">{title}</span>
+            <AtomText color="primary" fontSize="small">
+               {title}
+            </AtomText>
          </div>
          <div className="collapse-content">
-            <p className="text-sm">{children}</p>
+            <AtomText fontSize="small" type="paragraph">
+               {children}
+            </AtomText>
          </div>
       </div>
    )

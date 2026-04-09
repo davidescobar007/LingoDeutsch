@@ -192,3 +192,7 @@ body {
       @apply bg-base-100 border-base-300 hover:scale-102 rounded-2xl border shadow-md transition-all duration-300 hover:shadow-lg;
    }
 }
+
+.markdown-table-wrapper thead th {
+   @apply text-base font-semibold;
+}
