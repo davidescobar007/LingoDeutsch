@@ -16,7 +16,7 @@ export const MoleculeChatBubble = ({ align = 'left', avatar = '💬', message, n
             <div
                className={`${isLeft ? 'bg-primary/10' : 'bg-base-200'} flex h-10 w-10 items-center justify-center rounded-full`}
             >
-               <span className="text-xl">{avatar}</span>
+               <span className="flex items-center justify-center text-xl leading-none">{avatar}</span>
             </div>
          </div>
          <div className="chat-header opacity-70">
