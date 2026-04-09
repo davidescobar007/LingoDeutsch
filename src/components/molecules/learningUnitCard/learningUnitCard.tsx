@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-import { AtomMiniProgressBar, AtomTitle } from '@/components/atoms'
+import { AtomMiniProgressBar, AtomText, AtomTitle } from '@/components/atoms'
 
 type TMoleculeLearningUnitCard = {
    title: string
@@ -41,11 +41,11 @@ export const MoleculeLearningUnitCard: FunctionComponent<TMoleculeLearningUnitCa
                <div className="flex min-w-0 flex-1 flex-col space-y-2">
                   <div className="flex w-full min-w-0 items-start justify-between gap-2">
                      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-                        <AtomTitle extraClassName="!mb-1 !text-base font-semibold" type="h4">
-                           {title}
-                        </AtomTitle>
+                        <AtomTitle type="h4">{title}</AtomTitle>
                         {learningGoal && (
-                           <p className="text-base-content/50 w-full truncate text-xs italic">{learningGoal}</p>
+                           <AtomText className="truncate" fontSize="small" isItalic isThin>
+                              {learningGoal}
+                           </AtomText>
                         )}
                      </div>
                      {isCompleted && (

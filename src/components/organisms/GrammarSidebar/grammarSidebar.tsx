@@ -84,10 +84,8 @@ export const OrganismGrammarSidebar = ({
                   <span className="text-2xl">{levelInfo.emoji}</span>
                </div>
                <div className="flex-1">
-                  <AtomTitle extraClassName="!text-lg !mb-1 font-semibold" type="h3">
-                     Temas - {selectedLevel}
-                  </AtomTitle>
-                  <AtomText className="text-sm" fontSize="small" isThin>
+                  <AtomTitle type="h3">Temas - {selectedLevel}</AtomTitle>
+                  <AtomText fontSize="small" isThin>
                      {levelInfo.label}
                   </AtomText>
                </div>
