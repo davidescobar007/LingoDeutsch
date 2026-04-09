@@ -6,9 +6,8 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
-import { getUserInfo } from '@/modules/actions/users.actions'
+import { getUserInfo, isUserLoged } from '@/modules/actions/users.actions'
 import { Link, usePathname } from '@/navigation'
-import { pb } from '@/network/setup'
 const selectedStyles = 'rounded-xl border-2 border-primary/50 bg-primary/10'
 
 export const OrganismSidebar: FunctionComponent = () => {
@@ -72,7 +71,7 @@ export const OrganismSidebar: FunctionComponent = () => {
 
          <div className="flex flex-col gap-2">
             <ul className="menu">
-               {pb.authStore.isValid ? (
+               {isUserLoged() ? (
                   <li className={`${pathname === `/app/profile` && selectedStyles}`}>
                      <Link className="flex items-center" href="/app/profile">
                         <div className="avatar">
