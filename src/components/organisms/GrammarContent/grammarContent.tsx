@@ -103,7 +103,7 @@ export const OrganismGrammarContent = ({
                </div>
                <div className="text-center">
                   <AtomTitle type="h3">Elige un tema</AtomTitle>
-                  <AtomText className="text-base-content/60 mt-1">
+                  <AtomText className="mt-1" fontSize="small">
                      Selecciona un tema de la lista lateral para comenzar a aprender
                   </AtomText>
                </div>
