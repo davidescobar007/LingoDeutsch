@@ -78,7 +78,9 @@ export const OrganismGrammarContent = ({
                      reveal: (_props: { children?: React.ReactNode; title?: string }) => (
                         <MoleculeReveal title={_props.title || 'Ver más'}>{_props.children}</MoleculeReveal>
                      ),
-                     table: (_props) => <MarkdownTable>{_props.children}</MarkdownTable>
+                     table: (_props: { children?: React.ReactNode }) => (
+                        <MarkdownTable>{_props.children}</MarkdownTable>
+                     )
                   } as any
                }
                remarkPlugins={[remarkDirective, remarkDirectiveRehype, remarkGfm]}
@@ -121,7 +123,7 @@ export const OrganismGrammarContent = ({
             <AtomBadge color="primary">{grammarTopicContent?.level}</AtomBadge>
          </header>
 
-         <div className="markdown-content">{renderContentSections(sections)}</div>
+         <div className="markdown-content  !min-w-full">{renderContentSections(sections)}</div>
 
          <footer className="border-base-300 mt-6 border-t pt-6">
             <div className="flex flex-col gap-4">
