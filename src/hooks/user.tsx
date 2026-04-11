@@ -7,13 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { getScoreList } from '@/modules/actions/global.actions'
-import {
-   getLoginMethods,
-   getUserInfo,
-   googleLogin,
-   updateUSer,
-   updateUserScore
-} from '@/modules/actions/users.actions'
+import { getLoginMethods, googleLogin, updateUSer, updateUserScore } from '@/modules/actions/users.actions'
 import { usePathname } from '@/navigation'
 
 export const useAuth = () => {
@@ -53,10 +47,6 @@ export const useUpdateUser = () => {
          toast.success(t('translation.saved'))
       }
    })
-}
-
-export const useGetUserInfo = () => {
-   return useQuery({ queryKey: ['getUserInfo'], queryFn: getUserInfo })
 }
 
 export const useOAuthParams = (): boolean => {

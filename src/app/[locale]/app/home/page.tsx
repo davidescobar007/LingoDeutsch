@@ -6,14 +6,13 @@ import { useGetVocabularyStats } from '@/hooks/cards'
 import { useGrammarProgress } from '@/hooks/useGrammarProgress'
 import { useOAuthParams } from '@/hooks/user'
 import { useUserStreak } from '@/hooks/useUserStreak'
-import { TUser } from '@/modules/actions/types'
-import { getUserInfo } from '@/modules/actions/users.actions'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const Learn = () => {
-   const user = getUserInfo() as TUser | null
+   const { user } = useAuthState()
    const hasOAuthParams = useOAuthParams()
    const { data: articles, isLoading: articlesLoading } = useArticleList()
-   const { data: vocabularyStats, isLoading: vocabLoading } = useGetVocabularyStats()
+   const { data: vocabularyStats, isLoading: vocabLoading } = useGetVocabularyStats(user)
    const grammarProgress = useGrammarProgress(user, 'A1.1')
    const streakMetrics = useUserStreak(user)
 
@@ -29,8 +28,8 @@ const Learn = () => {
          articles={articles || []}
          grammarProgress={grammarProgress}
          streakMetrics={streakMetrics}
-         user={user || undefined}
-         userName={user?.name || 'Usuario'}
+         user={user ?? undefined}
+         userName={user?.name ?? 'Usuario'}
          vocabularyStats={vocabularyStats}
       />
    )

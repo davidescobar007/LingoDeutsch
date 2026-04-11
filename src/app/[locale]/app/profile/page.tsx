@@ -2,16 +2,18 @@
 import { TemplateProfile } from '@/components/templates'
 import { useUpdateUser } from '@/hooks/user'
 import { TUser } from '@/modules/actions/types'
-import { getUserInfo, logOut } from '@/modules/actions/users.actions'
 import { useRouter } from '@/navigation'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const Page = () => {
-   const user = getUserInfo() as TUser
+   const { user, logout } = useAuthState()
    const { mutate, isPending } = useUpdateUser()
    const { push } = useRouter()
 
+   if (!user) return null
+
    const handleLogout = () => {
-      logOut()
+      logout()
       push('/')
    }
 

@@ -9,8 +9,7 @@ import { useGetArticleByUser, useSaveArticleUser } from '@/hooks/articles'
 import { useGetGrammarByLevel, useGetSingleGrammarTopicByUser, useSaveGrammarProgress } from '@/hooks/grammar'
 import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
-import { TUser } from '@/modules/actions/types'
-import { getUserInfo } from '@/modules/actions/users.actions'
+import { useAuthState } from '@/providers/AuthProvider'
 import { calculateScore, shouldShowWaitingRoom } from '@/utils/quiz.utils'
 
 import WaitingRoom from './watingRoom'
@@ -28,21 +27,21 @@ type QuizQuestion = {
 
 type QuizPageProps = {
    params: Promise<{ id: string }>
-   searchParams: Promise<{ type?: 'article' | 'grammar' }>
+   searchParams: Promise<{ type?: string }>
 }
 
 const QuizPage = ({ params, searchParams }: QuizPageProps) => {
    const { id } = use(params)
    const { type } = use(searchParams)
    const locale = useLocale() as 'de' | 'es'
-   const user = getUserInfo() as TUser
-   const quizType = type || 'article'
+   const { user } = useAuthState()
+   const quizType: 'grammar' | 'article' = (type as 'grammar' | 'article') || 'article'
    const isArticleQuiz = quizType === 'article'
 
    const { data: quizzData, isLoading } = useGetQuiz({ id, type: quizType })
-   const { data: userArticle } = useGetArticleByUser(user.id, id)
+   const { data: userArticle } = useGetArticleByUser(user?.id || '', id)
    const { data: grammarTopics } = useGetGrammarByLevel('A1.1')
-   const { data: userGrammarProgress } = useGetSingleGrammarTopicByUser({ id, user })
+   const { data: userGrammarProgress } = useGetSingleGrammarTopicByUser({ id, user: user! })
    const { mutate: updateUserScore } = useUpdateUserscore()
    const { mutate: saveArticleUser } = useSaveArticleUser()
    const { mutate: saveGrammarProgress } = useSaveGrammarProgress()
@@ -70,8 +69,9 @@ const QuizPage = ({ params, searchParams }: QuizPageProps) => {
       if (!showResult || !questions.length || hasSubmittedScore) return
       const finalScore = calculateScore(score, questions.length)
       if (isArticleQuiz && userArticle) saveArticleUser({ score: finalScore, userArticle })
-      if (quizType === 'grammar' && finalScore) saveGrammarProgress({ grammar_id: id, score: finalScore, user })
-      if (finalScore >= 40) updateUserScore({ newScore: finalScore, user })
+      if (quizType === 'grammar' && finalScore && user)
+         saveGrammarProgress({ grammar_id: id, score: finalScore, user })
+      if (finalScore >= 40 && user) updateUserScore({ newScore: finalScore, user })
       setHasSubmittedScore(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [showResult, questions.length, score, isArticleQuiz, userArticle, hasSubmittedScore, user])
@@ -88,7 +88,7 @@ const QuizPage = ({ params, searchParams }: QuizPageProps) => {
       if (current >= questions.length - 1) setShowResult(true)
    }
 
-   if (isLoading) return <SpinLoader />
+   if (!user || isLoading) return <SpinLoader />
    if (!questions.length) return <div>No se encontró ningún quiz.</div>
    if (!question?.options || !question?.correctAnswers) return <div>Error: Datos del quiz incorrectos.</div>
 

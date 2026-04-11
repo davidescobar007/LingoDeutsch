@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
 import QueryProvider from '@/hooks/queryProvider'
+import { AuthProvider } from '@/providers/AuthProvider'
 
 import 'react-toastify/dist/ReactToastify.css'
 import './globals.scss'
@@ -50,34 +51,30 @@ const plusJakartaSans = Plus_Jakarta_Sans({
    style: 'normal'
 })
 
-const RootLayout = async ({
-   children,
-   params
-}: {
-   readonly children: ReactNode
-   params: Promise<{ locale: string }>
-}) => {
+const RootLayout = async ({ children, params }: { readonly children: ReactNode; params: Promise }) => {
    const { locale } = await params
    const messages = await getMessages()
    return (
       <QueryProvider>
-         <NextIntlClientProvider messages={messages}>
-            <html data-theme="mytheme" lang={locale}>
-               <body className={`${plusJakartaSans.className} text-neutral bg-base-200`}>
-                  {children}
-                  <ToastContainer
-                     autoClose={5000}
-                     closeOnClick
-                     hideProgressBar={false}
-                     newestOnTop={false}
-                     position="bottom-right"
-                     rtl={false}
-                     transition={Slide}
-                  />
-                  <ReactQueryDevtools buttonPosition="relative" initialIsOpen={false} />
-               </body>
-            </html>
-         </NextIntlClientProvider>
+         <AuthProvider>
+            <NextIntlClientProvider messages={messages}>
+               <html data-theme="mytheme" lang={locale}>
+                  <body className={`${plusJakartaSans.className} text-neutral bg-base-200`}>
+                     {children}
+                     <ToastContainer
+                        autoClose={5000}
+                        closeOnClick
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        position="bottom-right"
+                        rtl={false}
+                        transition={Slide}
+                     />
+                     <ReactQueryDevtools buttonPosition="relative" initialIsOpen={false} />
+                  </body>
+               </html>
+            </NextIntlClientProvider>
+         </AuthProvider>
       </QueryProvider>
    )
 }

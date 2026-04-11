@@ -3,15 +3,14 @@ import { useEffect, useState } from 'react'
 
 import { TemplateArticleList } from '@/components/templates'
 import { useGetArticlesListByUserAndState } from '@/hooks/articles'
-import { TUser } from '@/modules/actions/types'
-import { getUserInfo } from '@/modules/actions/users.actions'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const Article = () => {
-   const user = getUserInfo() as TUser | null
+   const { user } = useAuthState()
 
-   const [level, setLevel] = useState<string | undefined>(undefined)
-   const [sortCriteria, setSortCriteria] = useState<string | undefined>(undefined)
-   const [state, setState] = useState<string | undefined>(undefined)
+   const [level, setLevel] = useState(undefined)
+   const [sortCriteria, setSortCriteria] = useState(undefined)
+   const [state, setState] = useState(undefined)
 
    const {
       data: articlesList,

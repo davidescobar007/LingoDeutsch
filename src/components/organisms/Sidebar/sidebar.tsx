@@ -6,16 +6,15 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomText, AtomTitle, Icon } from '@/components/atoms'
-import { getUserInfo, isUserLoged } from '@/modules/actions/users.actions'
 import { Link, usePathname } from '@/navigation'
+import { useAuthState } from '@/providers/AuthProvider'
 const selectedStyles = 'rounded-xl border-2 border-primary/50 bg-primary/10'
 
 export const OrganismSidebar: FunctionComponent = () => {
    const pathname = usePathname()
    const t = useTranslations()
    const currentYear = new Date().getFullYear()
-
-   const user = getUserInfo()
+   const { isAuthenticated, user } = useAuthState()
 
    return (
       <nav className="flex min-h-full flex-col justify-between border-r-2 border-gray-300 py-4">
@@ -71,7 +70,7 @@ export const OrganismSidebar: FunctionComponent = () => {
 
          <div className="flex flex-col gap-2">
             <ul className="menu">
-               {isUserLoged() ? (
+               {isAuthenticated && user ? (
                   <li className={`${pathname === `/app/profile` && selectedStyles}`}>
                      <Link className="flex items-center" href="/app/profile">
                         <div className="avatar">

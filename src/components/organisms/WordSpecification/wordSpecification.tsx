@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { Ttranslation } from '@/modules/actions/types'
-import { isUserLoged } from '@/modules/actions/users.actions'
+import { useAuthState } from '@/providers/AuthProvider'
 import { openModal } from '@/utils'
 
 interface OrganismWordSpecificationProps {
@@ -29,10 +29,11 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
    articleId: _articleId
 }) => {
    const _t = useTranslations()
+   const { isAuthenticated } = useAuthState()
    const [isSaved, setIsSaved] = useState(false)
 
    const handleSaveTranslation = () => {
-      if (!isUserLoged()) {
+      if (!isAuthenticated) {
          openModal()
          return
       }

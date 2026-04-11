@@ -2,13 +2,13 @@
 import { BookIcon, BrainIcon, HomeIcon, LogIn, ScrollTextIcon, UserIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-import { getUserInfo } from '@/modules/actions/users.actions'
 import { Link, usePathname } from '@/navigation'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const OrganismFooter = () => {
    const pathname = usePathname()
    const t = useTranslations('menu')
-   const user = getUserInfo()
+   const { user } = useAuthState()
    return (
       <footer className="border-t border-gray-200 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:hidden">
          <div className="btm-nav">

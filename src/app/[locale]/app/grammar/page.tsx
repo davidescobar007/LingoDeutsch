@@ -11,20 +11,19 @@ import {
    useSavedGrammarTopicByUser,
    useSaveGrammarProgress
 } from '@/hooks/grammar'
-import { TUser } from '@/modules/actions/types'
-import { getUserInfo } from '@/modules/actions/users.actions'
 import { GRAMMAR_LEVELS, GrammarLevel } from '@/modules/global.types'
 import { useRouter } from '@/navigation'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const Grammar = () => {
    const router = useRouter()
    const searchParams = useSearchParams()
+   const { user } = useAuthState()
 
    const [selectedLevel, setSelectedLevel] = useState('A1.1')
    const [selectedTopic, setSelectedTopic] = useState(null)
    const [isInitialized, setIsInitialized] = useState(false)
 
-   const user = getUserInfo() as TUser
    const { data: grammarList = [] } = useGetGrammarByLevel(selectedLevel)
    const { data: grammarTopicContent, isLoading: isTopicLoading } = useGetSingleGrammarTopic(
       selectedTopic as string
@@ -106,7 +105,7 @@ const Grammar = () => {
    }, [grammarList, selectedTopic])
 
    const handleSaveGrammarProgress = (grammar_id: string, score: number) => {
-      saveGrammarProgress({ grammar_id, score, user })
+      if (user) saveGrammarProgress({ grammar_id, score, user })
    }
 
    if (!isInitialized) {

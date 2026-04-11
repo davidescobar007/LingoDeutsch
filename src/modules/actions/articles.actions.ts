@@ -12,15 +12,8 @@ import { constants } from '../global.types'
 
 import { delay } from './actions.utils'
 import { TArticle, TArticleUser, TQuizQuestion } from './types'
-import { isUserLoged } from './users.actions'
 
-const getArticlesList = async ({
-   level,
-   sortCriteria
-}: {
-   level?: string
-   sortCriteria?: string
-}): Promise<TArticle[]> => {
+const getArticlesList = async ({ level, sortCriteria }: { level?: string; sortCriteria?: string }): Promise => {
    try {
       const options: any = {
          fields: 'id,title,level,created,updated,imageFile,estimated_read_time',
@@ -36,7 +29,7 @@ const getArticlesList = async ({
    }
 }
 
-const getSingleArticle = async ({ articleId }: { articleId: string }): Promise<TArticle> => {
+const getSingleArticle = async ({ articleId }: { articleId: string }): Promise => {
    const article = await pbGetSingleRecord({
       collection: constants.ARTICLES,
       recordId: articleId
@@ -45,7 +38,7 @@ const getSingleArticle = async ({ articleId }: { articleId: string }): Promise<T
    return article as unknown as TArticle
 }
 
-const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise<TQuizQuestion> => {
+const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise => {
    const article = await pbGetSingleRecord({
       collection: constants.ARTICLES,
       recordId: articleId,
@@ -56,8 +49,8 @@ const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise<TQu
 }
 
 const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUser; score: number }) => {
-   if (isUserLoged() && !userArticle.id) {
-      pbCreateRecord(constants.USER_ARTICLE_PROGRESS, {
+   if (!userArticle.id) {
+      await pbCreateRecord(constants.USER_ARTICLE_PROGRESS, {
          article_id: userArticle.article_id,
          user_id: userArticle.user_id,
          is_completed: Boolean(score >= 60),
@@ -66,7 +59,7 @@ const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUs
          number_of_attempts: (Number(userArticle.number_of_attempts) || 0) + 1
       })
    } else {
-      pbUpdateRecord(constants.USER_ARTICLE_PROGRESS, userArticle.id, {
+      await pbUpdateRecord(constants.USER_ARTICLE_PROGRESS, userArticle.id, {
          is_completed: Boolean(score >= 60),
          highest_score_ever:
             score > (userArticle.highest_score_ever || 0) ? score : userArticle.highest_score_ever || 0,
@@ -75,13 +68,7 @@ const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUs
    }
 }
 
-const getArticleByUser = async ({
-   userId,
-   articleId
-}: {
-   userId: string
-   articleId: string
-}): Promise<TArticleUser> => {
+const getArticleByUser = async ({ userId, articleId }: { userId: string; articleId: string }): Promise => {
    try {
       const data = await pbGetSingleRecordWithComplexfilter({
          collection: constants.USER_ARTICLE_PROGRESS,
@@ -112,7 +99,7 @@ const getArticlesListByUser = async ({
    isCompleted?: boolean
    sortCriteria?: string
    level?: string
-}): Promise<TArticle[]> => {
+}): Promise => {
    try {
       const isCompletedFilter = isCompleted ? ` && is_completed=${isCompleted}` : ''
       const levelFilter = level ? ` && article_id.level~"${level}"` : ''

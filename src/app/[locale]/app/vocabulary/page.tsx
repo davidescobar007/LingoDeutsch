@@ -7,10 +7,12 @@ import { AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeAlert, MoleculeTable } from '@/components/molecules'
 import { useGetVocabularyList, useGetVocabularyStats } from '@/hooks/cards'
 import { isWordDue } from '@/modules/actions/actions.utils'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const Vocabulary = () => {
-   const { data } = useGetVocabularyList({})
-   const { data: vocabularyStats } = useGetVocabularyStats()
+   const { user } = useAuthState()
+   const { data } = useGetVocabularyList({ user })
+   const { data: vocabularyStats } = useGetVocabularyStats(user)
    const easyWords = data?.filter((item: any) => item.level === 'easy')
    const mediumWords = data?.filter((item: any) => item.level === 'medium')
    const hardWords = data?.filter((item: any) => item.level === 'hard')

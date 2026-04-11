@@ -9,14 +9,15 @@ import { useTranslations } from 'next-intl'
 import { AuthProviderInfo } from 'pocketbase'
 
 import { AtomText, AtomTitle } from '@/components/atoms'
-import { useAuth, useGetUserInfo } from '@/hooks/user'
+import { useAuth } from '@/hooks/user'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const Login = ({ params }: { params: Promise<{ locale: string }> }) => {
    const { locale } = use(params)
    const router = useRouter()
    const t = useTranslations()
    const { authMethods } = useAuth()
-   const { data: user, isLoading: isLoadingUser } = useGetUserInfo()
+   const { user, isLoading: isLoadingUser } = useAuthState()
 
    // Redirect if user is already logged in
    useEffect(() => {

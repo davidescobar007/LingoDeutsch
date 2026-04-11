@@ -9,15 +9,14 @@ import { AuthProviderInfo } from 'pocketbase'
 
 import { AtomTitle } from '@/components/atoms'
 import { useAuth } from '@/hooks/user'
-import { getUserInfo, isUserLoged, logOut } from '@/modules/actions/users.actions'
 import { Link, useRouter } from '@/navigation'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const OrganismNavbar = ({ locale }: { locale: string }) => {
    const t = useTranslations()
    const _router = useRouter()
    const { authMethods } = useAuth()
-
-   const user = getUserInfo()
+   const { isAuthenticated, user, logout } = useAuthState()
 
    return (
       <header className="border-b-1 navbar border-neutral bg-primary sticky top-0 z-50 flex h-14 items-center px-4 md:px-10 lg:px-20">
@@ -34,7 +33,7 @@ const OrganismNavbar = ({ locale }: { locale: string }) => {
             </Link>
          </div>
          <div className="flex flex-none items-center gap-2">
-            {isUserLoged() && user ? (
+            {user ? (
                <div className="dropdown-end dropdown">
                   <label className="avatar btn btn-circle btn-ghost" tabIndex={0}>
                      <div className="w-10 rounded-full">
@@ -54,7 +53,7 @@ const OrganismNavbar = ({ locale }: { locale: string }) => {
                         </Link>
                      </li>
                      <li>
-                        <Link className="my-1 justify-between py-3" href="/" onClick={() => logOut()}>
+                        <Link className="my-1 justify-between py-3" href="/" onClick={() => logout()}>
                            {t('menu.logOut')}
                            <span className="">
                               <TbLogout />

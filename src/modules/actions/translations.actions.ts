@@ -9,7 +9,6 @@ import { constants } from '../global.types'
 import { delay } from './actions.utils'
 import { handleErrorModal } from './global.actions'
 import { Ttranslation, TwordSpecification } from './types'
-import { isUserLoged } from './users.actions'
 
 export const getWordsTranslationFromDB = async (params: any) => {
    try {
@@ -25,7 +24,7 @@ export const getWordsTranslationFromDB = async (params: any) => {
    }
 }
 
-export const searchTranslationFromSources = async (wordToTranslate: string): Promise<Ttranslation> => {
+export const searchTranslationFromSources = async (wordToTranslate: string): Promise => {
    try {
       await delay()
       const exactTranslationFromDB = await getWordsTranslationFromDB({
@@ -106,24 +105,26 @@ export const checkVocaBularyExist = async (userId: string, wordId: string) => {
 
 export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
    try {
-      if (isUserLoged() && selectedWordTranslation?.id) {
-         await delay()
-         const userId = pb.authStore.model?.id || ''
-         const valueExists = await checkVocaBularyExist(userId, selectedWordTranslation.id)
-         if (valueExists.length) {
-            throw new Error('translation.alreadySaved')
-         }
-         const data = {
-            user_id: userId,
-            word_id: selectedWordTranslation.id,
-            last_time_seen: null,
-            level: 'hard'
-         }
-         pbCreateRecord(constants.USER_VOCAB_PROGRESS, data)
-      } else {
+      if (!selectedWordTranslation?.id) {
          throw new Error('translation.error')
       }
+      await delay()
+      const userId = pb.authStore.model?.id || ''
+      const valueExists = await checkVocaBularyExist(userId, selectedWordTranslation.id)
+      if (valueExists.length) {
+         throw new Error('translation.alreadySaved')
+      }
+      const data = {
+         user_id: userId,
+         word_id: selectedWordTranslation.id,
+         last_time_seen: null,
+         level: 'hard'
+      }
+      await pbCreateRecord(constants.USER_VOCAB_PROGRESS, data)
    } catch (error) {
+      if ((error as any)?.status === 401) {
+         pb.authStore.clear()
+      }
       throw error
    }
 }

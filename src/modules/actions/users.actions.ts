@@ -1,4 +1,4 @@
-import { Admin, AuthProviderInfo, RecordAuthResponse } from 'pocketbase'
+import { RecordAuthResponse } from 'pocketbase'
 
 import {
    pbCreateRecord,
@@ -8,7 +8,6 @@ import {
    pbSignUp,
    pbUpdateRecord
 } from '@/network/index'
-import { pb } from '@/network/setup'
 import { localStorageHandler } from '@/utils'
 
 import { constants } from '../global.types'
@@ -16,7 +15,7 @@ import { constants } from '../global.types'
 import { handleErrorModal } from './global.actions'
 import { TUser } from './types'
 
-export const getScore = async (userId: string): Promise<number> => {
+export const getScore = async (userId: string): Promise => {
    try {
       const { score } = await pbGetSingleRecordQuery({
          collection: constants.SCORE,
@@ -33,13 +32,13 @@ export const getScore = async (userId: string): Promise<number> => {
 
 export const updateUSer = async (user: TUser) => pbUpdateRecord(constants.USERS, user.id, user)
 
-export const updateUserScore = async ({ user, newScore }: { user: TUser; newScore: number }): Promise<void> => {
+export const updateUserScore = async ({ user, newScore }: { user: TUser; newScore: number }): Promise => {
    user.score = Math.round(newScore + (user.score ?? 0))
    await pbUpdateRecord(constants.USERS, user.id, user)
    updateUserState()
 }
 
-export const getLoginMethods = async (): Promise<AuthProviderInfo[]> => {
+export const getLoginMethods = async (): Promise => {
    const { authProviders } = await pbListAuthMethods()
    localStorage.setItem('provider', JSON.stringify(authProviders))
    return authProviders
@@ -59,8 +58,8 @@ export const updateUserState = async () => {
    }
 }
 
-export const googleLogin = async (): Promise<TUser> => {
-   const { saveItem, storageItem } = localStorageHandler<TUser>('user')
+export const googleLogin = async (): Promise => {
+   const { saveItem, storageItem } = localStorageHandler('user')
    if (storageItem) {
       return storageItem
    }
@@ -75,12 +74,7 @@ export const googleLogin = async (): Promise<TUser> => {
    const code = params.get('code') ?? ''
    const codeVerifier = provider.codeVerifier
    try {
-      const { record, meta }: RecordAuthResponse<TUser> = await pbSignUp(
-         providerName,
-         code,
-         codeVerifier,
-         redirectUrl
-      )
+      const { record, meta }: RecordAuthResponse = await pbSignUp(providerName, code, codeVerifier, redirectUrl)
       record?.id && pbCreateRecord(constants.SCORE, { user_id: record.id })
       if (!record.avatarUrl && !record.name) {
          record.avatarUrl = meta?.avatarUrl || ''
@@ -95,17 +89,7 @@ export const googleLogin = async (): Promise<TUser> => {
    }
 }
 
-export const isUserLoged = (): boolean => {
-   return !!(pb.authStore.isValid && pb.authStore.model?.id && pb.authStore.token)
-}
-
-export const getUserInfo = (): TUser | null | Admin => pb.authStore.model
-
 export const logOut = () => {
-   try {
-      pbLogOut()
-      localStorage.removeItem('user')
-   } catch (error: string | any) {
-      handleErrorModal(error)
-   }
+   pbLogOut()
+   localStorage.removeItem('user')
 }

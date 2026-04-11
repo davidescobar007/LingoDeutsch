@@ -7,19 +7,21 @@ import { AtomButton, AtomPill, AtomProgressPercentage, AtomText, AtomTitle, Icon
 import { MoleculeFlipCard, MoleculeStat } from '@/components/molecules'
 import { useGetVocabularyList, useGetVocabularyStats, useUpdateCard } from '@/hooks/cards'
 import { isWordDue } from '@/modules/actions/actions.utils'
-import { TVocabularyCard } from '@/modules/actions/types' // Assuming TCard is exported from here
+import { TVocabularyCard } from '@/modules/actions/types'
+import { useAuthState } from '@/providers/AuthProvider'
 
 const PracticeVocabulary = () => {
    const searchParams = useSearchParams()
    const router = useRouter()
-   const { refetch: refetchVocabulary } = useGetVocabularyList({})
-   const { refetch: refetchVocabularyStats } = useGetVocabularyStats()
+   const { user } = useAuthState()
+   const { refetch: refetchVocabulary } = useGetVocabularyList({ user })
+   const { refetch: refetchVocabularyStats } = useGetVocabularyStats(user)
    const queryParams = Object.fromEntries(searchParams.entries())
    const level = ['easy', 'medium', 'hard'].includes(queryParams.level)
       ? (queryParams.level as 'easy' | 'medium' | 'hard')
       : undefined
    const isIntelligentMode = queryParams.level === 'intelligent'
-   const { data, isLoading, refetch, isFetching } = useGetVocabularyList({ level })
+   const { data, isLoading, refetch, isFetching } = useGetVocabularyList({ level, user })
    const dueForReview = (data ?? []).filter((card) => isWordDue(card))
    const { mutateAsync, isPending } = useUpdateCard()
 
@@ -159,8 +161,8 @@ const PracticeVocabulary = () => {
                                  getStudyStats().completionRate === 100
                                     ? 'success'
                                     : getStudyStats().completionRate >= 70
-                                    ? 'info'
-                                    : 'warning'
+                                      ? 'info'
+                                      : 'warning'
                               }
                            />
                         ),

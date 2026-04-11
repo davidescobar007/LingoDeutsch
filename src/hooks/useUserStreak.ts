@@ -32,7 +32,7 @@ export const useUserStreak = (user: TUser | null | undefined): UserStreakMetrics
       state: 'learned',
       enabled: !isGuest
    })
-   const { data: vocabularyStats, isLoading: vocabularyLoading } = useGetVocabularyStats()
+   const { data: vocabularyStats, isLoading: vocabularyLoading } = useGetVocabularyStats(user)
 
    const isLoading = !isGuest && (grammarLoading || articlesLoading || vocabularyLoading)
 
