@@ -8,6 +8,7 @@ import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkGfm from 'remark-gfm'
 
+import { SpinLoader } from '@/components/atoms'
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
 import { MarkdownTable, MoleculeAlert, MoleculeChatBubble, MoleculeReveal } from '@/components/molecules'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
@@ -27,6 +28,7 @@ const extractTextFromChildren = (children: React.ReactNode): string => {
 
 type OrganismGrammarContentProps = {
    grammarTopicContent?: TGrammar
+   isTopicLoading: boolean
    onMarkAsLearned: () => void
    onNextTopic: () => void
    selectedTopic: string | null
@@ -35,6 +37,7 @@ type OrganismGrammarContentProps = {
 
 export const OrganismGrammarContent = ({
    grammarTopicContent,
+   isTopicLoading,
    onMarkAsLearned,
    onNextTopic,
    selectedTopic,
@@ -93,6 +96,16 @@ export const OrganismGrammarContent = ({
    }
 
    const isTopicCompleted = userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic)
+
+   if (selectedTopic && isTopicLoading) {
+      return (
+         <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
+            <div className="flex w-full items-center justify-center py-16">
+               <SpinLoader />
+            </div>
+         </section>
+      )
+   }
 
    if (!grammarTopicContent || !selectedTopic) {
       return (

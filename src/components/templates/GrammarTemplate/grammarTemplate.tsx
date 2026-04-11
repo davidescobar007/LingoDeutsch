@@ -9,9 +9,16 @@ import {
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 import { GRAMMAR_LEVEL_INFO, GRAMMAR_LEVELS, GrammarLevel } from '@/modules/global.types'
 
+type LevelProgress = {
+   completed: number
+   percentage: number
+   total: number
+}
+
 type TemplateGrammarProps = {
    grammarList: TGrammar[]
    grammarTopicContent?: TGrammar
+   isTopicLoading: boolean
    onLevelSelect: (_level: GrammarLevel) => void
    onSaveGrammarProgress: (_grammar_id: string, _score: number) => void
    onSelectTopic: (_topicId: string | null) => void
@@ -23,6 +30,7 @@ type TemplateGrammarProps = {
 export const TemplateGrammar = ({
    grammarList,
    grammarTopicContent,
+   isTopicLoading,
    onLevelSelect,
    onSaveGrammarProgress,
    onSelectTopic,
@@ -30,9 +38,8 @@ export const TemplateGrammar = ({
    selectedTopic,
    userGrammarProgress
 }: TemplateGrammarProps) => {
-   const getLevelProgress = (level: GrammarLevel) => {
+   const getLevelProgress = (level: GrammarLevel): LevelProgress => {
       if (level === selectedLevel && grammarList.length > 0) {
-         // Use Set to count unique grammar_ids only (avoid counting duplicates)
          const completedGrammarIds = new Set(
             userGrammarProgress?.filter((p) => p.isCompleted).map((p) => p.grammar_id)
          )
@@ -44,10 +51,14 @@ export const TemplateGrammar = ({
       return { completed: 0, percentage: 0, total: 0 }
    }
 
-   const allLevelProgress = GRAMMAR_LEVELS.reduce((acc, level) => {
-      acc[level] = getLevelProgress(level)
-      return acc
-   }, {} as Record<GrammarLevel, { completed: number; percentage: number; total: number }>)
+   // prettier-ignore
+   const allLevelProgress: Record<GrammarLevel, LevelProgress> = GRAMMAR_LEVELS.reduce(
+      (acc, level) => {
+         acc[level] = getLevelProgress(level)
+         return acc
+      },
+      {} as Record<GrammarLevel, LevelProgress>
+   )
 
    const handleLevelSelect = (level: GrammarLevel) => {
       onLevelSelect(level)
@@ -103,6 +114,7 @@ export const TemplateGrammar = ({
 
             <OrganismGrammarContent
                grammarTopicContent={grammarTopicContent}
+               isTopicLoading={isTopicLoading}
                onMarkAsLearned={handleMarkAsLearned}
                onNextTopic={handleNextTopic}
                selectedTopic={selectedTopic}

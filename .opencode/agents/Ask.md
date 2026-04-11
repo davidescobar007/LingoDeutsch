@@ -3,7 +3,7 @@ description: Ask questions about code, git commands, or general knowledge
 mode: primary
 temperature: 0.5
 maxSteps: 5
-color: '#0968da'
+color: '#FF5733'
 tools:
    bash: false
    write: false

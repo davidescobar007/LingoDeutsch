@@ -20,13 +20,15 @@ const Grammar = () => {
    const router = useRouter()
    const searchParams = useSearchParams()
 
-   const [selectedLevel, setSelectedLevel] = useState<GrammarLevel>('A1.1')
-   const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
+   const [selectedLevel, setSelectedLevel] = useState('A1.1')
+   const [selectedTopic, setSelectedTopic] = useState(null)
    const [isInitialized, setIsInitialized] = useState(false)
 
    const user = getUserInfo() as TUser
    const { data: grammarList = [] } = useGetGrammarByLevel(selectedLevel)
-   const { data: grammarTopicContent } = useGetSingleGrammarTopic(selectedTopic as string)
+   const { data: grammarTopicContent, isLoading: isTopicLoading } = useGetSingleGrammarTopic(
+      selectedTopic as string
+   )
    const { data: userGrammarProgress = [] } = useSavedGrammarTopicByUser(user)
    const { mutate: saveGrammarProgress } = useSaveGrammarProgress()
 
@@ -86,6 +88,13 @@ const Grammar = () => {
       return () => window.removeEventListener('popstate', handlePopState)
    }, [searchParams])
 
+   // Scroll to content when topic is selected
+   useEffect(() => {
+      if (selectedTopic) {
+         document.getElementById('grammar-content')?.scrollIntoView({ behavior: 'smooth' })
+      }
+   }, [selectedTopic])
+
    // Validate topic exists in current level's grammar list
    useEffect(() => {
       if (selectedTopic && grammarList.length > 0) {
@@ -108,6 +117,7 @@ const Grammar = () => {
       <TemplateGrammar
          grammarList={grammarList}
          grammarTopicContent={grammarTopicContent}
+         isTopicLoading={isTopicLoading}
          onLevelSelect={setSelectedLevel}
          onSaveGrammarProgress={handleSaveGrammarProgress}
          onSelectTopic={setSelectedTopic}
