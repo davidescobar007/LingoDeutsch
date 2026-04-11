@@ -43,13 +43,46 @@ export const OrganismGrammarContent = ({
    selectedTopic,
    userGrammarProgress
 }: OrganismGrammarContentProps) => {
-   const getContentSections = (content: string): string[] => {
-      return content?.split(/^---$/m) || []
+   const isTopicCompleted = userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic)
+
+   if (selectedTopic && isTopicLoading) {
+      return (
+         <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
+            <div className="flex w-full items-center justify-center py-16">
+               <SpinLoader />
+            </div>
+         </section>
+      )
    }
 
-   const renderContentSections = (sections: string[]) => {
-      return sections.map((section, index) => (
-         <div className="markdown-section" key={index}>
+   if (!grammarTopicContent || !selectedTopic) {
+      return (
+         <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
+            <div className="flex w-full flex-col items-center justify-center gap-4 py-16">
+               <div className="bg-primary/10 rounded-full p-6">
+                  <BookOpen className="text-primary" size={60} />
+               </div>
+               <div className="text-center">
+                  <AtomTitle type="h3">Elige un tema</AtomTitle>
+                  <AtomText className="mt-1" fontSize="small">
+                     Selecciona un tema de la lista lateral para comenzar a aprender
+                  </AtomText>
+               </div>
+            </div>
+         </section>
+      )
+   }
+
+   return (
+      <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
+         <header className="border-base-300 mb-6 flex items-center justify-between rounded-lg border-b pb-4">
+            <AtomTitle extraClassName="mt-0" type="h3">
+               {grammarTopicContent?.topic_name?.es}
+            </AtomTitle>
+            <AtomBadge color="primary">{grammarTopicContent?.level}</AtomBadge>
+         </header>
+
+         <div className="markdown-content !min-w-full">
             <ReactMarkdown
                components={
                   {
@@ -88,55 +121,9 @@ export const OrganismGrammarContent = ({
                }
                remarkPlugins={[remarkDirective, remarkDirectiveRehype, remarkGfm]}
             >
-               {section}
+               {grammarTopicContent.content}
             </ReactMarkdown>
-            {index < sections.length - 1 && <hr className="my-4" />}
          </div>
-      ))
-   }
-
-   const isTopicCompleted = userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic)
-
-   if (selectedTopic && isTopicLoading) {
-      return (
-         <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
-            <div className="flex w-full items-center justify-center py-16">
-               <SpinLoader />
-            </div>
-         </section>
-      )
-   }
-
-   if (!grammarTopicContent || !selectedTopic) {
-      return (
-         <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
-            <div className="flex w-full flex-col items-center justify-center gap-4 py-16">
-               <div className="bg-primary/10 rounded-full p-6">
-                  <BookOpen className="text-primary" size={60} />
-               </div>
-               <div className="text-center">
-                  <AtomTitle type="h3">Elige un tema</AtomTitle>
-                  <AtomText className="mt-1" fontSize="small">
-                     Selecciona un tema de la lista lateral para comenzar a aprender
-                  </AtomText>
-               </div>
-            </div>
-         </section>
-      )
-   }
-
-   const sections = getContentSections(grammarTopicContent.content)
-
-   return (
-      <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
-         <header className="border-base-300 mb-6 flex items-center justify-between rounded-lg border-b pb-4">
-            <AtomTitle extraClassName="mt-0" type="h3">
-               {grammarTopicContent?.topic_name?.es}
-            </AtomTitle>
-            <AtomBadge color="primary">{grammarTopicContent?.level}</AtomBadge>
-         </header>
-
-         <div className="markdown-content  !min-w-full">{renderContentSections(sections)}</div>
 
          <footer className="border-base-300 mt-6 border-t pt-6">
             <div className="flex flex-col gap-4">

@@ -161,8 +161,8 @@ const PracticeVocabulary = () => {
                                  getStudyStats().completionRate === 100
                                     ? 'success'
                                     : getStudyStats().completionRate >= 70
-                                      ? 'info'
-                                      : 'warning'
+                                    ? 'info'
+                                    : 'warning'
                               }
                            />
                         ),
