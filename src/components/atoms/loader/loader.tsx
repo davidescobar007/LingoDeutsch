@@ -4,9 +4,7 @@
 import React from 'react'
 
 export type SpinLoaderProps = {
-   centered?: boolean
    color?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
-   fullScreen?: boolean
    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
    variant?: 'spinner' | 'dots' | 'ring' | 'bars' | 'ball' | 'infinity'
 }
@@ -126,19 +124,17 @@ export const ProfileLoader = (): React.JSX.Element => {
 }
 
 export const SpinLoader = ({
-   centered = true,
    color = undefined,
-   fullScreen = true,
    size = 'lg',
    variant = 'spinner'
 }: SpinLoaderProps): React.JSX.Element => {
-   const spinner = (
-      <span className={`loading loading-${variant} loading-${size} ${color ? `text-${color}` : ''}`} />
+   const sizeClass = `loading-${size}`
+   const variantClass = `loading-${variant}`
+   const colorClass = color ? `text-${color}` : ''
+
+   return (
+      <div className="flex w-full items-center justify-center">
+         <span className={`loading ${variantClass} ${sizeClass} ${colorClass}`} />
+      </div>
    )
-
-   if (centered) {
-      return <div className={`flex ${fullScreen ? 'h-svh' : 'h-full'} items-center justify-center`}>{spinner}</div>
-   }
-
-   return spinner
 }

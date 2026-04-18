@@ -1,7 +1,7 @@
 'use client'
 
 import { FcGoogle } from 'react-icons/fc'
-import { ArrowLeft,Lock } from 'lucide-react'
+import { ArrowLeft, Lock } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { AuthProviderInfo } from 'pocketbase'
 
