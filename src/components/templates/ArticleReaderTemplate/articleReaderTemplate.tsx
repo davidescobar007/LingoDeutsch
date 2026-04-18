@@ -2,10 +2,11 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { MoleculeDrawerTranslation, MoleculeModal } from '@/components/molecules'
+import { MoleculeDrawerTranslation } from '@/components/molecules'
 import { OrganismArticleContent, OrganismWordSpecification } from '@/components/organisms'
 import useScreenSize from '@/hooks/useScreenSize'
 import { TArticle, Ttranslation } from '@/modules/actions/types'
+import { useAuthState } from '@/providers/AuthProvider'
 
 type TemplateArticleReaderProps = {
    article?: TArticle
@@ -29,8 +30,9 @@ export const TemplateArticleReader = ({
    translationData = undefined
 }: TemplateArticleReaderProps) => {
    const t = useTranslations()
-   const [wordToTranslate, setWordToTranslate] = useState<string>('')
-   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
+   const { isAuthenticated } = useAuthState()
+   const [wordToTranslate, setWordToTranslate] = useState('')
+   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
    const { isMobile, isTablet } = useScreenSize()
 
    const handleWordClick = (word: string) => {
@@ -64,16 +66,13 @@ export const TemplateArticleReader = ({
 
          {(isMobile || isTablet) && (
             <MoleculeDrawerTranslation
+               isAuthenticated={isAuthenticated}
                isOpen={isDrawerOpen}
                onOpenChange={setIsDrawerOpen}
                onSaveVocabulary={onSaveVocabulary}
                translationData={translationData}
             />
          )}
-
-         <MoleculeModal>
-            <p>{t('constants.needSignUp')}</p>
-         </MoleculeModal>
       </>
    )
 }

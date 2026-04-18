@@ -180,3 +180,57 @@ body {
 .markdown-table-wrapper thead th {
    @apply text-base font-semibold;
 }
+
+/* Typewriter Effect Styles */
+@keyframes fadeInSlideUp {
+   from {
+      opacity: 0;
+      transform: translateY(8px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+@keyframes blinkCursor {
+   0%,
+   100% {
+      opacity: 1;
+   }
+   50% {
+      opacity: 0;
+   }
+}
+
+.typewriter-container {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.typewriter-block {
+   animation: fadeInSlideUp 0.5s ease-out forwards;
+   opacity: 0;
+}
+
+.typewriter-cursor {
+   display: inline-block;
+   width: 2px;
+   height: 1.2em;
+   background-color: currentColor;
+   margin-left: 2px;
+   animation: blinkCursor 0.7s step-end infinite;
+   vertical-align: text-bottom;
+   margin-top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .typewriter-block {
+      animation: none;
+      opacity: 1;
+   }
+   .typewriter-cursor {
+      display: none;
+   }
+}

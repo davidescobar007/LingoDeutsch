@@ -247,6 +247,13 @@
    "constants": {
       "needSignUp": "Du musst dich anmelden, um diese Funktion zu verwenden."
    },
+   "authCta": {
+      "title": "Melde dich an, um zu speichern",
+      "description": "Speichere Wörter in deinem persönlichen Wortschatz und übe mit Abstandswiederholung.",
+      "back": "Zurück",
+      "backToTranslation": "Zurück zur Übersetzung",
+      "or": "oder"
+   },
    "login": {
       "welcome": "Willkommen bei LingoDeutsch",
       "subtitle": "Deine Reise zur Beherrschung der deutschen Sprache beginnt hier",

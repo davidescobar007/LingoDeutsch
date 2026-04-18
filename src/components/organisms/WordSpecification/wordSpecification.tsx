@@ -4,9 +4,9 @@ import { CheckCircle, WholeWord } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
+import { MoleculeAuthCTA } from '@/components/molecules'
 import { Ttranslation } from '@/modules/actions/types'
 import { useAuthState } from '@/providers/AuthProvider'
-import { openModal } from '@/utils'
 
 interface OrganismWordSpecificationProps {
    selectedWord: string
@@ -31,15 +31,20 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
    const _t = useTranslations()
    const { isAuthenticated } = useAuthState()
    const [isSaved, setIsSaved] = useState(false)
+   const [showAuthCTA, setShowAuthCTA] = useState(false)
 
    const handleSaveTranslation = () => {
       if (!isAuthenticated) {
-         openModal()
+         setShowAuthCTA(true)
          return
       }
       saveVocabulary(data)
       setIsSaved(true)
       setTimeout(() => setIsSaved(false), 2000) // Reset after 2 seconds
+   }
+
+   const handleBackFromAuth = () => {
+      setShowAuthCTA(false)
    }
 
    return (
@@ -59,6 +64,8 @@ export const OrganismWordSpecification: FunctionComponent<OrganismWordSpecificat
                         <div className="h-4 w-1/2 animate-pulse rounded-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200" />
                      </div>
                   </div>
+               ) : showAuthCTA ? (
+                  <MoleculeAuthCTA onBack={handleBackFromAuth} />
                ) : !data ? (
                   <div className="flex flex-col items-center space-y-4 py-8 text-center">
                      <div className="relative">

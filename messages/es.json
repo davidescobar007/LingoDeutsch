@@ -249,6 +249,13 @@
    "constants": {
       "needSignUp": "Necesitas iniciar sesión para usar esta característica."
    },
+   "authCta": {
+      "title": "Inicia sesión para guardar",
+      "description": "Guarda palabras en tu vocabulario personal y practica con repetición espaciada.",
+      "back": "Volver",
+      "backToTranslation": "Volver a la traducción",
+      "or": "o"
+   },
    "login": {
       "welcome": "Bienvenido a LingoDeutsch",
       "subtitle": "Tu camino para dominar el alemán comienza aquí",

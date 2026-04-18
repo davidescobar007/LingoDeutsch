@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 'use client'
 
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
+import React, { useEffect, useState } from 'react'
 import { BookOpen, ChevronRight } from 'lucide-react'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
@@ -10,8 +9,41 @@ import remarkGfm from 'remark-gfm'
 
 import { SpinLoader } from '@/components/atoms'
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
-import { MarkdownTable, MoleculeAlert, MoleculeChatBubble, MoleculeReveal } from '@/components/molecules'
+import {
+   MarkdownTable,
+   MoleculeAlert,
+   MoleculeChatBubble,
+   MoleculeReveal,
+   MoleculeTypewriterMarkdown
+} from '@/components/molecules'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
+
+const markdownComponents = {
+   'alert-error': (_props: { children?: React.ReactNode }) => (
+      <MoleculeAlert message={extractTextFromChildren(_props.children)} type="error" />
+   ),
+   'alert-info': (_props: { children?: React.ReactNode }) => (
+      <MoleculeAlert message={extractTextFromChildren(_props.children)} type="info" />
+   ),
+   'alert-success': (_props: { children?: React.ReactNode }) => (
+      <MoleculeAlert message={extractTextFromChildren(_props.children)} type="success" />
+   ),
+   'alert-warning': (_props: { children?: React.ReactNode }) => (
+      <MoleculeAlert message={extractTextFromChildren(_props.children)} type="warning" />
+   ),
+   'chat-bubble': (_props: { align?: string; avatar?: string; children?: React.ReactNode; name?: string }) => (
+      <MoleculeChatBubble
+         align={(_props.align as 'left' | 'right') || 'left'}
+         avatar={_props.avatar}
+         message={extractTextFromChildren(_props.children)}
+         name={_props.name || ''}
+      />
+   ),
+   reveal: (_props: { children?: React.ReactNode; title?: string }) => (
+      <MoleculeReveal title={_props.title || 'Ver más'}>{_props.children}</MoleculeReveal>
+   ),
+   table: (_props: { children?: React.ReactNode }) => <MarkdownTable>{_props.children}</MarkdownTable>
+} as any
 
 const extractTextFromChildren = (children: React.ReactNode): string => {
    if (typeof children === 'string') {
@@ -44,6 +76,11 @@ export const OrganismGrammarContent = ({
    userGrammarProgress
 }: OrganismGrammarContentProps) => {
    const isTopicCompleted = userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic)
+   const [isTypewriterComplete, setIsTypewriterComplete] = useState(false)
+
+   useEffect(() => {
+      setIsTypewriterComplete(false)
+   }, [selectedTopic])
 
    if (selectedTopic && isTopicLoading) {
       return (
@@ -83,49 +120,21 @@ export const OrganismGrammarContent = ({
          </header>
 
          <div className="markdown-content !min-w-full">
-            <ReactMarkdown
-               components={
-                  {
-                     'alert-error': (_props: { children?: React.ReactNode }) => (
-                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="error" />
-                     ),
-                     'alert-info': (_props: { children?: React.ReactNode }) => (
-                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="info" />
-                     ),
-                     'alert-success': (_props: { children?: React.ReactNode }) => (
-                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="success" />
-                     ),
-                     'alert-warning': (_props: { children?: React.ReactNode }) => (
-                        <MoleculeAlert message={extractTextFromChildren(_props.children)} type="warning" />
-                     ),
-                     'chat-bubble': (_props: {
-                        align?: string
-                        avatar?: string
-                        children?: React.ReactNode
-                        name?: string
-                     }) => (
-                        <MoleculeChatBubble
-                           align={(_props.align as 'left' | 'right') || 'left'}
-                           avatar={_props.avatar}
-                           message={extractTextFromChildren(_props.children)}
-                           name={_props.name || ''}
-                        />
-                     ),
-                     reveal: (_props: { children?: React.ReactNode; title?: string }) => (
-                        <MoleculeReveal title={_props.title || 'Ver más'}>{_props.children}</MoleculeReveal>
-                     ),
-                     table: (_props: { children?: React.ReactNode }) => (
-                        <MarkdownTable>{_props.children}</MarkdownTable>
-                     )
-                  } as any
-               }
+            <MoleculeTypewriterMarkdown
+               components={markdownComponents}
+               delay={200}
+               onComplete={() => setIsTypewriterComplete(true)}
                remarkPlugins={[remarkDirective, remarkDirectiveRehype, remarkGfm]}
             >
                {grammarTopicContent.content}
-            </ReactMarkdown>
+            </MoleculeTypewriterMarkdown>
          </div>
 
-         <footer className="border-base-300 mt-6 border-t pt-6">
+         <footer
+            className={`border-base-300 mt-6 border-t pt-6 transition-opacity duration-500 ${
+               isTypewriterComplete ? 'opacity-100' : 'opacity-0'
+            }`}
+         >
             <div className="flex flex-col gap-4">
                <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
                   <AtomButton href={`/app/quiz/${selectedTopic}?type=grammar`} type="link" variant="PRIMARY">
