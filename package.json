@@ -9,6 +9,7 @@
       "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx,.css",
       "prettier": "prettier --write .",
       "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx,.css",
+      "typecheck": "tsc --noEmit",
       "prepare": "husky install"
    },
    "dependencies": {
