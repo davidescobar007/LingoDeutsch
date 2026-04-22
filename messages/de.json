@@ -244,6 +244,11 @@
       "error": "Fehler beim Speichern, bitte versuche es erneut.",
       "shortNotFoundTranslation": "Keine Übersetzung."
    },
+   "notification": {
+      "success": "Erfolg",
+      "error": "Fehler",
+      "info": "Hinweis"
+   },
    "constants": {
       "needSignUp": "Du musst dich anmelden, um diese Funktion zu verwenden."
    },

@@ -41,10 +41,10 @@ export const useUpdateUser = () => {
    return useMutation({
       mutationFn: updateUSer,
       onError: (err) => {
-         sileo.info({ title: t(err.message as any) })
+         sileo.info({ title: t('notification.info'), description: t(err.message as any) })
       },
       onSuccess: () => {
-         sileo.success({ title: t('translation.saved') })
+         sileo.success({ title: t('notification.success'), description: t('profile.success') })
       }
    })
 }

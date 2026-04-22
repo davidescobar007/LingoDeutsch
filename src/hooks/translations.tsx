@@ -39,10 +39,10 @@ export const useSaveVocabulary = () => {
             err.message === 'translation.alreadySaved' || err.message === 'translation.error'
                ? t(err.message as any)
                : t('translation.error')
-         sileo.error({ title: errorMessage })
+         sileo.error({ title: t('notification.error'), description: errorMessage })
       },
       onSuccess: () => {
-         sileo.success({ title: t('translation.saved') })
+         sileo.success({ title: t('notification.success'), description: t('translation.saved') })
       }
    })
 }

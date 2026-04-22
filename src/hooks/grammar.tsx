@@ -48,7 +48,7 @@ export const useSaveGrammarProgress = () => {
          saveGrammarUserProgress(user, grammar_id, score),
       onSuccess: (_, userGrammarInfo) => {
          if (userGrammarInfo.score >= 60) {
-            sileo.success({ title: '¡Lección guardada con éxito!' })
+            sileo.success({ title: 'Lección completada', description: '¡Lección guardada con éxito!' })
          }
 
          queryClient.invalidateQueries({
@@ -59,7 +59,7 @@ export const useSaveGrammarProgress = () => {
          })
       },
       onError: () => {
-         sileo.error({ title: 'Error al guardar la lección' })
+         sileo.error({ title: 'Error', description: 'Error al guardar la lección' })
       }
    })
 }

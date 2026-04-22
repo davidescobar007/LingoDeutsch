@@ -246,6 +246,11 @@
       "error": "Error al guardar, intenta nuevamente.",
       "shortNotFoundTranslation": "Sin traducción."
    },
+   "notification": {
+      "success": "Éxito",
+      "error": "Error",
+      "info": "Información"
+   },
    "constants": {
       "needSignUp": "Necesitas iniciar sesión para usar esta característica."
    },
