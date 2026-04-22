@@ -67,6 +67,7 @@ export const TemplateArticleReader = ({
          {(isMobile || isTablet) && (
             <MoleculeDrawerTranslation
                isAuthenticated={isAuthenticated}
+               isLoading={isFetching}
                isOpen={isDrawerOpen}
                onOpenChange={setIsDrawerOpen}
                onSaveVocabulary={onSaveVocabulary}

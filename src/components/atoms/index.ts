@@ -13,7 +13,8 @@ export {
    PracticeLoader,
    ProfileLoader,
    QuizzLoader,
-   SpinLoader
+   SpinLoader,
+   TranslationDrawerLoader
 } from './loader/loader'
 export { AtomMiniProgressBar } from './miniProgressBar/miniProgressBar'
 export { AtomText } from './paragraph/paragraph'

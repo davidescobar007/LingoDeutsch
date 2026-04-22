@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { BookmarkPlus } from 'lucide-react'
 import { Drawer } from 'vaul'
 
-import { AtomBadge, AtomButton, AtomText } from '@/components/atoms'
+import { AtomBadge, AtomButton, AtomText, TranslationDrawerLoader } from '@/components/atoms'
 import { MoleculeAuthCTA } from '@/components/molecules'
 import { Ttranslation } from '@/modules/actions/types'
 
@@ -13,6 +13,7 @@ type MoleculeDrawerTranslationProps = {
    onSaveVocabulary?: (_data: Ttranslation) => void
    translationData?: Ttranslation
    isAuthenticated?: boolean
+   isLoading?: boolean
 }
 
 const emptyFunction = () => {}
@@ -22,13 +23,10 @@ export const MoleculeDrawerTranslation = ({
    onOpenChange = emptyFunction,
    onSaveVocabulary = emptyFunction,
    translationData = undefined,
-   isAuthenticated = false
+   isAuthenticated = false,
+   isLoading = false
 }: MoleculeDrawerTranslationProps) => {
    const [showAuthCTA, setShowAuthCTA] = useState(false)
-
-   if (!translationData) {
-      return null
-   }
 
    const handleSaveClick = () => {
       if (!isAuthenticated) {
@@ -59,6 +57,8 @@ export const MoleculeDrawerTranslation = ({
                   <div className="mx-auto max-w-md">
                      {showAuthCTA ? (
                         <MoleculeAuthCTA compact onBack={handleBackFromAuth} />
+                     ) : isLoading || !translationData ? (
+                        <TranslationDrawerLoader />
                      ) : (
                         <div className="flex flex-wrap justify-start text-start">
                            <div className="flex w-full justify-between">

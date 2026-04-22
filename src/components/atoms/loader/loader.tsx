@@ -123,6 +123,21 @@ export const ProfileLoader = (): React.JSX.Element => {
    )
 }
 
+export const TranslationDrawerLoader = (): React.JSX.Element => {
+   return (
+      <div className="flex flex-col gap-3">
+         <div className="flex w-full justify-between">
+            <div className="skeleton h-6 w-1/2" />
+            <div className="skeleton h-6 w-16" />
+         </div>
+         <div className="skeleton h-4 w-3/4" />
+         <div className="skeleton mt-2 h-5 w-20" />
+         <div className="skeleton h-4 w-full" />
+         <div className="skeleton mt-2 h-10 w-full" />
+      </div>
+   )
+}
+
 export const SpinLoader = ({
    color = undefined,
    size = 'lg',
