@@ -41,9 +41,9 @@ export const EmblaCarousel: React.FC<PropType> = ({ options = undefined, childre
                {scrollSnaps.map((_, index) => (
                   <DotButton key={index} onClick={() => onDotButtonClick(index)}>
                      {index === selectedIndex ? (
-                        <Icon fill="#805AF2" icon="circle" iconSize="medium" />
+                        <Icon fill="#4B5563" icon="circle" iconSize="small" />
                      ) : (
-                        <Icon icon="circle" iconSize="medium" />
+                        <Icon fill="#D1D5DB" icon="circle" iconSize="small" />
                      )}
                   </DotButton>
                ))}

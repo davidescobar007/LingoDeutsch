@@ -12,6 +12,8 @@ import {
    Check,
    CheckCircle,
    ChevronDown,
+   ChevronLeft,
+   ChevronRight,
    Circle,
    CircleChevronLeft,
    CircleChevronRight,
@@ -68,6 +70,8 @@ type IconType = {
       | 'brain-cog'
       | 'clipboard-check'
       | 'flame'
+      | 'chevron-left'
+      | 'chevron-right'
       | 'circle-chevron-left'
       | 'circle-chevron-right'
       | 'circle'
@@ -157,6 +161,8 @@ export const Icon: FunctionComponent<IconType> = ({
       'brain-cog': <BrainCog className={combinedClassName} fill={fill} size={size} />,
       'clipboard-check': <ClipboardCheck className={combinedClassName} fill={fill} size={size} />,
       flame: <Flame className={combinedClassName} fill={fill} size={size} />,
+      'chevron-left': <ChevronLeft className={combinedClassName} fill={fill} size={size} />,
+      'chevron-right': <ChevronRight className={combinedClassName} fill={fill} size={size} />,
       'circle-chevron-left': <CircleChevronLeft className={combinedClassName} fill={fill} size={size} />,
       'circle-chevron-right': <CircleChevronRight className={combinedClassName} fill={fill} size={size} />,
       circle: <Circle className={combinedClassName} fill={fill} size={size} />,

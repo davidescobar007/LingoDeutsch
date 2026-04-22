@@ -1,5 +1,5 @@
 const STATS_DATA = [
-   { icon: '👥', label: 'Estudiantes', value: '10,000+' },
+   { icon: '👥', label: 'Estudiantes', value: '500' },
    { icon: '🎯', label: 'Tasa de éxito', value: '97%' },
    { icon: '📝', label: 'Palabras', value: '3,000+' },
    { icon: '📚', label: 'Artículos', value: '60+' }
@@ -11,7 +11,7 @@ export const OrganismStatsSection = () => {
          <div className="card-3d overflow-hidden rounded-3xl border border-gray-100 bg-gradient-to-br from-purple-50 to-white p-12 transition-all hover:shadow-2xl">
             <div className="mb-8">
                <h3 className="mb-2 text-3xl font-black text-gray-900">Resultados Comprobados</h3>
-               <p className="text-base text-gray-600">Miles de estudiantes ya confiaron en nosotros</p>
+               <p className="text-base text-gray-600">Cientos de estudiantes ya confiaron en nosotros</p>
             </div>
             <div className="grid grid-cols-2 gap-6">
                {STATS_DATA.map((stat, index) => (

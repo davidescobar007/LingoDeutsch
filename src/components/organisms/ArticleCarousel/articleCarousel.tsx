@@ -24,7 +24,7 @@ export const OrganismArticleCarousel = ({ articles, extraClassName = '' }: Organ
    return (
       <div className={extraClassName}>
          <MoleculeSectionHeader linkHref="article" linkText="Ver todos" title="📖 Artículos Recomendados" />
-         <MoleculeCarousel options={{ containScroll: false, loop: false, align: 'start' }}>
+         <MoleculeCarousel options={{ containScroll: false, loop: true, align: 'start' }}>
             {displayArticles.map(({ id, title, imageFile, created, estimated_read_time, level }) => (
                <MoleculeCard
                   _date={created ? new Date(created) : undefined}
