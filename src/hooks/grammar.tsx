@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
 import { sileo } from 'sileo'
 
 import {
@@ -43,12 +44,13 @@ export const useSavedGrammarTopicByUser = (user: TUser | null | undefined) => {
 
 export const useSaveGrammarProgress = () => {
    const queryClient = useQueryClient()
+   const t = useTranslations()
    return useMutation({
       mutationFn: ({ user, grammar_id, score }: { user: TUser; grammar_id: string; score: number }) =>
          saveGrammarUserProgress(user, grammar_id, score),
       onSuccess: (_, userGrammarInfo) => {
          if (userGrammarInfo.score >= 60) {
-            sileo.success({ title: 'Lección completada', description: '¡Lección guardada con éxito!' })
+            sileo.success({ title: t('notification.success'), description: t('toast.grammarSuccess') })
          }
 
          queryClient.invalidateQueries({
@@ -59,7 +61,7 @@ export const useSaveGrammarProgress = () => {
          })
       },
       onError: () => {
-         sileo.error({ title: 'Error', description: 'Error al guardar la lección' })
+         sileo.error({ title: t('notification.error'), description: t('toast.grammarError') })
       }
    })
 }

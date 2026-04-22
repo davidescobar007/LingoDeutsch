@@ -251,6 +251,14 @@
       "error": "Error",
       "info": "Información"
    },
+   "toast": {
+      "profileUpdated": "¡Perfil actualizado! Ahora eres oficialmente un 10/10 🎯",
+      "vocabularySaved": "¡Palabra capturada! Tu cerebro la agradecerá mañana 🧠",
+      "vocabularyAlreadySaved": "¡Esta palabra ya vive en tu vocabulario! No seas codicioso 😄",
+      "vocabularyError": "Algo salió mal... pero no te rindas, ¡inténtalo de nuevo! 💪",
+      "grammarSuccess": "¡Otra lección domada! Goethe estaría orgulloso 📚",
+      "grammarError": "Ups... la lección se escapó. ¡Inténtalo de nuevo! 🏃‍♂️"
+   },
    "constants": {
       "needSignUp": "Necesitas iniciar sesión para usar esta característica."
    },

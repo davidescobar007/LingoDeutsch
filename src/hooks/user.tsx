@@ -44,7 +44,7 @@ export const useUpdateUser = () => {
          sileo.info({ title: t('notification.info'), description: t(err.message as any) })
       },
       onSuccess: () => {
-         sileo.success({ title: t('notification.success'), description: t('profile.success') })
+         sileo.success({ title: t('notification.success'), description: t('toast.profileUpdated') })
       }
    })
 }

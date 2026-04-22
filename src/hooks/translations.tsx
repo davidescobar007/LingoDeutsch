@@ -35,14 +35,14 @@ export const useSaveVocabulary = () => {
    return useMutation({
       mutationFn: saveVocabularyToStudy,
       onError: (err) => {
-         const errorMessage =
-            err.message === 'translation.alreadySaved' || err.message === 'translation.error'
-               ? t(err.message as any)
-               : t('translation.error')
-         sileo.error({ title: t('notification.error'), description: errorMessage })
+         if (err.message === 'translation.alreadySaved') {
+            sileo.error({ title: t('notification.error'), description: t('toast.vocabularyAlreadySaved') })
+         } else {
+            sileo.error({ title: t('notification.error'), description: t('toast.vocabularyError') })
+         }
       },
       onSuccess: () => {
-         sileo.success({ title: t('notification.success'), description: t('translation.saved') })
+         sileo.success({ title: t('notification.success'), description: t('toast.vocabularySaved') })
       }
    })
 }
