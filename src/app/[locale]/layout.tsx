@@ -24,7 +24,6 @@ export const metadata: Metadata = {
       icon: '/images/icon.png',
       apple: '/images/apple-icon.png'
    },
-   manifest: '/manifest.json',
    metadataBase: new URL(BASE_URL),
    openGraph: {
       type: 'website',
@@ -50,7 +49,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
    style: 'normal'
 })
 
-const RootLayout = async ({ children, params }: { readonly children: ReactNode; params: Promise }) => {
+const RootLayout = async ({
+   children,
+   params
+}: {
+   readonly children: ReactNode
+   params: Promise<{ locale: string }>
+}) => {
    const { locale } = await params
    const messages = await getMessages()
    return (

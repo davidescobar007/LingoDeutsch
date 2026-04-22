@@ -24,7 +24,7 @@ export const getWordsTranslationFromDB = async (params: any) => {
    }
 }
 
-export const searchTranslationFromSources = async (wordToTranslate: string): Promise => {
+export const searchTranslationFromSources = async (wordToTranslate: string): Promise<Ttranslation> => {
    try {
       await delay()
       const exactTranslationFromDB = await getWordsTranslationFromDB({

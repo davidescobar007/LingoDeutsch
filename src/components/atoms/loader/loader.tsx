@@ -4,6 +4,7 @@
 import React from 'react'
 
 export type SpinLoaderProps = {
+   centered?: boolean
    color?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error'
    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
    variant?: 'spinner' | 'dots' | 'ring' | 'bars' | 'ball' | 'infinity'
@@ -139,6 +140,7 @@ export const TranslationDrawerLoader = (): React.JSX.Element => {
 }
 
 export const SpinLoader = ({
+   centered = true,
    color = undefined,
    size = 'lg',
    variant = 'spinner'
@@ -148,7 +150,7 @@ export const SpinLoader = ({
    const colorClass = color ? `text-${color}` : ''
 
    return (
-      <div className="flex w-full items-center justify-center">
+      <div className={`flex w-full items-center justify-center ${centered ? '' : ''}`}>
          <span className={`loading ${variantClass} ${sizeClass} ${colorClass}`} />
       </div>
    )

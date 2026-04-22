@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 
-import { TUser } from '@/modules/actions/types'
+import { TArticle, TUser, TUserGrammarProgress } from '@/modules/actions/types'
 
 import { useGetArticlesListByUserAndState } from './articles'
 import { useGetVocabularyStats } from './cards'
@@ -43,7 +43,7 @@ export const useUserStreak = (user: TUser | null | undefined): UserStreakMetrics
       const dates: Date[] = []
 
       // Grammar activities
-      grammarProgress?.forEach((p) => {
+      grammarProgress?.forEach((p: TUserGrammarProgress) => {
          if (p.dateCompleted && p.isCompleted) {
             dates.push(new Date(p.dateCompleted))
          }
@@ -121,7 +121,7 @@ export const useUserStreak = (user: TUser | null | undefined): UserStreakMetrics
       if (isGuest) return { grammar: 0, articles: 0, vocabulary: 0 }
 
       const grammarCount = grammarProgress?.filter((p) => p.isCompleted).length || 0
-      const articleCount = articleProgress?.filter((p) => p.is_completed).length || 0
+      const articleCount = articleProgress?.filter((p: TArticle) => p.is_completed).length || 0
       const vocabularyCount = vocabularyStats?.last7DayStreak?.filter((d) => d.completed).length || 0
 
       return {

@@ -13,7 +13,13 @@ import { constants } from '../global.types'
 import { delay } from './actions.utils'
 import { TArticle, TArticleUser, TQuizQuestion } from './types'
 
-const getArticlesList = async ({ level, sortCriteria }: { level?: string; sortCriteria?: string }): Promise => {
+const getArticlesList = async ({
+   level,
+   sortCriteria
+}: {
+   level?: string
+   sortCriteria?: string
+}): Promise<TArticle[]> => {
    try {
       const options: any = {
          fields: 'id,title,level,created,updated,imageFile,estimated_read_time',
@@ -29,7 +35,7 @@ const getArticlesList = async ({ level, sortCriteria }: { level?: string; sortCr
    }
 }
 
-const getSingleArticle = async ({ articleId }: { articleId: string }): Promise => {
+const getSingleArticle = async ({ articleId }: { articleId: string }): Promise<TArticle> => {
    const article = await pbGetSingleRecord({
       collection: constants.ARTICLES,
       recordId: articleId
@@ -38,7 +44,7 @@ const getSingleArticle = async ({ articleId }: { articleId: string }): Promise =
    return article as unknown as TArticle
 }
 
-const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise => {
+const getArticleQuiz = async ({ articleId }: { articleId: string }): Promise<TQuizQuestion> => {
    const article = await pbGetSingleRecord({
       collection: constants.ARTICLES,
       recordId: articleId,
@@ -68,7 +74,13 @@ const saveArticleUser = async ({ userArticle, score }: { userArticle: TArticleUs
    }
 }
 
-const getArticleByUser = async ({ userId, articleId }: { userId: string; articleId: string }): Promise => {
+const getArticleByUser = async ({
+   userId,
+   articleId
+}: {
+   userId: string
+   articleId: string
+}): Promise<TArticleUser> => {
    try {
       const data = await pbGetSingleRecordWithComplexfilter({
          collection: constants.USER_ARTICLE_PROGRESS,
@@ -99,7 +111,7 @@ const getArticlesListByUser = async ({
    isCompleted?: boolean
    sortCriteria?: string
    level?: string
-}): Promise => {
+}): Promise<TArticle[]> => {
    try {
       const isCompletedFilter = isCompleted ? ` && is_completed=${isCompleted}` : ''
       const levelFilter = level ? ` && article_id.level~"${level}"` : ''

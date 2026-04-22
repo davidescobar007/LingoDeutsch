@@ -8,7 +8,7 @@ import { AtomText } from '@/components/atoms'
 
 type TMoleculeTypewriterMarkdown = {
    children: string
-   components?: React.ComponentProps['components']
+   components?: React.ComponentProps<typeof ReactMarkdown>['components']
    delay?: number
    remarkPlugins?: PluggableList
    onComplete?: () => void

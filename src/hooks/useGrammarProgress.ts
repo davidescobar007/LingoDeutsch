@@ -68,7 +68,7 @@ export const useGrammarProgress = (
       }, undefined)
 
       const nextTopic = lastCompletedTopic
-         ? getNextTopicInUnit(grammarList, lastCompletedTopic.id)
+         ? getNextTopicInUnit(grammarList ?? [], lastCompletedTopic.id)
          : grammarList?.[0]
 
       return {

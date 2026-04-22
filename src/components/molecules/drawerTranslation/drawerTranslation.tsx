@@ -33,7 +33,7 @@ export const MoleculeDrawerTranslation = ({
          setShowAuthCTA(true)
          return
       }
-      if (onSaveVocabulary) {
+      if (onSaveVocabulary && translationData) {
          onSaveVocabulary(translationData)
       }
    }

@@ -8,7 +8,7 @@ import {
    getSingleArticle,
    saveArticleUser
 } from '@/modules/actions/articles.actions'
-import { TArticleUser } from '@/modules/actions/types'
+import { TArticle, TArticleUser } from '@/modules/actions/types'
 
 export const useArticleList = ({ level, sortCriteria }: { level?: string; sortCriteria?: string } = {}) => {
    return useQuery({
@@ -68,13 +68,15 @@ export const useGetArticlesListByUserAndState = ({
          if (!userId) return getArticlesList({ level, sortCriteria })
 
          return getArticlesListByUser({ userId, sortCriteria, level, isCompleted: state === 'learned' }).then(
-            (articlesListByUser) => {
+            (articlesListByUser: TArticle[]) => {
                if (state === 'learned') {
                   return articlesListByUser
                }
-               return getArticlesList({ level }).then((articlesList) =>
-                  articlesList.map((article) => {
-                     const userArticle = articlesListByUser.find((userArticle) => userArticle.id === article.id)
+               return getArticlesList({ level }).then((articlesList: TArticle[]) =>
+                  articlesList.map((article: TArticle) => {
+                     const userArticle = articlesListByUser.find(
+                        (userArticle: TArticle) => userArticle.id === article.id
+                     )
 
                      return {
                         ...article,

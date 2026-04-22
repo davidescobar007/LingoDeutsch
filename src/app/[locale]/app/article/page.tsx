@@ -8,9 +8,9 @@ import { useAuthState } from '@/providers/AuthProvider'
 const Article = () => {
    const { user } = useAuthState()
 
-   const [level, setLevel] = useState(undefined)
-   const [sortCriteria, setSortCriteria] = useState(undefined)
-   const [state, setState] = useState(undefined)
+   const [level, setLevel] = useState<string | undefined>(undefined)
+   const [sortCriteria, setSortCriteria] = useState<string | undefined>(undefined)
+   const [state, setState] = useState<string | undefined>(undefined)
 
    const {
       data: articlesList,

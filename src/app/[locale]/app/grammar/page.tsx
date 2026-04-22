@@ -20,25 +20,23 @@ const Grammar = () => {
    const searchParams = useSearchParams()
    const { user } = useAuthState()
 
-   const [selectedLevel, setSelectedLevel] = useState('A1.1')
-   const [selectedTopic, setSelectedTopic] = useState(null)
+   const [selectedLevel, setSelectedLevel] = useState<GrammarLevel>('A1.1')
+   const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
    const [isInitialized, setIsInitialized] = useState(false)
 
    const { data: grammarList = [] } = useGetGrammarByLevel(selectedLevel)
-   const { data: grammarTopicContent, isLoading: isTopicLoading } = useGetSingleGrammarTopic(
-      selectedTopic as string
-   )
+   const { data: grammarTopicContent, isLoading: isTopicLoading } = useGetSingleGrammarTopic(selectedTopic ?? '')
    const { data: userGrammarProgress = [] } = useSavedGrammarTopicByUser(user)
    const { mutate: saveGrammarProgress } = useSaveGrammarProgress()
 
    // Initialize state from URL parameters on mount
    useEffect(() => {
       const topicParam = searchParams.get('topic')
-      const levelParam = searchParams.get('level') as GrammarLevel
+      const levelParam = searchParams.get('level')
 
       // Validate level parameter
-      if (levelParam && GRAMMAR_LEVELS.includes(levelParam)) {
-         setSelectedLevel(levelParam)
+      if (levelParam && GRAMMAR_LEVELS.includes(levelParam as GrammarLevel)) {
+         setSelectedLevel(levelParam as GrammarLevel)
       }
 
       // Set topic if parameter exists (validation happens when grammarList loads)
@@ -68,11 +66,11 @@ const Grammar = () => {
    useEffect(() => {
       const handlePopState = () => {
          const topicParam = searchParams.get('topic')
-         const levelParam = searchParams.get('level') as GrammarLevel
+         const levelParam = searchParams.get('level')
 
          // Validate level
-         if (levelParam && GRAMMAR_LEVELS.includes(levelParam)) {
-            setSelectedLevel(levelParam)
+         if (levelParam && GRAMMAR_LEVELS.includes(levelParam as GrammarLevel)) {
+            setSelectedLevel(levelParam as GrammarLevel)
          }
 
          // Validate topic
