@@ -1,4 +1,5 @@
-import { FunctionComponent, ReactNode } from 'react'
+'use client'
+import { FunctionComponent, ReactNode, useEffect, useRef } from 'react'
 
 import { AtomMiniProgressBar, AtomText, AtomTitle } from '@/components/atoms'
 
@@ -23,6 +24,7 @@ export const MoleculeLearningUnitCard: FunctionComponent<TMoleculeLearningUnitCa
    children,
    className = ''
 }) => {
+   const inputRef = useRef<HTMLInputElement>(null)
    const isCompleted = completedCount === totalCount && totalCount > 0
    const progressPercentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
 
@@ -31,11 +33,17 @@ export const MoleculeLearningUnitCard: FunctionComponent<TMoleculeLearningUnitCa
       return 'primary'
    }
 
+   useEffect(() => {
+      if (inputRef.current) {
+         inputRef.current.checked = isOpen
+      }
+   }, [isOpen])
+
    return (
       <div
          className={`collapse-arrow join-item border-base-300 bg-base-100 collapse border shadow-sm transition-all duration-300 hover:shadow-md ${className}`}
       >
-         <input defaultChecked={isOpen} name={accordionName} type="radio" />
+         <input defaultChecked={isOpen} name={accordionName} ref={inputRef} type="radio" />
          <div className="collapse-title w-full min-w-0">
             <div className="flex w-full min-w-0 items-start justify-between gap-3 pr-8">
                <div className="flex min-w-0 flex-1 flex-col space-y-2">

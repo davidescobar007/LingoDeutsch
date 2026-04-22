@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 
-import { TUser } from '@/modules/actions/types'
+import { TGrammar, TUser } from '@/modules/actions/types'
 import { GrammarLevel } from '@/modules/global.types'
+import { getNextTopicInUnit } from '@/utils/grammar.utils'
 
 import { useGetGrammarByLevel, useSavedGrammarTopicByUser } from './grammar'
 
@@ -54,10 +55,21 @@ export const useGrammarProgress = (
       const percentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0
       const isComplete = completedTopics === totalTopics && totalTopics > 0
 
-      // Encontrar siguiente tema incompleto
-      const nextTopic = grammarList?.find(
-         (grammar) => !userGrammarProgress?.some((p) => p.grammar_id === grammar.id && p.isCompleted)
+      // Encontrar siguiente tema basado en el último completado
+      const completedIds = new Set(
+         userGrammarProgress?.filter((p) => p.isCompleted).map((p) => p.grammar_id) || []
       )
+      const lastCompletedTopic = grammarList?.reduce<TGrammar | undefined>((latest, topic) => {
+         if (!completedIds.has(topic.id)) return latest
+         if (!latest) return topic
+         const latestIdx = grammarList.findIndex((g) => g.id === latest.id)
+         const topicIdx = grammarList.findIndex((g) => g.id === topic.id)
+         return topicIdx > latestIdx ? topic : latest
+      }, undefined)
+
+      const nextTopic = lastCompletedTopic
+         ? getNextTopicInUnit(grammarList, lastCompletedTopic.id)
+         : grammarList?.[0]
 
       return {
          completedTopics,

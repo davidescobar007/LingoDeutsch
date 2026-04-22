@@ -8,6 +8,7 @@ import {
 } from '@/components/organisms'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 import { GRAMMAR_LEVEL_INFO, GRAMMAR_LEVELS, GrammarLevel } from '@/modules/global.types'
+import { getNextTopicInUnit } from '@/utils/grammar.utils'
 
 type LevelProgress = {
    completed: number
@@ -70,10 +71,9 @@ export const TemplateGrammar = ({
    }
 
    const handleNextTopic = () => {
-      const currentIndex = grammarList?.findIndex((topic) => topic.id === selectedTopic)
-      if (currentIndex !== undefined && currentIndex >= 0 && currentIndex < (grammarList?.length || 0) - 1) {
-         onSelectTopic(grammarList?.[currentIndex + 1]?.id || null)
-      }
+      if (!selectedTopic || !grammarList?.length) return
+      const nextTopic = getNextTopicInUnit(grammarList, selectedTopic)
+      if (nextTopic) onSelectTopic(nextTopic.id)
    }
 
    const handleMarkAsLearned = () => {

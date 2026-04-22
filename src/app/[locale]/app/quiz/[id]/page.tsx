@@ -10,6 +10,7 @@ import { useGetGrammarByLevel, useGetSingleGrammarTopicByUser, useSaveGrammarPro
 import { useGetQuiz } from '@/hooks/quiz'
 import { useUpdateUserscore } from '@/hooks/user'
 import { useAuthState } from '@/providers/AuthProvider'
+import { getNextTopicInUnit } from '@/utils/grammar.utils'
 import { calculateScore, shouldShowWaitingRoom } from '@/utils/quiz.utils'
 
 import WaitingRoom from './watingRoom'
@@ -58,9 +59,8 @@ const QuizPage = ({ params, searchParams }: QuizPageProps) => {
 
    const getNextTopicId = (): string | undefined => {
       if (quizType !== 'grammar' || !grammarTopics?.length) return undefined
-      const currentIndex = grammarTopics.findIndex((topic) => topic.id === id)
-      const hasNextTopic = currentIndex !== -1 && currentIndex < grammarTopics.length - 1
-      return hasNextTopic ? grammarTopics[currentIndex + 1]?.id : undefined
+      const nextTopic = getNextTopicInUnit(grammarTopics, id)
+      return nextTopic?.id
    }
 
    const nextTopicId = getNextTopicId()
