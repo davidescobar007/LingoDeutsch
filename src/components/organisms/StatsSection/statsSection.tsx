@@ -1,6 +1,6 @@
 const STATS_DATA = [
    { icon: '👥', label: 'Estudiantes', value: '500' },
-   { icon: '🎯', label: 'Tasa de éxito', value: '97%' },
+   { icon: '🎯', label: 'Tasa de éxito', value: '85%' },
    { icon: '📝', label: 'Palabras', value: '3,000+' },
    { icon: '📚', label: 'Artículos', value: '60+' }
 ]
