@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { sileo } from 'sileo'
 
 import { getScoreList } from '@/modules/actions/global.actions'
 import { getLoginMethods, googleLogin, updateUSer, updateUserScore } from '@/modules/actions/users.actions'
@@ -41,10 +41,10 @@ export const useUpdateUser = () => {
    return useMutation({
       mutationFn: updateUSer,
       onError: (err) => {
-         toast.info(t(err.message as any))
+         sileo.info({ title: t(err.message as any) })
       },
       onSuccess: () => {
-         toast.success(t('translation.saved'))
+         sileo.success({ title: t('translation.saved') })
       }
    })
 }

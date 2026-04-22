@@ -1,15 +1,14 @@
 import { ReactNode } from 'react'
-import { Slide, ToastContainer } from 'react-toastify'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { Toaster } from 'sileo'
 
 import QueryProvider from '@/hooks/queryProvider'
 import { AuthProvider } from '@/providers/AuthProvider'
 
-import 'react-toastify/dist/ReactToastify.css'
 import './globals.scss'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
@@ -61,14 +60,11 @@ const RootLayout = async ({ children, params }: { readonly children: ReactNode; 
                <html data-theme="mytheme" lang={locale}>
                   <body className={`${plusJakartaSans.className} text-neutral bg-base-200`}>
                      {children}
-                     <ToastContainer
-                        autoClose={5000}
-                        closeOnClick
-                        hideProgressBar={false}
-                        newestOnTop={false}
+                     <Toaster
+                        options={{
+                           duration: 5000
+                        }}
                         position="bottom-right"
-                        rtl={false}
-                        transition={Slide}
                      />
                      <ReactQueryDevtools buttonPosition="relative" initialIsOpen={false} />
                   </body>

@@ -1,5 +1,5 @@
-import { toast } from 'react-toastify'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { sileo } from 'sileo'
 
 import {
    getGrammarByLevel,
@@ -48,7 +48,7 @@ export const useSaveGrammarProgress = () => {
          saveGrammarUserProgress(user, grammar_id, score),
       onSuccess: (_, userGrammarInfo) => {
          if (userGrammarInfo.score >= 60) {
-            toast.success('¡Lección guardada con éxito!')
+            sileo.success({ title: '¡Lección guardada con éxito!' })
          }
 
          queryClient.invalidateQueries({
@@ -59,7 +59,7 @@ export const useSaveGrammarProgress = () => {
          })
       },
       onError: () => {
-         toast.error('Error al guardar la lección')
+         sileo.error({ title: 'Error al guardar la lección' })
       }
    })
 }

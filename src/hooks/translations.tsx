@@ -1,7 +1,7 @@
 'use client'
-import { toast } from 'react-toastify'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
+import { sileo } from 'sileo'
 
 import { getSingleArticle } from '@/modules/actions/articles.actions'
 import { getVocabularyStats } from '@/modules/actions/cards.actions'
@@ -39,10 +39,10 @@ export const useSaveVocabulary = () => {
             err.message === 'translation.alreadySaved' || err.message === 'translation.error'
                ? t(err.message as any)
                : t('translation.error')
-         toast.error(errorMessage)
+         sileo.error({ title: errorMessage })
       },
       onSuccess: () => {
-         toast.success(t('translation.saved'))
+         sileo.success({ title: t('translation.saved') })
       }
    })
 }
