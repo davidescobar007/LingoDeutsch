@@ -5,6 +5,21 @@
       "context7": {
          "type": "remote",
          "url": "https://mcp.context7.com/mcp"
+      },
+      "elevenlabs": {
+         "type": "local",
+         "command": ["/home/david/.local/bin/uvx", "elevenlabs-mcp"],
+         "environment": {
+            "ELEVENLABS_API_KEY": "{env:ELEVENLABS_API_KEY}"
+         },
+         "timeout": 30000
+      },
+      "memory": {
+         "type": "local",
+         "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+         "environment": {
+            "MEMORY_FILE_PATH": "/home/david/Desktop/LingoDeutsch/.memory.jsonl"
+         }
       }
    }
 }
