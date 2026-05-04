@@ -223,6 +223,8 @@ export type TLearningUnit = {
 export type TGrammar = {
    content: string
    difficulty: number
+   podcast_audio?: string
+   podcast_content?: string
    grammar_core?: string
    vocabulary_core?: string
    context_core?: string

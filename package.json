@@ -42,7 +42,8 @@
       "remark-directive-rehype": "^1.0.0",
       "remark-gfm": "^4.0.1",
       "sileo": "^0.1.5",
-      "vaul": "^1.1.2"
+      "vaul": "^1.1.2",
+      "wavesurfer.js": "^7.12.6"
    },
    "devDependencies": {
       "@commitlint/cli": "^19.5.0",

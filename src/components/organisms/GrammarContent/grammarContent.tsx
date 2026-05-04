@@ -13,9 +13,11 @@ import {
    MarkdownTable,
    MoleculeAlert,
    MoleculeChatBubble,
+   MoleculePodcastPlayer,
    MoleculeReveal,
    MoleculeTypewriterMarkdown
 } from '@/components/molecules'
+import { useGeneratePodcastAudio } from '@/hooks/grammar'
 import { TGrammar, TUserGrammarProgress } from '@/modules/actions/types'
 
 const markdownComponents = {
@@ -78,6 +80,8 @@ export const OrganismGrammarContent = ({
    const isTopicCompleted = userGrammarProgress?.some((topic) => topic.grammar_id === selectedTopic)
    const [isTypewriterComplete, setIsTypewriterComplete] = useState(false)
 
+   const generatePodcast = useGeneratePodcastAudio(grammarTopicContent?.id ?? '')
+
    useEffect(() => {
       setIsTypewriterComplete(false)
    }, [selectedTopic])
@@ -118,6 +122,16 @@ export const OrganismGrammarContent = ({
             </AtomTitle>
             <AtomBadge color="primary">{grammarTopicContent?.level}</AtomBadge>
          </header>
+
+         {grammarTopicContent?.podcast_content && (
+            <MoleculePodcastPlayer
+               grammarId={grammarTopicContent.id}
+               handleGeneratePodcast={generatePodcast.mutateAsync}
+               isGenerating={generatePodcast.isPending}
+               podcastAudio={grammarTopicContent.podcast_audio}
+               podcastContent={grammarTopicContent.podcast_content}
+            />
+         )}
 
          <div className="markdown-content !min-w-full">
             <MoleculeTypewriterMarkdown

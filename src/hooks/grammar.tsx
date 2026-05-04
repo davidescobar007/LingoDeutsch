@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { sileo } from 'sileo'
 
 import {
+   fetchGrammarPodcast,
    getGrammarByLevel,
    getSavedGrammarTopicByUser,
    getSingleGrammarById,
@@ -62,6 +63,16 @@ export const useSaveGrammarProgress = () => {
       },
       onError: () => {
          sileo.error({ title: t('notification.error'), description: t('toast.grammarError') })
+      }
+   })
+}
+
+export const useGeneratePodcastAudio = (grammarId: string) => {
+   const queryClient = useQueryClient()
+   return useMutation({
+      mutationFn: ({ text }: { text: string }) => fetchGrammarPodcast(grammarId, text),
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ['grammarById', grammarId] })
       }
    })
 }

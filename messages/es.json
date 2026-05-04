@@ -187,7 +187,10 @@
       "pastTense": "Pasado",
       "pastTenseDescription": "El pasado en alemán incluye el Präteritum (simple) y el Perfekt (compuesto con auxiliar y participio).",
       "modalVerbs": "Verbos modales",
-      "modalVerbsDescription": "Los verbos modales (können, müssen, dürfen) expresan capacidad, obligación o permiso y alteran la posición del verbo principal."
+      "modalVerbsDescription": "Los verbos modales (können, müssen, dürfen) expresan capacidad, obligación o permiso y alteran la posición del verbo principal.",
+      "listenPodcast": "Escuchar podcast",
+      "podcastLoading": "Generando audio...",
+      "podcastError": "Error al generar el audio"
    },
    "practice": {
       "cardStat": {

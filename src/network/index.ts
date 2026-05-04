@@ -162,8 +162,14 @@ export const pbDeleteRecord = async (collection: string, id: string) => {
  *   const updated = await pbUpdateRecord('users', 'abc123', { name: 'New Name' });
  */
 export const pbUpdateRecord = async (collection: string, recordID: string, data: any) => {
-   const recordResult = await pb.collection(collection).update(recordID, data)
-   return recordResult
+   try {
+      const recordResult = await pb.collection(collection).update(recordID, data)
+      console.log('[PB_UPDATE] Success:', { recordId: recordResult?.id })
+      return recordResult
+   } catch (error) {
+      console.error('[PB_UPDATE] Failed:', error)
+      throw error
+   }
 }
 
 /**
@@ -215,7 +221,10 @@ export const fetchData = async ({
          }
       }
 
-      if (!response.ok) return new Error(parsedData.message || 'Something went wrong')
+      if (!response.ok) {
+         console.error('fetchData error:', url, response.status, parsedData)
+         throw new Error(parsedData.message || parsedData.error || 'Something went wrong')
+      }
 
       return parsedData
    } catch (error) {

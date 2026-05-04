@@ -1,4 +1,11 @@
-import { pbCreateRecord, pbGetList, pbGetSingleRecordQuery, pbUpdateRecord } from '@/network'
+import {
+   fetchData,
+   pbCreateRecord,
+   pbGetList,
+   pbGetSingleRecord,
+   pbGetSingleRecordQuery,
+   pbUpdateRecord
+} from '@/network'
 
 import { constants, queryOperators } from '../global.types'
 
@@ -91,4 +98,51 @@ export const saveGrammarUserProgress = async (user: TUser, grammar_id: string, s
       await pbUpdateRecord(constants.USER_GRAMMAR_PROGRESS, existingRecords[0].id, recordData)
    }
    await pbCreateRecord(constants.USER_GRAMMAR_PROGRESS, recordData)
+}
+
+export const fetchGrammarPodcast = async (grammarId: string, podcastContent: string) => {
+   try {
+      const pbUrl = process.env.NEXT_PUBLIC_API_ENVIRONMENT?.replace(/\/$/, '') || ''
+
+      const grammar = await pbGetSingleRecord({
+         collection: constants.GRAMMAR,
+         recordId: grammarId,
+         fields: 'podcast_audio'
+      })
+
+      if (grammar.podcast_audio) {
+         return { audioUrl: `${pbUrl}/api/files/grammar/${grammarId}/${grammar.podcast_audio}` }
+      }
+
+      const data = await fetchData({
+         method: 'POST',
+         url: '/api/tts-podcast',
+         body: { text: podcastContent }
+      })
+
+      if (data.error) throw new Error(data.error)
+
+      try {
+         const binaryString = atob(data.audio)
+         const bytes = new Uint8Array(binaryString.length)
+         for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i)
+         }
+         const audioFile = new File([bytes], `podcast_${grammarId}.wav`, { type: 'audio/wav' })
+
+         // Use FormData for file uploads in PocketBase
+         const formData = new FormData()
+         formData.append('podcast_audio', audioFile)
+
+         const updatedRecord = await pbUpdateRecord(constants.GRAMMAR, grammarId, formData)
+
+         return { audioUrl: `${pbUrl}/api/files/grammar/${grammarId}/${updatedRecord.podcast_audio}` }
+      } catch (cacheError) {
+         console.error('[PODCAST] Failed to cache podcast audio in PocketBase:', cacheError)
+         throw new Error('podcast.cacheError')
+      }
+   } catch (error) {
+      console.error('generatePodcastAudio error:', error)
+      throw error
+   }
 }

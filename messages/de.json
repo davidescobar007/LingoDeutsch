@@ -185,7 +185,10 @@
       "pastTense": "Vergangenheit",
       "pastTenseDescription": "Die Vergangenheit im Deutschen umfasst das Präteritum (einfach) und das Perfekt (zusammengesetzt mit Hilfsverb und Partizip).",
       "modalVerbs": "Modalverben",
-      "modalVerbsDescription": "Modalverben (können, müssen, dürfen) drücken Fähigkeit, Verpflichtung oder Erlaubnis aus und verändern die Position des Hauptverbs."
+      "modalVerbsDescription": "Modalverben (können, müssen, dürfen) drücken Fähigkeit, Verpflichtung oder Erlaubnis aus und verändern die Position des Hauptverbs.",
+      "listenPodcast": "Podcast anhören",
+      "podcastLoading": "Audio wird erstellt...",
+      "podcastError": "Fehler beim Erstellen des Audios"
    },
    "practice": {
       "cardStat": {

@@ -234,3 +234,29 @@ body {
       display: none;
    }
 }
+
+@keyframes podcast-wave {
+   0%,
+   100% {
+      transform: scaleY(0.3);
+   }
+
+   50% {
+      transform: scaleY(1);
+   }
+}
+
+.podcast-bar-active {
+   background-color: hsl(var(--p));
+   animation: podcast-wave 0.8s ease-in-out infinite;
+}
+
+.podcast-waveform {
+   wave {
+      z-index: 1 !important;
+
+      &::part(canvas) {
+         cursor: pointer;
+      }
+   }
+}
