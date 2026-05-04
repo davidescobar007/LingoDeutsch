@@ -5,6 +5,8 @@ import { Headphones, Loader2, Pause, Play, RotateCcw, Volume2, VolumeX } from 'l
 import { useTranslations } from 'next-intl'
 import WaveSurfer from 'wavesurfer.js'
 
+import useScreenSize from '@/hooks/useScreenSize'
+
 type PodcastPlayerState = 'idle' | 'loading' | 'playing' | 'paused' | 'error'
 
 type MoleculePodcastPlayerProps = {
@@ -23,6 +25,7 @@ export const MoleculePodcastPlayer = ({
    podcastContent
 }: MoleculePodcastPlayerProps) => {
    const t = useTranslations('grammar')
+   const { isMobile, isTablet } = useScreenSize()
    const [state, setState] = useState<PodcastPlayerState>('idle')
    const [currentTime, setCurrentTime] = useState('0:00')
    const [duration, setDuration] = useState('0:00')
@@ -166,6 +169,30 @@ export const MoleculePodcastPlayer = ({
       return null
    }
 
+   const getWaveformSkeleton = () => {
+      const allHeights = [
+         20, 35, 50, 65, 40, 80, 55, 30, 70, 45, 90, 60, 25, 75, 50, 85, 35, 65, 40, 95, 55, 30, 70, 45, 80, 60,
+         20, 50, 75, 40, 65, 35, 85, 55, 30, 70, 45, 90, 60, 25, 75, 50, 85, 35, 65, 40, 95, 55, 30, 70, 45, 80,
+         60, 20, 50, 75, 40, 65, 35, 85, 55, 30, 70, 45, 90, 60, 25, 75, 50, 85, 35, 65, 40, 95, 55, 30, 70, 45,
+         80, 60, 20, 50, 75, 40, 65, 35, 85, 55, 30, 70, 45, 90, 60, 25, 75, 50, 85, 35, 65, 40, 95, 55, 30, 70,
+         45, 80, 60, 20, 50, 75, 40, 65, 35, 85, 55, 30, 70, 45, 90, 60, 25, 75, 50, 85
+      ]
+      const barCount = isMobile ? 40 : isTablet ? 55 : 115
+      const heights = allHeights.slice(0, barCount)
+
+      return (
+         <div className="flex h-14 items-end justify-between">
+            {heights.map((height, i) => (
+               <div
+                  className="bg-primary/50 w-[2px] animate-pulse !rounded-lg"
+                  key={i}
+                  style={{ height: `${height}%` }}
+               />
+            ))}
+         </div>
+      )
+   }
+
    const showTime = state === 'playing' || state === 'paused'
    const label = getLabel()
 
@@ -222,13 +249,7 @@ export const MoleculePodcastPlayer = ({
 
          <div className="px-4 pb-3 pt-1">
             <div className="podcast-waveform" ref={waveformRef} />
-            {(state === 'loading' || isGenerating) && (
-               <div className="flex items-center gap-2 py-4">
-                  <div className="bg-primary/20 h-1.5 flex-1 overflow-hidden rounded-full">
-                     <div className="bg-primary h-full rounded-full" style={{ width: '60%' }} />
-                  </div>
-               </div>
-            )}
+            {(state === 'loading' || isGenerating) && getWaveformSkeleton()}
          </div>
       </div>
    )
