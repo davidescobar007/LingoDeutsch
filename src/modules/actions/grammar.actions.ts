@@ -107,8 +107,13 @@ export const fetchGrammarPodcast = async (grammarId: string, podcastContent: str
       const grammar = await pbGetSingleRecord({
          collection: constants.GRAMMAR,
          recordId: grammarId,
-         fields: 'podcast_audio'
+         fields: 'podcast_audio,id'
       })
+
+      if (!grammar?.id) {
+         console.error('[PODCAST] Grammar record not found:', { grammarId })
+         throw new Error('podcast.grammarNotFound')
+      }
 
       if (grammar.podcast_audio) {
          return { audioUrl: `${pbUrl}/api/files/grammar/${grammarId}/${grammar.podcast_audio}` }
@@ -122,24 +127,24 @@ export const fetchGrammarPodcast = async (grammarId: string, podcastContent: str
 
       if (data.error) throw new Error(data.error)
 
+      const binaryString = atob(data.audio)
+      const bytes = new Uint8Array(binaryString.length)
+      for (let i = 0; i < binaryString.length; i++) {
+         bytes[i] = binaryString.charCodeAt(i)
+      }
+      const audioFile = new File([bytes], `podcast_${grammarId}.wav`, { type: 'audio/wav' })
+
+      const formData = new FormData()
+      formData.append('podcast_audio', audioFile)
+
       try {
-         const binaryString = atob(data.audio)
-         const bytes = new Uint8Array(binaryString.length)
-         for (let i = 0; i < binaryString.length; i++) {
-            bytes[i] = binaryString.charCodeAt(i)
-         }
-         const audioFile = new File([bytes], `podcast_${grammarId}.wav`, { type: 'audio/wav' })
-
-         // Use FormData for file uploads in PocketBase
-         const formData = new FormData()
-         formData.append('podcast_audio', audioFile)
-
          const updatedRecord = await pbUpdateRecord(constants.GRAMMAR, grammarId, formData)
-
          return { audioUrl: `${pbUrl}/api/files/grammar/${grammarId}/${updatedRecord.podcast_audio}` }
       } catch (cacheError) {
-         console.error('[PODCAST] Failed to cache podcast audio in PocketBase:', cacheError)
-         throw new Error('podcast.cacheError')
+         // Graceful degradation: return audio without caching
+         const audioBlob = new Blob([bytes], { type: 'audio/wav' })
+         const directAudioUrl = URL.createObjectURL(audioBlob)
+         return { audioUrl: directAudioUrl, cached: false }
       }
    } catch (error) {
       console.error('generatePodcastAudio error:', error)

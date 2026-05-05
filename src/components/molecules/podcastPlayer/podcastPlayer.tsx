@@ -5,7 +5,9 @@ import { Headphones, Loader2, Pause, Play, RotateCcw, Volume2, VolumeX } from 'l
 import { useTranslations } from 'next-intl'
 import WaveSurfer from 'wavesurfer.js'
 
+import { AtomButton, AtomText } from '@/components/atoms'
 import useScreenSize from '@/hooks/useScreenSize'
+import { useAuthState } from '@/providers/AuthProvider'
 
 type PodcastPlayerState = 'idle' | 'loading' | 'playing' | 'paused' | 'error'
 
@@ -25,7 +27,9 @@ export const MoleculePodcastPlayer = ({
    podcastContent
 }: MoleculePodcastPlayerProps) => {
    const t = useTranslations('grammar')
+   const { isAuthenticated } = useAuthState()
    const { isMobile, isTablet } = useScreenSize()
+   const [showAuthOverlay, setShowAuthOverlay] = useState(false)
    const [state, setState] = useState<PodcastPlayerState>('idle')
    const [currentTime, setCurrentTime] = useState('0:00')
    const [duration, setDuration] = useState('0:00')
@@ -33,6 +37,13 @@ export const MoleculePodcastPlayer = ({
    const [playbackRate, setPlaybackRate] = useState<0.75 | 1 | 1.25 | 1.5 | 2>(1)
    const waveformRef = useRef<HTMLDivElement>(null)
    const wavesurferRef = useRef<WaveSurfer | null>(null)
+
+   // Auto-dismiss auth overlay when user authenticates
+   useEffect(() => {
+      if (isAuthenticated) {
+         setShowAuthOverlay(false)
+      }
+   }, [isAuthenticated])
 
    const formatTime = (seconds: number) => {
       const m = Math.floor(seconds / 60)
@@ -121,6 +132,12 @@ export const MoleculePodcastPlayer = ({
       }
       if (isGenerating) return
 
+      // Check authentication before generating podcast
+      if (!isAuthenticated) {
+         setShowAuthOverlay(true)
+         return
+      }
+
       setState('loading')
       try {
          const result = await handleGeneratePodcast({ text: podcastContent })
@@ -199,58 +216,78 @@ export const MoleculePodcastPlayer = ({
    if (!podcastContent) return null
 
    return (
-      <div className="from-primary/5 via-primary/10 to-primary/5 border-primary/20 mb-6 overflow-hidden rounded-2xl border bg-gradient-to-r">
-         <div className="flex items-center gap-3 px-4 pb-2 pt-4">
-            <button
-               className="bg-primary hover:bg-primary-focus flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-white shadow-md transition-all duration-200 hover:shadow-lg active:scale-95"
-               onClick={handleToggle}
-               type="button"
-            >
-               {getButtonIcon()}
-            </button>
+      <div className="from-primary/5 via-primary/10 to-primary/5 border-primary/20 relative mb-6 overflow-hidden rounded-2xl border bg-gradient-to-r">
+         {/* Player content - with blur when auth overlay is shown */}
+         <div className={showAuthOverlay ? 'pointer-events-none select-none blur-[4px]' : ''}>
+            <div className="flex items-center gap-3 px-4 pb-2 pt-4">
+               <button
+                  className="bg-primary hover:bg-primary-focus flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-white shadow-md transition-all duration-200 hover:shadow-lg active:scale-95"
+                  onClick={handleToggle}
+                  type="button"
+               >
+                  {getButtonIcon()}
+               </button>
 
-            <div className="min-w-0 flex-1">
-               <div className="flex items-center gap-2">
-                  <Headphones className="text-primary flex-shrink-0" size={14} />
-                  <span className="text-base-content/70 truncate text-sm font-medium">
-                     {label || `${currentTime} / ${duration}`}
-                  </span>
+               <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                     <Headphones className="text-primary flex-shrink-0" size={14} />
+                     <span className="text-base-content/70 truncate text-sm font-medium">
+                        {label || `${currentTime} / ${duration}`}
+                     </span>
+                  </div>
+               </div>
+
+               <div className="flex items-center gap-1">
+                  <button
+                     className="text-base-content/40 hover:text-base-content/70 rounded-md px-1.5 py-1 text-xs font-semibold transition-colors"
+                     onClick={cyclePlaybackRate}
+                     type="button"
+                  >
+                     {playbackRate}x
+                  </button>
+                  {showTime && (
+                     <>
+                        <button
+                           className="text-base-content/40 hover:text-base-content/70 rounded-md p-1 transition-colors"
+                           onClick={toggleMute}
+                           type="button"
+                        >
+                           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                        </button>
+                        <button
+                           className="text-base-content/40 hover:text-base-content/70 rounded-md p-1 transition-colors"
+                           onClick={handleRestart}
+                           type="button"
+                        >
+                           <RotateCcw size={14} />
+                        </button>
+                     </>
+                  )}
                </div>
             </div>
 
-            <div className="flex items-center gap-1">
-               <button
-                  className="text-base-content/40 hover:text-base-content/70 rounded-md px-1.5 py-1 text-xs font-semibold transition-colors"
-                  onClick={cyclePlaybackRate}
-                  type="button"
-               >
-                  {playbackRate}x
-               </button>
-               {showTime && (
-                  <>
-                     <button
-                        className="text-base-content/40 hover:text-base-content/70 rounded-md p-1 transition-colors"
-                        onClick={toggleMute}
-                        type="button"
-                     >
-                        {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                     </button>
-                     <button
-                        className="text-base-content/40 hover:text-base-content/70 rounded-md p-1 transition-colors"
-                        onClick={handleRestart}
-                        type="button"
-                     >
-                        <RotateCcw size={14} />
-                     </button>
-                  </>
-               )}
+            <div className="px-4 pb-3 pt-1">
+               <div className="podcast-waveform" ref={waveformRef} />
+               {(state === 'loading' || isGenerating) && getWaveformSkeleton()}
             </div>
          </div>
 
-         <div className="px-4 pb-3 pt-1">
-            <div className="podcast-waveform" ref={waveformRef} />
-            {(state === 'loading' || isGenerating) && getWaveformSkeleton()}
-         </div>
+         {/* Auth overlay */}
+         {showAuthOverlay && (
+            <div className="bg-base-100/80 absolute inset-0 flex items-center justify-center rounded-2xl p-3 backdrop-blur-sm">
+               <div className="flex flex-col items-center gap-2 text-center">
+                  <div className="flex items-center gap-2">
+                     <span className="text-base">🔒</span>
+                     <AtomText fontSize="small" isBold>
+                        {t('podcastLockedTitle')}
+                     </AtomText>
+                  </div>
+                  <AtomButton href="/login" size="xs" type="link" variant="PRIMARY">
+                     {t('podcastLockedCTA')}
+                  </AtomButton>
+               </div>
+            </div>
+         )}
       </div>
    )
 }

@@ -161,13 +161,20 @@ export const pbDeleteRecord = async (collection: string, id: string) => {
  * @example
  *   const updated = await pbUpdateRecord('users', 'abc123', { name: 'New Name' });
  */
-export const pbUpdateRecord = async (collection: string, recordID: string, data: any) => {
+export const pbUpdateRecord = async (
+   collection: string,
+   recordID: string,
+   data: Record<string, unknown> | FormData
+) => {
    try {
+      if (!collection || !recordID) {
+         throw new Error('pbUpdateRecord: collection and recordID are required')
+      }
       const recordResult = await pb.collection(collection).update(recordID, data)
       console.log('[PB_UPDATE] Success:', { recordId: recordResult?.id })
       return recordResult
    } catch (error) {
-      console.error('[PB_UPDATE] Failed:', error)
+      console.error('[PB_UPDATE] Failed:', { collection, recordID, error })
       throw error
    }
 }

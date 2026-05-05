@@ -188,7 +188,12 @@
       "modalVerbsDescription": "Modalverben (können, müssen, dürfen) drücken Fähigkeit, Verpflichtung oder Erlaubnis aus und verändern die Position des Hauptverbs.",
       "listenPodcast": "Podcast anhören",
       "podcastLoading": "Audio wird erstellt...",
-      "podcastError": "Fehler beim Erstellen des Audios"
+      "podcastError": "Fehler beim Erstellen des Audios",
+      "podcastLockedTitle": "Anmelden, um den Podcast zu hören",
+      "podcastLockedDescription": "Generiere das Audio dieser Lektion und speichere deinen Fortschritt",
+      "podcastLockedCTA": "Zugreifen",
+      "grammarNotFound": "Grammatiklektion nicht gefunden. Überprüfe, ob die ID korrekt ist.",
+      "cacheFailed": "Audio konnte nicht temporär gespeichert werden, aber du kannst es jetzt anhören."
    },
    "practice": {
       "cardStat": {
@@ -522,6 +527,7 @@
       "defaultTitle": "Exklusiver Inhalt für Mitglieder",
       "defaultDescription": "Registriere dich kostenlos, um diese Funktion freizuschalten",
       "defaultCta": "Kostenlos registrieren",
+      "back": "Zurück",
       "grammarProgress": {
          "title": "Dein Grammatikfortschritt",
          "description": "Verfolge deinen Fortschritt in den Grammatiklektionen von A1 bis B2"
