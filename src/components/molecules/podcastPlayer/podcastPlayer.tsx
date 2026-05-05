@@ -140,6 +140,12 @@ export const MoleculePodcastPlayer = ({
          ws.play()
          return
       }
+      // Replay loaded audio without re-fetching
+      if (state === 'idle' && ws) {
+         ws.setTime(0)
+         ws.play()
+         return
+      }
       if (isGenerating) return
 
       // Check authentication before generating podcast
@@ -220,7 +226,7 @@ export const MoleculePodcastPlayer = ({
       )
    }
 
-   const showTime = state === 'playing' || state === 'paused'
+   const showTime = state === 'playing' || state === 'paused' || (state === 'idle' && !!wavesurferRef.current)
    const label = getLabel()
 
    if (!podcastContent) return null
