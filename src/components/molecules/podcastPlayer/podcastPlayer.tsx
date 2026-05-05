@@ -45,6 +45,16 @@ export const MoleculePodcastPlayer = ({
       }
    }, [isAuthenticated])
 
+   // Reset player state when grammar topic changes
+   useEffect(() => {
+      cleanup()
+      setState('idle')
+      setCurrentTime('0:00')
+      setDuration('0:00')
+      setIsMuted(false)
+      setShowAuthOverlay(false)
+   }, [grammarId])
+
    const formatTime = (seconds: number) => {
       const m = Math.floor(seconds / 60)
       const s = Math.floor(seconds % 60)
