@@ -249,6 +249,19 @@ export const MoleculePodcastPlayer = ({
                      <Headphones className="text-primary flex-shrink-0" size={14} />
                      <span className="text-base-content/70 truncate text-sm font-medium">
                         {label || `${currentTime} / ${duration}`}
+                        {(state === 'loading' || isGenerating) && label && (
+                           <span className="ml-1 inline-flex items-center gap-[2px]">
+                              <span className="podcast-loading-dot h-1 w-1 rounded-full bg-current" />
+                              <span
+                                 className="podcast-loading-dot h-1 w-1 rounded-full bg-current"
+                                 style={{ animationDelay: '0.2s' }}
+                              />
+                              <span
+                                 className="podcast-loading-dot h-1 w-1 rounded-full bg-current"
+                                 style={{ animationDelay: '0.4s' }}
+                              />
+                           </span>
+                        )}
                      </span>
                   </div>
                </div>

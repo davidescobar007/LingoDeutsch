@@ -1,34 +1,37 @@
 import { GoogleGenAI } from '@google/genai'
+import lamejs from 'lamejs-fixed'
 import { NextResponse } from 'next/server'
 
 const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY })
 
-const createWavHeader = (
-   pcmDataLength: number,
-   sampleRate: number,
-   numChannels: number,
-   bitsPerSample: number
-): Uint8Array => {
-   const byteRate = sampleRate * numChannels * (bitsPerSample / 8)
-   const blockAlign = numChannels * (bitsPerSample / 8)
-   const header = new Uint8Array(44)
-   const view = new DataView(header.buffer)
+const encodePcmToMp3 = (pcmBytes: Uint8Array, sampleRate: number, numChannels: number): Uint8Array => {
+   const mp3Encoder = new lamejs.Mp3Encoder(numChannels, sampleRate, 64)
+   const pcmSamples = new Int16Array(pcmBytes.buffer)
+   const mp3Chunks: Int8Array[] = []
+   const blockSize = 1152
 
-   view.setUint32(0, 0x52494646, false)
-   view.setUint32(4, 36 + pcmDataLength, true)
-   view.setUint32(8, 0x57415645, false)
-   view.setUint32(12, 0x666d7420, false)
-   view.setUint32(16, 16, true)
-   view.setUint16(20, 1, true)
-   view.setUint16(22, numChannels, true)
-   view.setUint32(24, sampleRate, true)
-   view.setUint32(28, byteRate, true)
-   view.setUint16(32, blockAlign, true)
-   view.setUint16(34, bitsPerSample, true)
-   view.setUint32(36, 0x64617461, false)
-   view.setUint32(40, pcmDataLength, true)
+   for (let i = 0; i < pcmSamples.length; i += blockSize) {
+      const block = pcmSamples.subarray(i, Math.min(i + blockSize, pcmSamples.length))
+      const mp3buf = mp3Encoder.encodeBuffer(block)
+      if (mp3buf.length > 0) {
+         mp3Chunks.push(mp3buf)
+      }
+   }
 
-   return header
+   const mp3End = mp3Encoder.flush()
+   if (mp3End.length > 0) {
+      mp3Chunks.push(mp3End)
+   }
+
+   const totalLength = mp3Chunks.reduce((acc, chunk) => acc + chunk.length, 0)
+   const mp3Buffer = new Uint8Array(totalLength)
+   let offset = 0
+   for (const chunk of mp3Chunks) {
+      mp3Buffer.set(chunk, offset)
+      offset += chunk.length
+   }
+
+   return mp3Buffer
 }
 
 export async function POST(request: Request) {
@@ -95,22 +98,18 @@ ${text}`
 
       const sampleRate = 24000
       const numChannels = 1
-      const bitsPerSample = 16
 
-      const wavHeader = createWavHeader(pcmBytes.length, sampleRate, numChannels, bitsPerSample)
-      const wavBuffer = new Uint8Array(wavHeader.length + pcmBytes.length)
-      wavBuffer.set(wavHeader, 0)
-      wavBuffer.set(pcmBytes, wavHeader.length)
+      const mp3Buffer = encodePcmToMp3(pcmBytes, sampleRate, numChannels)
 
-      let wavBase64 = ''
-      for (let i = 0; i < wavBuffer.length; i++) {
-         wavBase64 += String.fromCharCode(wavBuffer[i])
+      let mp3Base64 = ''
+      for (let i = 0; i < mp3Buffer.length; i++) {
+         mp3Base64 += String.fromCharCode(mp3Buffer[i])
       }
-      wavBase64 = btoa(wavBase64)
+      mp3Base64 = btoa(mp3Base64)
 
       return NextResponse.json({
-         audio: wavBase64,
-         mimeType: 'audio/wav'
+         audio: mp3Base64,
+         mimeType: 'audio/mp3'
       })
    } catch (error) {
       console.warn('***************TTS ERROR: ', error)

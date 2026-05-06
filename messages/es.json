@@ -189,10 +189,10 @@
       "modalVerbs": "Verbos modales",
       "modalVerbsDescription": "Los verbos modales (können, müssen, dürfen) expresan capacidad, obligación o permiso y alteran la posición del verbo principal.",
       "listenPodcast": "Escuchar podcast",
-      "podcastLoading": "Generando audio...",
-      "podcastError": "Error al generar el audio",
+      "podcastLoading": "Tu podcast estará listo enseguida",
+      "podcastError": "El podcast no está disponible ahora",
       "podcastLockedTitle": "Inicia sesión para escuchar el podcast",
-      "podcastLockedDescription": "Genera el audio de esta lección y guarda tu progreso",
+      "podcastLockedDescription": "Desbloquea el audio de esta lección y guarda tu avance",
       "podcastLockedCTA": "Acceder",
       "grammarNotFound": "No se encontró la lección de gramática. Verifica que el ID sea correcto.",
       "cacheFailed": "No se pudo guardar el audio temporalmente, pero puedes escucharlo ahora."

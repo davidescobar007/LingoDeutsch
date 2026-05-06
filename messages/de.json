@@ -187,10 +187,10 @@
       "modalVerbs": "Modalverben",
       "modalVerbsDescription": "Modalverben (können, müssen, dürfen) drücken Fähigkeit, Verpflichtung oder Erlaubnis aus und verändern die Position des Hauptverbs.",
       "listenPodcast": "Podcast anhören",
-      "podcastLoading": "Audio wird erstellt...",
-      "podcastError": "Fehler beim Erstellen des Audios",
+      "podcastLoading": "Dein Podcast ist gleich bereit",
+      "podcastError": "Der Podcast ist jetzt nicht verfügbar",
       "podcastLockedTitle": "Anmelden, um den Podcast zu hören",
-      "podcastLockedDescription": "Generiere das Audio dieser Lektion und speichere deinen Fortschritt",
+      "podcastLockedDescription": "Schalte das Audio dieser Lektion frei und speichere deinen Fortschritt",
       "podcastLockedCTA": "Zugreifen",
       "grammarNotFound": "Grammatiklektion nicht gefunden. Überprüfe, ob die ID korrekt ist.",
       "cacheFailed": "Audio konnte nicht temporär gespeichert werden, aber du kannst es jetzt anhören."

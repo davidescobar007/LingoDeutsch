@@ -132,7 +132,7 @@ export const fetchGrammarPodcast = async (grammarId: string, podcastContent: str
       for (let i = 0; i < binaryString.length; i++) {
          bytes[i] = binaryString.charCodeAt(i)
       }
-      const audioFile = new File([bytes], `podcast_${grammarId}.wav`, { type: 'audio/wav' })
+      const audioFile = new File([bytes], `podcast_${grammarId}.mp3`, { type: 'audio/mp3' })
 
       const formData = new FormData()
       formData.append('podcast_audio', audioFile)
@@ -142,7 +142,7 @@ export const fetchGrammarPodcast = async (grammarId: string, podcastContent: str
          return { audioUrl: `${pbUrl}/api/files/grammar/${grammarId}/${updatedRecord.podcast_audio}` }
       } catch (cacheError) {
          // Graceful degradation: return audio without caching
-         const audioBlob = new Blob([bytes], { type: 'audio/wav' })
+         const audioBlob = new Blob([bytes], { type: 'audio/mp3' })
          const directAudioUrl = URL.createObjectURL(audioBlob)
          return { audioUrl: directAudioUrl, cached: false }
       }
