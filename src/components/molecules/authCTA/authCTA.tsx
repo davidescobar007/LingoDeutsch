@@ -38,7 +38,7 @@ export const MoleculeAuthCTA = ({ onBack = emptyFunction, compact = false }: Mol
                {authMethods?.map((provider: AuthProviderInfo) => (
                   <Link
                      className="btn btn-primary btn-sm flex items-center justify-center gap-2"
-                     href={`${provider.authUrl}${process.env.NEXT_PUBLIC_ENVIRONMENT}`}
+                     href={`${provider.authUrl}${window.location.origin}`}
                      key={provider.authUrl}
                   >
                      <FcGoogle className="h-4 w-4" />
@@ -71,7 +71,7 @@ export const MoleculeAuthCTA = ({ onBack = emptyFunction, compact = false }: Mol
             {authMethods?.map((provider: AuthProviderInfo) => (
                <Link
                   className="btn btn-primary btn-block flex items-center justify-center gap-2"
-                  href={`${provider.authUrl}${process.env.NEXT_PUBLIC_ENVIRONMENT}`}
+                  href={`${provider.authUrl}${window.location.origin}`}
                   key={provider.authUrl}
                >
                   <FcGoogle className="h-5 w-5" />

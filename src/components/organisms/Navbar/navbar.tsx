@@ -67,7 +67,7 @@ const OrganismNavbar = ({ locale }: { locale: string }) => {
                   {authMethods?.map((provider: AuthProviderInfo) => (
                      <a
                         className="btn text-primary bg-white hover:bg-gray-100"
-                        href={`${provider.authUrl + process.env.NEXT_PUBLIC_ENVIRONMENT}/${locale}/app/home`}
+                        href={`${provider.authUrl}${window.location.origin}/${locale}/app/home`}
                         key={provider.authUrl}
                         role="button"
                      >
