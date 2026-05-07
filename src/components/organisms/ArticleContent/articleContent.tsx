@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
-import { MoleculePodcastPlayer } from '@/components/molecules'
+import { MoleculeAlert, MoleculePodcastPlayer } from '@/components/molecules'
 import { OrganismImageCard } from '@/components/organisms'
 import { useGenerateArticlePodcast } from '@/hooks/articles'
 import { constants } from '@/modules/global.types'
@@ -84,6 +84,7 @@ export const OrganismArticleContent = ({
                         resetKey={articleId}
                      />
                   )}
+                  <MoleculeAlert message={t('learn.wordSpecification')} type="info" />
                   <div className="bg-base-100 rounded-2xl shadow-sm">
                      <AtomText
                         className="text-base-content !text-left leading-7 tracking-wide"
