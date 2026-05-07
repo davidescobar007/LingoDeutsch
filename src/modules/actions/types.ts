@@ -49,6 +49,7 @@ export type TArticle = {
    title: string
    updated?: string
    estimated_read_time?: string
+   podcast_audio?: string
    is_completed?: boolean | null
    quiz?: {
       id: string

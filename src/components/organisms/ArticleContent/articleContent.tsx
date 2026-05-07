@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { AtomBadge, AtomButton, AtomText, AtomTitle } from '@/components/atoms'
+import { MoleculePodcastPlayer } from '@/components/molecules'
 import { OrganismImageCard } from '@/components/organisms'
+import { useGenerateArticlePodcast } from '@/hooks/articles'
 import { constants } from '@/modules/global.types'
 
 type OrganismArticleContentProps = {
@@ -12,6 +14,7 @@ type OrganismArticleContentProps = {
    image?: string
    level?: string[]
    onWordClick: (_word: string) => void
+   podcastAudio?: string
    text_content?: string
    title?: string
 }
@@ -23,11 +26,13 @@ export const OrganismArticleContent = ({
    image = '',
    level = EMPTY_LEVEL_ARRAY,
    onWordClick,
+   podcastAudio,
    text_content = '',
    title = ''
 }: OrganismArticleContentProps) => {
    const t = useTranslations()
    const [currentWordIntext, setCurrentWordIntext] = useState<string | null>(null)
+   const generatePodcast = useGenerateArticlePodcast(articleId)
 
    const imageURL = `${process.env.NEXT_PUBLIC_API_ENVIRONMENT}/api/files/${constants.ARTICLES}/${articleId}/${image}`
 
@@ -55,6 +60,7 @@ export const OrganismArticleContent = ({
                         ))}
                      </div>
                   </header>
+
                   <div className="group relative overflow-hidden rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl">
                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -68,14 +74,17 @@ export const OrganismArticleContent = ({
                   </div>
                </div>
 
-               <div className="w-full">
-                  <div className="border-primary/10 bg-primary/5 text-base-content/80 mb-6 rounded-xl border p-4 text-sm italic">
-                     <p>
-                        💡 Presiona sobre una palabra para obtener su traducción, luego no olvides realizar el quiz
-                        al final de la sección.
-                     </p>
-                  </div>
-                  <div className="bg-base-100 rounded-2xl p-6 shadow-sm md:p-8">
+               <div className="pt-4">
+                  {text_content && (
+                     <MoleculePodcastPlayer
+                        audioUrl={podcastAudio}
+                        content={text_content}
+                        handleGenerate={generatePodcast.mutateAsync}
+                        isGenerating={generatePodcast.isPending}
+                        resetKey={articleId}
+                     />
+                  )}
+                  <div className="bg-base-100 rounded-2xl shadow-sm">
                      <AtomText
                         className="text-base-content !text-left leading-7 tracking-wide"
                         fontSize="medium"

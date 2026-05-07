@@ -14,7 +14,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
    const [wordToTranslate, setWordToTranslate] = useState<string>('')
    const [enabled, setEnabled] = useState<boolean>(false)
 
-   const { data: article, isFetching: isLoadingArticle } = useArticle(id)
+   const { data: article, isLoading: isLoadingArticle } = useArticle(id)
    const { data: translationData, isError, isFetching } = useTranslation({ enabled, wordToTranslate })
    const { isPending, mutate: saveVocabulary } = useSaveVocabulary()
 

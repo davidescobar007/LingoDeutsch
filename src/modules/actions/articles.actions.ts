@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 
 import {
+   fetchData,
    pbCreateRecord,
    pbGetList,
    pbGetSingleRecord,
@@ -134,7 +135,59 @@ const getArticlesListByUser = async ({
    }
 }
 
+const fetchArticlePodcast = async (articleId: string, textContent: string) => {
+   try {
+      const pbUrl = process.env.NEXT_PUBLIC_API_ENVIRONMENT?.replace(/\/$/, '') || ''
+
+      const article = await pbGetSingleRecord({
+         collection: constants.ARTICLES,
+         recordId: articleId,
+         fields: 'podcast_audio,id'
+      })
+
+      if (!article?.id) {
+         console.error('[PODCAST] Article record not found:', { articleId })
+         throw new Error('podcast.articleNotFound')
+      }
+
+      if (article.podcast_audio) {
+         return { audioUrl: `${pbUrl}/api/files/articles/${articleId}/${article.podcast_audio}` }
+      }
+
+      const data = await fetchData({
+         method: 'POST',
+         url: '/api/tts-podcast',
+         body: { text: textContent }
+      })
+
+      if (data.error) throw new Error(data.error)
+
+      const binaryString = atob(data.audio)
+      const bytes = new Uint8Array(binaryString.length)
+      for (let i = 0; i < binaryString.length; i++) {
+         bytes[i] = binaryString.charCodeAt(i)
+      }
+      const audioFile = new File([bytes], `podcast_${articleId}.mp3`, { type: 'audio/mp3' })
+
+      const formData = new FormData()
+      formData.append('podcast_audio', audioFile)
+
+      try {
+         const updatedRecord = await pbUpdateRecord(constants.ARTICLES, articleId, formData)
+         return { audioUrl: `${pbUrl}/api/files/articles/${articleId}/${updatedRecord.podcast_audio}` }
+      } catch (cacheError) {
+         const audioBlob = new Blob([bytes], { type: 'audio/mp3' })
+         const directAudioUrl = URL.createObjectURL(audioBlob)
+         return { audioUrl: directAudioUrl, cached: false }
+      }
+   } catch (error) {
+      console.error('fetchArticlePodcast error:', error)
+      throw error
+   }
+}
+
 export {
+   fetchArticlePodcast,
    getArticleQuiz,
    getArticleByUser as getArticlesByUser,
    getArticlesList,

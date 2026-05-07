@@ -2,6 +2,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
+   fetchArticlePodcast,
    getArticlesByUser,
    getArticlesList,
    getArticlesListByUser,
@@ -86,6 +87,16 @@ export const useGetArticlesListByUserAndState = ({
                )
             }
          )
+      }
+   })
+}
+
+export const useGenerateArticlePodcast = (articleId: string) => {
+   const queryClient = useQueryClient()
+   return useMutation({
+      mutationFn: ({ text }: { text: string }) => fetchArticlePodcast(articleId, text),
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ['article', articleId] })
       }
    })
 }

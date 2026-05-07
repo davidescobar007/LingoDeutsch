@@ -48,6 +48,7 @@ export const TemplateArticleReader = ({
             image={article?.imageFile}
             level={article?.level}
             onWordClick={handleWordClick}
+            podcastAudio={article?.podcast_audio}
             text_content={article?.text_content}
             title={article?.title}
          />
