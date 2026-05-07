@@ -156,7 +156,7 @@ const fetchArticlePodcast = async (articleId: string, textContent: string) => {
 
       const data = await fetchData({
          method: 'POST',
-         url: '/api/tts-podcast',
+         url: '/api/tts-article',
          body: { text: textContent }
       })
 
