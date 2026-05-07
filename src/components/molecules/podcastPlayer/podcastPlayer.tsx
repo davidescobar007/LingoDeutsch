@@ -12,19 +12,19 @@ import { useAuthState } from '@/providers/AuthProvider'
 type PodcastPlayerState = 'idle' | 'loading' | 'playing' | 'paused' | 'error'
 
 type MoleculePodcastPlayerProps = {
-   grammarId?: string
-   handleGeneratePodcast?: (_args: { text: string }) => Promise<{ audioUrl: string }>
+   resetKey?: string
+   handleGenerate?: (_args: { text: string }) => Promise<{ audioUrl: string }>
    isGenerating?: boolean
-   podcastAudio?: string
-   podcastContent?: string
+   audioUrl?: string
+   content?: string
 }
 
 export const MoleculePodcastPlayer = ({
-   grammarId,
-   handleGeneratePodcast,
+   resetKey,
+   handleGenerate,
    isGenerating = false,
-   podcastAudio,
-   podcastContent
+   audioUrl: _audioUrl,
+   content
 }: MoleculePodcastPlayerProps) => {
    const t = useTranslations('grammar')
    const { isAuthenticated } = useAuthState()
@@ -53,7 +53,7 @@ export const MoleculePodcastPlayer = ({
       setDuration('0:00')
       setIsMuted(false)
       setShowAuthOverlay(false)
-   }, [grammarId])
+   }, [resetKey])
 
    const formatTime = (seconds: number) => {
       const m = Math.floor(seconds / 60)
@@ -130,7 +130,7 @@ export const MoleculePodcastPlayer = ({
    const handleToggle = async () => {
       const ws = wavesurferRef.current
 
-      if (!podcastContent || !grammarId || !handleGeneratePodcast) return
+      if (!content || !resetKey || !handleGenerate) return
 
       if (state === 'playing' && ws) {
          ws.pause()
@@ -156,7 +156,7 @@ export const MoleculePodcastPlayer = ({
 
       setState('loading')
       try {
-         const result = await handleGeneratePodcast({ text: podcastContent })
+         const result = await handleGenerate({ text: content })
          createWaveSurfer(result.audioUrl)
       } catch {
          setState('error')
@@ -229,7 +229,7 @@ export const MoleculePodcastPlayer = ({
    const showTime = state === 'playing' || state === 'paused' || (state === 'idle' && !!wavesurferRef.current)
    const label = getLabel()
 
-   if (!podcastContent) return null
+   if (!content) return null
 
    return (
       <div className="from-primary/5 via-primary/10 to-primary/5 border-primary/20 relative mb-6 overflow-hidden rounded-2xl border bg-gradient-to-r">

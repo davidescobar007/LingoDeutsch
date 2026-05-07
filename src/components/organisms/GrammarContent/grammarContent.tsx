@@ -125,11 +125,11 @@ export const OrganismGrammarContent = ({
 
          {grammarTopicContent?.podcast_content && (
             <MoleculePodcastPlayer
-               grammarId={grammarTopicContent.id}
-               handleGeneratePodcast={generatePodcast.mutateAsync}
+               audioUrl={grammarTopicContent.podcast_audio}
+               content={grammarTopicContent.podcast_content}
+               handleGenerate={generatePodcast.mutateAsync}
                isGenerating={generatePodcast.isPending}
-               podcastAudio={grammarTopicContent.podcast_audio}
-               podcastContent={grammarTopicContent.podcast_content}
+               resetKey={grammarTopicContent.id}
             />
          )}
 
