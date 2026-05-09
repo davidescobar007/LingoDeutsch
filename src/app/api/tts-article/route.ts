@@ -1,40 +1,11 @@
 import { GoogleGenAI } from '@google/genai'
-import lamejs from 'lamejs-fixed'
 import { NextResponse } from 'next/server'
+
+import { convertPcmBase64ToMp3Base64 } from '@/utils/audio.utils'
 
 const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY })
 
 const ARTICLE_VOICES = ['Kore', 'Charon', 'Aoede', 'Zephyr', 'Enceladus', 'Orus', 'Puck']
-
-const encodePcmToMp3 = (pcmBytes: Uint8Array, sampleRate: number, numChannels: number): Uint8Array => {
-   const mp3Encoder = new lamejs.Mp3Encoder(numChannels, sampleRate, 64)
-   const pcmSamples = new Int16Array(pcmBytes.buffer)
-   const mp3Chunks: Int8Array[] = []
-   const blockSize = 1152
-
-   for (let i = 0; i < pcmSamples.length; i += blockSize) {
-      const block = pcmSamples.subarray(i, Math.min(i + blockSize, pcmSamples.length))
-      const mp3buf = mp3Encoder.encodeBuffer(block)
-      if (mp3buf.length > 0) {
-         mp3Chunks.push(mp3buf)
-      }
-   }
-
-   const mp3End = mp3Encoder.flush()
-   if (mp3End.length > 0) {
-      mp3Chunks.push(mp3End)
-   }
-
-   const totalLength = mp3Chunks.reduce((acc, chunk) => acc + chunk.length, 0)
-   const mp3Buffer = new Uint8Array(totalLength)
-   let offset = 0
-   for (const chunk of mp3Chunks) {
-      mp3Buffer.set(chunk, offset)
-      offset += chunk.length
-   }
-
-   return mp3Buffer
-}
 
 export async function POST(request: Request) {
    const body = await request.json()
@@ -86,22 +57,7 @@ ${text}`
 
       const inlineData = audioPart.inlineData
       const pcmBase64 = inlineData.data ?? ''
-      const pcmBinary = atob(pcmBase64)
-      const pcmBytes = new Uint8Array(pcmBinary.length)
-      for (let i = 0; i < pcmBinary.length; i++) {
-         pcmBytes[i] = pcmBinary.charCodeAt(i)
-      }
-
-      const sampleRate = 24000
-      const numChannels = 1
-
-      const mp3Buffer = encodePcmToMp3(pcmBytes, sampleRate, numChannels)
-
-      let mp3Base64 = ''
-      for (let i = 0; i < mp3Buffer.length; i++) {
-         mp3Base64 += String.fromCharCode(mp3Buffer[i])
-      }
-      mp3Base64 = btoa(mp3Base64)
+      const mp3Base64 = convertPcmBase64ToMp3Base64(pcmBase64)
 
       return NextResponse.json({
          audio: mp3Base64,
