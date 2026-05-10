@@ -11,7 +11,7 @@ import { AuthProvider } from '@/providers/AuthProvider'
 
 import './globals.scss'
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
+const BASE_URL = process.env.BASE_URL || 'https://blabling.com'
 
 export const metadata: Metadata = {
    title: {

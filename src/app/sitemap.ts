@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
+const BASE_URL = process.env.BASE_URL || 'https://blabling.com'
 
 const sitemap = (): MetadataRoute.Sitemap => {
    const locales = ['es', 'de']

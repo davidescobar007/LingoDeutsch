@@ -1,7 +1,7 @@
 import { GoogleGenAI, Type } from '@google/genai'
 import { NextResponse } from 'next/server'
 
-const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY })
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY })
 
 export async function GET(request: Request) {
    const { searchParams } = new URL(request.url)

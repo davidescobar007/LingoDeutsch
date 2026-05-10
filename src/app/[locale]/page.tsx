@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { TemplateLanding } from '@/components/templates'
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://blabling.com'
+const BASE_URL = process.env.BASE_URL || 'https://blabling.com'
 
 export const generateMetadata = async ({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> => {
    const { locale } = await params

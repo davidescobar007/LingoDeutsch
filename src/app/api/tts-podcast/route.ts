@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 import { convertPcmBase64ToMp3Base64 } from '@/utils/audio.utils'
 
-const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY })
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY })
 
 export async function POST(request: Request) {
    const body = await request.json()

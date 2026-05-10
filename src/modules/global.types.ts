@@ -90,15 +90,6 @@ export const GRAMMAR_LEVEL_INFO: Record<GrammarLevel, GrammarLevelInfo> = {
    }
 }
 
-export const urls = {
-   linguatools: 'https://petapro-translate-v1.p.rapidapi.com/?'
-}
-
-export const headers = {
-   'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPI_LINGUATOOLS,
-   'X-RapidAPI-Host': process.env.NEXT_PUBLIC_RAPIDAPI_LINGUATOOLS_HOST
-}
-
 export const tailwindColors = {
    blue: [
       'blue',
