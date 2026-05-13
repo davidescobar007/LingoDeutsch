@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { MoleculeDrawerTranslation } from '@/components/molecules'
-import { OrganismArticleContent, OrganismWordSpecification } from '@/components/organisms'
+import { OrganismArticleCarousel, OrganismArticleContent, OrganismWordSpecification } from '@/components/organisms'
 import useScreenSize from '@/hooks/useScreenSize'
 import { TArticle, Ttranslation } from '@/modules/actions/types'
 import { useAuthState } from '@/providers/AuthProvider'
@@ -15,9 +15,12 @@ type TemplateArticleReaderProps = {
    isFetching?: boolean
    onSaveVocabulary: (_word: Ttranslation) => void
    onWordClick: (_word: string) => void
+   relatedArticles?: TArticle[]
    savingVocabulary?: boolean
    translationData?: Ttranslation
 }
+
+const EMPTY_ARRAY: TArticle[] = []
 
 export const TemplateArticleReader = ({
    article = undefined,
@@ -26,6 +29,7 @@ export const TemplateArticleReader = ({
    isFetching = false,
    onSaveVocabulary,
    onWordClick,
+   relatedArticles = EMPTY_ARRAY,
    savingVocabulary = false,
    translationData = undefined
 }: TemplateArticleReaderProps) => {
@@ -75,6 +79,17 @@ export const TemplateArticleReader = ({
                translationData={translationData}
             />
          )}
+
+         <div className="lg:w-16/24 w-full">
+            <OrganismArticleCarousel
+               articles={relatedArticles}
+               excludeId={articleId}
+               filterLevel={article?.level?.[0]}
+               limit={4}
+               showViewAll={false}
+               title={t('learn.keepReading')}
+            />
+         </div>
       </>
    )
 }

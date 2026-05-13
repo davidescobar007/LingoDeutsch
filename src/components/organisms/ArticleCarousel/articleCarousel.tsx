@@ -1,31 +1,62 @@
+import { AtomTitle } from '@/components/atoms'
 import { MoleculeCard, MoleculeCarousel, MoleculeSectionHeader } from '@/components/molecules'
 import { TArticle } from '@/modules/actions/types'
 import { constants } from '@/modules/global.types'
 
 type OrganismArticleCarouselProps = {
    articles: TArticle[]
+   excludeId?: string
    extraClassName?: string
+   filterLevel?: string
+   limit?: number
+   showViewAll?: boolean
+   title?: string
 }
 
-export const OrganismArticleCarousel = ({ articles, extraClassName = '' }: OrganismArticleCarouselProps) => {
-   // Ensure articles is always an array
+const DEFAULT_LIMIT = 6
+const DEFAULT_LEVEL = 'A1'
+
+export const OrganismArticleCarousel = ({
+   articles,
+   excludeId = '',
+   extraClassName = '',
+   filterLevel,
+   limit = DEFAULT_LIMIT,
+   showViewAll = true,
+   title
+}: OrganismArticleCarouselProps) => {
    const safeArticles = Array.isArray(articles) ? articles : []
 
-   // Filter by level A1 (MVP focus - PRD §4.2)
-   // Note: article.level is an array like ['A1', 'A2'], not a string
-   const filteredArticles = safeArticles.filter((article) => {
-      if (!article.level) return true
-      return Array.isArray(article.level) ? article.level.includes('A1') : article.level === 'A1'
-   })
+   const levelToFilter = filterLevel ?? DEFAULT_LEVEL
 
-   // Take first 6 articles to avoid overwhelming carousel
-   const displayArticles = filteredArticles.slice(0, 6)
+   const filteredArticles = safeArticles
+      .filter((article) => {
+         if (!article.level) return true
+         return Array.isArray(article.level)
+            ? article.level.includes(levelToFilter)
+            : article.level === levelToFilter
+      })
+      .filter((article) => !excludeId || article.id !== excludeId)
+
+   const displayArticles = filteredArticles.slice(0, limit)
+
+   if (displayArticles.length === 0) return null
 
    return (
       <div className={extraClassName}>
-         <MoleculeSectionHeader linkHref="article" linkText="Ver todos" title="📖 Artículos Recomendados" />
+         {showViewAll ? (
+            <MoleculeSectionHeader
+               linkHref="article"
+               linkText="Ver todos"
+               title={title ?? '📖 Artículos Recomendados'}
+            />
+         ) : (
+            <div className="flex w-full justify-between">
+               <AtomTitle type="h3">{title ?? '📖 Artículos Recomendados'}</AtomTitle>
+            </div>
+         )}
          <MoleculeCarousel options={{ containScroll: false, loop: true, align: 'start' }}>
-            {displayArticles.map(({ id, title, imageFile, created, estimated_read_time, level }) => (
+            {displayArticles.map(({ created, estimated_read_time, id, imageFile, level, title: articleTitle }) => (
                <MoleculeCard
                   _date={created ? new Date(created) : undefined}
                   buttonText="Leer artículo"
@@ -33,7 +64,7 @@ export const OrganismArticleCarousel = ({ articles, extraClassName = '' }: Organ
                   key={id}
                   redirectTo={id}
                   timeToRead={estimated_read_time || ''}
-                  title={`${level ? `${level} · ` : ''}${title}`}
+                  title={`${level ? `${level} · ` : ''}${articleTitle}`}
                />
             ))}
          </MoleculeCarousel>

@@ -6,6 +6,7 @@ import {
    getArticlesByUser,
    getArticlesList,
    getArticlesListByUser,
+   getRelatedArticles,
    getSingleArticle,
    saveArticleUser
 } from '@/modules/actions/articles.actions'
@@ -88,6 +89,14 @@ export const useGetArticlesListByUserAndState = ({
             }
          )
       }
+   })
+}
+
+export const useRelatedArticles = ({ articleId, level }: { articleId: string; level?: string }) => {
+   return useQuery({
+      queryKey: ['relatedArticles', articleId, level],
+      queryFn: () => getRelatedArticles({ articleId, level }),
+      enabled: !!articleId
    })
 }
 

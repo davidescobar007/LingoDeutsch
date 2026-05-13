@@ -186,12 +186,38 @@ const fetchArticlePodcast = async (articleId: string, textContent: string) => {
    }
 }
 
+const getRelatedArticles = async ({
+   articleId,
+   level
+}: {
+   articleId: string
+   level?: string
+}): Promise<TArticle[]> => {
+   try {
+      const options: any = {
+         fields: 'id,title,level,created,updated,imageFile,estimated_read_time',
+         sort: '-created',
+         filter: `id!="${articleId}"`
+      }
+      if (level) {
+         options.filter += ` && level~"${level}"`
+      }
+
+      const data = await pbGetList('articles', options)
+      return (data as unknown as TArticle[]).slice(0, 4)
+   } catch (error: any) {
+      console.error('Error fetching related articles:', error)
+      return []
+   }
+}
+
 export {
    fetchArticlePodcast,
    getArticleQuiz,
    getArticleByUser as getArticlesByUser,
    getArticlesList,
    getArticlesListByUser,
+   getRelatedArticles,
    getSingleArticle,
    saveArticleUser
 }

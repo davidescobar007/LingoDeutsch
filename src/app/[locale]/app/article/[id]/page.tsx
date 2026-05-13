@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 
 import { SpinLoader } from '@/components/atoms'
 import { TemplateArticleReader } from '@/components/templates'
-import { useArticle } from '@/hooks/articles'
+import { useArticle, useRelatedArticles } from '@/hooks/articles'
 import { useSaveVocabulary, useTranslation } from '@/hooks/translations'
 
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
@@ -17,6 +17,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
    const { data: article, isLoading: isLoadingArticle } = useArticle(id)
    const { data: translationData, isError, isFetching } = useTranslation({ enabled, wordToTranslate })
    const { isPending, mutate: saveVocabulary } = useSaveVocabulary()
+   const { data: relatedArticles } = useRelatedArticles({ articleId: id, level: article?.level?.[0] })
 
    if (isLoadingArticle) {
       return <SpinLoader centered />
@@ -37,6 +38,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
             setEnabled(true)
             setWordToTranslate(word)
          }}
+         relatedArticles={relatedArticles}
          savingVocabulary={isPending}
          translationData={translationData}
       />

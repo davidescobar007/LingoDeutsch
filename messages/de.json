@@ -142,7 +142,8 @@
       "progress": "Fortschritt",
       "masteredVocabulary": "Du hast {percentageDominated}% des gesamten Wortschatzes gemeistert.",
       "vocabularyMastery": "Wortschatzbeherrschung",
-      "readingExercises": "Leseübungen"
+      "readingExercises": "Leseübungen",
+      "keepReading": "Weiterlesen"
    },
    "grammar": {
       "title": "Beginne mit etwas Grammatik",

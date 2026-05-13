@@ -85,7 +85,7 @@ export const OrganismArticleContent = ({
                      />
                   )}
                   <p className="text-base-content/70 mb-6 text-sm italic">💡 {t('learn.wordSpecification')}</p>
-                  <div className="bg-base-100 rounded-2xl shadow-sm">
+                  <div>
                      <AtomText
                         className="text-base-content !text-left leading-7 tracking-wide"
                         fontSize="medium"
