@@ -25,19 +25,20 @@ export const useAuthState = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
    const [isAuthenticated, setIsAuthenticated] = useState(pb.authStore.isValid)
-   const [user, setUser] = useState(pb.authStore.model as TUser | null)
+   const [user, setUser] = useState(pb.authStore.record as TUser | null)
    const [isLoading, setIsLoading] = useState(true)
 
    const logout = useCallback(() => {
       pb.authStore.clear()
       localStorage.removeItem('user')
+      localStorage.removeItem('provider')
    }, [])
 
    useEffect(() => {
-      const unsubscribe = pb.authStore.onChange((_token, model) => {
+      const unsubscribe = pb.authStore.onChange((_token, record) => {
          const isValid = pb.authStore.isValid
          setIsAuthenticated(isValid)
-         setUser(isValid ? (model as TUser | null) : null)
+         setUser(isValid ? (record as TUser | null) : null)
       })
 
       const validateAndRefresh = async () => {
@@ -45,13 +46,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             if (pb.authStore.isValid) {
                await pb.collection('users').authRefresh()
                setIsAuthenticated(true)
-               setUser(pb.authStore.model as TUser | null)
+               setUser(pb.authStore.record as TUser | null)
             } else {
                setIsAuthenticated(false)
                setUser(null)
             }
          } catch {
-            pb.authStore.clear()
             setIsAuthenticated(false)
             setUser(null)
          } finally {

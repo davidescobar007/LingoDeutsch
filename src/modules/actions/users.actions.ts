@@ -1,5 +1,3 @@
-import { AuthProviderInfo, RecordAuthResponse } from 'pocketbase'
-
 import {
    pbCreateRecord,
    pbGetSingleRecordQuery,
@@ -8,6 +6,7 @@ import {
    pbSignUp,
    pbUpdateRecord
 } from '@/network/index'
+import { pb } from '@/network/setup'
 import { localStorageHandler } from '@/utils'
 
 import { constants } from '../global.types'
@@ -38,21 +37,22 @@ export const updateUserScore = async ({ user, newScore }: { user: TUser; newScor
    updateUserState()
 }
 
-export const getLoginMethods = async (): Promise<AuthProviderInfo[]> => {
-   const { authProviders } = await pbListAuthMethods()
-   localStorage.setItem('provider', JSON.stringify(authProviders))
-   return authProviders
+export const getLoginMethods = async () => {
+   const methods = await pbListAuthMethods()
+   const providers = methods.oauth2?.providers || []
+   localStorage.setItem('provider', JSON.stringify(providers))
+   return providers
 }
 
 export const updateUserState = async () => {
-   const pbModel = JSON.parse(localStorage.getItem('pocketbase_auth') || '')
    try {
-      if (pbModel) {
-         const { model } = pbModel
-         const userScore = await getScore(model.id)
-         model['userScore'] = userScore
-         return model
+      const currentUser = pb.authStore.record as TUser | null
+      if (currentUser?.id) {
+         const userScore = await getScore(currentUser.id)
+         currentUser.userScore = userScore
+         return currentUser
       }
+      return null
    } catch (error: string | any) {
       return error
    }
@@ -66,7 +66,11 @@ export const googleLogin = async (): Promise<TUser> => {
    const { origin, pathname } = window.location
    const redirectUrl = `${origin}/${pathname.split('/')[1]}/app/home`
    const params = new URL(window.location as any).searchParams
-   const [provider] = JSON.parse(localStorage.getItem('provider') ?? '')
+   const storedProvider = localStorage.getItem('provider')
+   if (!storedProvider) {
+      throw new Error('No OAuth provider found in storage.')
+   }
+   const [provider] = JSON.parse(storedProvider)
    if (provider.state !== params.get('state')) {
       throw new Error("State parameters don't match.")
    }
@@ -74,7 +78,9 @@ export const googleLogin = async (): Promise<TUser> => {
    const code = params.get('code') ?? ''
    const codeVerifier = provider.codeVerifier
    try {
-      const { record, meta }: RecordAuthResponse = await pbSignUp(providerName, code, codeVerifier, redirectUrl)
+      const result = await pbSignUp(providerName, code, codeVerifier, redirectUrl)
+      const record = result.record
+      const meta = result.meta
       record?.id && pbCreateRecord(constants.SCORE, { user_id: record.id })
       if (!record.avatarUrl && !record.name) {
          record.avatarUrl = meta?.avatarUrl || ''
@@ -83,7 +89,7 @@ export const googleLogin = async (): Promise<TUser> => {
          saveItem(updatedUSer)
          return updatedUSer as unknown as TUser
       }
-      return record
+      return record as unknown as TUser
    } catch (error: string | any) {
       return error
    }
@@ -92,4 +98,5 @@ export const googleLogin = async (): Promise<TUser> => {
 export const logOut = () => {
    pbLogOut()
    localStorage.removeItem('user')
+   localStorage.removeItem('provider')
 }

@@ -74,8 +74,8 @@ const Login = ({ params }: { params: Promise<{ locale: string }> }) => {
                   {authMethods?.map((provider: AuthProviderInfo) => (
                      <a
                         className="btn btn-outline btn-primary"
-                        href={`${provider.authUrl}${window.location.origin}/${locale}/app/home`}
-                        key={provider.authUrl}
+                        href={`${provider.authURL}${window.location.origin}/${locale}/app/home`}
+                        key={provider.authURL}
                         role="button"
                      >
                         <span className="mr-1 ">

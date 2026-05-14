@@ -1,16 +1,3 @@
-export type AuthMethods = {
-   usernamePassword: boolean
-   emailPassword: boolean
-   authProviders: Array<{
-      name: string
-      state: string
-      codeVerifier: string
-      codeChallenge: string
-      codeChallengeMethod: string
-      authUrl: string
-   }>
-}
-
 export type TUser = {
    avatar?: string
    avatarUrl?: string

@@ -123,11 +123,11 @@ const getArticlesListByUser = async ({
             'id,article_id,is_completed,expand.article_id.created,expand.article_id.title,expand.article_id.imageFile,expand.article_id.estimated_read_time',
          sort: sortCriteria === 'recent' ? '-created' : sortCriteria === 'old' ? 'created' : '-updated'
       })
-      const transformedData = data.map((item) => ({
-         ...item.expand.article_id,
-         is_completed: item.is_completed,
-         id: item.article_id
-      }))
+const transformedData = data.map((item) => ({
+          ...(item.expand?.article_id || {}),
+          is_completed: item.is_completed,
+          id: item.article_id
+       }))
       return transformedData as unknown as TArticle[]
    } catch (error: any) {
       console.error('Error fetching articles by user:', error)

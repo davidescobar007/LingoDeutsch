@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { AuthProviderInfo } from 'pocketbase'
 import { sileo } from 'sileo'
 
 import { getScoreList } from '@/modules/actions/global.actions'
@@ -16,7 +17,7 @@ export const useAuth = () => {
       error,
       isLoading
    } = useQuery({ queryKey: ['authMethodsList'], queryFn: getLoginMethods })
-   return { authMethods, error, isLoading }
+   return { authMethods: authMethods as AuthProviderInfo[] | undefined, error, isLoading }
 }
 
 export const useLogin = (enabled = false) => {

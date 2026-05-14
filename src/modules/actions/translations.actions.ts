@@ -109,7 +109,7 @@ export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
          throw new Error('translation.error')
       }
       await delay()
-      const userId = pb.authStore.model?.id || ''
+      const userId = pb.authStore.record?.id || ''
       const valueExists = await checkVocaBularyExist(userId, selectedWordTranslation.id)
       if (valueExists.length) {
          throw new Error('translation.alreadySaved')
@@ -122,9 +122,6 @@ export const saveVocabularyToStudy = async (selectedWordTranslation: any) => {
       }
       await pbCreateRecord(constants.USER_VOCAB_PROGRESS, data)
    } catch (error) {
-      if ((error as any)?.status === 401) {
-         pb.authStore.clear()
-      }
       throw error
    }
 }

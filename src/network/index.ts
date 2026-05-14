@@ -12,8 +12,6 @@
  */
 /* eslint-disable no-useless-catch */
 
-import { RecordListQueryParams } from 'pocketbase'
-
 import { queryOperators } from '@/modules/global.types'
 import { pb } from '@/network/setup'
 
@@ -21,15 +19,15 @@ import { pb } from '@/network/setup'
  * Fetches a list of records from a PocketBase collection.
  *
  * @param {string} collection - Name of the PocketBase collection.
- * @param {RecordListQueryParams} [queryParamas] - (Optional) Query parameters for filtering, sorting, etc.
+ * @param {Record<string, any>} [queryParams] - (Optional) Query parameters for filtering, sorting, etc.
  * @returns {Promise<any[]>} Resolves to an array of records.
  *
  * @example
  *   const users = await pbGetList('users');
  *   const filtered = await pbGetList('posts', { filter: 'published=true' });
  */
-export const pbGetList = async (collection: string, queryParamas?: RecordListQueryParams) => {
-   const records = await pb.collection(collection).getFullList(100, queryParamas)
+export const pbGetList = async (collection: string, queryParams?: Record<string, any>) => {
+   const records = await pb.collection(collection).getFullList(queryParams)
    return records
 }
 
@@ -251,8 +249,10 @@ export const fetchData = async ({
  * @example
  *   const result = await pbSignUp('google', code, verifier, redirectUrl);
  */
-export const pbSignUp = async (provider: string, code: string, codeVerifier: any, redirectUrl: string) => {
-   const resultLoginData = await pb.collection('users').authWithOAuth2(provider, code, codeVerifier, redirectUrl)
+export const pbSignUp = async (provider: string, code: string, codeVerifier: string, redirectUrl: string) => {
+   const resultLoginData = await pb
+      .collection('users')
+      .authWithOAuth2Code(provider, code, codeVerifier, redirectUrl)
    return resultLoginData
 }
 
