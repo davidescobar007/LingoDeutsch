@@ -3,15 +3,16 @@
 ## Commands
 
 ```bash
-# Development
-npm run dev              # Start dev server (localhost:3000)
-npm run build            # Production build
-npm start                # Start production server
+# Development (Bun is the package manager & runtime)
+bun install              # Install dependencies
+bun run dev              # Start dev server (localhost:3000)
+bun run build            # Production build
+bun start                # Start production server
 
 # Code Quality
-npm run lint             # Check ESLint errors
-npm run lint:fix         # Auto-fix linting issues
-npm run prettier         # Format files (115 char width, 3-space tabs, single quotes)
+bun run lint             # Check ESLint errors
+bun run lint:fix         # Auto-fix linting issues
+bun run prettier         # Format files (115 char width, 3-space tabs, single quotes)
 
 # Testing
 # No test framework configured - add if needed

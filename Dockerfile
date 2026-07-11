@@ -3,17 +3,16 @@
 # -----------------------------------------------------------------------------
 # Stage 1: Install dependencies (cached when package*.json doesn't change)
 # -----------------------------------------------------------------------------
-FROM node:24-alpine AS deps
-RUN apk add --no-cache libc6-compat
+FROM oven/bun:1-alpine AS deps
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci --prefer-offline --no-audit --no-fund --maxsockets 5
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
 # -----------------------------------------------------------------------------
 # Stage 2: Build the application
 # -----------------------------------------------------------------------------
-FROM node:24-alpine AS builder
+FROM oven/bun:1-alpine AS builder
 WORKDIR /app
 
 # Copy node_modules from deps stage
@@ -26,12 +25,12 @@ COPY . .
 ENV NEXT_PUBLIC_API_ENVIRONMENT=https://blabling-pocketbase-qa.duckdns.org/
 
 # Build the app
-RUN npm run build
+RUN bun run build
 
 # -----------------------------------------------------------------------------
 # Stage 3: Production runner - minimal image
 # -----------------------------------------------------------------------------
-FROM node:24-alpine AS runner
+FROM oven/bun:1-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -40,13 +39,13 @@ ENV HOSTNAME=0.0.0.0
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Create non-root user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 bungroup
+RUN adduser --system --uid 1001 -G bungroup nextjs
 
 # Copy standalone output and static files
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:bungroup /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:bungroup /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:bungroup /app/public ./public
 
 # Switch to non-root user
 USER nextjs
@@ -54,5 +53,5 @@ USER nextjs
 # Expose port
 EXPOSE 3000
 
-# Use standalone server.js (lighter than next start)
-CMD ["node", "server.js"]
+# Use standalone server.js with Bun runtime
+CMD ["bun", "server.js"]
