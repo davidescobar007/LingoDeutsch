@@ -8,10 +8,12 @@
    scroll-behavior: smooth;
 }
 
+html,
 body {
-   padding: 0px;
+   height: 100%;
    margin: 0px;
-   overflow-x: hidden;
+   padding: 0px;
+   overflow: hidden;
 }
 
 /* Respect reduced motion preferences */

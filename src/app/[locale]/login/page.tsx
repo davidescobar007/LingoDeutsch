@@ -29,7 +29,7 @@ const Login = ({ params }: { params: Promise<{ locale: string }> }) => {
    // Show loading while checking authentication
    if (isLoadingUser) {
       return (
-         <div className="bg-base-200 flex min-h-screen w-full items-center justify-center">
+         <div className="bg-base-200 flex h-screen w-full items-center justify-center overflow-y-auto">
             <div className="flex flex-col items-center gap-4">
                <span className="loading loading-spinner loading-lg text-primary" />
                <p className="text-sm text-gray-600">{t('login.checkingAuth') || 'Checking authentication...'}</p>
@@ -44,7 +44,7 @@ const Login = ({ params }: { params: Promise<{ locale: string }> }) => {
    }
 
    return (
-      <div className="bg-base-200 flex min-h-screen w-full items-center justify-center p-4">
+      <div className="bg-base-200 flex h-screen w-full items-center justify-center overflow-y-auto p-4">
          <div className="card bg-base-100 w-full max-w-md shadow-xl">
             {/* Card Header - Logo/Brand */}
             <figure className="from-primary bg-gradient-to-br via-purple-600 to-indigo-700 px-10 pt-10">
