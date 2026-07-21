@@ -31,7 +31,7 @@ export const OrganismGrammarTopicsList = ({ level, topics, userProgress }: Organ
       const previousTopic = topics[topicIndex - 1]
       const previousProgress = userProgress?.find((p) => p.grammar_id === previousTopic.id)
 
-      if (!previousProgress?.isCompleted && level !== 'A1.1') {
+      if (!previousProgress?.isCompleted && level !== 'A1') {
          return 'locked'
       }
 
@@ -120,7 +120,7 @@ export const OrganismGrammarTopicsList = ({ level, topics, userProgress }: Organ
 
                         {/* Topic Name */}
                         <AtomTitle extraClassName="!text-base !mb-2" type="h4">
-                           {topic.topic_name?.es || 'Sin título'}
+                           {topic.topic_name || 'Sin título'}
                         </AtomTitle>
 
                         {/* Level Badge */}

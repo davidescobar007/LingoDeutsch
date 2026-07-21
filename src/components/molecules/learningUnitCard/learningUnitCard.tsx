@@ -12,6 +12,7 @@ type TMoleculeLearningUnitCard = {
    isOpen?: boolean
    children: ReactNode
    className?: string
+   weekNumber?: number
 }
 
 export const MoleculeLearningUnitCard: FunctionComponent<TMoleculeLearningUnitCard> = ({
@@ -22,7 +23,8 @@ export const MoleculeLearningUnitCard: FunctionComponent<TMoleculeLearningUnitCa
    accordionName,
    isOpen = false,
    children,
-   className = ''
+   className = '',
+   weekNumber
 }) => {
    const inputRef = useRef<HTMLInputElement>(null)
    const isCompleted = completedCount === totalCount && totalCount > 0
@@ -49,7 +51,10 @@ export const MoleculeLearningUnitCard: FunctionComponent<TMoleculeLearningUnitCa
                <div className="flex min-w-0 flex-1 flex-col space-y-2">
                   <div className="flex w-full min-w-0 items-start justify-between gap-2">
                      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-                        <AtomTitle type="h4">{title}</AtomTitle>
+                        <AtomTitle type="h4">
+                           {weekNumber ? `Semana ${weekNumber} · ` : ''}
+                           {title}
+                        </AtomTitle>
                         {learningGoal && (
                            <AtomText className="truncate" fontSize="small" isItalic isThin>
                               {learningGoal}

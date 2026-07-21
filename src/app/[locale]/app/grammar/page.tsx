@@ -20,7 +20,7 @@ const Grammar = () => {
    const searchParams = useSearchParams()
    const { user } = useAuthState()
 
-   const [selectedLevel, setSelectedLevel] = useState<GrammarLevel>('A1.1')
+   const [selectedLevel, setSelectedLevel] = useState<GrammarLevel>('A1')
    const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
    const [isInitialized, setIsInitialized] = useState(false)
 

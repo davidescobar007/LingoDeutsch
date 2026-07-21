@@ -218,10 +218,7 @@ export type TGrammar = {
    context_core?: string
    id: string
    level: string
-   topic_name?: {
-      de: string
-      es: string
-   }
+   topic_name?: string
    created: string
    updated: string
    collectionId: string

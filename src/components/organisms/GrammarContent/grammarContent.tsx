@@ -118,7 +118,7 @@ export const OrganismGrammarContent = ({
       <section className="container-card border p-6 lg:col-span-8" id="grammar-content">
          <header className="border-base-300 mb-6 flex items-center justify-between rounded-lg border-b pb-4">
             <AtomTitle extraClassName="mt-0" type="h3">
-               {grammarTopicContent?.topic_name?.es}
+               {grammarTopicContent?.topic_name}
             </AtomTitle>
             <AtomBadge color="primary">{grammarTopicContent?.level}</AtomBadge>
          </header>

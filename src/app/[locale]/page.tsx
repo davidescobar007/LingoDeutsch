@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { TemplateLanding } from '@/components/templates'
+import { GRAMMAR_LEVELS } from '@/modules/global.types'
 
 const BASE_URL = process.env.BASE_URL || 'https://blabling.com'
 
@@ -145,14 +146,14 @@ const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
       name: locale === 'es' ? 'Curso de Alemán Online' : 'Online Deutschkurs',
       description:
          locale === 'es'
-            ? 'Aprende alemán de A1 a B2 con lecturas interactivas, vocabulario con repetición espaciada y gramática clara'
-            : 'Lerne Deutsch von A1 bis B2 mit interaktiven Texten, Vokabeln mit Spaced Repetition und klarer Grammatik',
+            ? 'Aprende alemán de A1 a C1 con lecturas interactivas, vocabulario con repetición espaciada y gramática clara'
+            : 'Lerne Deutsch von A1 bis C1 mit interaktiven Texten, Vokabeln mit Spaced Repetition und klarer Grammatik',
       provider: {
          '@type': 'Organization',
          name: 'Blabling',
          url: BASE_URL
       },
-      educationalLevel: ['A1', 'A2', 'B1', 'B2'],
+      educationalLevel: GRAMMAR_LEVELS,
       inLanguage: locale === 'es' ? 'es' : 'de',
       teaches: 'German Language',
       isAccessibleForFree: true,

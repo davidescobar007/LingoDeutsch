@@ -26,7 +26,7 @@ export interface GrammarProgressMetrics {
  */
 export const useGrammarProgress = (
    user: TUser | null | undefined,
-   level: GrammarLevel = 'A1.1'
+   level: GrammarLevel = 'A1'
 ): GrammarProgressMetrics => {
    const isGuest = !user || !user.id
    const { data: grammarList, isLoading } = useGetGrammarByLevel(level)
@@ -43,7 +43,7 @@ export const useGrammarProgress = (
             nextTopic: grammarList?.[0]
                ? {
                     id: grammarList[0].id,
-                    name: grammarList[0].topic_name?.es || 'Próximo tema'
+                    name: grammarList[0].topic_name || 'Próximo tema'
                  }
                : undefined
          }
@@ -79,7 +79,7 @@ export const useGrammarProgress = (
          nextTopic: nextTopic
             ? {
                  id: nextTopic.id,
-                 name: nextTopic.topic_name?.es || 'Próximo tema'
+                 name: nextTopic.topic_name || 'Próximo tema'
               }
             : undefined
       }

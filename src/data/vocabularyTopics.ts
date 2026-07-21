@@ -1,3 +1,5 @@
+import { VocabularyLevel } from '@/modules/global.types'
+
 // Vocabulary topics organized by CEFR levels
 export const vocabularyTopics = {
    A1: [
@@ -31,6 +33,20 @@ export const vocabularyTopics = {
       { id: 'science', name: 'Wissenschaft', icon: '🔬', description: 'Ciencia', wordCount: 48 },
       { id: 'media', name: 'Medien', icon: '📺', description: 'Medios', wordCount: 35 },
       { id: 'economy', name: 'Wirtschaft', icon: '📈', description: 'Economía', wordCount: 40 }
+   ],
+   C1: [
+      { id: 'career', name: 'Beruf und Karriere', icon: '💼', description: 'Trabajo y carrera', wordCount: 40 },
+      { id: 'society', name: 'Gesellschaft', icon: '🏛️', description: 'Sociedad', wordCount: 38 },
+      { id: 'research', name: 'Forschung', icon: '🔬', description: 'Ciencia e investigación', wordCount: 45 },
+      { id: 'philosophy', name: 'Philosophie', icon: '🤔', description: 'Filosofía y ética', wordCount: 32 },
+      { id: 'law', name: 'Recht', icon: '⚖️', description: 'Derecho y justicia', wordCount: 42 },
+      {
+         id: 'history',
+         name: 'Kultur und Geschichte',
+         icon: '🏰',
+         description: 'Cultura e historia',
+         wordCount: 36
+      }
    ]
 }
 
@@ -42,4 +58,4 @@ export type VocabularyTopic = {
    wordCount: number
 }
 
-export type VocabularyLevel = 'A1' | 'A2' | 'B1' | 'B2'
+export type { VocabularyLevel }

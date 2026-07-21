@@ -96,8 +96,9 @@ export const OrganismGrammarSidebar = ({
 
          <div className="join join-vertical w-full">
             {sortedUnits.length > 0 ? (
-               sortedUnits.map((unit, _index) => {
+               sortedUnits.map((unit, index) => {
                   const completedCount = getCompletedTopicsCount(unit.topics)
+                  const weekNumber = index + 1
 
                   return (
                      <MoleculeLearningUnitCard
@@ -108,12 +109,14 @@ export const OrganismGrammarSidebar = ({
                         learningGoal={unit.learningGoal}
                         title={unit.title}
                         totalCount={unit.topics.length}
+                        weekNumber={weekNumber}
                      >
                         <MoleculeTimeLine
                            activeTopic={selectedTopic}
                            onSelectTopic={onSelectTopic}
                            topics={unit.topics}
                            userGrammarProgress={userGrammarProgress}
+                           weekNumber={weekNumber}
                         />
                      </MoleculeLearningUnitCard>
                   )

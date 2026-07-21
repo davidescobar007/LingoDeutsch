@@ -426,8 +426,8 @@
       "id": "4xmmq88amuqe0sa",
       "listRule": "",
       "viewRule": "",
-      "createRule": null,
-      "updateRule": null,
+      "createRule": "@request.auth.id != \"\"",
+      "updateRule": "@request.auth.id != \"\"",
       "deleteRule": null,
       "name": "articles",
       "type": "base",
@@ -632,7 +632,7 @@
             "required": true,
             "system": false,
             "type": "select",
-            "values": ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2", "B2.1", "B2.2"]
+            "values": ["A1", "A2", "B1", "B2", "C1"]
          },
          {
             "help": "",
@@ -648,15 +648,19 @@
             "type": "number"
          },
          {
+            "autogeneratePattern": "",
             "help": "",
             "hidden": false,
             "id": "5xkaoj1a",
-            "maxSize": 2000000,
+            "max": 0,
+            "min": 0,
             "name": "topic_name",
+            "pattern": "",
             "presentable": true,
+            "primaryKey": false,
             "required": true,
             "system": false,
-            "type": "json"
+            "type": "text"
          },
          {
             "autogeneratePattern": "",
@@ -831,7 +835,7 @@
             "required": false,
             "system": false,
             "type": "select",
-            "values": ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2", "B2.1", "B2.2"]
+            "values": ["A1", "A2", "B1", "B2", "C1"]
          },
          {
             "autogeneratePattern": "",

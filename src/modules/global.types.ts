@@ -37,9 +37,20 @@ export const queryOperators = {
    IN: 'in',
    NOT_IN: 'not-in'
 }
-export type GrammarLevel = 'A1.1' | 'A1.2' | 'A2.1' | 'A2.2' | 'B1.1' | 'B1.2' | 'B2.1' | 'B2.2'
+/**
+ * Niveles CEFR consolidados (A1-C1).
+ * Esta es la fuente única de verdad para todos los niveles del app.
+ * `GrammarLevel` y `VocabularyLevel` son alias del mismo tipo subyacente.
+ */
+export type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
 
-export const GRAMMAR_LEVELS: GrammarLevel[] = ['A1.1', 'A1.2', 'A2.1', 'A2.2', 'B1.1', 'B1.2', 'B2.1', 'B2.2']
+export type VocabularyLevel = GrammarLevel
+
+export type CefrLevel = GrammarLevel
+
+export const GRAMMAR_LEVELS: GrammarLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+export const VOCABULARY_LEVELS: VocabularyLevel[] = GRAMMAR_LEVELS
 
 export type GrammarLevelInfo = {
    description: string
@@ -48,47 +59,34 @@ export type GrammarLevelInfo = {
 }
 
 export const GRAMMAR_LEVEL_INFO: Record<GrammarLevel, GrammarLevelInfo> = {
-   'A1.1': {
+   A1: {
       description: 'Fundamentos básicos',
       emoji: '🌱',
       label: 'Principiante'
    },
-   'A1.2': {
-      description: 'Consolidar conocimientos iniciales',
-      emoji: '🌿',
-      label: 'Principiante +'
-   },
-   'A2.1': {
+   A2: {
       description: 'Expresión elemental',
-      emoji: '🌳',
+      emoji: '🌿',
       label: 'Elemental'
    },
-   'A2.2': {
-      description: 'Expresión elemental avanzada',
-      emoji: '🏞️',
-      label: 'Elemental +'
-   },
-   'B1.1': {
+   B1: {
       description: 'Expresión intermedia',
-      emoji: '⛰️',
+      emoji: '🌳',
       label: 'Intermedio'
    },
-   'B1.2': {
-      description: 'Expresión intermedia avanzada',
-      emoji: '🏔️',
-      label: 'Intermedio +'
-   },
-   'B2.1': {
+   B2: {
       description: 'Expresión compleja',
-      emoji: '🗻',
+      emoji: '⛰️',
       label: 'Intermedio Avanzado'
    },
-   'B2.2': {
-      description: 'Dominio profundo',
-      emoji: '🌍',
-      label: 'Intermedio Avanzado +'
+   C1: {
+      description: 'Dominio avanzado',
+      emoji: '🏔️',
+      label: 'Avanzado'
    }
 }
+
+export const VOCABULARY_LEVEL_INFO: Record<VocabularyLevel, GrammarLevelInfo> = GRAMMAR_LEVEL_INFO
 
 export const tailwindColors = {
    blue: [

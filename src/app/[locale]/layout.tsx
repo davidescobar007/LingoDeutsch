@@ -66,7 +66,7 @@ const RootLayout = async ({
                   <body className={`${plusJakartaSans.className} text-neutral bg-base-200`}>
                      {children}
                      <ResponsiveToaster />
-                     <ReactQueryDevtools buttonPosition="relative" initialIsOpen={false} />
+                     <ReactQueryDevtools buttonPosition="top-right" initialIsOpen={false} />
                   </body>
                </html>
             </NextIntlClientProvider>
