@@ -194,7 +194,31 @@
       "podcastLockedDescription": "Schalte das Audio dieser Lektion frei und speichere deinen Fortschritt",
       "podcastLockedCTA": "Zugreifen",
       "grammarNotFound": "Grammatiklektion nicht gefunden. Überprüfe, ob die ID korrekt ist.",
-      "cacheFailed": "Audio konnte nicht temporär gespeichert werden, aber du kannst es jetzt anhören."
+      "cacheFailed": "Audio konnte nicht temporär gespeichert werden, aber du kannst es jetzt anhören.",
+      "tutor": {
+         "ask": "Frag den Tutor",
+         "title": "Grammatik-Tutor",
+         "defaultTopic": "diese Lektion",
+         "greeting": "Hallo! Ich bin Lingo, dein Tutor. Frag mich alles zu {topic}.",
+         "placeholder": "Schreib deine Frage...",
+         "sending": "Tippt...",
+         "clear": "Unterhaltung löschen",
+         "clearConfirm": "Alles löschen?",
+         "close": "Tutor schließen",
+         "you": "Du",
+         "remaining": "{count} Fragen heute übrig",
+         "limitReached": "Tageslimit erreicht. Versuche es morgen wieder.",
+         "error": "Ich konnte nicht antworten. Bitte erneut versuchen.",
+         "emptyMessage": "Schreib eine Frage, um zu beginnen.",
+         "send": "Nachricht senden",
+         "invalidBody": "Ungültige Anfrage.",
+         "missingGrammarId": "Lektion fehlt.",
+         "grammarNotFound": "Lektion nicht gefunden.",
+         "authCta": {
+            "title": "Melde dich an, um mit dem Tutor zu chatten",
+            "description": "Stelle Fragen zu dieser Lektion und speichere deine Unterhaltungen, um sie später zu wiederholen."
+         }
+      }
    },
    "practice": {
       "cardStat": {

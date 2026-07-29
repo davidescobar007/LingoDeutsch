@@ -359,6 +359,21 @@ export type TwordSpecification = {
    word: string
 }
 
+export type TTutorMessage = {
+   role: 'user' | 'model'
+   content: string
+   createdAt: number
+}
+
+export type TTutorConversation = {
+   userId: string
+   grammarId: string
+   messages: TTutorMessage[]
+   todayCount: number
+   lastDay: string
+   updatedAt: number
+}
+
 export type TQuizQuestion = {
    id: string
    updated: string

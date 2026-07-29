@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
@@ -66,7 +65,7 @@ const RootLayout = async ({
                   <body className={`${plusJakartaSans.className} text-neutral bg-base-200`}>
                      {children}
                      <ResponsiveToaster />
-                     <ReactQueryDevtools buttonPosition="top-right" initialIsOpen={false} />
+                     {/* <ReactQueryDevtools buttonPosition="top-right" initialIsOpen={false} /> */}
                   </body>
                </html>
             </NextIntlClientProvider>
