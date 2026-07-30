@@ -1,13 +1,15 @@
 'use client'
 
 import {
-   OrganismFeatureShowcase,
+   OrganismBenefits,
+   OrganismDemoShowcase,
+   OrganismFaqSection,
    OrganismFinalCTA,
    OrganismFooterSection,
    OrganismHeroSection,
+   OrganismHowItWorks,
    OrganismNavbar,
-   OrganismStatsSection,
-   OrganismTestimonialsSection
+   OrganismTrustSection
 } from '@/components/organisms'
 
 interface TemplateLandingProps {
@@ -16,24 +18,17 @@ interface TemplateLandingProps {
 
 export const TemplateLanding = ({ locale }: TemplateLandingProps) => {
    return (
-      <div className="flex h-screen flex-col overflow-y-auto">
+      <div className="bg-base-100 flex h-screen flex-col overflow-y-auto">
          <OrganismNavbar locale={locale} />
 
-         <main className="bg-white">
-            <div className="container mx-auto px-4 py-12 md:px-12 lg:py-24">
-               <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
-                  {/* Left Column - Sticky Hero */}
-                  <OrganismHeroSection />
-
-                  {/* Right Column - All Content */}
-                  <div className="w-full space-y-32 lg:w-1/2">
-                     <OrganismFeatureShowcase />
-                     <OrganismStatsSection />
-                     <OrganismTestimonialsSection />
-                     <OrganismFinalCTA />
-                  </div>
-               </div>
-            </div>
+         <main className="bg-base-100 flex-1">
+            <OrganismHeroSection />
+            <OrganismDemoShowcase />
+            <OrganismHowItWorks />
+            <OrganismBenefits />
+            <OrganismTrustSection />
+            <OrganismFaqSection />
+            <OrganismFinalCTA />
          </main>
 
          <OrganismFooterSection />

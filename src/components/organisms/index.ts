@@ -38,12 +38,15 @@ export { OrganismWelcomeHero } from './WelcomeHero/welcomeHero'
 export { OrganismWordSpecification } from './WordSpecification/wordSpecification'
 
 // Landing Page Sections
-export { OrganismFeatureShowcase } from './FeatureShowcase/featureShowcase'
+export { OrganismBenefits } from './Benefits'
+export { OrganismDemoShowcase } from './DemoShowcase'
+export { OrganismFaqSection } from './FaqSection'
 export { OrganismFinalCTA } from './FinalCTA/finalCTA'
 export { OrganismHeroSection } from './HeroSection/heroSection'
+export { OrganismHowItWorks } from './HowItWorks'
 export { OrganismFooterSection } from './Landing'
-export { OrganismStatsSection } from './StatsSection/statsSection'
 export { OrganismTestimonialsSection } from './TestimonialsSection/testimonialsSection'
+export { OrganismTrustSection } from './TrustSection'
 
 // About Page Sections
 export { OrganismAboutFeatures, OrganismAboutHero, OrganismAboutMission, OrganismAboutTeam } from './About'

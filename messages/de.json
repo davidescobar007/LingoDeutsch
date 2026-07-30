@@ -2,15 +2,16 @@
    "landing": {
       "hero": {
          "badge": "🇩🇪 Deutsch für Spanischsprachige",
-         "title": "Beherrsche Deutsch durch das Lesen dessen, was dich begeistert",
-         "subtitle": "Von A1 bis B2 mit echten Texten, Vokabeln, die du dir merkst, und klarer Grammatik. Alles auf Spanisch.",
+         "title": "Beherrsche zuerst die Grammatik, dann den Wortschatz und schließlich das Lesen",
+         "subtitle": "Von A1 bis B2. Zuerst die Basis, dann die Praxis, schließlich die Immersion.",
          "ctaPrimary": "Jetzt kostenlos starten",
          "ctaSecondary": "So funktioniert es",
-         "noCreditCard": "Keine Kreditkarte erforderlich",
-         "trustLine": "Schließe dich Tausenden von Studenten an, die bereits Blabling vertrauen",
-         "animationLabel": "Illustrative Animation zum Deutschlernen"
+         "animationLabel": "Illustrative Animation zum Deutschlernen",
+         "screenshotAlt": "Screenshot des Blabling-Dashboards mit deinem Grammatikfortschritt, Lernstreak und nächsten Schritten"
       },
       "benefits": {
+         "title": "Alles, was du zum Deutschlernen brauchst",
+         "subtitle": "Eine geordnete und angeleitete Methode für Spanischsprachige",
          "translation": "Sofortige Übersetzung für jedes Wort",
          "spaced": "Wissenschaftlich bewiesene Wiederholung",
          "grammar": "16 strukturierte Grammatiklektionen"
@@ -54,8 +55,7 @@
          "role3": "22 Jahre, Argentinien - Universitätsstudentin",
          "quote3": "Die deutsche Grammatik schien mir immer unmöglich, aber hier wird sie so klar erklärt, dass ich sie endlich verstehe. Das Streak-System hält mich motiviert.",
          "words": "Wörter",
-         "streak": "Serie",
-         "trustLine": "Schließe dich Tausenden zufriedener Studenten an, die täglich Deutsch lernen"
+         "streak": "Serie"
       },
       "faq": {
          "badge": "❓ Häufig gestellte Fragen",
@@ -379,7 +379,8 @@
       "help": "Hilfe",
       "privacy": "Datenschutz",
       "terms": "Nutzungsbedingungen",
-      "contact": "Kontakt"
+      "contact": "Kontakt",
+      "copyright": "© {year} Blabling. Alle Rechte vorbehalten."
    },
    "privacy": {
       "hero": {

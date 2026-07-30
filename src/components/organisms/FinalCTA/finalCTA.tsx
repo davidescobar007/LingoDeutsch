@@ -1,22 +1,21 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { AtomButton } from '@/components/atoms'
 
 export const OrganismFinalCTA = () => {
+   const t = useTranslations('landing.hero')
+
    return (
-      <div className="group">
-         <div className="card-3d from-primary hover:shadow-3xl overflow-hidden rounded-3xl bg-gradient-to-r via-blue-700 to-purple-600 p-12 shadow-2xl transition-all">
-            <div className="text-center text-white">
-               <h3 className="mb-4 text-4xl font-black">¿Listo para comenzar?</h3>
-               <p className="mb-8 text-lg text-white/90">
-                  Únete a mas de 500 usuarios que ya empiezan dominan el alemán
-               </p>
-               <AtomButton href="/app/home" size="lg" type="link" variant="ACCENT">
-                  Empezar Gratis Ahora 🚀
-               </AtomButton>
-               <p className="mt-6 text-sm text-white/80">Sin tarjeta de crédito · Sin anuncios · 100% gratis</p>
-            </div>
+      <section className="bg-base-200/60 border-base-300 border-t">
+         <div className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
+            <h2 className="text-neutral mb-4 text-3xl font-bold tracking-tight md:text-4xl">{t('title')}</h2>
+            <p className="text-neutral/70 mx-auto mb-10 max-w-xl text-lg">{t('subtitle')}</p>
+            <AtomButton href="/app/home" size="lg" type="link" variant="PRIMARY">
+               {t('ctaPrimary')}
+            </AtomButton>
          </div>
-      </div>
+      </section>
    )
 }

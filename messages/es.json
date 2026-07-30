@@ -1,17 +1,18 @@
 {
    "landing": {
       "hero": {
-         "badge": "🇩🇪 Alemán para hispanohablantes - El Camino Correcto",
-         "title": "Domina la gramática primero, luego el vocabulario, finalmente la lectura",
+         "badge": "🇩🇪 Alemán para hispanohablantes",
+         "title": "Domina la gramática primero, luego sigue con vocabulario y la lectura",
          "titleHighlight": "alemán",
-         "subtitle": "De A1 a B2 con una metodología comprobada. Primero entiendes las reglas, luego practicas palabras en contexto real, y finalmente lees artículos completos. Todo en español.",
+         "subtitle": "De A1 a B2. Primero la base, luego la práctica, finalmente la inmersión.",
          "ctaPrimary": "Comienza gratis ahora",
          "ctaSecondary": "Ver cómo funciona",
-         "noCreditCard": "No requiere tarjeta de crédito",
-         "trustLine": "Miles de hispanohablantes están dominando el alemán con nuestro método",
-         "animationLabel": "Animación ilustrativa de aprendizaje de alemán"
+         "animationLabel": "Animación ilustrativa de aprendizaje de alemán",
+         "screenshotAlt": "Captura del panel de Blabling con tu progreso de gramática, racha de aprendizaje y próximos pasos"
       },
       "benefits": {
+         "title": "Todo lo que necesitas para aprender alemán",
+         "subtitle": "Un método ordenado y guiado, pensado para hispanohablantes",
          "translation": "Traducción instantánea en cada palabra",
          "spaced": "Repetición espaciada científicamente probada",
          "grammar": "16 lecciones de gramática estructuradas"
@@ -55,8 +56,7 @@
          "role3": "22 años, Argentina - Estudiante universitaria",
          "quote3": "La gramática alemana siempre me pareció imposible, pero aquí está explicada de forma tan clara que por fin la entiendo. El sistema de rachas me mantiene motivada.",
          "words": "palabras",
-         "streak": "racha",
-         "trustLine": "Únete a miles de estudiantes satisfechos aprendiendo alemán cada día"
+         "streak": "racha"
       },
       "faq": {
          "badge": "❓ Preguntas frecuentes",
@@ -381,7 +381,8 @@
       "help": "Ayuda",
       "privacy": "Privacidad",
       "terms": "Términos y Condiciones",
-      "contact": "Contacto"
+      "contact": "Contacto",
+      "copyright": "© {year} Blabling. Todos los derechos reservados."
    },
    "privacy": {
       "hero": {

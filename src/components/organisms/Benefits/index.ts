@@ -1,0 +1,1 @@
+export { OrganismBenefits } from './benefits'

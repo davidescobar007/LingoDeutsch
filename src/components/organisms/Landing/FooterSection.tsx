@@ -10,8 +10,8 @@ export const OrganismFooterSection = () => {
    const currentYear = new Date().getFullYear()
 
    return (
-      <footer className="border-t border-gray-100 bg-white py-12">
-         <div className="container mx-auto px-4 text-center">
+      <footer className="border-base-300 bg-base-100 border-t py-12">
+         <div className="mx-auto max-w-5xl px-6 text-center">
             <div className="mb-8 flex justify-center">
                <Image alt="blabling logo" height={60} priority src="/images/logo4.svg" width={70} />
             </div>
@@ -31,11 +31,7 @@ export const OrganismFooterSection = () => {
                </Link>
             </nav>
 
-            <p className="text-neutral/40 text-sm">
-               © {currentYear} Blabling. Todos los derechos reservados.
-               <br />
-               <span className="mt-2 block text-xs">Hecho con ❤️ para estudiantes de alemán.</span>
-            </p>
+            <p className="text-neutral/40 text-sm">{t('copyright', { year: currentYear })}</p>
          </div>
       </footer>
    )
