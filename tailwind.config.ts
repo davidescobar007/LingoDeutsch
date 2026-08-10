@@ -135,12 +135,13 @@ const config: Config = {
                accent: '#FFC800', // Gold/Yellow - For gamification elements
                'accent-content': '#422a00',
 
-               neutral: '#0e275e', // Dark cool gray
+               neutral: '#1f2937', // Dark cool gray
                'neutral-content': '#FFFFFF',
 
                'base-100': '#FFFFFF',
                'base-200': '#F9FAFB', // Very light cool gray
                'base-300': '#E5E7EB', // Border gray
+               'base-content': '#0e275e', // Primary text color - deep navy blue
 
                info: '#2563EB',
                success: '#22c55e', // Vibrant Green

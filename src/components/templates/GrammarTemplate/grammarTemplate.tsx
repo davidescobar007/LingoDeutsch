@@ -86,7 +86,7 @@ export const TemplateGrammar = ({
    return (
       <main className="w-full">
          <div className="mb-12">
-            <AtomTitle type="h1">Gramática Alemana</AtomTitle>
+            <AtomTitle type="h3">Gramática Alemana</AtomTitle>
             <AtomText className="mt-2">
                Domina la gramática paso a paso, desde lo básico hasta nivel avanzado.
             </AtomText>
