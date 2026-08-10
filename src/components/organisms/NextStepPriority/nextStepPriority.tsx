@@ -101,7 +101,7 @@ export const OrganismNextStepPriority = ({
 
    return (
       <div className="w-full">
-         <AtomTitle extraClassName="!text-lg mb-4" type="h3">
+         <AtomTitle extraClassName="mb-4" type="h4">
             ⚡ Tu Siguiente Paso
          </AtomTitle>
 
@@ -119,12 +119,12 @@ export const OrganismNextStepPriority = ({
                   >
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                           <span className="text-4xl">{primaryAction.emoji}</span>
-                           <div>
-                              <AtomText className="block font-bold" fontSize="medium">
+                           <span className="text-xl">{primaryAction.emoji}</span>
+                           <div className="flex flex-col gap-1">
+                              <AtomText fontSize="medium" isBold>
                                  {primaryAction.title}
                               </AtomText>
-                              <AtomText className="mt-1" fontSize="medium" isThin>
+                              <AtomText fontSize="medium" isThin>
                                  {primaryAction.description}
                               </AtomText>
                            </div>
@@ -169,8 +169,8 @@ export const OrganismNextStepPriority = ({
                            <div className="flex flex-col gap-2">
                               <div className="flex items-center justify-between">
                                  <div className="flex items-center gap-3">
-                                    <span className="text-2xl">{action.emoji}</span>
-                                    <AtomText className="font-semibold" fontSize="medium">
+                                    <span className="text-xl">{action.emoji}</span>
+                                    <AtomText fontSize="medium" isBold>
                                        {action.title}
                                     </AtomText>
                                  </div>
@@ -186,12 +186,12 @@ export const OrganismNextStepPriority = ({
                                  )}
                               </div>
                               {showVocabStats ? (
-                                 <AtomText className="text-base-content/70" fontSize="small">
+                                 <AtomText fontSize="small" isThin>
                                     {totalWords} palabras · {dueForReview} pendientes · {masteryPercentage}%
                                     dominado
                                  </AtomText>
                               ) : (
-                                 <AtomText className="text-sm" fontSize="small" isThin>
+                                 <AtomText fontSize="small" isThin>
                                     {action.description}
                                  </AtomText>
                               )}

@@ -1,7 +1,7 @@
 'use client'
 import { useTranslations } from 'next-intl'
 
-import { AtomText, AtomTitle } from '@/components/atoms'
+import { AtomBadge, AtomText, AtomTitle } from '@/components/atoms'
 import { MoleculeLockedOverlay } from '@/components/molecules'
 
 type OrganismStreakCardProps = {
@@ -45,68 +45,120 @@ export const OrganismStreakCard = ({
       activitiesByType &&
       (activitiesByType.grammar > 0 || activitiesByType.articles > 0 || activitiesByType.vocabulary > 0)
 
+   // Get contextual message based on streak state
+   const getContextualMessage = () => {
+      if (isGuest) return 'Regístrate para guardar tu progreso 📊'
+
+      if (displayStreak === 0) {
+         return practicedToday ? '¡Buen comienzo! Sigue practicando 🎉' : '¡Empieza tu racha hoy! 🔥'
+      }
+
+      if (practicedToday) {
+         if (displayStreak >= 30) return `¡${displayStreak} días! Impresionante 🌟`
+         if (displayStreak >= 7) return '¡Racha semanal completa! 🔥🔥'
+         return '¡Racha activa! Sigue así 🎉'
+      }
+
+      return '¡No rompas tu racha! Practica hoy 💪'
+   }
+
+   // Get heatmap cell styles based on state
+   const getHeatmapCellClass = (isCompleted: boolean, isToday: boolean) => {
+      if (isCompleted && isToday) {
+         return 'bg-primary text-primary-content ring-primary/40 ring-2'
+      }
+      if (isCompleted) {
+         return 'bg-primary text-primary-content'
+      }
+      if (isToday) {
+         return 'border-primary/40 bg-primary/5 border-2 border-dashed'
+      }
+      return 'bg-base-200'
+   }
+
    const cardContent = (
-      <div className="container-card p-6">
-         <div className="mb-2 flex items-center justify-between">
-            <AtomTitle type="h3">🔥 Racha de Aprendizaje</AtomTitle>
+      <div className="container-card flex h-full flex-col p-6">
+         {/* Header */}
+         <div className="mb-6 flex items-start justify-between">
+            <div className="flex items-start gap-3">
+               <span className="text-xl">🔥</span>
+               <div>
+                  <div className="flex items-center gap-3">
+                     <AtomTitle type="h3">Racha de Aprendizaje</AtomTitle>
+                     {practicedToday && <AtomBadge color="success">Activa hoy</AtomBadge>}
+                  </div>
+                  <AtomText className="mt-1" fontSize="medium" isThin>
+                     {displayStreak} días consecutivos
+                  </AtomText>
+               </div>
+            </div>
             <AtomText className="text-orange-500" fontSize="medium" isBold>
-               {displayStreak} días
+               {displayStreak}
             </AtomText>
          </div>
 
-         <AtomText className="mb-4 block" fontSize="medium" isThin>
-            días consecutivos
-         </AtomText>
+         {/* Weekly Heatmap */}
+         <div className="mb-6">
+            <div className="grid grid-cols-7 gap-2">
+               {DAYS.map((day, index) => {
+                  const isToday = index === currentDayIndex
+                  const isCompleted = days[index]
 
-         {/* 7-day calendar grid */}
-         <div className="grid grid-cols-7 gap-2">
-            {DAYS.map((day, index) => {
-               const isToday = index === currentDayIndex
-               return (
-                  <div
-                     className={`flex flex-col items-center justify-center rounded-lg p-3 transition-all duration-300 ${
-                        days[index]
-                           ? isToday
-                              ? 'bg-success/30 border-success ring-success border-2 ring-2'
-                              : 'bg-success/20 border-success border'
-                           : isToday
-                           ? 'bg-warning/10 border-warning border-2'
-                           : 'bg-base-200 border-base-300 border'
-                     }`}
-                     key={day}
-                  >
-                     <span className="text-base-content text-xs font-semibold">{day}</span>
-                     {days[index] && <span className="mt-1 text-lg">✓</span>}
-                     {isToday && !days[index] && <span className="mt-1 text-xs">hoy</span>}
-                  </div>
-               )
-            })}
+                  return (
+                     <div className="flex flex-col items-center gap-1.5" key={day}>
+                        <span className="text-base-content/50 text-xs font-medium">{day}</span>
+                        <div
+                           className={`flex h-10 w-10 items-center justify-center rounded-md transition-all duration-300 ${getHeatmapCellClass(
+                              isCompleted,
+                              isToday
+                           )}`}
+                        >
+                           {isCompleted && <span className="text-lg">✓</span>}
+                           {isToday && !isCompleted && <span className="text-primary/60 text-xs">hoy</span>}
+                        </div>
+                     </div>
+                  )
+               })}
+            </div>
          </div>
 
-         {/* Activity breakdown */}
+         {/* Activity Breakdown */}
          {showBreakdown && hasActivities && (
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
+            <div className="mb-4 flex flex-wrap gap-3">
                {activitiesByType.grammar > 0 && (
-                  <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">
-                     📘 {activitiesByType.grammar} gramatica
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                     <span className="bg-primary h-2 w-2 rounded-sm" />
+                     <span className="text-base-content/70 text-xs">
+                        <span className="text-xs">📘</span> Gramática {activitiesByType.grammar}
+                     </span>
+                  </div>
                )}
                {activitiesByType.articles > 0 && (
-                  <span className="bg-info/10 text-info rounded-full px-2 py-1 text-xs">
-                     📖 {activitiesByType.articles} lectura
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                     <span className="bg-info h-2 w-2 rounded-sm" />
+                     <span className="text-base-content/70 text-xs">
+                        <span className="text-xs">📖</span> Lectura {activitiesByType.articles}
+                     </span>
+                  </div>
                )}
                {activitiesByType.vocabulary > 0 && (
-                  <span className="bg-success/10 text-success rounded-full px-2 py-1 text-xs">
-                     🎯 {activitiesByType.vocabulary} vocabulario
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                     <span className="bg-success h-2 w-2 rounded-sm" />
+                     <span className="text-base-content/70 text-xs">
+                        <span className="text-xs">🎯</span> Vocabulario {activitiesByType.vocabulary}
+                     </span>
+                  </div>
                )}
             </div>
          )}
 
-         <AtomText className="mt-4 block" fontSize="small" isThin>
-            {practicedToday ? '¡Excelente! Ya practicaste hoy 🎉' : '¡Sigue así! 💪'}
-         </AtomText>
+         {/* Contextual Message */}
+         <div className="mt-auto flex items-center gap-2">
+            <span className="text-base">💡</span>
+            <AtomText fontSize="small" isThin>
+               {getContextualMessage()}
+            </AtomText>
+         </div>
       </div>
    )
 

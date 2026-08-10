@@ -135,7 +135,7 @@ const config: Config = {
                accent: '#FFC800', // Gold/Yellow - For gamification elements
                'accent-content': '#422a00',
 
-               neutral: '#1f2937', // Dark cool gray
+               neutral: '#0e275e', // Dark cool gray
                'neutral-content': '#FFFFFF',
 
                'base-100': '#FFFFFF',

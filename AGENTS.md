@@ -81,11 +81,22 @@ export const MyComponent = () => {
 ### className vs extraClassName
 
 -  **`extraClassName`** (AtomButton, AtomTitle, AtomInput): ONLY for spacing/layout (margin, padding)
+   -  NUNCA para tamaño, color, fuerza, ni con `!important`
+   -  Si necesitas un tamaño diferente en `AtomTitle`, usa `type="h4"` en lugar de `!text-lg`
 -  **`className`** (AtomText, AtomBadge, Icon): Can include minor adjustments
+   -  NUNCA para layout completo (`flex`, `grid`) ni overrides de estilos principales (`font-bold`, `text-sm`)
+   -  Si necesitas bold, usa `isBold`. Si necesitas thin, usa `isThin`. Si necesitas tamaño, usa `fontSize`
 
 ```tsx
+// Correct
 <AtomButton variant="PRIMARY" size="lg" extraClassName="mt-4">
-<AtomText fontSize="huge" isBold className="mb-6">
+<AtomText fontSize="small" isBold className="mb-6">
+<AtomTitle type="h4" extraClassName="mb-2">
+
+// Wrong
+<AtomTitle extraClassName="!text-lg !font-bold" type="h3">
+<AtomText className="block font-bold text-sm">
+<AtomText className="flex items-center gap-2">
 ```
 
 ### Component Composition (Preferred)
@@ -173,6 +184,8 @@ try {
 3. Forgetting `'use client'` → Required for hooks (`useTranslations`, `useQuery`)
 4. Creating new atoms → Check `src/components/atoms/index.ts` first
 5. Using `!important` → Prefer native HTML or improve the atom
+6. `className` overrides on `AtomText` (`font-bold`, `text-sm`, `flex`) → Use props (`isBold`, `isThin`, `fontSize`)
+7. `extraClassName` for size on `AtomTitle` (`!text-lg`) → Use `type="h4"` prop instead
 
 ## Pre-Commit Checklist
 

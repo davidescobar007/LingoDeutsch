@@ -46,20 +46,32 @@ export const TemplateHome = ({
    const getQuickActions = (): QuickAction[] => {
       const actions: QuickAction[] = []
 
-      // PRIORITY 1: Grammar incomplete - show continue grammar
-      if (!grammarProgress.isComplete && grammarProgress.nextTopic) {
-         actions.push({
-            id: 'continue-grammar',
-            title: 'Continuar Gramática A1',
-            emoji: '📘',
-            description: grammarProgress.nextTopic.name,
-            href: `/app/grammar?topic=${grammarProgress.nextTopic.id}`,
-            variant: 'PRIMARY',
-            badgeCount: grammarProgress.totalTopics - grammarProgress.completedTopics
-         })
+      // PRIORITY 1: Grammar action for logged-in users
+      if (!isGuest) {
+         if (!grammarProgress.isComplete && grammarProgress.nextTopic) {
+            actions.push({
+               id: 'continue-grammar',
+               title: 'Continuar Gramática A1',
+               emoji: '📘',
+               description: grammarProgress.nextTopic.name,
+               href: `/app/grammar?topic=${grammarProgress.nextTopic.id}`,
+               variant: 'PRIMARY',
+               badgeCount: grammarProgress.totalTopics - grammarProgress.completedTopics
+            })
+         } else {
+            // Fallback when A1 complete or no next topic: explore more grammar
+            actions.push({
+               id: 'explore-grammar',
+               title: 'Explorar Gramática',
+               emoji: '📘',
+               description: 'Descubre más niveles y temas',
+               href: '/app/grammar',
+               variant: 'PRIMARY'
+            })
+         }
       }
 
-      // PRIORITY 2: Grammar complete OR secondary action - show read article
+      // PRIORITY 2: Read article (secondary unless guest or grammar complete)
       if (articles.length > 0) {
          const firstArticle = articles[0]
          actions.push({
@@ -68,7 +80,7 @@ export const TemplateHome = ({
             emoji: '📖',
             description: `${firstArticle.level || 'A1'} • ${firstArticle.estimated_read_time || 8} minutos`,
             href: `/app/article/${firstArticle.id}`,
-            variant: grammarProgress.isComplete ? 'PRIMARY' : 'SECONDARY'
+            variant: isGuest || grammarProgress.isComplete ? 'PRIMARY' : 'SECONDARY'
          })
       }
 
@@ -114,8 +126,6 @@ export const TemplateHome = ({
             <OrganismGrammarProgressCard
                completedTopics={grammarProgress.completedTopics}
                isGuest={isGuest}
-               nextTopicId={grammarProgress.nextTopic?.id || ''}
-               nextTopicLabel={grammarProgress.nextTopic?.name || 'Próximo tema'}
                totalTopics={grammarProgress.totalTopics}
             />
             <OrganismStreakCard

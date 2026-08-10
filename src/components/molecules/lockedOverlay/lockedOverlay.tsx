@@ -36,13 +36,13 @@ export const MoleculeLockedOverlay: FunctionComponent<MoleculeLockedOverlayProps
    }
 
    if (!showOverlay) {
-      return <div className={extraClassName}>{children}</div>
+      return <div className={`h-full ${extraClassName}`}>{children}</div>
    }
 
    const isCompact = variant === 'compact'
 
    return (
-      <div className={`container-card relative ${extraClassName}`}>
+      <div className={`container-card relative h-full ${extraClassName}`}>
          {/* Blurred content */}
          <div className={`pointer-events-none select-none ${blurClasses[blurIntensity]}`}>{children}</div>
 
